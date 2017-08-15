@@ -2,4 +2,4 @@
 
 Based on Nette Framework
 
-![Screenshot](https://raw.githubusercontent.com/netis-cms/netis/master/Netis.png)
+![Screenshot](https://raw.githubusercontent.com/netis-cms/netis/master/netis.png)
