@@ -2,7 +2,7 @@
 
 Based on:
 - [Nette Framework](https://github.com/nette/nette)
-- [Drago Extending for Nette Framework](https://github.com/drago-ex)
+- [Drago Extension Nette Framework](https://github.com/drago-ex)
 - [dibi - smart database abstraction layer](https://github.com/dg/dibi)
 - [CSS UI Simple CSS Styles](https://github.com/css-ui)
 
