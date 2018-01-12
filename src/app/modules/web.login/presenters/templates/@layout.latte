@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{$lang}">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="{ifset $web}{$web->description}{/ifset}">
+	<meta name="author" content="Zdeněk Papučík, zdenek.papucik@gmail.com">
+
+	{* mobile specific metas *}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	{* cascading style sheets *}
+	<link rel="stylesheet" href="{$basePath}/www/css/style.sign.in.css">
+
+	{* website title and subtitle *}
+	<title>{include subtitle|stripHtml|firstUpper}{ifset $web} | {$web->website}{/ifset}</title>
+</head>
+<body>
+	<div class="container box">
+
+		{* user gravatar *}
+		<div class="align center">
+			<img src="{$gravatar}" alt="gravatar" class="sign-gravatar">
+		</div>
+
+		<div class="align center">
+			<h1>{_$welcome}</h1>
+			<p>{_'login.to.acc'}</p>
+		</div>
+
+		{* flash messages *}
+		<div n:foreach="$flashes as $flash" class="message {$flash->type}">{_$flash->message}</div>
+
+		{* include sign in factory *}
+		<div class="sign in">
+			{include content}
+		</div>
+	</div>
+
+	{* footer and copyright *}
+	<div class="footer">
+		<p class="align center">&copy; 2016 - {date(Y)}  Netis</p>
+	</div>
+
+	{* include nanobar script *}
+	{include '../../../base/templates/@nanobar.latte'}
+
+</body>
+</html>

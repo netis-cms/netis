@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{$lang}">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="{ifset $web}{$web->description}{/ifset}">
+	<meta name="author" content="Zdeněk Papučík, zdenek.papucik@gmail.com">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	{* cascading style sheets *}
+	<link rel="stylesheet" href="{$basePath}/www/">
+
+	{* website title and subtitle *}
+	<title>{include subtitle|stripHtml|firstUpper}{ifset $web} | {$web->website}{/ifset}</title>
+</head>
+<body>
+
+	{* content *}
+	<div class="content">
+		{include content|indent:1}
+	</div>
+
+	{* javascript libraries and plugins *}
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="{$basePath}/www/js/nanobar.min.js"></script>
+
+	{* include nanobar script *}
+	{include '../../../base/templates/@nanobar.latte'}
+</body>
+</html>

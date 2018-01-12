@@ -1,0 +1,113 @@
+
+/*
+    import css styles
+*/
+@import url(style.base.css);
+
+/*
+    install
+*/
+body {
+    background-color: white;
+      padding-bottom: 6rem;
+	       color: #787878;
+}
+
+h2 {
+    margin-bottom: 35px;
+            color: #545454;
+}
+
+h6 {
+    font-weight: 600;
+}
+
+p.steps {
+    padding-top: 2px;
+         margin: 0;
+}
+
+p.delete span {
+    font-weight: 600;
+    display: block;
+      color: #e03e3e;
+}
+
+/*
+    layout
+*/
+.container {
+    max-width: 1170px;
+}
+
+.header {
+    border-bottom: 1px solid #e9e9e9;
+          padding: 10px 15px 5px;
+}
+
+.content {
+    margin-top: 30px;
+       padding: 0 20px;
+}
+
+.footer {
+    color: #949494;
+}
+
+/*
+    message
+*/
+.message {
+    margin-bottom: 20px;
+    border-radius: 0;
+          padding: 15px 0;
+}
+
+.message.success {
+    background: #e9e9e9;
+         color: #565656;
+}
+
+.flash {
+    font-weight: 600;
+        padding: 0 20px;
+}
+
+/*
+    form
+*/
+form {
+    margin-top: 3.5rem;
+}
+
+/*
+    buttons
+*/
+.button.install {
+    background-color: #048ffa;
+          margin-top: 5px;
+               color: white;
+}
+
+.button.install:hover {
+    background-color: #0487ec;
+}
+
+/*
+    display 768px
+*/
+@media only screen and (min-width: 768px) {
+
+    /*
+	layout
+    */
+    .content { margin-top: 80px; }
+    .screen.reader { display: block; }
+
+    /*
+	elements
+    */
+    h2 { font-size: 3.250em; }
+    p  { font-size: 1em; }
+
+}

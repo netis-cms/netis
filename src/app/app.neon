@@ -1,0 +1,28 @@
+
+# Default parameters.
+parameters:
+
+	# Locales router.
+	routers: '[<lang=cs cs>/]'
+
+# Parameters for sessions.
+session:
+	expiration: 14 days
+	savePath: '%tempDir%/sessions'
+
+# Settings for application.
+application:
+
+	# Mapping application.
+	mapping:
+		*: *\Module\*Presenter
+
+# Extensions for application.
+extensions:
+
+	# Easier access to individual directories in an application.
+	dirs: Drago\Directory\DirsExtension
+
+# Enabling the Tracy System Container.
+di:
+	debugger: yes

@@ -1,0 +1,15 @@
+
+# Database configuratin file.
+extensions:
+	dibi: Dibi\Bridges\Nette\DibiExtension22
+
+# Credentials to the database.
+dibi:
+	host:
+	driver:
+	username:
+	password:
+	database:
+	lazy: TRUE
+	substitutes:
+		prefix:

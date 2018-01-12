@@ -1,0 +1,6 @@
+
+# Base module.
+services:
+
+	- Base\Repository\Website
+	- Drago\Application\UI\Factory

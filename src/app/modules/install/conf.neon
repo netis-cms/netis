@@ -1,0 +1,17 @@
+
+# Install module.
+services:
+
+	router: {setup: {offsetSet(null, @router.install)}}
+	router.install: {factory: Install\Module\Router::create(%routers%), autowired: no}
+
+	drago.cache:
+		class: Nette\Caching\Cache
+		arguments: [@Nette\Caching\IStorage, 'Drago.CacheSteps']
+
+	- Install\Service\Steps(@drago.cache)
+	- Install\Service\Query
+	- Install\Factory
+
+	- Drago\Http\Sessions(@Nette\Http\Session, 'db.prefix')
+	- Nette\DI\Config\Loader

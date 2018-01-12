@@ -1,0 +1,50 @@
+
+/*
+    import css styles
+*/
+@import url(https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin-ext);
+@import url(https://css-ui.github.io/css/cssui.min.css);
+
+/*
+    elements
+*/
+body {
+    background-color: #eff2f7;
+         font-family: 'Open Sans', sans-serif;
+}
+
+/*
+    nanobar
+*/
+.nanobar {
+    z-index: 9999;
+     height: 2px;
+      width: 100%;
+        top: 0
+}
+
+.bar {
+    transition: height .3s;
+    background: #048ffa;
+        height: 100%;
+         width: 0;
+}
+
+/*
+    form errors
+*/
+ul.errors {
+    color: #e95656;
+}
+
+ul.errors li {
+    font-weight: 600;
+}
+
+/*
+    flash messages
+*/
+.message {
+    font-weight: 600;
+}

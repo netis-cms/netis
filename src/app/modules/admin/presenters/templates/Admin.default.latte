@@ -1,0 +1,9 @@
+
+{* subtitle page *}
+{block subtitle}{_'admin.module'}{/block}
+
+{* website content *}
+<div class="box style" n:block="content">
+	<h4>Dashboard</h4>
+	<p>{$user->identity->data['realname']} <a n:href=":Web:Login:out">Logout</a></p>
+</div>
