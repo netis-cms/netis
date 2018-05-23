@@ -9,6 +9,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	{* cascading style sheets *}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=latin-ext">
+	<link rel="stylesheet" href="https://css-ui.github.io/css/cssui.min.css">
+
+	<link rel="stylesheet" href="{$basePath}/www/css/style.css">
 	<link rel="stylesheet" href="{$basePath}/www/css/style.sign.in.css">
 
 	{* website title and subtitle *}
@@ -41,8 +46,14 @@
 		<p class="align center">&copy; 2016 - {date(Y)}  Netis</p>
 	</div>
 
+	{* javascript libraries and plugins *}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 	{* include nanobar script *}
 	{include '../../../base/templates/@nanobar.latte'}
+
+	{* include other script *}
+	{block js}{/block}
 
 </body>
 </html>
