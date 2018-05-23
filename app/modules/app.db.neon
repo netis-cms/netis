@@ -1,9 +1,9 @@
 
-# Database configuratin file.
+# library to connect to the database
 extensions:
 	dibi: Dibi\Bridges\Nette\DibiExtension22
 
-# Credentials to the database.
+# settings database
 dibi:
 	host:
 	driver:
