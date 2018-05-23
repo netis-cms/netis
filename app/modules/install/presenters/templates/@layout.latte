@@ -8,6 +8,7 @@
 
 	{* cascading style sheets *}
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=latin-ext">
 	<link rel="stylesheet" href="https://css-ui.github.io/css/cssui.min.css">
 
@@ -89,11 +90,24 @@
 
 	{* javascript libraries and plugins *}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/nanobar/0.4.2/nanobar.min.js"></script>
 
-	{* include nanobar script *}
-	{include '../../../base/templates/@nanobar.latte'}
+	<script src="{$basePath}/www/js/nette.forms.min.js"></script>
+	<script src="{$basePath}/www/js/nette.ajax.min.js"></script>
+	<script src="{$basePath}/www/js/nette.ajax.spinner.js"></script>
 
-	{* include other script *}
+	{* include script from template *}
 	{block js}{/block}
+	<script>
+		$(function() {
+
+			// nanobar settings
+			var nanobar = new Nanobar();
+				nanobar.go(100);
+
+			// nette ajax initialization
+			$.nette.init();
+		});
+	</script>
 </body>
 </html>
