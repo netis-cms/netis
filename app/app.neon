@@ -1,28 +1,22 @@
 
-# Default parameters.
+# default parameters
 parameters:
 
-	# Locales router.
+	# translate router
 	routers: '[<lang=cs cs>/]'
 
-# Parameters for sessions.
+# parameters for sessions
 session:
 	expiration: 14 days
 	savePath: '%tempDir%/sessions'
 
-# Settings for application.
+# settings for application
 application:
 
-	# Mapping application.
+	# mapping application
 	mapping:
 		*: *\Module\*Presenter
 
-# Extensions for application.
-extensions:
-
-	# Easier access to individual directories in an application.
-	dirs: Drago\Directory\DirsExtension
-
-# Enabling the Tracy System Container.
+# enabling system container for Tracy bar
 di:
 	debugger: yes
