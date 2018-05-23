@@ -9,6 +9,7 @@ namespace Base;
 use Drago;
 use Drago\Localization;
 use Drago\Directory;
+use Drago\Application;
 
 use Base\Repository;
 
