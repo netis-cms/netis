@@ -41,3 +41,13 @@ ul.errors li {
 .message {
     font-weight: 600;
 }
+
+/*
+    ajax spinner
+*/
+#spinner {
+    font-size: 60px;
+     position: fixed;
+      z-index: 999;
+        color: #10a2f1;
+}
