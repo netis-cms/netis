@@ -4,7 +4,7 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
-namespace Base;
+namespace Admin\Module;
 
 /**
  * Administration of the site.

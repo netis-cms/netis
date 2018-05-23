@@ -5,12 +5,11 @@
  * Copyright (c) 2015, Zdeněk Papučík
  */
 namespace Admin\Module;
-use Base;
 
 /**
  * Administration of the site.
  */
-final class AdminPresenter extends Base\DashboardPresenter
+final class AdminPresenter extends DashboardPresenter
 {
 	// Setup rendering.
 	protected function beforeRender()

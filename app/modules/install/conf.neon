@@ -1,5 +1,5 @@
 
-# Install module.
+# install module
 services:
 
 	router: {setup: {offsetSet(null, @router.install)}}

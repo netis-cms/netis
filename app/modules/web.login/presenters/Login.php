@@ -4,11 +4,10 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
-namespace Web\Module;
+namespace Admin\Module;
 
 use Base;
 use Supplement;
-use Drago\Application;
 
 use Nette\Application\UI;
 use Nette\Security;
@@ -29,12 +28,6 @@ final class LoginPresenter extends Base\BasePresenter
 	 * @inject
 	 */
 	public $gravatar;
-
-	/**
-	 * @var Application\UI\Factory
-	 * @inject
-	 */
-	public $factory;
 
 	/**
 	 * @return array

@@ -1,6 +1,11 @@
 
-# Base module.
+# base module
 services:
 
 	- Base\Repository\Website
 	- Drago\Application\UI\Factory
+
+extensions:
+
+	# easier access to individual directories in an application
+	dirs: Drago\Directory\DirsExtension

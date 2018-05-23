@@ -11,7 +11,9 @@ use Drago\Localization;
 use Drago\Directory;
 
 use Base\Repository;
+
 use Nette\Application\UI;
+use Nette\Utils\ArrayHash;
 
 /**
  * The basic for modules.
@@ -32,6 +34,12 @@ abstract class BasePresenter extends UI\Presenter
 	 * @inject
 	 */
 	public $dirs;
+
+	/**
+	 * @var Application\UI\Factory
+	 * @inject
+	 */
+	public $factory;
 
 	/**
 	 * Modules directory.
@@ -57,8 +65,13 @@ abstract class BasePresenter extends UI\Presenter
 	protected function beforeRender()
 	{
 		parent::beforeRender();
+
+		// The currently used language.
 		$this->template->lang = $this->lang;
-		$this->template->web  = (object) $this->website->all();
+
+		// Website settings.
+		$website = ArrayHash::from($this->website->all());
+		$this->template->web  = $website;
 	}
 
 	/**
@@ -67,10 +80,9 @@ abstract class BasePresenter extends UI\Presenter
 	 * @param int
 	 * @return Localization\Translator
 	 */
-	public function translator($module, $components = NULL)
+	public function translator($module)
 	{
-		$dir  = $components === 1 ? $this->dirs->getAppDir() . '/components/' : $this->getModuleDir();
-		$path = $dir . '/' . $module . '/locales/' . $this->lang . '.ini';
+		$path = $this->getModuleDir() . '/' . $module . '/locales/' . $this->lang . '.ini';
 		return $this->createTranslator($path);
 	}
 
