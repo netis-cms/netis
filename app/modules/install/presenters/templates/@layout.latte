@@ -31,32 +31,32 @@
 
 		{* install info and icons *}
 		{if $presenter->isLinkCurrent(':Install:Install:')}
-		{var $item = ['ico' => 'info.png', 'step' => '1']}
+		{var $item = ['ico' => 'info.png', 'step' => '0']}
 
 		{* database server settings *}
 		{elseif $step == '1'}
-		{var $item = ['ico' => 'server.png', 'step' => '2']}
+		{var $item = ['ico' => 'server.png', 'step' => '1']}
 
 		{* install database tables *}
 		{elseif $step == '2'}
-		{var $item = ['ico' => 'db.png', 'step' => '3']}
+		{var $item = ['ico' => 'db.png', 'step' => '2']}
 
 		{* basic website settings *}
 		{elseif $step == '3'}
-		{var $item = ['ico' => 'website.png', 'step' => '4']}
+		{var $item = ['ico' => 'website.png', 'step' => '3']}
 
 		{* registration account for administrator *}
 		{elseif $step == '4'}
-		{var $item = ['ico' => 'account.png', 'step' => '5']}
+		{var $item = ['ico' => 'account.png', 'step' => '4']}
 
 		{* completion install *}
 		{elseif $presenter->isLinkCurrent(':Install:Install:completed')}
-		{var $item = ['ico' => 'done.png', 'step' => '6']}
+		{var $item = ['ico' => 'done.png', 'step' => '5']}
 		{/if}
 
 		{* step info *}
 		<div class="float right">
-			<p class="steps">{_'install.steps'} {$item['step']}/6</p>
+			<p class="steps">{_'install.steps'} {$item['step']}/5</p>
 		</div>
 	</div>
 
