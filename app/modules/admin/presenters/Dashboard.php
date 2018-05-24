@@ -5,11 +5,12 @@
  * Copyright (c) 2015, Zdeněk Papučík
  */
 namespace Admin\Module;
+use Base;
 
 /**
  * Administration of the site.
  */
-abstract class DashboardPresenter extends BasePresenter
+abstract class DashboardPresenter extends Base\BasePresenter
 {
 	// ini var.
 	protected function startup()
