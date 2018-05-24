@@ -53,7 +53,7 @@ final class InstallPresenter extends UI\Presenter
 	protected function startup()
 	{
 		parent::startup();
-		$this->template->step = NULL;
+		$this->template->step = 0;
 	}
 
 	// Setup rendering.
