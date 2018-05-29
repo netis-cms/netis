@@ -78,10 +78,10 @@ final class InstallPresenter extends UI\Presenter
 
 			// Check 1 step.
 			case 1:
-				if (!$this->steps->isCacheExist(Service\Steps::START)) {
+				if (!$this->steps->cache->load(Service\Steps::START)) {
 					$this->redirect(self::TEMPLATE_DEFAULT);
 				} else {
-					if ($this->steps->isCacheExist(Service\Steps::STEP_1)) {
+					if ($this->steps->cache->load(Service\Steps::STEP_1)) {
 						$this->redirect(self::TEMPLATE_STEP, ['id' => 2]);
 					}
 				}
@@ -89,13 +89,13 @@ final class InstallPresenter extends UI\Presenter
 
 			// Check 2 step.
 			case 2:
-				if (!$this->steps->isCacheExist(Service\Steps::START)) {
+				if (!$this->steps->cache->load(Service\Steps::START)) {
 					$this->redirect(self::TEMPLATE_DEFAULT);
 				} else {
-					if ($this->steps->isCacheExist(Service\Steps::STEP_2)) {
+					if ($this->steps->cache->load(Service\Steps::STEP_2)) {
 						$this->redirect(self::TEMPLATE_STEP, ['id' => 3]);
 
-					} elseif (!$this->steps->isCacheExist(Service\Steps::STEP_1)) {
+					} elseif (!$this->steps->cache->load(Service\Steps::STEP_1)) {
 						$this->redirect(self::TEMPLATE_STEP, ['id' => 1]);
 					}
 				}
@@ -103,16 +103,16 @@ final class InstallPresenter extends UI\Presenter
 
 			// Check 3 step.
 			case 3:
-				if (!$this->steps->isCacheExist(Service\Steps::START)) {
+				if (!$this->steps->cache->load(Service\Steps::START)) {
 					$this->redirect(self::TEMPLATE_DEFAULT);
 				} else {
-					if ($this->steps->isCacheExist(Service\Steps::STEP_3)) {
+					if ($this->steps->cache->load(Service\Steps::STEP_3)) {
 						$this->redirect(self::TEMPLATE_STEP, ['id' => 4]);
 
-					} elseif (!$this->steps->isCacheExist(Service\Steps::STEP_1)) {
+					} elseif (!$this->steps->cache->load(Service\Steps::STEP_1)) {
 						$this->redirect(self::TEMPLATE_STEP, ['id' => 1]);
 
-					} elseif (!$this->steps->isCacheExist(Service\Steps::STEP_2)) {
+					} elseif (!$this->steps->cache->load(Service\Steps::STEP_2)) {
 						$this->redirect(self::TEMPLATE_STEP, ['id' => 2]);
 					}
 				}
@@ -120,19 +120,19 @@ final class InstallPresenter extends UI\Presenter
 
 			// Check 4 step.
 			case 4:
-				if (!$this->steps->isCacheExist(Service\Steps::START)) {
+				if (!$this->steps->cache->load(Service\Steps::START)) {
 					$this->redirect(self::TEMPLATE_DEFAULT);
 				} else {
-					if ($this->steps->isCacheExist(Service\Steps::STEP_4)) {
+					if ($this->steps->cache->load(Service\Steps::STEP_4)) {
 						$this->redirect(self::TEMPLATE_FINAL);
 
-					} elseif (!$this->steps->isCacheExist(Service\Steps::STEP_1)) {
+					} elseif (!$this->steps->cache->load(Service\Steps::STEP_1)) {
 						$this->redirect(self::TEMPLATE_STEP, ['id' => 1]);
 
-					} elseif (!$this->steps->isCacheExist(Service\Steps::STEP_2)) {
+					} elseif (!$this->steps->cache->load(Service\Steps::STEP_2)) {
 						$this->redirect(self::TEMPLATE_STEP, ['id' => 2]);
 
-					} elseif (!$this->steps->isCacheExist(Service\Steps::STEP_3)) {
+					} elseif (!$this->steps->cache->load(Service\Steps::STEP_3)) {
 						$this->redirect(self::TEMPLATE_STEP, ['id' => 3]);
 					}
 				}
@@ -148,7 +148,7 @@ final class InstallPresenter extends UI\Presenter
 	// Redirect from the template when it has already started installation.
 	public function actionDefault()
 	{
-		if ($this->steps->isCacheExist(Service\Steps::START)) {
+		if ($this->steps->cache->load(Service\Steps::START)) {
 			$this->redirect(self::TEMPLATE_STEP, ['id' => 1]);
 		}
 	}
@@ -156,7 +156,7 @@ final class InstallPresenter extends UI\Presenter
 	// Redirect to default template if step 4 has not been completed.
 	public function actionCompleted()
 	{
-		if (!$this->steps->isCacheExist(Service\Steps::STEP_4)) {
+		if (!$this->steps->cache->load(Service\Steps::STEP_4)) {
 			$this->redirect(self::TEMPLATE_DEFAULT);
 		}
 	}
@@ -164,7 +164,7 @@ final class InstallPresenter extends UI\Presenter
 	// Run the installation.
 	public function handleRun()
 	{
-		$this->steps->setToCache(Service\Steps::START, rand(1, 9));
+		$this->steps->cache->save(Service\Steps::START, rand(1, 9));
 		$this->redirect(self::TEMPLATE_STEP, ['id' => 1]);
 	}
 

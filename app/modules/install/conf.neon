@@ -5,11 +5,11 @@ services:
 	router: {setup: {offsetSet(null, @router.install)}}
 	router.install: {factory: Install\Module\Router::create(%routers%), autowired: no}
 
-	drago.cache:
+	install.cache:
 		class: Nette\Caching\Cache
-		arguments: [@Nette\Caching\IStorage, 'Drago.CacheSteps']
+		arguments: [@Nette\Caching\IStorage, 'Install.CacheSteps']
 
-	- Install\Service\Steps(@drago.cache)
+	- Install\Service\Steps(@install.cache)
 	- Install\Service\Query
 	- Install\Factory
 

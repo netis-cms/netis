@@ -136,7 +136,7 @@ class Factory
 					Utils\FileSystem::delete($this->dirs->getTempDir() . '/cache/Nette.Configurator');
 
 					// Save the installation step.
-					$this->steps->setToCache(Service\Steps::STEP_1, rand(1, 9));
+					$this->steps->cache->save(Service\Steps::STEP_1, rand(1, 9));
 
 					// Save db prefix.
 					if ($values->prefix) {
@@ -257,7 +257,7 @@ class Factory
 				);
 
 				// Save the installation step.
-				$this->steps->setToCache(Service\Steps::STEP_2, rand(1, 9));
+				$this->steps->cache->save(Service\Steps::STEP_2, rand(1, 9));
 
 			} catch (Exception $e) {
 				if ($e->getCode() === 1) {
@@ -302,7 +302,7 @@ class Factory
 			}
 
 			// Save the installation step.
-			$this->steps->setToCache(Service\Steps::STEP_3, rand(1, 9));
+			$this->steps->cache->save(Service\Steps::STEP_3, rand(1, 9));
 			$onSuccess();
 		};
 		return $form;
@@ -351,7 +351,7 @@ class Factory
 			$this->query->addRecord($table, $values);
 
 			// Save the installation step.
-			$this->steps->setToCache(Service\Steps::STEP_4, rand(1, 9));
+			$this->steps->cache->save(Service\Steps::STEP_4, rand(1, 9));
 			$onSuccess();
 		};
 		return $form;
