@@ -96,7 +96,7 @@ final class LoginPresenter extends Base\BasePresenter
 	public function actionOut()
 	{
 		$this->user->logout();
-		$this->redirect(':Web:Login:');
+		$this->redirect(':Admin:Login:');
 	}
 
 }
