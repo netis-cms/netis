@@ -17,7 +17,7 @@
 		"nette/security": "~2.4.0",
 		"tracy/tracy": "~2.4.0",
 		"accgit/gravatar": "~1.0.0",
-		"drago-ex/bootstrap": "@dev",
+		"drago-ex/bootstrap": "~1.0.0",
 		"drago-ex/application": "~1.0.0",
 		"drago-ex/database": "~1.0.0",
 		"drago-ex/dirs": "~1.0.0",
