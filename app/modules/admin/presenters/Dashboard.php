@@ -17,7 +17,7 @@ abstract class DashboardPresenter extends Base\BasePresenter
 	{
 		parent::startup();
 		if (!$this->user->isLoggedIn()) {
-			$this->redirect(':Web:Login:', [
+			$this->redirect(':Admin:Login:', [
 				'backlink' => $this->storeRequest()
 			]);
 		}
