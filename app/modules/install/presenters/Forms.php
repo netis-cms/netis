@@ -69,8 +69,7 @@ class Forms
 	}
 
 	/**
-	 * @param array
-	 * @param callable
+	 * @param array $translator
 	 * @return UI\Form
 	 */
 	public function databaseHostFactory($translator, callable $onSuccess)
@@ -173,8 +172,7 @@ class Forms
 	}
 
 	/**
-	 * @param array
-	 * @param callable
+	 * @param array $translator
 	 * @return UI\Form
 	 */
 	public function dbTablesFactory($translator, callable $onSuccess)
@@ -265,8 +263,7 @@ class Forms
 	}
 
 	/**
-	 * @param array
-	 * @param callable
+	 * @param array $translator
 	 * @return UI\Form
 	 */
 	public function websiteSettingsFactory($translator, callable $onSuccess)
