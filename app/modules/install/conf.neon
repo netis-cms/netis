@@ -11,7 +11,7 @@ services:
 
 	- Install\Service\Steps(@install.cache)
 	- Install\Service\Query
-	- Install\Factory
+	- Install\Forms
 
 	- Drago\Http\Sessions(@Nette\Http\Session, 'db.prefix')
 	- Nette\DI\Config\Loader
