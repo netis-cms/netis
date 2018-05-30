@@ -37,7 +37,6 @@ final class LoginPresenter extends Base\BasePresenter
 		return $this->translator('web.login');
 	}
 
-	// Setup rendering.
 	protected function beforeRender()
 	{
 		parent::beforeRender();
@@ -83,10 +82,10 @@ final class LoginPresenter extends Base\BasePresenter
 			$this->redirect(':Web:Web:');
 
 		} catch (Security\AuthenticationException $e) {
-			if ($e->getCode() == 1) {
+			if ($e->getCode() === 1) {
 				$form->addError('login.user.invalid');
 
-			} elseif ($e->getCode() == 2) {
+			} elseif ($e->getCode() === 2) {
 				$form->addError('login.pass.invalid');
 			}
 		}
