@@ -17,7 +17,7 @@ class Router
 	use Nette\StaticClass;
 
 	/**
-	 * @param string
+	 * @param string $locales
 	 * @return Nette\Application\IRouter
 	 */
 	public static function create($locales)
