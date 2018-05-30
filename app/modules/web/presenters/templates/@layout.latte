@@ -19,8 +19,6 @@
 </head>
 <body>
 	<p n:foreach="$flashes as $flash" class="flash {$flash->type}">{_$flash->message}</p>
-
-	{* content block *}
 	{include content|indent:1}
 
 	{* javascript libraries and plugins *}
