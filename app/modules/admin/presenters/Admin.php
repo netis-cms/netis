@@ -11,7 +11,6 @@ namespace Admin\Module;
  */
 final class AdminPresenter extends DashboardPresenter
 {
-	// Setup rendering.
 	protected function beforeRender()
 	{
 		parent::beforeRender();
