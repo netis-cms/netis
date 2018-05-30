@@ -35,10 +35,10 @@ final class InstallPresenter extends UI\Presenter
 	public $steps;
 
 	/**
-	 * @var Install\Factory
+	 * @var Install\Forms
 	 * @inject
 	 */
-	public $factory;
+	public $forms;
 
 	/**
 	 * @return Localization\Translator
@@ -169,44 +169,44 @@ final class InstallPresenter extends UI\Presenter
 	}
 
 	/**
-	 * @return Install\Factory
+	 * @return Install\Forms
 	 */
 	protected function createComponentDatabase()
 	{
-		return $this->factory->databaseHostFactory($this->getTranslator(), function () {
+		return $this->forms->databaseHostFactory($this->getTranslator(), function () {
 			$this->flashMessageSuccess('install.db.message');
 			$this->redirect(self::TEMPLATE_STEP, ['id' => 2]);
 		});
 	}
 
 	/**
-	 * @return Install\Factory
+	 * @return Install\Forms
 	 */
 	protected function createComponentTables()
 	{
-		return $this->factory->dbTablesFactory($this->getTranslator(), function () {
+		return $this->forms->dbTablesFactory($this->getTranslator(), function () {
 			$this->flashMessageSuccess('install.db.tables.message');
 			$this->redirect(self::TEMPLATE_STEP, ['id' => 3]);
 		});
 	}
 
 	/**
-	 * @return Install\Factory
+	 * @return Install\Forms
 	 */
 	protected function createComponentWebsite()
 	{
-		return $this->factory->websiteSettingsFactory($this->getTranslator(), function () {
+		return $this->forms->websiteSettingsFactory($this->getTranslator(), function () {
 			$this->flashMessageSuccess('install.web.message');
 			$this->redirect(self::TEMPLATE_STEP, ['id' => 4]);
 		});
 	}
 
 	/**
-	 * @return Install\Factory
+	 * @return Install\Forms
 	 */
 	protected function createComponentAccount()
 	{
-		return $this->factory->registrationAccount($this->getTranslator(), function () {
+		return $this->forms->registrationAccount($this->getTranslator(), function () {
 			$this->flashMessageSuccess('install.acc.message');
 			$this->redirect(self::TEMPLATE_FINAL);
 		});

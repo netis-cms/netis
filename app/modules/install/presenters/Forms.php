@@ -22,11 +22,12 @@ use Drago\Directory;
 use Drago\Http;
 
 /**
- * Install factory.
+ * Install forms.
  */
-class Factory
+class Forms
 {
 	use Nette\SmartObject;
+	use Application\UI\Factory;
 
 	/**
 	 * @var Service\Query
@@ -53,25 +54,18 @@ class Factory
 	 */
 	private $sessions;
 
-	/**
-	 * @var Application\UI\Factory
-	 */
-	private $factory;
-
 	public function __construct(
 		Service\Query $query,
 		Service\Steps $steps,
 		Directory\Dirs $dirs,
 		Config\Loader $loader,
-		Http\Sessions $sessions,
-		Application\UI\Factory $factory)
+		Http\Sessions $sessions)
 	{
 		$this->query = $query;
 		$this->steps = $steps;
 		$this->dirs = $dirs;
 		$this->loader = $loader;
 		$this->sessions = $sessions;
-		$this->factory = $factory;
 	}
 
 	/**
@@ -81,7 +75,7 @@ class Factory
 	 */
 	public function databaseHostFactory($translator, callable $onSuccess)
 	{
-		$form = $this->factory->create();
+		$form = $this->createForm();
 		$form->setTranslator($translator);
 
 		$form->addText('host', 'install.db.host')
@@ -185,7 +179,7 @@ class Factory
 	 */
 	public function dbTablesFactory($translator, callable $onSuccess)
 	{
-		$form = $this->factory->create();
+		$form = $this->createForm();
 		$form->setTranslator($translator);
 
 		$form->addSubmit('send', 'install.db.tables.send');
@@ -277,7 +271,7 @@ class Factory
 	 */
 	public function websiteSettingsFactory($translator, callable $onSuccess)
 	{
-		$form = $this->factory->create();
+		$form = $this->createForm();
 		$form->setTranslator($translator);
 
 		$form->addText('website', 'install.web.name')
@@ -315,7 +309,7 @@ class Factory
 	 */
 	public function registrationAccount($translator, callable $onSuccess)
 	{
-		$form = $this->factory->create();
+		$form = $this->createForm();
 		$form->setTranslator($translator);
 
 		$form->addText('realname', 'install.acc.name')
