@@ -12,7 +12,6 @@ use Base;
  */
 final class WebPresenter extends Base\BasePresenter
 {
-	// Setup rendering.
 	protected function beforeRender()
 	{
 		parent::beforeRender();
