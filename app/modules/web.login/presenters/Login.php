@@ -56,7 +56,7 @@ final class LoginPresenter extends Base\BasePresenter
 	 */
 	protected function createComponentSignIn()
 	{
-		$form = $this->factory->create();
+		$form = $this->createForm();
 		$form->setTranslator($this->getTranslator());
 
 		$form->addText('email', 'login.email')
