@@ -12,7 +12,6 @@ use Base;
  */
 abstract class DashboardPresenter extends Base\BasePresenter
 {
-	// ini var.
 	protected function startup()
 	{
 		parent::startup();
@@ -23,7 +22,6 @@ abstract class DashboardPresenter extends Base\BasePresenter
 		}
 	}
 
-	// Setup rendering.
 	protected function beforeRender()
 	{
 		parent::beforeRender();
