@@ -3,7 +3,6 @@
 services:
 
 	- Base\Repository\Website
-	- Drago\Application\UI\Factory
 
 extensions:
 

@@ -12,9 +12,7 @@ use Drago\Directory;
 use Drago\Application;
 
 use Base\Repository;
-
 use Nette\Application\UI;
-use Nette\Utils\ArrayHash;
 
 /**
  * The basic for modules.
@@ -23,6 +21,7 @@ abstract class BasePresenter extends UI\Presenter
 {
 	use Drago\Application\UI\Drago;
 	use Localization\Locales;
+	use Application\UI\Factory;
 
 	/**
 	 * @var Repository\Website
@@ -35,12 +34,6 @@ abstract class BasePresenter extends UI\Presenter
 	 * @inject
 	 */
 	public $dirs;
-
-	/**
-	 * @var Application\UI\Factory
-	 * @inject
-	 */
-	public $factory;
 
 	/**
 	 * Modules directory.
@@ -71,7 +64,7 @@ abstract class BasePresenter extends UI\Presenter
 		$this->template->lang = $this->lang;
 
 		// Website settings.
-		$website = ArrayHash::from($this->website->all());
+		$website = (object) $this->website->all();
 		$this->template->web  = $website;
 	}
 
