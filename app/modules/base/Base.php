@@ -44,7 +44,6 @@ abstract class BasePresenter extends UI\Presenter
 		return $this->dirs->getAppDir() . '/modules';
 	}
 
-	// ini var.
 	protected function startup()
 	{
 		parent::startup();
@@ -55,7 +54,6 @@ abstract class BasePresenter extends UI\Presenter
 		}
 	}
 
-	// Setup rendering.
 	protected function beforeRender()
 	{
 		parent::beforeRender();
@@ -70,8 +68,7 @@ abstract class BasePresenter extends UI\Presenter
 
 	/**
 	 * Translator.
-	 * @param string
-	 * @param int
+	 * @param string $module
 	 * @return Localization\Translator
 	 */
 	public function translator($module)
