@@ -49,14 +49,12 @@ final class InstallPresenter extends UI\Presenter
 		return $this->createTranslator($path);
 	}
 
-	// ini var.
 	protected function startup()
 	{
 		parent::startup();
 		$this->template->step = 0;
 	}
 
-	// Setup rendering.
 	protected function beforeRender()
 	{
 		parent::beforeRender();
@@ -66,7 +64,7 @@ final class InstallPresenter extends UI\Presenter
 
 	/**
 	 * Processing installation steps.
-	 * @param int
+	 * @param int $id
 	 */
 	public function actionStep($id = 0)
 	{
