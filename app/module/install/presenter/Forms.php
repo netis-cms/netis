@@ -123,7 +123,7 @@ class Forms
 					];
 
 					// Generate and save the configuration file.
-					$this->loader->save($arr, $this->dirs->getAppDir() . '/modules/app.db.neon');
+					$this->loader->save($arr, $this->dirs->getAppDir() . '/module/app.db.neon');
 
 					// Removing the old cache for updating the system container.
 					Utils\FileSystem::delete($this->dirs->getTempDir() . '/cache/Nette.Configurator');
