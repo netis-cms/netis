@@ -22,8 +22,10 @@ final class InstallPresenter extends UI\Presenter
 	use Drago\Application\UI\Drago;
 	use Localization\Locales;
 
+	/**
+	 * Templates for redirects.
+	 */
 	const
-		// Templates.
 		TEMPLATE_STEP    = 'step',
 		TEMPLATE_DEFAULT = 'default',
 		TEMPLATE_FINAL   = 'completed';

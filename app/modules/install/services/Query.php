@@ -19,7 +19,7 @@ class Query extends Drago\Database\Connection
 
 	/**
 	 * Add tables to database.
-	 * @param array
+	 * @param array $args
 	 * @return void
 	 */
 	public function addTable($args)
@@ -30,8 +30,8 @@ class Query extends Drago\Database\Connection
 
 	/**
 	 * Add records.
-	 * @param string
-	 * @param array
+	 * @param string $table
+	 * @param array $args
 	 * @return void
 	 */
 	public function addRecord($table, $args)
@@ -43,7 +43,7 @@ class Query extends Drago\Database\Connection
 
 	/**
 	 * Checking the existence of a table in the database.
-	 * @param string
+	 * @param string $name
 	 * @throws Exception
 	 */
 	public function isExistTable($name)
