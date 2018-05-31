@@ -1,0 +1,15 @@
+
+# library to connect to the database
+extensions:
+	dibi: Dibi\Bridges\Nette\DibiExtension22
+
+# settings database
+dibi:
+	host:
+	driver:
+	username:
+	password:
+	database:
+	lazy: TRUE
+	substitutes:
+		prefix:

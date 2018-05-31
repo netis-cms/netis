@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="{$lang}">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="{ifset $web}{$web->description}{/ifset}">
+	<meta name="author" content="Zdeněk Papučík, zdenek.papucik@gmail.com">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	{* cascading style sheets *}
+	<link rel="stylesheet" href="{$basePath}/www/">
+
+	{* website title and subtitle *}
+	<title>{include subtitle|stripHtml|firstUpper}{ifset $web} | {$web->website}{/ifset}</title>
+</head>
+<body>
+	<div class="content">
+		{include content|indent:1}
+	</div>
+
+	{* javascript libraries and plugins *}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	{* include other script *}
+	{block js}{/block}
+</body>
+</html>

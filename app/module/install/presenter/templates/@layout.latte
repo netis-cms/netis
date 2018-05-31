@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="{$lang}">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="{_'install.module'}">
+	<meta name="author" content="Zdeněk Papučík, zdenek.papucik@gmail.com">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	{* cascading style sheets *}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=latin-ext">
+	<link rel="stylesheet" href="https://css-ui.github.io/css/cssui.min.css">
+
+	<link rel="stylesheet" href="{$basePath}/www/css/style.css">
+	<link rel="stylesheet" href="{$basePath}/www/css/style.install.css">
+
+	{* website title and subtitle *}
+	<title>{include subtitle|stripHtml|firstUpper}</title>
+</head>
+<body>
+	{* header *}
+	<div class="header clear">
+
+		{* logo *}
+		<div class="float left">
+			<a n:href=":Install:Install:" title="Netis, Little CMS">
+				<img src="{$basePath}/www/img/logo.png" alt="Netis, Little CMS">
+			</a>
+		</div>
+
+		{* install info and icons *}
+		{if $presenter->isLinkCurrent(':Install:Install:')}
+		{var $item = ['ico' => 'info.png', 'step' => '0']}
+
+		{* database server settings *}
+		{elseif $step == '1'}
+		{var $item = ['ico' => 'server.png', 'step' => '1']}
+
+		{* install database tables *}
+		{elseif $step == '2'}
+		{var $item = ['ico' => 'db.png', 'step' => '2']}
+
+		{* basic website settings *}
+		{elseif $step == '3'}
+		{var $item = ['ico' => 'website.png', 'step' => '3']}
+
+		{* registration account for administrator *}
+		{elseif $step == '4'}
+		{var $item = ['ico' => 'account.png', 'step' => '4']}
+
+		{* completion install *}
+		{elseif $presenter->isLinkCurrent(':Install:Install:completed')}
+		{var $item = ['ico' => 'done.png', 'step' => '5']}
+		{/if}
+
+		{* step info *}
+		<div class="float right">
+			<p class="steps">{_'install.steps'} {$item['step']}/5</p>
+		</div>
+	</div>
+
+	{* flash messages *}
+	<div n:foreach="$flashes as $flash" class="message {$flash->type}">
+		<div class="container flash">
+			{_$flash->message}
+		</div>
+	</div>
+
+	{* content *}
+	<div class="container">
+		<div class="row content">
+
+			{* left columns *}
+			<div class="seven columns">
+				{include content|indent}
+			</div>
+
+			{* right columns *}
+			<div class="five columns align right">
+				<img src="{$basePath}/www/img/{$item['ico']}" class="max width screen reader" alt="ico">
+			</div>
+		</div>
+	</div>
+
+	{* footer and copyright *}
+	<div class="bottom footer">
+		<p class="align center">&copy; 2016 - {date(Y)}  Netis</p>
+	</div>
+
+	{* javascript libraries and plugins *}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/nanobar/0.4.2/nanobar.min.js"></script>
+
+	<script src="{$basePath}/www/js/nette.forms.min.js"></script>
+	<script src="{$basePath}/www/js/nette.ajax.min.js"></script>
+	<script src="{$basePath}/www/js/nette.ajax.spinner.js"></script>
+
+	{* include script from template *}
+	{block js}{/block}
+	<script>
+		$(function() {
+
+			// nanobar settings
+			var nanobar = new Nanobar();
+				nanobar.go(100);
+
+			// nette ajax initialization
+			$.nette.init();
+		});
+	</script>
+</body>
+</html>

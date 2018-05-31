@@ -1,0 +1,10 @@
+
+# base module
+services:
+
+	- Base\Repository\Website
+
+extensions:
+
+	# easier access to individual directories in an application
+	dirs: Drago\Directory\DirsExtension

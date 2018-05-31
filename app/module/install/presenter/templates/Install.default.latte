@@ -1,0 +1,17 @@
+
+{* subtitle sites *}
+{block subtitle}{_'install.module'}{/block}
+
+{* website content *}
+{block content}
+
+	<h2>{_'install.info'}</h2>
+	<p>{_'install.text'}</p>
+	<p>{_'install.go'}</p>
+
+	{* run installation *}
+	<p>
+		<a n:href="run!" class="button install">{_'install.start'}</a>
+	<p>
+
+{/block}
