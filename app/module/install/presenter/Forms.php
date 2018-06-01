@@ -146,6 +146,10 @@ class Forms
 				// Host server not found.
 				} elseif ($e->getCode() === 2002) {
 					$form->addError('install.db.host.catch');
+					
+				// Access denied for user.
+				} elseif ($e->getCode() === 1044) {
+				$form->addError('install.db.access.catch');
 
 				// The user or password was not verified.
 				} elseif ($e->getCode() === 1045) {
