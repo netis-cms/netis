@@ -20,7 +20,7 @@ use Nette\Application\UI;
 abstract class BasePresenter extends UI\Presenter
 {
 	use Drago\Application\UI\Drago;
-	use Localization\Locales;
+	use Localization\Locale;
 	use Application\UI\Factory;
 
 	/**
