@@ -20,7 +20,7 @@ use Nette\Application\UI;
 final class InstallPresenter extends UI\Presenter
 {
 	use Drago\Application\UI\Drago;
-	use Localization\Locales;
+	use Localization\Locale;
 
 	/**
 	 * Templates for redirects.
