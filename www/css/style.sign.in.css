@@ -1,5 +1,14 @@
 
 /*
+    elements
+*/
+body {
+    background-color: #f4f4f4;
+      padding-bottom: 6rem;
+             padding: 18px;
+}
+
+/*
     sign in
 */
 img.sign-gravatar {
@@ -39,9 +48,8 @@ img.sign-gravatar {
     layout
 */
 .container {
-    margin-top: 18px;
-     max-width: 280px;
-       padding: 25px 25px 0;
+    max-width: 280px;
+      padding: 25px 25px 0;
 }
 
 .container.box {

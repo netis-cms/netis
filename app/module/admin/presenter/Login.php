@@ -4,38 +4,25 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
-namespace Admin\Module;
+namespace Module\Admin;
 
 use Base;
+use Drago;
 use Supplement;
 
 use Nette\Application\UI;
 use Nette\Security;
 
 /**
- * Sing-in users.
+ * Sing-in user.
  */
 final class LoginPresenter extends Base\BasePresenter
 {
-	/**
-	 * Store a restore requests.
-	 * @persistent
-	 */
-	public $backlink;
-
 	/**
 	 * @var Supplement\Gravatar
 	 * @inject
 	 */
 	public $gravatar;
-
-	/**
-	 * @return array
-	 */
-	private function getTranslator()
-	{
-		return $this->translator('web.login');
-	}
 
 	protected function beforeRender()
 	{
@@ -45,9 +32,8 @@ final class LoginPresenter extends Base\BasePresenter
 			$welcome  = 'login.welcome.back';
 			$gravatar = $user->data['email'];
 		}
-		$this->template->setTranslator($this->getTranslator());
 		$this->template->welcome  = isset($welcome) ? $welcome : 'login.welcome';
-		$this->template->gravatar = $this->gravatar->getGravatar(isset($gravatar) ? $gravatar : NULL, 100);
+		$this->template->gravatar = $this->gravatar->getGravatar(isset($gravatar) ? $gravatar : null, 100);
 	}
 
 	/**
@@ -56,46 +42,56 @@ final class LoginPresenter extends Base\BasePresenter
 	protected function createComponentSignIn()
 	{
 		$form = $this->createForm();
-		$form->setTranslator($this->getTranslator());
+		$form->setTranslator($this->translator());
 
-		$form->addText('email', 'login.email')
+		$form->addText('email', 'form.email')
 			->setType('email')
-			->setRequired('login.empty')
-			->setAttribute('placeholder', 'login.email.place')
-			->addRule(UI\Form::EMAIL, 'login.email.invalid');
+			->setRequired('form.required')
+			->setAttribute('placeholder', 'form.email.full')
+			->addRule(UI\Form::EMAIL, 'form.email.rule');
 
-		$form->addPassword('password', 'login.pass')
-			->setAttribute('placeholder', 'login.pass.place')
-			->setRequired('login.empty');
+		$form->addPassword('password', 'form.password')
+			->setAttribute('placeholder', 'form.password.full')
+			->setRequired('form.required');
 
-		$form->addSubmit('send', 'login.send');
+		$form->addSubmit('send', 'form.send.login');
 		$form->onSuccess[] = [$this, 'success'];
 		return $form;
 	}
 
-	// Form process.
 	public function success(UI\Form $form, $values)
 	{
 		try {
 			$this->user->login($values->email, $values->password);
-			$this->restoreRequest($this->backlink);
-			$this->redirect(':Web:Web:');
+			$this->redirect(':Admin:Admin:');
 
 		} catch (Security\AuthenticationException $e) {
 			if ($e->getCode() === 1) {
-				$form->addError('login.user.invalid');
+				$form->addError('form.user.error');
 
 			} elseif ($e->getCode() === 2) {
-				$form->addError('login.pass.invalid');
+				$form->addError('form.password.error');
 			}
 		}
 	}
 
-	// Logout user.
+	/**
+	 * Logout user.
+	 */
 	public function actionOut()
 	{
 		$this->user->logout();
 		$this->redirect(':Admin:Login:');
+	}
+
+	/**
+	 * @return Drago\Localization\Translator
+	 */
+	public function translator()
+	{
+		parent::translator();
+		$path = __DIR__ . '/../locale/' . $this->lang . '.ini';
+		return $this->createTranslator($path);
 	}
 
 }

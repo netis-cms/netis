@@ -3,8 +3,7 @@
     elements
 */
 body {
-    background-color: #eff2f7;
-         font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 /*
@@ -36,18 +35,19 @@ ul.errors li {
 }
 
 /*
-    flash messages
-*/
-.message {
-    font-weight: 600;
-}
-
-/*
     ajax spinner
 */
 #spinner {
     font-size: 60px;
      position: fixed;
       z-index: 999;
-        color: #10a2f1;
+        color: rgba(0,0,0,0.1);
+}
+
+.button.primary {
+    background-color: #048ffa;
+}
+
+.button.primary:hover {
+    background-color: #0487ec;
 }

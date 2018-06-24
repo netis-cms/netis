@@ -2,8 +2,8 @@
 # default parameters
 parameters:
 
-	# translate router
-	routers: '[<lang=cs cs>/]'
+	# router for translate
+	router: '[<lang=cs cs>/]'
 
 # parameters for sessions
 session:
@@ -15,7 +15,7 @@ application:
 
 	# mapping application
 	mapping:
-		*: *\Module\*Presenter
+		*: Module\*\*Presenter
 
 # enabling system container for Tracy bar
 di:

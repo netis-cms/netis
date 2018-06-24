@@ -1,0 +1,38 @@
+
+/*
+    elements
+*/
+body {
+    background-color: #f4f4f4;
+          min-height: 100px;
+}
+
+/*
+    custom dropdown menu
+*/
+.dropdown {
+    margin-top: 9px;
+}
+
+.dropdown ul.expand-dropdown li a i.fa {
+    padding-right: 12px;
+}
+
+.dropdown ul.expand-dropdown li {
+    min-width: 160px;
+}
+
+.dropdown ul.expand-dropdown {
+    margin-top: 10px;
+}
+
+.dropdown .employ-toggle.click:hover {
+    background-color: white;
+}
+
+/*
+    form
+*/
+label.label {
+    padding-top: 6px;
+}

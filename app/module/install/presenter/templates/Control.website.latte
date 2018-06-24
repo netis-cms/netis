@@ -1,0 +1,28 @@
+
+{* website settings *}
+{form website class => 'ajax'}
+
+	{* form ajax errors *}
+	{snippet errors}
+	<ul class="errors" n:if="$form->hasErrors()">
+		<li n:foreach="$form->errors as $error">{_$error}</li>
+	</ul>
+	{/snippet}
+
+	{* form elements *}
+	<div class="row">
+		<div class="six columns">
+			{label website/}
+			{input website class => 'full width'}
+		</div>
+		<div class="six columns">
+			{label description/}
+			{input description class => 'full width'}
+		</div>
+	</div>
+
+	{* form send button *}
+	<div class="wrapper">
+		{input send class => 'button install'}
+	</div>
+{/form}

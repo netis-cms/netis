@@ -1,6 +1,6 @@
 
-# Web module.
+# module web
 services:
 
 	router: {setup: {offsetSet(null, @router.web)}}
-	router.web: {factory: Web\Module\Router::create(%routers%), autowired: no}
+	router.web: {factory: Module\Web\Router::create(%router%), autowired: no}

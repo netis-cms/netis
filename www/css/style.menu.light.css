@@ -1,0 +1,64 @@
+
+/*
+    light theme sidebar menu
+*/
+.nav .click { color: white; }
+.nav .click .menu {
+    transition: all 0.1s ease-in-out;
+         color: #7f7f7f;
+}
+
+.nav .click .menu:hover {
+    background-color: #fff;
+}
+
+.sidebar .title {
+    background-color: #ebebeb;
+         font-weight: 600;
+               color: #3b3b3b;
+}
+
+.sidebar ul.menu { background-color: white; }
+.sidebar ul.menu li { color: #a8a8a8; }
+.sidebar ul.menu li ul li a { color: #7f7f7f; }
+.sidebar ul.menu li ul li a i.fa { color: #7f7f7f; }
+.sidebar ul.menu li ul li a:hover {
+    background-color: #f4f4f4;
+               color: #10a2f1;
+}
+
+.sidebar ul.menu li ul li a:hover i.fa {
+    color: #10a2f1;
+}
+
+.sidebar ul.menu li ul li a.current {
+    border-right: 3px solid #10a2f1;
+           color: #10a2f1;
+}
+
+/*
+    notifications
+*/
+.sidebar span.notifi {
+    color: #10a2f1;
+}
+
+@media only screen and (min-width: 768px) {
+
+    .sidebar {
+	background-color: white;
+    }
+
+}
+
+/*
+    perfect scrollbar
+*/
+.ps__thumb-y {
+    background-color: #d3d3d3;
+}
+
+.ps__rail-y:hover > .ps__thumb-y,
+.ps__rail-y:focus > .ps__thumb-y {
+    background-color: #d3d3d3;
+}

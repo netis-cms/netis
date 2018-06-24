@@ -4,7 +4,7 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
-namespace Install\Service;
+namespace Module\Install\Service;
 
 use Drago;
 use Exception;
@@ -48,7 +48,7 @@ class Query extends Drago\Database\Connection
 	 */
 	public function isExistTable($name)
 	{
-		if ($this->db->query('SHOW TABLES LIKE %like~', $name)->fetch() ? TRUE : FALSE) {
+		if ($this->db->query('SHOW TABLES LIKE %like~', $name)->fetch() ? true : false) {
 			throw new Exception('Sorry, but collide in a database table names.', self::COLLIDE_TABLE);
 		}
 	}

@@ -1,0 +1,160 @@
+
+/*
+    dashboard
+*/
+.header {
+    display: none;
+    padding: 4px 20px;
+     height: 48px;
+}
+
+/*
+    dashboard header menu
+*/
+.header ul.breadcrumb  {
+    list-style: none;
+        margin: 8px 0 0 15px;
+}
+
+.header ul.breadcrumb li {
+    display: inline-block;
+     margin: 0 10px 0 0;
+}
+
+.header ul.breadcrumb li i.fa {
+    padding-right: 10px;
+        font-size: 18px;
+         position: relative;
+              top: 2px;
+}
+
+.header ul.breadcrumb li a {
+    text-decoration: none;
+              color: #bfbfbf;
+}
+
+.header ul.breadcrumb li a:hover,
+.header ul.breadcrumb li a.current {
+    color: #7b7d7e;
+}
+
+/*
+    user display in header
+*/
+.user.panel {
+    display: none;
+}
+
+.logged.in ul {
+    list-style: none;
+        margin: 0;
+}
+
+.logged.in ul li {
+    margin: 0;
+}
+
+.logged.in ul li.user {
+    margin-right: 20px;
+      margin-top: 8px;
+           color: #7b7d7e;
+}
+
+.logged.in ul li.gravatar img {
+    border-radius: 30px;
+       margin-top: 5px;
+        max-width: 33px;
+	  display: block;
+}
+
+/*
+    user logged display in sidebar
+*/
+.logged.sidebar {
+    display: block;
+}
+
+.logged.sidebar ul {
+    background-color: #283244;
+       margin-bottom: 0;
+             padding: 10px 0 10px 25px;
+}
+
+.logged.sidebar li {
+    list-style: none;
+        margin: 0;
+         color: white;
+}
+
+.logged.sidebar li a {
+    margin-left: 5px;
+          color: white;
+}
+
+.logged.sidebar li a:hover {
+    color: white;
+}
+
+.logged.sidebar li.user {
+    font-weight: 600;
+        padding: 3px 0 0 25px;
+	  color: #eceef1;
+}
+
+.logged.sidebar li.gravatar img {
+    border-radius: 30px;
+        max-width: 33px;
+	  display: block;
+}
+
+/*
+    content
+*/
+.content {
+    padding: 0;
+}
+
+.content .box {
+    margin-top: 2px;
+       display: block;
+}
+
+.content .box.style {
+    background-color: white;
+       border-radius: 3px;
+       margin-bottom: 20px;
+             padding: 25px;
+}
+
+@media only screen and (min-width: 768px) {
+
+    .header {
+	display: block;
+    }
+
+    .content {
+	padding: 0 35px;
+    }
+
+    .user.panel {
+	display: block;
+    }
+
+    .logged.in ul li.user,
+    .logged.sidebar {
+	display: none;
+    }
+
+}
+
+@media only screen and (min-width: 1024px) {
+
+    .logged.in ul li.user {
+	display: block;
+    }
+    
+    .content .box {
+	margin-top: 0;
+    }
+
+}

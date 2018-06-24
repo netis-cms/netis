@@ -1,0 +1,22 @@
+
+/*
+    dark theme dropdown menu
+*/
+.dropdown .employ-toggle.click {
+       transition: all 0.1s ease-in-out;
+            color: #acacac;
+}
+
+.dropdown .employ-toggle.click:hover {
+    background-color: #f2f2f2;
+}
+
+.dropdown ul.expand-dropdown li a {
+    background-color: rgb(242, 242, 242);
+	       color: #737373;
+}
+
+.dropdown ul.expand-dropdown li a:hover {
+    background-color: rgb(248, 248, 248);
+               color: #3c3c3c;
+}

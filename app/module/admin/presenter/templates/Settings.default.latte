@@ -1,0 +1,39 @@
+
+{* subtitle page *}
+{block subtitle}{_'subtitle'}{/block}
+
+{* website content *}
+{block content}
+	<h4>{_'settings.name'}</h4>
+	{snippet factory}
+	{form settings class => 'ajax'}
+
+		{* form ajax errors *}
+		{snippet errors}
+		<ul class="errors" n:if="$form->hasErrors()">
+			<li n:foreach="$form->errors as $error">{_$error}</li>
+		</ul>
+		{/snippet}
+
+		{* form elements *}
+		<fieldset>
+			<legend>{_'settings.legend'}</legend>
+			<div class="row">
+				<div class="six columns">
+					<div class="two columns">{label website class => 'label' /}</div>
+					<div class="eight columns">{input website class => 'full width'}</div>
+				</div>
+				<div class="six columns">
+					<div class="two columns">{label description class => 'label' /}</div>
+					<div class="eight columns">{input description class => 'full width'}</div>
+				</div>
+			</div>
+		</fieldset>
+
+		{* form send button *}
+		<div class="wrapper">
+			{input send class => 'button primary'}
+		</div>
+	{/form}
+	{/snippet}
+{/block}

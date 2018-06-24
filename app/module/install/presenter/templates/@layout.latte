@@ -2,7 +2,7 @@
 <html lang="{$lang}">
 <head>
 	<meta charset="utf-8">
-	<meta name="description" content="{_'install.module'}">
+	<meta name="description" content="{_'subtitle'}">
 	<meta name="author" content="Zdeněk Papučík, zdenek.papucik@gmail.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -19,7 +19,7 @@
 	<title>{include subtitle|stripHtml|firstUpper}</title>
 </head>
 <body>
-	{* header *}
+	{snippet install}
 	<div class="header clear">
 
 		{* logo *}
@@ -29,34 +29,19 @@
 			</a>
 		</div>
 
-		{* install info and icons *}
-		{if $presenter->isLinkCurrent(':Install:Install:')}
-		{var $item = ['ico' => 'info.png', 'step' => '0']}
-
-		{* database server settings *}
-		{elseif $step == '1'}
-		{var $item = ['ico' => 'server.png', 'step' => '1']}
-
-		{* install database tables *}
-		{elseif $step == '2'}
-		{var $item = ['ico' => 'db.png', 'step' => '2']}
-
-		{* basic website settings *}
-		{elseif $step == '3'}
-		{var $item = ['ico' => 'website.png', 'step' => '3']}
-
-		{* registration account for administrator *}
-		{elseif $step == '4'}
-		{var $item = ['ico' => 'account.png', 'step' => '4']}
-
-		{* completion install *}
-		{elseif $presenter->isLinkCurrent(':Install:Install:completed')}
-		{var $item = ['ico' => 'done.png', 'step' => '5']}
+		{* install icons *}
+		{if $step === 0}
+			{var $item = 'info.png'}
+			{elseif $step === 1}{var $item = 'server.png'}
+			{elseif $step === 2}{var $item = 'db.png'}
+			{elseif $step === 3}{var $item = 'website.png'}
+			{elseif $step === 4}{var $item = 'account.png'}
+			{elseif $step === 5}{var $item = 'done.png'}
 		{/if}
 
 		{* step info *}
 		<div class="float right">
-			<p class="steps">{_'install.steps'} {$item['step']}/5</p>
+			<p class="steps">{_'install.steps'} {$step}/5</p>
 		</div>
 	</div>
 
@@ -78,10 +63,11 @@
 
 			{* right columns *}
 			<div class="five columns align right">
-				<img src="{$basePath}/www/img/{$item['ico']}" class="max width screen reader" alt="ico">
+				<img src="{$basePath}/www/img/{$item}" class="max width screen reader" alt="ico">
 			</div>
 		</div>
 	</div>
+	{/snippet}
 
 	{* footer and copyright *}
 	<div class="bottom footer">

@@ -1,15 +1,8 @@
 
 {* subtitle page *}
-{block subtitle}{_'admin.module'}{/block}
+{block subtitle}{_'subtitle'}{/block}
 
 {* website content *}
 {block content}
-
-	<div class="box style">
-		<h4>{_'admin.module'}</h4>
-		<p>{$user->identity->data['realname']}
-			<a n:href=":Admin:Login:out">{_'admin.logout'}</a>
-		</p>
-	</div>
-
+	<h4>{_'admin.name'}</h4>
 {/block}

@@ -4,18 +4,13 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
-namespace Web\Module;
+namespace Module\Web;
 use Base;
 
 /**
- * Frontend module.
+ * Web module.
  */
 final class WebPresenter extends Base\BasePresenter
 {
-	protected function beforeRender()
-	{
-		parent::beforeRender();
-		$this->template->setTranslator($this->translator('web'));
-	}
 
 }

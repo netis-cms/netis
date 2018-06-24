@@ -4,31 +4,18 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
-namespace Install\Module;
-
-use Install;
-use Install\Service;
+namespace Module\Install;
 
 use Drago;
-use Drago\Localization;
-
-use Nette\Application\UI;
+use Nette;
 
 /**
  * Installation and configuration application.
  */
-final class InstallPresenter extends UI\Presenter
+final class InstallPresenter extends Nette\Application\UI\Presenter
 {
 	use Drago\Application\UI\Drago;
-	use Localization\Locale;
-
-	/**
-	 * Templates for redirects.
-	 */
-	const
-		TEMPLATE_STEP    = 'step',
-		TEMPLATE_DEFAULT = 'default',
-		TEMPLATE_FINAL   = 'completed';
+	use Drago\Localization\Locale;
 
 	/**
 	 * @var Service\Steps
@@ -37,179 +24,101 @@ final class InstallPresenter extends UI\Presenter
 	public $steps;
 
 	/**
-	 * @var Install\Forms
+	 * @var Control\Database
 	 * @inject
 	 */
-	public $forms;
+	public $database;
 
 	/**
-	 * @return Localization\Translator
+	 * @var Control\Tables
+	 * @inject
 	 */
-	public function getTranslator()
+	public $tables;
+
+	/**
+	 * @var Control\Website
+	 * @inject
+	 */
+	public $website;
+
+	/**
+	 * @var Control\Account
+	 * @inject
+	 */
+	public $account;
+
+	/**
+	 * @return Drago\Localization\Translator
+	 */
+	public function translator()
 	{
 		$path = __DIR__ . '/../locale/' . $this->lang . '.ini';
 		return $this->createTranslator($path);
 	}
 
-	protected function startup()
-	{
-		parent::startup();
-		$this->template->step = 0;
-	}
 
 	protected function beforeRender()
 	{
 		parent::beforeRender();
-		$this->template->setTranslator($this->getTranslator());
+		$this->template->setTranslator($this->translator());
 		$this->template->lang = $this->lang;
+		$step = $this->steps->cache->load(Service\Steps::STEP);
+		$this->template->step = $step ? $step['step'] : 0;
+	}
+
+	public function renderDefault()
+	{
+		if ($this->isAjax()) {
+			$this->redrawControl('install');
+		}
 	}
 
 	/**
-	 * Processing installation steps.
-	 * @param int $id
+	 * Run the installation.
 	 */
-	public function actionStep($id = 0)
-	{
-		// Step parameter for template.
-		$this->template->step = $id;
-
-		// Checking installation steps.
-		switch ($id) {
-
-			// Check 1 step.
-			case 1:
-				if (!$this->steps->cache->load(Service\Steps::START)) {
-					$this->redirect(self::TEMPLATE_DEFAULT);
-				} else {
-					if ($this->steps->cache->load(Service\Steps::STEP_1)) {
-						$this->redirect(self::TEMPLATE_STEP, ['id' => 2]);
-					}
-				}
-			break;
-
-			// Check 2 step.
-			case 2:
-				if (!$this->steps->cache->load(Service\Steps::START)) {
-					$this->redirect(self::TEMPLATE_DEFAULT);
-				} else {
-					if ($this->steps->cache->load(Service\Steps::STEP_2)) {
-						$this->redirect(self::TEMPLATE_STEP, ['id' => 3]);
-
-					} elseif (!$this->steps->cache->load(Service\Steps::STEP_1)) {
-						$this->redirect(self::TEMPLATE_STEP, ['id' => 1]);
-					}
-				}
-			break;
-
-			// Check 3 step.
-			case 3:
-				if (!$this->steps->cache->load(Service\Steps::START)) {
-					$this->redirect(self::TEMPLATE_DEFAULT);
-				} else {
-					if ($this->steps->cache->load(Service\Steps::STEP_3)) {
-						$this->redirect(self::TEMPLATE_STEP, ['id' => 4]);
-
-					} elseif (!$this->steps->cache->load(Service\Steps::STEP_1)) {
-						$this->redirect(self::TEMPLATE_STEP, ['id' => 1]);
-
-					} elseif (!$this->steps->cache->load(Service\Steps::STEP_2)) {
-						$this->redirect(self::TEMPLATE_STEP, ['id' => 2]);
-					}
-				}
-			break;
-
-			// Check 4 step.
-			case 4:
-				if (!$this->steps->cache->load(Service\Steps::START)) {
-					$this->redirect(self::TEMPLATE_DEFAULT);
-				} else {
-					if ($this->steps->cache->load(Service\Steps::STEP_4)) {
-						$this->redirect(self::TEMPLATE_FINAL);
-
-					} elseif (!$this->steps->cache->load(Service\Steps::STEP_1)) {
-						$this->redirect(self::TEMPLATE_STEP, ['id' => 1]);
-
-					} elseif (!$this->steps->cache->load(Service\Steps::STEP_2)) {
-						$this->redirect(self::TEMPLATE_STEP, ['id' => 2]);
-
-					} elseif (!$this->steps->cache->load(Service\Steps::STEP_3)) {
-						$this->redirect(self::TEMPLATE_STEP, ['id' => 3]);
-					}
-				}
-			break;
-
-			// Page not found.
-			default:
-				$this->error();
-			break;
-		}
-	}
-
-	// Redirect from the template when it has already started installation.
-	public function actionDefault()
-	{
-		if ($this->steps->cache->load(Service\Steps::START)) {
-			$this->redirect(self::TEMPLATE_STEP, ['id' => 1]);
-		}
-	}
-
-	// Redirect to default template if step 4 has not been completed.
-	public function actionCompleted()
-	{
-		if (!$this->steps->cache->load(Service\Steps::STEP_4)) {
-			$this->redirect(self::TEMPLATE_DEFAULT);
-		}
-	}
-
-	// Run the installation.
 	public function handleRun()
 	{
-		$this->steps->cache->save(Service\Steps::START, rand(1, 9));
-		$this->redirect(self::TEMPLATE_STEP, ['id' => 1]);
+		$this->steps->cache->save(Service\Steps::STEP, ['step' => 1]);
 	}
 
 	/**
-	 * @return Install\Forms
+	 * @return Control\Database
 	 */
 	protected function createComponentDatabase()
 	{
-		return $this->forms->databaseHostFactory($this->getTranslator(), function () {
-			$this->flashMessageSuccess('install.db.message');
-			$this->redirect(self::TEMPLATE_STEP, ['id' => 2]);
-		});
+		$control = $this->database;
+		$control->setTranslator($this->translator());
+		return $control;
 	}
 
 	/**
-	 * @return Install\Forms
+	 * @return Control\Tables
 	 */
 	protected function createComponentTables()
 	{
-		return $this->forms->dbTablesFactory($this->getTranslator(), function () {
-			$this->flashMessageSuccess('install.db.tables.message');
-			$this->redirect(self::TEMPLATE_STEP, ['id' => 3]);
-		});
+		$control = $this->tables;
+		$control->setTranslator($this->translator());
+		return $control;
 	}
 
 	/**
-	 * @return Install\Forms
+	 * @return Control\Website
 	 */
 	protected function createComponentWebsite()
 	{
-		return $this->forms->websiteSettingsFactory($this->getTranslator(), function () {
-			$this->flashMessageSuccess('install.web.message');
-			$this->redirect(self::TEMPLATE_STEP, ['id' => 4]);
-		});
+		$control = $this->website;
+		$control->setTranslator($this->translator());
+		return $control;
 	}
 
 	/**
-	 * @return Install\Forms
+	 * @return Control\Account
 	 */
 	protected function createComponentAccount()
 	{
-		return $this->forms->registrationAccount($this->getTranslator(), function () {
-			$this->flashMessageSuccess('install.acc.message');
-			$this->redirect(self::TEMPLATE_FINAL);
-		});
+		$control = $this->account;
+		$control->setTranslator($this->translator());
+		return $control;
 	}
 
 }

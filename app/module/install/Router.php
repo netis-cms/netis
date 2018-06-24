@@ -4,7 +4,7 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
-namespace Install\Module;
+namespace Module\Install;
 
 use Nette;
 use Nette\Application\Routers;
@@ -24,8 +24,7 @@ class Router
 	{
 		$router = new Routers\RouteList;
 		$router[] = $module = new Routers\RouteList('Install');
-		$module[] = new Routers\Route($locales . 'install/<action>/[<id>/]', 'Install:default');
-		$module[] = new Routers\Route($locales . 'install/[<presenter>/]<action>/[<id>/]', 'Install:default');
+		$module[] = new Routers\Route($locales . 'install/', 'Install:default');
 		return $router;
 	}
 

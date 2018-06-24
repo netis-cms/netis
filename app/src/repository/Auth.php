@@ -4,36 +4,33 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
-namespace Login\Service;
+namespace Repository;
 
-use Login;
 use Nette\Security;
+use Entity;
 
 /**
- * Users authentication.
+ * User authentication.
  */
-class User implements Security\IAuthenticator
+class Auth implements Security\IAuthenticator
 {
 	/**
-	 * @var Login\Repository
+	 * @var User
 	 */
-	private $repository;
+	private $repositoryUser;
 
 	/**
-	 * @var Login\Entity
+	 * @var Entity\User
 	 */
-	private $entity;
+	private $entityUser;
 
-	public function __construct(
-		Login\Repository $repository,
-		Login\Entity $entity)
+	public function __construct(User $repositoryUser, Entity\User $entityUser)
 	{
-		$this->repository = $repository;
-		$this->entity = $entity;
+		$this->repositoryUser = $repositoryUser;
+		$this->entityUser = $entityUser;
 	}
 
 	/**
-	 * @param array
 	 * @return Security\Identity
 	 * @throws Security\AuthenticationException
 	 */
@@ -42,7 +39,7 @@ class User implements Security\IAuthenticator
 		list($email, $password) = $credentials;
 
 		// Find user.
-		$row = $this->repository->find($email);
+		$row = $this->repositoryUser->find($email);
 
 		// Invalid username.
 		if (!$row) {
@@ -54,14 +51,13 @@ class User implements Security\IAuthenticator
 
 		// Re-hash password.
 		} elseif (Security\Passwords::needsRehash($row->password)) {
-
-			$entity = $this->entity;
+			$entity = $this->entityUser;
 			$entity->setId($row->id);
 			$entity->password = Security\Passwords::hash($password);
-			$this->repository->save($entity);
+			$this->repositoryUser->save($entity);
 		}
 		unset($row->password);
-		return new Security\Identity($row->userId, NULL, $row->toArray());
+		return new Security\Identity($row->userId, null, $row->toArray());
 	}
 
 }

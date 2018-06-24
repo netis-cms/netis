@@ -1,21 +1,26 @@
 
+{* layout for login *}
+{extends '@layout.login.latte'}
+
 {* subtitle sites *}
-{block subtitle}{_'login.module'}{/block}
+{block subtitle}{_'subtitle.login'}{/block}
 
 {* website content *}
 {block content}
 	{form signIn}
 
-		{* form errors messages *}
+		{* form errors *}
 		<ul class="errors" n:if="$form->hasErrors()">
 			<li n:foreach="$form->errors as $error">{_$error}</li>
 		</ul>
 
-		{* form inputs *}
+		{* form elements *}
 		{input email class => 'full width'}
 		{input password class => 'full width'}
+
+		{* form send button *}
 		<div class="align right">
-			{input send class => 'button common'}
+			{input send class => 'button primary'}
 		</div>
 	{/form}
 {/block}

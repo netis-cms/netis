@@ -1,0 +1,122 @@
+
+/*
+    responsive menu
+*/
+.nav .click {
+    cursor: pointer;
+    margin: 10px 20px 0 0;
+     float: right;
+}
+
+.nav .click .menu {
+    border-radius: 30px;
+        font-size: 14px;
+          padding: 7px 8px;
+}
+
+.nav .responsive { display: none; }
+.nav .expand-responsive { display: block !important; }
+
+/*
+    sidebar
+*/
+.sidebar .title {
+    font-size: 1.188em;
+      padding: 9px 20px 0 25px;
+       height: 48px;
+}
+
+/*
+    notifications
+*/
+.sidebar span.notifi {
+    border-radius: 3px;
+      margin-left: 30px;
+      font-weight: 600;
+	  padding: 0 5px 2px;
+}
+
+.sidebar ul.menu {
+    list-style: none;
+        height: 460px;
+        margin: 0;
+}
+
+.sidebar ul.menu ul {
+    list-style: none;
+     font-size: 100%;
+        margin: 0;
+}
+
+.sidebar ul.menu li {
+    font-weight: 600;
+    line-height: 36px;
+     margin-top: 15px;
+        padding: 0;
+}
+
+.sidebar ul.menu li span.name {
+    text-transform: uppercase;
+      padding-left: 25px;
+         font-size: 0.83em;
+           display: block;
+}
+
+.sidebar ul.menu li ul li {
+    padding-top: 0;
+         margin: 0;
+}
+
+.sidebar ul.menu li ul li a {
+    text-decoration: none;
+       padding-left: 25px;
+            display: block;
+}
+
+.sidebar ul.menu li ul li a i.fa {
+    padding-right: 10px;
+}
+
+/*
+    perfect scrollbar
+*/
+.scrollbar {
+    position: relative;
+    overflow: hidden;
+}
+
+.ps__thumb-y {
+    width: 4px;
+}
+
+.ps__rail-y {
+    margin: 10px 0;
+     width: auto;
+}
+
+.ps__rail-y:hover > .ps__thumb-y,
+.ps__rail-y:focus > .ps__thumb-y {
+    width: 4px;
+}
+
+@media only screen and (min-width: 768px) {
+
+    .sidebar ul.menu {
+	height: 800px;
+    }
+
+    .nav .click { visibility: hidden; }
+    .nav .responsive { display: block; }
+
+    .sidebar {
+	position: fixed;
+	  bottom: 0;
+	   width: 230px;
+	     top: 0;
+    }
+
+    .content-wrapper {
+	margin-left: 230px;
+    }
+
+}

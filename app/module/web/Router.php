@@ -4,7 +4,7 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
-namespace Web\Module;
+namespace Module\Web;
 
 use Nette;
 use Nette\Application\Routers;
@@ -17,14 +17,14 @@ class Router
 	use Nette\StaticClass;
 
 	/**
-	 * @param string $locales
+	 * @param string $locale
 	 * @return Nette\Application\IRouter
 	 */
-	public static function create($locales)
+	public static function create($locale)
 	{
 		$router = new Routers\RouteList;
 		$router[] = $module = new Routers\RouteList('Web');
-		$module[] = new Routers\Route($locales . '<presenter>/<action>/[<id>/]', 'Web:default');
+		$module[] = new Routers\Route($locale . '<presenter>/<action>/[<id>/]', 'Web:default');
 		return $router;
 	}
 
