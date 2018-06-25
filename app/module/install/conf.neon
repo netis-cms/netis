@@ -5,16 +5,16 @@ services:
 	router: {setup: {offsetSet(null, @router.install)}}
 	router.install: {factory: Module\Install\Router::create(%router%), autowired: no}
 
-	install.cache:
-		class: Nette\Caching\Cache
-		arguments: [@Nette\Caching\IStorage, 'Install.CacheSteps']
+	# cache for install steps
+	install.cache: {class: Nette\Caching\Cache, autowired: no}
+	install.cache.setup: {arguments: [@Nette\Caching\IStorage, 'Install.CacheSteps'], factory: @install.cache, autowired: no}
 
 	- Module\Install\Control\Database
 	- Module\Install\Control\Tables
 	- Module\Install\Control\Website
 	- Module\Install\Control\Account
 
-	- Module\Install\Service\Steps(@install.cache)
+	- Module\Install\Service\Steps(@install.cache.setup)
 	- Module\Install\Service\Query
 
 	- Drago\Http\Sessions(@Nette\Http\Session, 'db.prefix')
