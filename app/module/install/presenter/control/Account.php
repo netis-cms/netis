@@ -102,7 +102,7 @@ final class Account extends Drago\Application\UI\Control
 
 		// Save the installation step.
 		$this->steps->cache->save(Service\Steps::STEP, ['step' => 5]);
-		$this->flashMessageSuccess('message.acc');
+		$this->flashMessage('message.acc', 'success');
 	}
 
 }

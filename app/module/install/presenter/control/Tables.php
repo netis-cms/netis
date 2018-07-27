@@ -140,7 +140,7 @@ final class Tables extends Drago\Application\UI\Control
 
 			// Save the installation step.
 			$this->steps->cache->save(Service\Steps::STEP, ['step' => 3]);
-			$this->flashMessageSuccess('message.tables');
+			$this->flashMessage('message.tables', 'success');
 
 		} catch (Exception $e) {
 			if ($e->getCode() === 1) {

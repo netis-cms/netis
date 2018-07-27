@@ -90,7 +90,7 @@ final class Website extends Drago\Application\UI\Control
 
 		// Save the installation step.
 		$this->steps->cache->save(Service\Steps::STEP, ['step' => 4]);
-		$this->flashMessageSuccess('message.web');
+		$this->flashMessage('message.web', 'success');
 	}
 
 }

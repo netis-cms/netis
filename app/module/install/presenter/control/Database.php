@@ -136,7 +136,7 @@ final class Database extends Drago\Application\UI\Control
 
 				// Save the installation step.
 				$this->steps->cache->save(Service\Steps::STEP, ['step' => 2]);
-				$this->flashMessageSuccess('message.db');
+				$this->flashMessage('message.db', 'success');
 
 				// Save db prefix.
 				if ($values->prefix) {
