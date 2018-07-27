@@ -14,7 +14,6 @@ use Nette;
  */
 final class InstallPresenter extends Nette\Application\UI\Presenter
 {
-	use Drago\Application\UI\Drago;
 	use Drago\Localization\Locale;
 
 	/**

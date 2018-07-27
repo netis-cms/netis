@@ -16,7 +16,6 @@ use Nette\Utils;
  */
 abstract class BasePresenter extends UI\Presenter
 {
-	use Drago\Application\UI\Drago;
 	use Drago\Application\UI\Factory;
 	use Drago\Localization\Locale;
 
