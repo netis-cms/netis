@@ -48,7 +48,7 @@ class Query extends Drago\Database\Connection
 	 */
 	public function isExistTable($name)
 	{
-		if ($this->db->query('SHOW TABLES LIKE %like~', $name)->fetch() ? true : false) {
+		if ($this->db->fetch('SHOW TABLES LIKE %like~', $name) ? true : false) {
 			throw new Exception('Sorry, but collide in a database table names.', self::COLLIDE_TABLE);
 		}
 	}
