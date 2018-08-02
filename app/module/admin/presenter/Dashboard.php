@@ -27,6 +27,16 @@ abstract class DashboardPresenter extends Base\BasePresenter
 	 * @inject
 	 */
 	public $menu;
+	
+	/**
+	 * @return Drago\Localization\Translator
+	 */
+	public function translator()
+	{
+		parent::translator();
+		$path = __DIR__ . '/../locale/' . $this->lang . '.ini';
+		return $this->createTranslator($path);
+	}
 
 	protected function startup()
 	{
@@ -51,16 +61,6 @@ abstract class DashboardPresenter extends Base\BasePresenter
 	{
 		$email = $this->user->identity->data['email'];
 		return $this->gravatar->getGravatar($email);
-	}
-
-	/**
-	 * @return Drago\Localization\Translator
-	 */
-	public function translator()
-	{
-		parent::translator();
-		$path = __DIR__ . '/../locale/' . $this->lang . '.ini';
-		return $this->createTranslator($path);
 	}
 
 }
