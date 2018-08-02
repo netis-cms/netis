@@ -55,7 +55,6 @@ final class InstallPresenter extends Nette\Application\UI\Presenter
 		return $this->createTranslator($path);
 	}
 
-
 	protected function beforeRender()
 	{
 		parent::beforeRender();
