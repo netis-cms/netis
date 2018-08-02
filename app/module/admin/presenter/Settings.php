@@ -55,7 +55,7 @@ final class SettingsPresenter extends DashboardPresenter
 		$entity->description = $values->description;
 		try {
 			$this->repositorySettings->save($entity);
-			$this->flashMessage('message.settings', 'success');
+			$this->flashMessage('message.settings');
 			if ($this->isAjax()) {
 				$this->redrawControl('message');
 				$this->redrawControl('title');
