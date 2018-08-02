@@ -34,6 +34,15 @@ abstract class BasePresenter extends UI\Presenter
 	 * @var string
 	 */
 	public $presenterName;
+	
+	/**
+	 * @return Drago\Localization\Translator
+	 */
+	public function translator()
+	{
+		$path = __DIR__ . '/web/locale/' . $this->lang . '.ini';
+		return $this->createTranslator($path);
+	}
 
 	protected function startup()
 	{
@@ -56,15 +65,6 @@ abstract class BasePresenter extends UI\Presenter
 		$this->template->presenterName = $this->presenterName;
 		$breadcrumb = Utils\Strings::webalize($this->presenterName);
 		$this->template->breadcrumb = 'menu.' . $breadcrumb;
-	}
-
-	/**
-	 * @return Drago\Localization\Translator
-	 */
-	public function translator()
-	{
-		$path = __DIR__ . '/web/locale/' . $this->lang . '.ini';
-		return $this->createTranslator($path);
 	}
 
 }
