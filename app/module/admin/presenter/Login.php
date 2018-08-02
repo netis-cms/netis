@@ -23,6 +23,16 @@ final class LoginPresenter extends Base\BasePresenter
 	 * @inject
 	 */
 	public $gravatar;
+	
+	/**
+	 * @return Drago\Localization\Translator
+	 */
+	public function translator()
+	{
+		parent::translator();
+		$path = __DIR__ . '/../locale/' . $this->lang . '.ini';
+		return $this->createTranslator($path);
+	}
 
 	protected function beforeRender()
 	{
@@ -82,16 +92,6 @@ final class LoginPresenter extends Base\BasePresenter
 	{
 		$this->user->logout();
 		$this->redirect(':Admin:Login:');
-	}
-
-	/**
-	 * @return Drago\Localization\Translator
-	 */
-	public function translator()
-	{
-		parent::translator();
-		$path = __DIR__ . '/../locale/' . $this->lang . '.ini';
-		return $this->createTranslator($path);
 	}
 
 }
