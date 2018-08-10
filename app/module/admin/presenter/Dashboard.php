@@ -57,10 +57,10 @@ abstract class DashboardPresenter extends Base\BasePresenter
 	/**
 	 * @return string
 	 */
-	public function gravatar()
+	public function gravatar($size = null)
 	{
 		$email = $this->user->identity->data['email'];
-		return $this->gravatar->getGravatar($email);
+		return $this->gravatar->getGravatar($email, $size);
 	}
 
 }
