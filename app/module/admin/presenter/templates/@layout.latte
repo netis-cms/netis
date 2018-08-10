@@ -59,11 +59,11 @@
 
 					{* languages *}
 					<li>
-						<span class="name">{_'admin.locale'}</span>
+						<span class="name">{_'category.language'}</span>
 						<ul>
 							<li>
 								<a n:href="this, 'lang' => 'cs'" n:class="$lang === 'cs' ? 'current' : 0">
-									{_'admin.locale.cs'}
+									{_'menu.cs'}
 								</a>
 							</li>
 						</ul>
@@ -95,7 +95,7 @@
 					<ul class="breadcrumb">
 						<li>
 							<a n:href=":Admin:Admin:" n:class="$moduleName === 'Admin:' ? 'current'">
-								<i class="fa fa-square-o" aria-hidden="true"></i>{_'admin.name'}
+								<i class="fa fa-square-o" aria-hidden="true"></i>{_'menu.admin'}
 							</a>
 						</li>
 						<li n:if="$presenterName !== 'Admin'">
@@ -128,12 +128,8 @@
 
 							{* show or hide menu *}
 							<ul class="expand-dropdown">
-								<li><a href="#" class="top"><i class="fa fa-user-o" aria-hidden="true"></i>Profile</a></li>
-								<li>
-									<a n:href=":Admin:Login:out" class="bottom">
-										<i class="fa fa-sign-out" aria-hidden="true"></i>{_'admin.logout'}
-									</a>
-								</li>
+								<li><a n:href=":Admin:Profile:" class="top"><i class="fa fa-user-o" aria-hidden="true"></i>{_'menu.profile'}</a></li>
+								<li><a n:href=":Admin:Login:out" class="bottom"><i class="fa fa-sign-out" aria-hidden="true"></i>{_'user.logout'}</a></li>
 							</ul>
 						</div>
 					</div>
