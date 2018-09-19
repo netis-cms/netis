@@ -170,6 +170,10 @@
 			// perfect scrollbar
 			const ps = new PerfectScrollbar('.scrollbar');
 
+			// nanobar
+			var nanobar = new Nanobar();
+			    nanobar.go(100);
+
 			// responsive sidebar
 			$.nette.ext('responsive.menu', {
 				init: function () {
@@ -207,10 +211,6 @@
 					});
 				}
 			});
-
-			// nanobar
-			var nanobar = new Nanobar();
-			    nanobar.go(100);
 
 			// nette ajax initialization
 			$.nette.init();
