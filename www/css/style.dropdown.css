@@ -1,47 +1,52 @@
 
-/*
-    dropdown menu
-*/
+/* dropdown menu
+   ========================================================================== */
 .dropdown {
     margin-left: 12px;
-       position: relative;
+    position: relative;
 }
 
-.dropdown p { margin: 0; }
-.dropdown .employ-toggle { text-decoration: none; }
+.dropdown p {
+    margin: 0;
+}
+
+.dropdown .employ-toggle {
+    text-decoration: none;
+}
+
 .dropdown .employ-toggle.click {
     border-radius: 30px;
-        font-size: 14px;
-          padding: 2px 12px;
+    font-size: 14px;
+    padding: 2px 12px;
 }
 
 .dropdown ul.expand-dropdown {
+    display: none;
     list-style: none;
     margin-top: 5px;
-      position: absolute;
-       display: none;
-         right: 0;
-	   top: 100%;
+    position: absolute;
+    right: 0;
+    top: 100%;
 }
 
 .dropdown ul.expand-dropdown li {
+    margin: 0;
     min-width: 110px;
-       margin: 0;
 }
 
 .dropdown ul.expand-dropdown li a.top {
+    border-top-left-radius: 3px;
     border-top-right-radius: 3px;
-     border-top-left-radius: 3px;
 }
 
 .dropdown ul.expand-dropdown li a.bottom {
+    border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
-     border-bottom-left-radius: 3px;
 }
 
 .dropdown ul.expand-dropdown li a {
+    display: block;
+    margin-bottom: -1px;
+    padding: 3px 10px;
     text-decoration: none;
-      margin-bottom: -1px;
-            display: block;
-            padding: 3px 10px;
 }

@@ -1,22 +1,21 @@
 
-/*
-    dark theme dropdown menu
-*/
+/* dark color for dropdown menu
+   ========================================================================== */
 .dropdown .employ-toggle.click {
-       transition: all 0.1s ease-in-out;
-            color: #acacac;
+    color: #acacac;
+    transition: all 0.1s ease-in-out;
 }
 
 .dropdown .employ-toggle.click:hover {
-    background-color: #f2f2f2;
+    background: #f2f2f2;
 }
 
 .dropdown ul.expand-dropdown li a {
-    background-color: rgb(29, 34, 44);
-	       color: #9197a1;
+    background: #1d222c;
+    color: #9197a1;
 }
 
 .dropdown ul.expand-dropdown li a:hover {
-    background-color: rgb(39, 48, 63);
-               color: white;
+    background: #27303f;
+    color: #fff;
 }

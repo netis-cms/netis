@@ -1,88 +1,104 @@
 
-/*
-    responsive menu
-*/
+/* responsive menu
+   ========================================================================== */
 .nav .click {
-    cursor: pointer;
-    margin: 10px 20px 0 0;
-     float: right;
-}
-
-.nav .click .menu {
     border-radius: 30px;
-        font-size: 14px;
-          padding: 7px 8px;
+    cursor: pointer;
+    float: right;
+    font-size: 14px;
+    margin: 15px 20px 0 0;
+    padding: 3px 8px;
 }
 
-.nav .responsive { display: none; }
-.nav .expand-responsive { display: block !important; }
+.nav .click:before {
+    content: "\f0c9";
+    font-family: "FontAwesome";
+    font-size: 14px;
+}
 
-/*
-    sidebar
-*/
+.nav .responsive {
+    display: none;
+}
+
+.nav .expandable {
+    display: block;
+}
+
+/* sidebar
+   ========================================================================== */
 .sidebar .title {
     font-size: 1.188em;
-      padding: 9px 20px 0 25px;
-       height: 48px;
+    height: 56px;
+    padding: 15px 20px 0 25px;
 }
 
-/*
-    notifications
-*/
-.sidebar span.notifi {
-    border-radius: 3px;
-      margin-left: 30px;
-      font-weight: 600;
-	  padding: 0 5px 2px;
+/* notice
+   ========================================================================== */
+.sidebar span.notice {
+    border-radius: 30px;
+    font-size: small;
+    margin-left: 30px;
+    padding: 0 6px 1px;
 }
 
 .sidebar ul.menu {
+    height: 460px;
     list-style: none;
-        height: 460px;
-        margin: 0;
+    margin: 0;
+    padding: 0 25px;
 }
 
 .sidebar ul.menu ul {
+    font-size: 100%;
     list-style: none;
-     font-size: 100%;
-        margin: 0;
+    margin: 0;
 }
 
 .sidebar ul.menu li {
-    font-weight: 600;
-    line-height: 36px;
-     margin-top: 15px;
-        padding: 0;
+    line-height: 34px;
+    margin-top: 15px;
+    padding: 0;
 }
 
 .sidebar ul.menu li span.name {
+    font-size: 0.83em;
     text-transform: uppercase;
-      padding-left: 25px;
-         font-size: 0.83em;
-           display: block;
 }
 
 .sidebar ul.menu li ul li {
+    margin: 0;
     padding-top: 0;
-         margin: 0;
 }
 
 .sidebar ul.menu li ul li a {
+    display: block;
+    margin-bottom: 2px;
+    padding: 0 10px;
     text-decoration: none;
-       padding-left: 25px;
-            display: block;
 }
 
-.sidebar ul.menu li ul li a i.fa {
-    padding-right: 10px;
+.sidebar ul.menu li ul li ul {
+    display: none;
+    margin: 15px 10px;
+    padding-left: 10px;
 }
 
-/*
-    perfect scrollbar
-*/
+.sidebar ul.menu li ul li.parent:before {
+    content: "\f106";
+    float: right;
+    font-family: "FontAwesome";
+    margin: 0 15px 0 0;
+}
+
+.sidebar ul.menu li ul li.parent.active:before {
+    content: "\f107";
+}
+
+/* perfect scrollbar
+   ========================================================================== */
 .scrollbar {
-    position: relative;
     overflow: hidden;
+    position: relative;
 }
 
 .ps__thumb-y {
@@ -91,7 +107,7 @@
 
 .ps__rail-y {
     margin: 10px 0;
-     width: auto;
+    width: auto;
 }
 
 .ps__rail-y:hover > .ps__thumb-y,
@@ -101,22 +117,31 @@
 
 @media only screen and (min-width: 768px) {
 
-    .sidebar ul.menu {
-	height: 800px;
+    .nav .click {
+	display: none;
     }
 
-    .nav .click { visibility: hidden; }
-    .nav .responsive { display: block; }
+    .nav .responsive {
+	display: block;
+    }
 
     .sidebar {
+	bottom: 0;
 	position: fixed;
-	  bottom: 0;
-	   width: 230px;
-	     top: 0;
+	top: 0;
+	width: 285px;
     }
 
     .content-wrapper {
-	margin-left: 230px;
+	margin-left: 285px;
+    }
+
+}
+
+@media only screen and (min-height: 768px) {
+
+    .sidebar ul.menu {
+	height: 700px;
     }
 
 }

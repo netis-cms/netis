@@ -1,116 +1,151 @@
 
-/*
-    install
-*/
+/* install
+   ========================================================================== */
 body {
-    background-color: white;
-      padding-bottom: 6rem;
-	       color: #787878;
+    background: #fff;
+    color: #787878;
+    font-family: 'Open Sans', sans-serif;
+    padding-bottom: 6rem;
 }
 
 h2 {
+    color: #545454;
     margin-bottom: 35px;
-            color: #545454;
 }
 
-.steps {
-    padding-top: 3px;
+form {
+    margin-top: 3.5rem;
+}
+
+/* nanobar
+   ========================================================================== */
+.nanobar {
+    height: 2px;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+.nanobar .bar {
+    background: #acacac;
+    height: 100%;
+    transition: height .3s;
+    width: 0;
+}
+
+/* form errors
+   ========================================================================== */
+ul.errors {
+    color: #e95656;
+}
+
+ul.errors li {
     font-weight: 600;
-         margin: 0;
+}
+
+/* ajax spinner
+   ========================================================================== */
+#spinner {
+    color: rgba(0,0,0,0.1);
+    font-size: 60px;
+    position: fixed;
+    z-index: 999;
+}
+
+/* other
+   ========================================================================== */
+
+.steps {
+    font-weight: 600;
+    margin: 0;
+    padding-top: 3px;
 }
 
 .info {
+    font-weight: 600;
     margin-bottom: 8px;
-      font-weight: 600;
 }
 
 .delete {
-    background-color: #f4f4f4;
-       margin-bottom: 8px;
-       border-radius: 3px;
-         font-weight: 600;
-             padding: 10px 15px;
-               color: #e03e3e;
+    background: #f4f4f4;
+    border-radius: 3px;
+    color: #e03e3e;
+    font-weight: 600;
+    margin-bottom: 8px;
+    padding: 10px 15px;
+
 }
 
 .delete p {
     margin-bottom: 0;
 }
 
-/*
-    layout
-*/
+/* layout
+   ========================================================================== */
 .container {
     max-width: 1170px;
 }
 
 .header {
-    background-color: #f4f4f4;
-          padding: 11px 15px 8px;
+    background: #f4f4f4;
+    padding: 11px 15px 8px;
 }
 
 .content {
     margin-top: 30px;
-       padding: 0 20px;
+    padding: 0 20px;
 }
 
 .footer {
     color: #949494;
 }
 
-/*
-    message
-*/
+/* message
+   ========================================================================== */
 .message {
-    margin-bottom: 20px;
     border-radius: 0;
-          padding: 15px 0;
+    margin-bottom: 20px;
+    padding: 15px 0;
 }
 
 .message.success {
     background: #ececec;
-         color: #565656;
+    color: #565656;
+    font-weight: 600;
 }
 
 .flash {
     padding: 0 20px;
 }
 
-/*
-    form
-*/
-form {
-    margin-top: 3.5rem;
+/* buttons
+   ========================================================================== */
+.button.primary {
+    background: #048ffa;
+    color: #fff;
+    margin-top: 5px;
 }
 
-/*
-    buttons
-*/
-.button.install {
-    background-color: #048ffa;
-          margin-top: 5px;
-               color: white;
+.button.primary:hover {
+    background: #0487ec;
 }
 
-.button.install:hover {
-    background-color: #0487ec;
-}
-
-/*
-    display 768px
-*/
 @media only screen and (min-width: 768px) {
 
-    /*
-	layout
-    */
-    .content { margin-top: 100px; }
-    .screen.reader { display: block; }
+    h2 {
+	font-size: 3.250em;
+    }
 
-    /*
-	elements
-    */
-    h2 { font-size: 3.250em; }
-    p  { font-size: 1em; }
+    p  {
+	font-size: 1em;
+    }
+
+    .content {
+	margin-top: 100px;
+    }
+
+    .screen.reader {
+	display: block;
+    }
 
 }

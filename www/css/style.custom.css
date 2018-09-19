@@ -1,38 +1,33 @@
 
-/*
-    elements
-*/
-body {
-    background-color: #f4f4f4;
-          min-height: 100px;
-}
-
-/*
-    custom dropdown menu
-*/
-.dropdown {
-    margin-top: 9px;
-}
-
-.dropdown ul.expand-dropdown li a i.fa {
-    padding-right: 12px;
-}
-
-.dropdown ul.expand-dropdown li {
-    min-width: 160px;
-}
-
-.dropdown ul.expand-dropdown {
-    margin-top: 10px;
-}
-
-.dropdown .employ-toggle.click:hover {
-    background-color: white;
-}
-
-/*
-    form
-*/
+/* form
+   ========================================================================== */
 label.label {
     padding-top: 6px;
+}
+
+ul.errors {
+    color: #e95656;
+}
+
+ul.errors li {
+    font-weight: 600;
+}
+
+/* ajax spinner
+   ========================================================================== */
+#spinner {
+    color: rgba(0,0,0,0.1);
+    font-size: 60px;
+    position: fixed;
+    z-index: 999;
+}
+
+/* buttons colors
+   ========================================================================== */
+.button.primary {
+    background: #048ffa;
+}
+
+.button.primary:hover {
+    background: #0487ec;
 }

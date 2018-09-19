@@ -1,53 +1,47 @@
 
-/*
-    elements
-*/
+/* elements
+   ========================================================================== */
 body {
+    background: #f4f4f4;
     font-family: 'Open Sans', sans-serif;
+    min-height: 100px;
 }
 
-/*
-    nanobar
-*/
+/* nanobar
+   ========================================================================== */
 .nanobar {
+    height: 2px;
+    top: 0;
+    width: 100%;
     z-index: 9999;
-     height: 2px;
-      width: 100%;
-        top: 0
 }
 
 .nanobar .bar {
-    transition: height .3s;
     background: #acacac;
-        height: 100%;
-	 width: 0;
+    height: 100%;
+    transition: height .3s;
+    width: 0;
 }
 
-/*
-    form errors
-*/
-ul.errors {
-    color: #e95656;
+/* custom dropdown menu
+   ========================================================================== */
+.dropdown {
+    margin-right: 25px;
+    margin-top: 9px;
 }
 
-ul.errors li {
-    font-weight: 600;
+.dropdown ul.expand-dropdown li a i.fa {
+    padding-right: 12px;
 }
 
-/*
-    ajax spinner
-*/
-#spinner {
-    font-size: 60px;
-     position: fixed;
-      z-index: 999;
-        color: rgba(0,0,0,0.1);
+.dropdown ul.expand-dropdown li {
+    min-width: 160px;
 }
 
-.button.primary {
-    background-color: #048ffa;
+.dropdown ul.expand-dropdown {
+    margin-top: 14px;
 }
 
-.button.primary:hover {
-    background-color: #0487ec;
+.dropdown .employ-toggle.click:hover {
+    background: #fff;
 }
