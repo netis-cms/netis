@@ -145,7 +145,7 @@
 
 				{* flash message *}
 				<div n:snippet="message">
-					<p n:foreach="$flashes as $flash" class="message new {$flash->type}">{_$flash->message}</p>
+					<p n:foreach="$flashes as $flash" class="message {$flash->type}">{_$flash->message}</p>
 				</div>
 
 				{* template content *}
