@@ -171,14 +171,22 @@
 			const ps = new PerfectScrollbar('.scrollbar');
 
 			// responsive sidebar
-			$.nette.ext('responsive.sidebar', {
+			$.nette.ext('responsive.menu', {
+				init: function () {
+					$('ul.menu li').each(function() {
+						if ($(this).children('li.parent a.current').length > 0 ) {
+							$(this).parent().find('ul.submenu').toggle();
+							$(this).parent().find('li.parent').addClass('active');
+						}
+					});
+				},
 				load: function () {
 					$('.nav .click').off('click').on('click', function() {
-						var nav = '.nav .responsive';
-						$(nav).slideToggle('fast');
-						$(window).on('resize', function() {
-							$(window).width() >= 768 ? $(nav).show() : $(nav).hide();
-						});
+						$('.nav .responsive').toggleClass('expandable');
+					});
+					$('ul.menu li a').off('click').on('click', function() {
+						$(this).parent('li.parent').toggleClass('active');
+						$(this).parent().find('ul.submenu').slideToggle('fast');
 					});
 				}
 			});
