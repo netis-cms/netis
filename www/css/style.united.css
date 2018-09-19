@@ -38,6 +38,7 @@ ul.errors li {
    ========================================================================== */
 .button.primary {
     background: #048ffa;
+    margin-top: 5px;
 }
 
 .button.primary:hover {
