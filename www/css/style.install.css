@@ -17,32 +17,6 @@ form {
     margin-top: 3.5rem;
 }
 
-/* nanobar
-   ========================================================================== */
-.nanobar {
-    height: 2px;
-    top: 0;
-    width: 100%;
-    z-index: 9999;
-}
-
-.nanobar .bar {
-    background: #acacac;
-    height: 100%;
-    transition: height .3s;
-    width: 0;
-}
-
-/* form errors
-   ========================================================================== */
-ul.errors {
-    color: #e95656;
-}
-
-ul.errors li {
-    font-weight: 600;
-}
-
 /* ajax spinner
    ========================================================================== */
 #spinner {
@@ -116,18 +90,6 @@ ul.errors li {
 
 .flash {
     padding: 0 20px;
-}
-
-/* buttons
-   ========================================================================== */
-.button.primary {
-    background: #048ffa;
-    color: #fff;
-    margin-top: 5px;
-}
-
-.button.primary:hover {
-    background: #0487ec;
 }
 
 @media only screen and (min-width: 768px) {

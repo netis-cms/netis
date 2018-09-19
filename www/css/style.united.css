@@ -1,10 +1,6 @@
 
-/* custom
+/* united
    ========================================================================== */
-label.label {
-    padding-top: 6px;
-}
-
 ul.errors {
     color: #e95656;
 }
@@ -20,6 +16,22 @@ ul.errors li {
     font-size: 60px;
     position: fixed;
     z-index: 999;
+}
+
+/* nanobar
+   ========================================================================== */
+.nanobar {
+    height: 2px;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+.nanobar .bar {
+    background: #acacac;
+    height: 100%;
+    transition: height .3s;
+    width: 0;
 }
 
 /* buttons colors
