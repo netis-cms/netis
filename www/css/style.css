@@ -7,22 +7,6 @@ body {
     min-height: 100px;
 }
 
-/* nanobar
-   ========================================================================== */
-.nanobar {
-    height: 2px;
-    top: 0;
-    width: 100%;
-    z-index: 9999;
-}
-
-.nanobar .bar {
-    background: #acacac;
-    height: 100%;
-    transition: height .3s;
-    width: 0;
-}
-
 /* custom dropdown menu
    ========================================================================== */
 .dropdown {
