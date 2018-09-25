@@ -7,7 +7,7 @@
 
 {* website content *}
 {block content}
-	{form signIn}
+	{form signIn class => 'group'}
 
 		{* form errors *}
 		<ul class="errors" n:if="$form->hasErrors()">
@@ -15,8 +15,8 @@
 		</ul>
 
 		{* form elements *}
-		{input email class => 'full width'}
-		{input password class => 'full width'}
+		{input email class => 'top full width'}
+		{input password class => 'bottom full width'}
 
 		{* form send button *}
 		<div class="align right">
