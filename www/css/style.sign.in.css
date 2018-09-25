@@ -3,7 +3,6 @@
    ========================================================================== */
 body {
     background: #f4f4f4;
-    font-family: 'Open Sans', sans-serif;
     padding: 18px;
 }
 
@@ -12,37 +11,6 @@ body {
 img.sign-gravatar {
     border-radius: 60px;
     margin-bottom: 20px;
-}
-
-/* form
-   ========================================================================== */
-.sign.in [type="email"],
-.sign.in [type="password"] {
-    margin: 0 0 -1px;
-    position: relative;
-    top: -1px;
-}
-
-.sign.in [type="email"] {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.sign.in [type="password"] {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-
-.sign.in [type="submit"] {
-    margin-top: 15px;
-}
-
-.sign.in input:focus{
-    z-index: 1;
-}
-
-.sign.in input:first-child {
-    top: -1px;
 }
 
 /* layout

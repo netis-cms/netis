@@ -2,36 +2,40 @@
 /* elements
    ========================================================================== */
 body {
-    background: #f4f4f4;
     font-family: 'Open Sans', sans-serif;
-    min-height: 100px;
 }
 
-/* form label
+/* nanobar
    ========================================================================== */
-label.label {
-    padding-top: 6px;
+.nanobar {
+    height: 2px;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
 }
 
-/* custom dropdown menu
+.nanobar .bar {
+    background: #acacac;
+    height: 100%;
+    transition: height .3s;
+    width: 0;
+}
+
+/* form errors
    ========================================================================== */
-.dropdown {
-    margin-right: 25px;
-    margin-top: 9px;
+ul.errors {
+    color: #e95656;
 }
 
-.dropdown ul.expand-dropdown li a i.fa {
-    padding-right: 12px;
+ul.errors li {
+    font-weight: 600;
 }
 
-.dropdown ul.expand-dropdown li {
-    min-width: 160px;
-}
-
-.dropdown ul.expand-dropdown {
-    margin-top: 14px;
-}
-
-.dropdown .employ-toggle.click:hover {
-    background: #fff;
+/* ajax spinner
+   ========================================================================== */
+#spinner {
+    color: rgba(0,0,0,0.1);
+    font-size: 60px;
+    position: fixed;
+    z-index: 999;
 }
