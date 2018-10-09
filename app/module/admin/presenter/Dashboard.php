@@ -26,8 +26,8 @@ abstract class DashboardPresenter extends Base\BasePresenter
 	 * @var Repository\Menu
 	 * @inject
 	 */
-	public $menu;
-	
+	public $repositoryMenu;
+
 	/**
 	 * @return Drago\Localization\Translator
 	 */
@@ -50,8 +50,8 @@ abstract class DashboardPresenter extends Base\BasePresenter
 	{
 		parent::beforeRender();
 		$this->template->gravatar = $this->gravatar();
-		$this->template->category = $this->menu->category();
-		$this->template->menu = $this->menu->all();
+		$this->template->category = $this->repositoryMenu->category();
+		$this->template->menu = $this->repositoryMenu->all();
 	}
 
 	/**
