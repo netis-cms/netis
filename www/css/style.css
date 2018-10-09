@@ -24,11 +24,23 @@ body {
 /* form errors
    ========================================================================== */
 ul.errors {
-    color: #e95656;
+    color: #ff3e59;
 }
 
 ul.errors li {
     font-weight: 600;
+}
+
+span.error {
+    background: #ff3e59;
+    border-radius: 3px;
+    color: #fff;
+    display: block;
+    font-size: 0.875em;
+    font-weight: 600;
+    margin-top: -4px;
+    margin-bottom: 10px;
+    padding: 5px 0 5px 8px;
 }
 
 /* ajax spinner
