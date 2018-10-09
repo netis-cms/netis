@@ -23,7 +23,7 @@ final class LoginPresenter extends Base\BasePresenter
 	 * @inject
 	 */
 	public $gravatar;
-	
+
 	/**
 	 * @return Drago\Localization\Translator
 	 */
@@ -42,6 +42,7 @@ final class LoginPresenter extends Base\BasePresenter
 			$welcome  = 'login.welcome.back';
 			$gravatar = $user->data['email'];
 		}
+		$this->template->form = $this['signIn'];
 		$this->template->welcome  = isset($welcome) ? $welcome : 'login.welcome';
 		$this->template->gravatar = $this->gravatar->getGravatar(isset($gravatar) ? $gravatar : null, 100);
 	}
@@ -81,6 +82,10 @@ final class LoginPresenter extends Base\BasePresenter
 
 			} elseif ($e->getCode() === 2) {
 				$form->addError('form.password.error');
+			}
+
+			if ($this->isAjax()) {
+				$this->redrawControl('errors');
 			}
 		}
 	}

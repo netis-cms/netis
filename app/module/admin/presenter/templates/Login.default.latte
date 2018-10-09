@@ -9,10 +9,12 @@
 {block content}
 	{form signIn class => 'group ajax'}
 
-		{* form errors *}
+		{* form ajax errors *}
+		{snippet errors}
 		<ul class="errors" n:if="$form->hasErrors()">
 			<li n:foreach="$form->errors as $error">{_$error}</li>
 		</ul>
+		{/snippet}
 
 		{* form elements *}
 		<div class="sign-email">{input email class => 'unite first full width'}</div>
