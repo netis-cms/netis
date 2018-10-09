@@ -7,7 +7,7 @@
 
 {* website content *}
 {block content}
-	{form signIn class => 'group'}
+	{form signIn class => 'group ajax'}
 
 		{* form errors *}
 		<ul class="errors" n:if="$form->hasErrors()">
@@ -15,8 +15,8 @@
 		</ul>
 
 		{* form elements *}
-		{input email class => 'unite first full width'}
-		{input password class => 'unite last full width'}
+		<div class="sign-email">{input email class => 'unite first full width'}</div>
+		<div class="sign-password">{input password class => 'unite last full width'}</div>
 
 		{* form send button *}
 		<div class="align right">
