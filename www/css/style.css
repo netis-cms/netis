@@ -43,6 +43,15 @@ span.error {
     padding: 5px 0 5px 8px;
 }
 
+.sign-email span.error {
+    border-radius: 0;
+    margin: 1px 0 2px 0;
+}
+
+.sign-password span.error {
+    margin-top: 1px;
+}
+
 /* ajax spinner
    ========================================================================== */
 #spinner {
