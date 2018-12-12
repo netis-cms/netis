@@ -109,7 +109,7 @@ final class Tables extends Drago\Application\UI\Control
 				[name] char(30) NOT NULL,
 				PRIMARY KEY (menuId),
 				KEY [category] (categoryId),
-				CONSTRAINT [enu_ibfk_1] FOREIGN KEY (categoryId) REFERENCES [menu_category] (categoryId))
+				CONSTRAINT [enu_ibfk_1] FOREIGN KEY (categoryId) REFERENCES ['.$prefix.'menu_category] (categoryId))
 				ENGINE=InnoDB DEFAULT CHARSET=UTF8');
 
 			$menu = [
