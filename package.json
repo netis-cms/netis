@@ -18,11 +18,11 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://accgit@github.com/css-ui/css-ui.github.io.git"
+		"url": "git+https://accgit@github.com/netis-cms/netis.git"
 	},
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/css-ui/css-ui.github.io/issues"
+		"url": "https://github.com/netis-cms/netis/issues"
 	},
-	"homepage": "https://github.com/css-ui/css-ui.github.io#readme"
+	"homepage": "https://github.com/netis-cms/netis#readme"
 }
