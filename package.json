@@ -1,0 +1,28 @@
+{
+	"name": "netis-cms",
+	"version": "1.0.0",
+	"description": "Little CMS",
+	"main": "gruntfile.js",
+	"dependencies": {
+		"css-ui-dashboard": "^1.0.3",
+		"css-ui-sign-in": "^1.1.2",
+		"css-ui-table": "^1.0.8",
+		"css-ui-tooltip": "^2.0.6",
+		"nette-forms": "^2.4.0",
+		"nette.ajax.js": "^2.3.0",
+		"live-form-validation": "1.9.0",
+		"grunt": "^1.0.3",
+		"grunt-contrib-copy": "^1.0.0",
+		"grunt-contrib-cssmin": "^3.0.0",
+		"grunt-contrib-uglify": "^4.0.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://accgit@github.com/css-ui/css-ui.github.io.git"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/css-ui/css-ui.github.io/issues"
+	},
+	"homepage": "https://github.com/css-ui/css-ui.github.io#readme"
+}
