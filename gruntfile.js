@@ -25,7 +25,8 @@ module.exports = function(grunt) {
 						'node_modules/normalize.css/normalize.css',
 						'node_modules/open-sans-fontface/open-sans.css',
 						'node_modules/css-ui-simple/css/cssui.css',
-						'node_modules/css-ui-sign-in/css/style.sign.in.css'
+						'node_modules/css-ui-sign-in/css/style.sign.in.css',
+						'www/css/src/style.netis.css'
 					]},
 					{'www/css/style.install.min.css': [
 						'www/css/src/style.install.css'
