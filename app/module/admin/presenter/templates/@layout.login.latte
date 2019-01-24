@@ -9,13 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	{* css *}
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=latin-ext">
-	<link rel="stylesheet" href="https://css-ui.github.io/css/cssui.min.css">
-
-	{* css sign in *}
-	<link rel="stylesheet" href="{$basePath}/www/css/style.sign.in.css">
-	<link rel="stylesheet" href="{$basePath}/www/css/style.css">
+	<link rel="stylesheet" href="{$basePath}/www/css/cssui.sign.in.css">
 
 	{* website title and subtitle *}
 	<title>{include subtitle|stripHtml|firstUpper}{ifset $web} | {$web->website}{/ifset}</title>
@@ -48,16 +42,9 @@
 	</div>
 
 	{* javascript libraries and plugins *}
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/nanobar/0.4.2/nanobar.min.js"></script>
-	<script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
-	<script src="https://cdn.rawgit.com/contributte/live-form-validation/v1.8.1/live-form-validation.js"></script>
-
-	<script src="{$basePath}/www/js/nette.ajax.min.js"></script>
-	<script src="{$basePath}/www/js/nette.ajax.spinner.js"></script>
+	<script src="{$basePath}/www/js/main.js"></script>
 
 	{* include script from template *}
-	{block js}{/block}
 	<script>
 		$(function() {
 
