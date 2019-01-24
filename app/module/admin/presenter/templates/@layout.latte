@@ -7,23 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	{* css *}
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.3.0/css/perfect-scrollbar.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&amp;subset=latin-ext">
-	<link rel="stylesheet" href="https://css-ui.github.io/css/cssui.min.css">
-
-	{* css dropdown *}
-	<link rel="stylesheet" href="{$basePath}/www/css/style.dropdown.css">
-	<link rel="stylesheet" href="{$basePath}/www/css/style.dropdown.light.css">
-
-	{* css responsive menu *}
-	<link rel="stylesheet" href="{$basePath}/www/css/style.menu.css">
-	<link rel="stylesheet" href="{$basePath}/www/css/style.menu.light.css">
-
-	{* css dashboard*}
-	<link rel="stylesheet" href="{$basePath}/www/css/style.dashboard.css">
-	<link rel="stylesheet" href="{$basePath}/www/css/style.css">
+	<link rel="stylesheet" href="{$basePath}/www/css/cssui.min.css">
 
 	{* website title and subtitle *}
 	<title>{include subtitle|stripHtml|firstUpper}{ifset $web} | {$web->website}{/ifset}</title>
@@ -151,14 +135,8 @@
 		</div>
 	</div>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/nanobar/0.4.2/nanobar.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.3.0/perfect-scrollbar.min.js"></script>
-	<script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
-	<script src="https://cdn.rawgit.com/contributte/live-form-validation/v1.8.1/live-form-validation.js"></script>
-
-	<script src="{$basePath}/www/js/nette.ajax.min.js"></script>
-	<script src="{$basePath}/www/js/nette.ajax.spinner.js"></script>
+	{* javascript libraries and plugins *}
+	<script src="{$basePath}/www/js/main.min.js"></script>
 
 	{* include script from template *}
 	<script>
@@ -171,7 +149,7 @@
 			var nanobar = new Nanobar();
 			    nanobar.go(100);
 
-			// responsive sidebar
+			// responsive menu
 			$.nette.ext('responsive.menu', {
 				init: function () {
 					$('ul.menu li').each(function() {
@@ -188,6 +166,7 @@
 					$('ul.menu li a').off('click').on('click', function() {
 						$(this).parent('li.parent').toggleClass('active');
 						$(this).parent().find('ul.submenu').slideToggle('fast');
+						$(this).parent().find('ul.submenu ul.submenu').toggle();
 					});
 				}
 			});
