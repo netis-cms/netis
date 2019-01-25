@@ -3,7 +3,7 @@
  * Extension spinner for Nette ajax.
  */
 (function ($) {
-	$.nette.ext('spinner', {
+	$.nette.ext('nette.spinner', {
 		init: function () {
 			this.spinner = this.createSpinner();
 			this.spinner.appendTo('body');

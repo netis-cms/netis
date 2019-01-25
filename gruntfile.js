@@ -29,6 +29,9 @@ module.exports = function(grunt) {
 						'www/css/src/style.netis.css'
 					]},
 					{'www/css/style.install.min.css': [
+						'node_modules/normalize.css/normalize.css',
+						'node_modules/open-sans-fontface/open-sans.css',
+						'node_modules/css-ui-simple/css/cssui.css',
 						'www/css/src/style.install.css'
 					]}
 				]
@@ -49,17 +52,27 @@ module.exports = function(grunt) {
 				sourceMapName: 'www/js/main.map'
 			},
 			my_target: {
-				files: {
-					'www/js/main.min.js': [
+				files: [
+					{'www/js/dashboard.min.js': [
 						'node_modules/jquery/dist/jquery.js',
 						'node_modules/perfect-scrollbar/dist/perfect-scrollbar.js',
 						'node_modules/nanobar/nanobar.js',
 						'node_modules/nette-forms/assets/netteForms.js',
 						'node_modules/live-form-validation/live-form-validation.js',
 						'node_modules/nette.ajax.js/nette.ajax.js',
+						'www/js/src/nette.ajax.spinner.js',
+						'www/js/src/nette.responsive.menu.js',
+						'www/js/src/nette.dropdown.menu.js'
+					]},
+					{'www/js/main.min.js': [
+						'node_modules/jquery/dist/jquery.js',
+						'node_modules/nanobar/nanobar.js',
+						'node_modules/nette-forms/assets/netteForms.js',
+						'node_modules/live-form-validation/live-form-validation.js',
+						'node_modules/nette.ajax.js/nette.ajax.js',
 						'www/js/src/nette.ajax.spinner.js'
-					]
-				}
+					]}
+				]
 			}
 		}
 	});

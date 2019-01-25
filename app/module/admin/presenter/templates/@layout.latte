@@ -142,53 +142,14 @@
 	<script>
 		$(function() {
 
-			// perfect scrollbar
-			const ps = new PerfectScrollbar('.scrollbar');
-
-			// nanobar
+			// nanobar settings
 			var nanobar = new Nanobar();
-			    nanobar.go(100);
+			nanobar.go(100);
 
-			// responsive menu
-			$.nette.ext('responsive.menu', {
-				init: function () {
-					$('ul.menu li').each(function() {
-						if ($(this).children('li.parent a.current').length > 0 ) {
-							$(this).parent().find('ul.submenu').toggle();
-							$(this).parent().find('li.parent').addClass('active');
-						}
-					});
-				},
-				load: function () {
-					$('.nav .click').off('click').on('click', function() {
-						$('.nav .responsive').toggleClass('expandable');
-					});
-					$('ul.menu li a').off('click').on('click', function() {
-						$(this).parent('li.parent').toggleClass('active');
-						$(this).parent().find('ul.submenu').slideToggle('fast');
-						$(this).parent().find('ul.submenu ul.submenu').toggle();
-					});
-				}
-			});
+			// perfect scrollbar
+			new PerfectScrollbar('.scrollbar');
 
-			// dropdown menu
-			$.nette.ext('dropdown.menu', {
-				load: function () {
-					$('.employ-toggle').off('click').on('click', function () {
-						var dropdown = '.expand-dropdown';
-						$(dropdown).fadeToggle('fast');
-						$(dropdown).on('click', function (e) {
-							var target = e.target;
-							var employ = '.employ-toggle';
-							if (!$(target).is(employ) && !$(target).parents().is(employ)) {
-								$(dropdown).hide();
-							}
-						});
-					});
-				}
-			});
-
-			// nette ajax initialization
+			// nette ajax
 			$.nette.init();
 		});
 	</script>
