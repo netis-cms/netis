@@ -77,13 +77,11 @@ final class LoginPresenter extends Base\BasePresenter
 			$this->redirect(':Admin:Admin:');
 
 		} catch (Security\AuthenticationException $e) {
-			if ($e->getCode() === 1) {
-				$form->addError('form.user.error');
-
-			} elseif ($e->getCode() === 2) {
-				$form->addError('form.password.error');
+			switch ($e->getCode()) {
+				case 1: $message = 'form.user.error'; break;
+				case 2: $message = 'form.password.error'; break;
 			}
-
+			$form->addError($message);
 			if ($this->isAjax()) {
 				$this->redrawControl('errors');
 			}
