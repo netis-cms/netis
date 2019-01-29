@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 		cssmin: {
 			target: {
 				files: [
-					{'www/css/cssui.min.css': [
+					{'www/css/style.min.css': [
 						'node_modules/normalize.css/normalize.css',
 						'node_modules/open-sans-fontface/open-sans.css',
 						'node_modules/font-awesome/css/font-awesome.css',
@@ -19,22 +19,22 @@ module.exports = function(grunt) {
 						'node_modules/css-ui-table/css/style.tables.css',
 						'node_modules/css-ui-modal-box/css/style.modal.box.css',
 						'node_modules/css-ui-dashboard/css/style.dashboard.css',
-						'www/css/src/style.netis.css'
+						'node_modules/netis/css/style.css'
 					]},
-					{'www/css/cssui.sign.in.min.css': [
+					{'www/css/style.login.min.css': [
 						'node_modules/normalize.css/normalize.css',
 						'node_modules/open-sans-fontface/open-sans.css',
 						'node_modules/css-ui-simple/css/cssui.css',
 						'node_modules/css-ui-sign-in/css/style.sign.in.css',
-						'www/css/src/style.netis.css'
+						'node_modules/netis/css/style.css'
 					]},
 					{'www/css/style.install.min.css': [
 						'node_modules/normalize.css/normalize.css',
 						'node_modules/open-sans-fontface/open-sans.css',
 						'node_modules/font-awesome/css/font-awesome.css',
 						'node_modules/css-ui-simple/css/cssui.css',
-						'www/css/src/style.netis.css',
-						'www/css/src/style.install.css'
+						'node_modules/netis/css/style.install.css',
+						'node_modules/netis/css/style.css'
 					]}
 				]
 			}
@@ -43,7 +43,8 @@ module.exports = function(grunt) {
 			main: {
 				files: [
 					{expand: true, cwd: 'node_modules/font-awesome/fonts/', src: ['**'], dest: 'www/fonts/'},
-					{expand: true, cwd: 'node_modules/open-sans-fontface/fonts/', src: ['**'], dest: 'www/css/fonts/'}
+					{expand: true, cwd: 'node_modules/open-sans-fontface/fonts/', src: ['**'], dest: 'www/css/fonts/'},
+					{expand: true, cwd: 'node_modules/netis/img/', src: ['**'], dest: 'www/img/'}
 				]
 			}
 		},
@@ -62,9 +63,9 @@ module.exports = function(grunt) {
 						'node_modules/nette-forms/assets/netteForms.js',
 						'node_modules/live-form-validation/live-form-validation.js',
 						'node_modules/nette.ajax.js/nette.ajax.js',
-						'www/js/src/nette.ajax.spinner.js',
-						'www/js/src/nette.responsive.menu.js',
-						'www/js/src/nette.dropdown.menu.js'
+						'node_modules/netis/js/spinner.js',
+						'node_modules/netis/js/responsive.menu.js',
+						'node_modules/netis/js/dropdown.menu.js'
 					]},
 					{'www/js/main.min.js': [
 						'node_modules/jquery/dist/jquery.js',
@@ -72,7 +73,7 @@ module.exports = function(grunt) {
 						'node_modules/nette-forms/assets/netteForms.js',
 						'node_modules/live-form-validation/live-form-validation.js',
 						'node_modules/nette.ajax.js/nette.ajax.js',
-						'www/js/src/nette.ajax.spinner.js'
+						'node_modules/netis/js/spinner.js'
 					]}
 				]
 			}
