@@ -49,6 +49,7 @@ abstract class DashboardPresenter extends Base\BasePresenter
 	protected function beforeRender()
 	{
 		parent::beforeRender();
+		$this->setLayout('dashboard');
 		$this->template->gravatar = $this->gravatar();
 		$this->template->category = $this->repositoryMenu->category();
 		$this->template->menu = $this->repositoryMenu->all();
