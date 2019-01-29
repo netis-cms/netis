@@ -104,12 +104,12 @@ final class Tables extends Drago\Application\UI\Control
 			$this->query->addTable('
 				CREATE TABLE ['.$databaseTable['menu'].'](
 				[menuId] int(11) unsigned NOT NULL AUTO_INCREMENT,
-				[categoryId] int(30) unsigned NOT NULL,
+				[categoryId] int(11) unsigned NOT NULL,
 				[link] char(30) NOT NULL,
 				[name] char(30) NOT NULL,
 				PRIMARY KEY (menuId),
 				KEY [category] (categoryId),
-				CONSTRAINT [enu_ibfk_1] FOREIGN KEY (categoryId) REFERENCES ['.$prefix.'menu_category] (categoryId))
+				CONSTRAINT [enu_ibfk_'. rand(5, 999).'] FOREIGN KEY (categoryId) REFERENCES ['.$prefix.'menu_category] (categoryId))
 				ENGINE=InnoDB DEFAULT CHARSET=UTF8');
 
 			$menu = [
