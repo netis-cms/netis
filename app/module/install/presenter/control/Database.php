@@ -146,28 +146,14 @@ final class Database extends Drago\Application\UI\Control
 			}
 
 		} catch (Dibi\Exception $e) {
-
-			// Server database type error.
-			if ($e->getCode() === 0) {
-				$form->addError('form.driver.error');
-
-			// Host server not found.
-			} elseif ($e->getCode() === 2002) {
-				$form->addError('form.host.error');
-
-			// Access denied for user.
-			} elseif ($e->getCode() === 1044) {
-				$form->addError('form.access.error');
-
-			// The user or password was not verified.
-			} elseif ($e->getCode() === 1045) {
-				$form->addError('form.auth.error');
-
-			// The database name was not found
-			} elseif ($e->getCode() === 1049) {
-				$form->addError('form.name.db.error');
+			switch ($e->getCode()) {
+				case 0:    $message = 'form.driver.error'; break;
+				case 1044: $message = 'form.access.error'; break;
+				case 1045: $message = 'form.auth.error'; break;
+				case 1049: $message = 'form.name.db.error'; break;
+				case 2002: $message = 'form.host.error'; break;
 			}
-
+			$form->addError($message);
 			if ($this->isAjax()) {
 				$this->redrawControl('errors');
 			}
