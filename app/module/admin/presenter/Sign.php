@@ -74,7 +74,7 @@ final class SignPresenter extends Base\BasePresenter
 	{
 		try {
 			$this->user->login($values->email, $values->password);
-			$this->redirect(':Admin:Admin:');
+			$this->redirect(':Admin:Admin:main');
 
 		} catch (Security\AuthenticationException $e) {
 			switch ($e->getCode()) {
