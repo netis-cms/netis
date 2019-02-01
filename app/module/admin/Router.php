@@ -24,7 +24,7 @@ class Router
 	{
 		$router = new Routers\RouteList;
 		$router[] = $module = new Routers\RouteList('Admin');
-		$module[] = new Routers\Route($locale . 'admin/<presenter>/<action>/[<id>/]', 'Admin:default');
+		$module[] = new Routers\Route($locale . 'admin/<presenter>/<action>/[<id>/]', 'Admin:main');
 		return $router;
 	}
 

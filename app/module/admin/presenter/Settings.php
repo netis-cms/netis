@@ -71,7 +71,7 @@ final class SettingsPresenter extends DashboardPresenter
 
 	}
 
-	public function renderDefault()
+	public function renderWeb()
 	{
 		$form = $this['settings'];
 		$form->setDefaults($this->repositoryWebsite->all());
