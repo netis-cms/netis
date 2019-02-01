@@ -4,7 +4,7 @@
 	"description": "Little CMS",
 	"main": "gruntfile.js",
 	"dependencies": {
-		"css-ui-dashboard": "^1.0.7",
+		"css-ui-dashboard": "^1.1.1",
 		"css-ui-sign-in": "^1.1.2",
 		"css-ui-table": "^1.0.8",
 		"css-ui-tooltip": "^2.0.6",
