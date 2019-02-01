@@ -31,7 +31,7 @@
 			<div class="logged sidebar">
 			    	<ul class="clear">
 					<li class="gravatar float left"><img src="{$gravatar}" alt="user"></li>
-					<li class="user float left">{$user->identity->data['realname']|truncate:12} <a n:href=":Admin:Login:out">{_'user.logout'}</a></li>
+					<li class="user float left">{$user->identity->data['realname']|truncate:12} <a n:href=":Admin:Sign:out">{_'user.logout'}</a></li>
 				</ul>
 			</div>
 
@@ -112,7 +112,7 @@
 							{* show or hide menu *}
 							<ul class="expand-dropdown">
 								<li><a n:href=":Admin:Profile:" class="top"><i class="fa fa-user-o" aria-hidden="true"></i>{_'menu.profile'}</a></li>
-								<li><a n:href=":Admin:Login:out" class="bottom"><i class="fa fa-sign-out" aria-hidden="true"></i>{_'user.logout'}</a></li>
+								<li><a n:href=":Admin:Sign:out" class="bottom"><i class="fa fa-sign-out" aria-hidden="true"></i>{_'user.logout'}</a></li>
 							</ul>
 						</div>
 					</div>
@@ -126,7 +126,12 @@
 
 				{* flash message *}
 				<div n:snippet="message">
-					<p n:foreach="$flashes as $flash" class="message {$flash->type}">{_$flash->message}</p>
+					<p n:foreach="$flashes as $flash" class="message {$flash->type}">
+						{_$flash->message}
+						<span class="close-message">
+							<i class="fa fa-times" aria-hidden="true"></i>
+						</span>
+					</p>
 				</div>
 
 				{* template content *}

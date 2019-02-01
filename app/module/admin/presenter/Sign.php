@@ -16,7 +16,7 @@ use Nette\Security;
 /**
  * Sing-in user.
  */
-final class LoginPresenter extends Base\BasePresenter
+final class SignPresenter extends Base\BasePresenter
 {
 	/**
 	 * @var Supplement\Gravatar
@@ -94,7 +94,7 @@ final class LoginPresenter extends Base\BasePresenter
 	public function actionOut()
 	{
 		$this->user->logout();
-		$this->redirect(':Admin:Login:');
+		$this->redirect(':Admin:Sign:in');
 	}
 
 }

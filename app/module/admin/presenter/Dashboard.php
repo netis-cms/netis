@@ -42,7 +42,7 @@ abstract class DashboardPresenter extends Base\BasePresenter
 	{
 		parent::startup();
 		if (!$this->user->isLoggedIn()) {
-			$this->redirect(':Admin:Login:');
+			$this->redirect(':Admin:Sign:in');
 		}
 	}
 
