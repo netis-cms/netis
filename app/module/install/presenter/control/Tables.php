@@ -114,7 +114,7 @@ final class Tables extends Drago\Application\UI\Control
 
 			$menu = [
 				['menuId' => 1, 'link' => ':Admin:Admin:', 'name' => 'menu.admin', 'categoryId' => 1],
-				['menuId' => 2, 'link' => ':Admin:Settings:', 'name' => 'menu.settings', 'categoryId' => 1],
+				['menuId' => 2, 'link' => ':Admin:Settings:web', 'name' => 'menu.settings', 'categoryId' => 1],
 			];
 
 			foreach ($menu as $rows) {
