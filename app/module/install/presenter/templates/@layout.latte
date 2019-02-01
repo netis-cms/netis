@@ -43,6 +43,9 @@
 	<div n:foreach="$flashes as $flash" class="message {$flash->type}">
 		<div class="container flash">
 			{_$flash->message}
+			<div class="close-message">
+				<i class="fa fa-times" aria-hidden="true"></i>
+			</div>
 		</div>
 	</div>
 
@@ -82,6 +85,15 @@
 				messageErrorClass: 'error',
 				messageErrorPrefix: '',
 				wait: 500
+			});
+
+			// close flash messages
+			$.nette.ext('flash.messages', {
+				load: function() {
+					$('.close-message').off('click').on('click', function() {
+						$(this).parents('div.message').fadeOut('slow');
+					});
+				}
 			});
 
 			// nette ajax
