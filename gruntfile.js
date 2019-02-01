@@ -65,7 +65,8 @@ module.exports = function(grunt) {
 						'node_modules/nette.ajax.js/nette.ajax.js',
 						'node_modules/netis/js/spinner.js',
 						'node_modules/netis/js/responsive.menu.js',
-						'node_modules/netis/js/dropdown.menu.js'
+						'node_modules/netis/js/dropdown.menu.js',
+						'node_modules/netis/js/flash.messages.js'
 					]},
 					{'www/js/main.min.js': [
 						'node_modules/jquery/dist/jquery.js',
