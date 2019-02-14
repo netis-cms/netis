@@ -16,25 +16,23 @@ module.exports = function(grunt) {
 						'node_modules/css-ui-dropdown-menu/css/style.dropdown.light.css',
 						'node_modules/css-ui-tooltip/css/style.tooltip.css',
 						'node_modules/css-ui-tooltip/css/style.tooltip.theme.css',
-						'node_modules/css-ui-table/css/style.tables.css',
-						'node_modules/css-ui-modal-box/css/style.modal.box.css',
 						'node_modules/css-ui-dashboard/css/style.dashboard.css',
-						'node_modules/netis/css/style.css'
+						'assets/css/style.css'
 					]},
 					{'www/css/style.sign.min.css': [
 						'node_modules/normalize.css/normalize.css',
 						'node_modules/open-sans-fontface/open-sans.css',
 						'node_modules/css-ui-simple/css/cssui.css',
 						'node_modules/css-ui-sign-in/css/style.sign.in.css',
-						'node_modules/netis/css/style.css'
+						'assets/css/style.css'
 					]},
 					{'www/css/style.install.min.css': [
 						'node_modules/normalize.css/normalize.css',
 						'node_modules/open-sans-fontface/open-sans.css',
 						'node_modules/font-awesome/css/font-awesome.css',
 						'node_modules/css-ui-simple/css/cssui.css',
-						'node_modules/netis/css/style.install.css',
-						'node_modules/netis/css/style.css'
+						'assets/css/style.install.css',
+						'assets/css/style.css'
 					]}
 				]
 			}
@@ -43,8 +41,7 @@ module.exports = function(grunt) {
 			main: {
 				files: [
 					{expand: true, cwd: 'node_modules/font-awesome/fonts/', src: ['**'], dest: 'www/fonts/'},
-					{expand: true, cwd: 'node_modules/open-sans-fontface/fonts/', src: ['**'], dest: 'www/css/fonts/'},
-					{expand: true, cwd: 'node_modules/netis/img/', src: ['**'], dest: 'www/img/'}
+					{expand: true, cwd: 'node_modules/open-sans-fontface/fonts/', src: ['**'], dest: 'www/css/fonts/'}
 				]
 			}
 		},
@@ -60,21 +57,21 @@ module.exports = function(grunt) {
 						'node_modules/jquery/dist/jquery.js',
 						'node_modules/perfect-scrollbar/dist/perfect-scrollbar.js',
 						'node_modules/nanobar/nanobar.js',
-						'node_modules/nette-forms/assets/netteForms.js',
+						'vendor/nette/forms/assets/netteForms.js',
 						'node_modules/live-form-validation/live-form-validation.js',
 						'node_modules/nette.ajax.js/nette.ajax.js',
-						'node_modules/netis/js/spinner.js',
-						'node_modules/netis/js/responsive.menu.js',
-						'node_modules/netis/js/dropdown.menu.js',
-						'node_modules/netis/js/flash.messages.js'
+						'assets/js/spinner.js',
+						'assets/js/responsive.menu.js',
+						'assets/js/dropdown.menu.js',
+						'assets/js/flash.messages.js'
 					]},
 					{'www/js/main.min.js': [
 						'node_modules/jquery/dist/jquery.js',
 						'node_modules/nanobar/nanobar.js',
-						'node_modules/nette-forms/assets/netteForms.js',
+						'vendor/nette/forms/assets/netteForms.js',
 						'node_modules/live-form-validation/live-form-validation.js',
 						'node_modules/nette.ajax.js/nette.ajax.js',
-						'node_modules/netis/js/spinner.js'
+						'assets/js/spinner.js'
 					]}
 				]
 			}

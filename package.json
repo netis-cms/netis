@@ -4,16 +4,14 @@
 	"description": "Little CMS",
 	"main": "gruntfile.js",
 	"dependencies": {
-		"css-ui-dashboard": "^1.1.1",
+		"css-ui-dashboard": "^1.1.5",
 		"css-ui-sign-in": "^1.1.2",
-		"css-ui-table": "^1.0.8",
 		"css-ui-tooltip": "^2.0.6",
 		"grunt": "^1.0.3",
 		"grunt-contrib-copy": "^1.0.0",
 		"grunt-contrib-cssmin": "^3.0.0",
 		"grunt-contrib-uglify": "^4.0.0",
 		"live-form-validation": "1.9.0",
-		"nette-forms": "^2.4.0",
 		"nette.ajax.js": "^2.3.0"
 	},
 	"repository": {
