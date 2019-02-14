@@ -113,7 +113,7 @@ final class Tables extends Drago\Application\UI\Control
 				ENGINE=InnoDB DEFAULT CHARSET=UTF8');
 
 			$menu = [
-				['menuId' => 1, 'link' => ':Admin:Admin:', 'name' => 'menu.admin', 'categoryId' => 1],
+				['menuId' => 1, 'link' => ':Admin:Admin:main', 'name' => 'menu.admin', 'categoryId' => 1],
 				['menuId' => 2, 'link' => ':Admin:Settings:web', 'name' => 'menu.settings', 'categoryId' => 1],
 			];
 
