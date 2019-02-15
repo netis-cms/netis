@@ -20,7 +20,7 @@ class Menu extends Drago\Database\Connection
 		return $this->db
 			->query('
 				SELECT * FROM :prefix:menu AS m LEFT JOIN :prefix:menu_category AS c
-				USING (categoryId) ORDER BY name asc');
+				USING (categoryId) ORDER BY menuId ASC');
 	}
 
 	/**
