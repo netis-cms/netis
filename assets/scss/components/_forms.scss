@@ -1,0 +1,19 @@
+//
+// form errors component
+//
+.form {
+  margin-top: ($calc * 50);
+}
+
+.form-error
+{
+  background: #ff3e59;
+  color: #fff;
+  display: block;
+  margin-top: ($calc * 2);
+  padding: ($calc * 6) ($calc * 8);
+  font-weight: 600;
+
+  @include border-radius($border-radius);
+  @include font-size($font-size);
+}

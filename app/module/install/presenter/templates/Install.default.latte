@@ -1,74 +1,68 @@
-
 {* subtitle sites *}
 {block subtitle}{_'subtitle'}{/block}
 
 {* website content *}
 {block content}
 
-	{* information before installation *}
-	{if $step === 0}
+{* information before installation *}
+{if $step === 0}
 
-	<h2>{_'install.info'}</h2>
-	<p>
-		{_'install.text'}
-		{_'install.text.2'}
-	</p>
-	<p>{_'install.go'}</p>
-	<p>
-		<a n:href="run!" class="button primary ajax">{_'install.start'}</a>
-	<p>
+<h1 class="container-heading">{_'install.info'}</h1>
+<p>
+	{_'install.text'}
+	{_'install.text.2'}
+</p>
+<p><a n:href="run!" class="btn btn-custom ajax">{_'install.start'}</a></p>
 
-	{* database server settings *}
-	{elseif $step === 1}
+{* database server settings *}
+{elseif $step === 1}
 
-	<h2>{_'install.db'}</h2>
-	<p>{_'install.text.db'}</p>
-	{control database}
+<h1 class="container-heading">{_'install.db'}</h1>
+<p>{_'install.text.db'}</p>
+{control database}
 
-	{* install database tables *}
-	{elseif $step === 2}
+{* install database tables *}
+{elseif $step === 2}
 
-	<h2>{_'install.tables'}</h2>
-	<p>
-		{_'install.text.tables'}
-		{_'install.text.tables.2'}
-	</p>
-	{control tables}
+<h1 class="container-heading">{_'install.tables'}</h1>
+<p>
+	{_'install.text.tables'}
+	{_'install.text.tables.2'}
+</p>
+{control tables}
 
-	{* database server settings *}
-	{elseif $step === 3}
+{* database server settings *}
+{elseif $step === 3}
 
-	<h2>{_'install.web'}</h2>
-	<p>{_'install.text.web'}</p>
-	{control website}
+<h1 class="container-heading">{_'install.web'}</h1>
+<p>{_'install.text.web'}</p>
+{control website}
 
-	{* add administrator account *}
-	{elseif $step === 4}
+{* add administrator account *}
+{elseif $step === 4}
 
-	<h2>{_'install.acc'}</h2>
-	<p>{_'install.text.acc'}</p>
-	{control account}
+<h1 class="container-heading">{_'install.acc'}</h1>
+<p>{_'install.text.acc'}</p>
+{control account}
 
-	{* complete the installation *}
-	{elseif $step === 5}
+{* complete the installation *}
+{elseif $step === 5}
 
-	<h2>{_'install.completion'}</h2>
-	<p>
-		{_'install.text.completion'}
-		{_'install.text.completion.2'}
-	</p>
+<h1 class="container-heading">{_'install.completion'}</h1>
+<p>
+	{_'install.text.completion'}
+	{_'install.text.completion.2'}
+</p>
 
-	{* delete files *}
-	<p class="info">{_'install.remove'}</p>
-	<div class="delete">
-		<p>/app/modules/install</p>
-		<p>/storage/cache</p>
-	</div>
+{* delete files *}
+<p class="info">{_'install.remove'}</p>
+<div class="delete">
+	<p>/app/modules/install</p>
+	<p>/storage/cache</p>
+</div>
 
-	{* go to administration *}
-	<p>{_'install.end'}</p>
-	<p>
-		<a n:href=":Admin:Admin:" class="button primary">{_'install.go.admin'}</a>
-	<p>
-	{/if}
+{* go to administration *}
+<p>{_'install.end'}</p>
+<p><a n:href=":Admin:Admin:" class="button primary">{_'install.go.admin'}</a></p>
+{/if}
 {/block}

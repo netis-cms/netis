@@ -82,8 +82,7 @@ final class Database extends Drago\Application\UI\Control
 		$form->addText('user', 'form.user')
 			->setRequired('form.required');
 
-		$form->addText('password', 'form.password')
-			->setRequired('form.required');
+		$form->addText('password', 'form.password');
 
 		$form->addText('database', 'form.name.db')
 			->setRequired('form.required');

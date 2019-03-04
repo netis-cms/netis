@@ -1,0 +1,27 @@
+/*!
+ * Sidebar menu for Bootstrap 4
+ * Copyright Zdenek Papucik
+ * MIT License
+*/
+
+// custom buttons
+$theme-colors: (
+  'custom': #2197f4
+);
+
+// re-settings bootstrap
+$border-radius: 0.1875rem;
+$input-btn-focus-width: 0;
+
+// bootstrap
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+// install
+@import 'utils/_variables';
+@import 'base/_body';
+@import 'base/_typography';
+@import 'layout/_container';
+@import 'layout/_header';
+@import 'components/_steps';
+@import 'components/_forms';
+@import 'components/_spinner';

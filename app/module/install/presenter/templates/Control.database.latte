@@ -1,35 +1,44 @@
-
 {* database server settings *}
-{form database class => 'ajax'}
+{form database class => 'ajax form'}
 
-	{* form ajax errors *}
-	{snippet errors}
-	<ul class="errors" n:if="$form->hasErrors()">
-		<li n:foreach="$form->errors as $error">{_$error}</li>
-	</ul>
-	{/snippet}
+{* form ajax errors *}
+{snippet errors}
+<ul class="errors" n:if="$form->hasErrors()">
+	<li n:foreach="$form->errors as $error">{_$error}</li>
+</ul>
+{/snippet}
 
-	{* form elements *}
-	<div class="row">
-		<div class="six columns">{label host/}{input host class => 'full width'}</div>
-		<div class="six columns">{label user/}{input user class => 'full width'}</div>
-	</div>
-	<div class="row">
-		<div class="six columns">{label database/}{input database class => 'full width'}</div>
-		<div class="six columns">{label password/}{input password class => 'full width'}</div>
-	</div>
-	<div class="row">
-		<div class="six columns">{label prefix/}{input prefix class => 'full width'}
-			<i class="help">{_'control.prefix.help'}</i>
-		</div>
-		<div class="six columns">
-			{label driver/}
-			{input driver, class => 'full width'}
-		</div>
+{* form elements *}
+<div class="form-row">
+	<div class="form-group col-md-6">
+		{label host/}{input host class => 'form-control'}
 	</div>
 
-	{* form send button *}
-	<div class="wrapper">
-		{input send class => 'button primary'}
+	<div class="form-group col-md-6">
+		{label user/}{input user class => 'form-control'}
 	</div>
+</div>
+
+<div class="form-row">
+	<div class="form-group col-md-6">
+		{label database/}{input database class => 'form-control'}
+	</div>
+
+	<div class="form-group col-md-6">
+		{label password/}{input password class => 'form-control'}
+	</div>
+</div>
+
+<div class="form-row">
+	<div class="form-group col-md-6">
+		{label prefix/}{input prefix class => 'form-control'}
+		<small class="form-text text-muted">{_'control.prefix.help'}</small>
+	</div>
+
+	<div class="form-group col-md-6">
+		{label driver/}{input driver class => 'form-control'}
+	</div>
+</div>
+
+{input send class => 'btn btn-custom'}
 {/form}

@@ -1,0 +1,15 @@
+//
+// typography elements
+//
+.container-heading
+{
+  color: darken($color, 60);
+  margin-bottom: ($calc * 25);
+  font-weight: normal;;
+  @include font-size(50);
+}
+
+.alert
+{
+  font-weight: 600;
+}

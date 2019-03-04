@@ -1,26 +1,4 @@
 
-/* elements
-   ========================================================================== */
-body {
-    font-family: 'Open Sans', sans-serif;
-}
-
-/* nanobar
-   ========================================================================== */
-.nanobar {
-    height: 2px;
-    top: 0;
-    width: 100%;
-    z-index: 9999;
-}
-
-.nanobar .bar {
-    background: #acacac;
-    height: 100%;
-    transition: height .3s;
-    width: 0;
-}
-
 /* form errors
    ========================================================================== */
 ul.errors {

@@ -1,28 +1,26 @@
 {
-	"name": "netis-cms/netis",
-	"type": "project",
-	"description": "Little CMS.",
-	"license": ["MIT"],
-	"authors": [
-		{
-			"name": "Zdeněk Papučík",
-			"homepage": "https://github.com/accgit"
-		}
-	],
-	"require": {
-		"php": ">=5.6",
-		"latte/latte": "^2.4",
-		"nette/forms": "^2.4",
-		"nette/robot-loader": "^2.4",
-		"nette/security": "^2.4",
-		"tracy/tracy": "^2.4",
-		"accgit/gravatar": "^1.0",
-		"drago-ex/bootstrap": "^1.0",
-		"drago-ex/application": "^1.0",
-		"drago-ex/database": "^1.0",
-		"drago-ex/dirs": "^1.0",
-		"drago-ex/translator": "^1.0",
-		"drago-ex/sessions": "^1.0",
-		"dg/composer-cleaner": "^2.0"
-	}
+  "name": "netis-cms/netis",
+  "type": "project",
+  "description": "Little CMS.",
+  "license": ["MIT"],
+  "authors": [{
+    "name": "Zdeněk Papučík",
+    "homepage": "https://github.com/accgit"
+  }],
+  "require": {
+    "php": ">=5.6",
+    "latte/latte": "^2.4",
+    "nette/forms": "^2.4",
+    "nette/robot-loader": "^2.4",
+    "nette/security": "^2.4",
+    "tracy/tracy": "^2.4",
+    "accgit/gravatar": "^1.0",
+    "drago-ex/bootstrap": "^1.0",
+    "drago-ex/application": "^1.0",
+    "drago-ex/database": "^1.0",
+    "drago-ex/dirs": "^1.0",
+    "drago-ex/translator": "^1.0",
+    "drago-ex/sessions": "^1.0",
+    "dg/composer-cleaner": "^2.0"
+  }
 }

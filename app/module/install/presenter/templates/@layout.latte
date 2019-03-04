@@ -1,75 +1,75 @@
 <!DOCTYPE html>
 <html lang="{$lang}">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="description" content="{_'subtitle'}">
 	<meta name="author" content="Zdeněk Papučík, zdenek.papucik@gmail.com">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	{* css *}
-	<link rel="stylesheet" href="{$basePath}/www/css/style.install.min.css">
+	<link rel="stylesheet" href="{$basePath}/www/css/main.style.min.css">
+	<link rel="stylesheet" href="{$basePath}/www/css/install.css">
 
 	{* website title and subtitle *}
 	<title>{include subtitle|stripHtml|firstUpper}</title>
 </head>
+
 <body>
 	{snippet install}
-	<div class="header clear">
+	<div class="container-fluid">
+		<div class="header">
+			<div class="clearfix">
 
-		{* logo *}
-		<div class="float left">
-			<a n:href=":Install:Install:" title="Netis, Little CMS">
-				<img src="{$basePath}/www/img/logo.png" alt="Netis, Little CMS">
-			</a>
-		</div>
+				{* logo *}
+				<div class="float-left">
+					<a n:href=":Install:Install:" title="Netis, Little CMS">
+						<img src="{$basePath}/www/img/logo.png" alt="Netis, Little CMS">
+					</a>
+				</div>
 
-		{* install icons *}
-		{if $step === 0}
-			{var $item = 'info.png'}
-			{elseif $step === 1}{var $item = 'server.png'}
-			{elseif $step === 2}{var $item = 'db.png'}
-			{elseif $step === 3}{var $item = 'website.png'}
-			{elseif $step === 4}{var $item = 'account.png'}
-			{elseif $step === 5}{var $item = 'done.png'}
-		{/if}
+				{* steps install *}
+				<div class="float-right">
 
-		{* step info *}
-		<div class="float right">
-			<p class="steps">{_'install.steps'} {$step}/5</p>
-		</div>
-	</div>
+					{* steps icons *}
+					{if $step === 0}
+					{var $item = 'info.png'}
+					{elseif $step === 1}{var $item = 'server.png'}
+					{elseif $step === 2}{var $item = 'db.png'}
+					{elseif $step === 3}{var $item = 'website.png'}
+					{elseif $step === 4}{var $item = 'account.png'}
+					{elseif $step === 5}{var $item = 'done.png'}
+					{/if}
 
-	{* flash messages *}
-	<div n:foreach="$flashes as $flash" class="message {$flash->type}">
-		<div class="container flash">
-			{_$flash->message}
-			<div class="close-message">
-				<i class="fa fa-times" aria-hidden="true"></i>
+					{* steps info *}
+					<p class="steps">{_'install.steps'} {$step}/5</p>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	{* content *}
-	<div class="container">
-		<div class="row content">
+		<div  class="alert alert-secondary alert-dismissible fade show border-0 rounded-0" role="alert">
+			text
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
 
-			{* left columns *}
-			<div class="seven columns">
-				{include content|indent}
-			</div>
+		<div class="container">
+			<div class="row">
 
-			{* right columns *}
-			<div class="five columns align right">
-				<img src="{$basePath}/www/img/{$item}" class="max width screen reader" alt="ico">
+				{* content *}
+				<div class="col-md-7">
+					{include content|indent:5}
+				</div>
+
+				{* step icon *}
+				<div class="col-md-5">
+					<img src="{$basePath}/www/img/{$item}" class="steps-ico" alt="ico">
+				</div>
 			</div>
 		</div>
 	</div>
 	{/snippet}
-
-	{* footer and copyright *}
-	<div class="bottom footer">
-		<p class="align center">&copy; 2016 - {date(Y)}  Netis</p>
-	</div>
 
 	{* javascript libraries and plugins *}
 	<script src="{$basePath}/www/js/main.min.js"></script>
@@ -80,20 +80,14 @@
 			var nanobar = new Nanobar();
 			nanobar.go(100);
 
+			// alert message
+			$('.alert').alert();
+
 			// live form validation
 			LiveForm.setOptions({
-				messageErrorClass: 'error',
+				messageErrorClass: 'form-error',
 				messageErrorPrefix: '',
 				wait: 500
-			});
-
-			// close flash messages
-			$.nette.ext('flash.messages', {
-				load: function() {
-					$('.close-message').off('click').on('click', function() {
-						$(this).parents('div.message').fadeOut('slow');
-					});
-				}
 			});
 
 			// nette ajax
@@ -101,4 +95,5 @@
 		});
 	</script>
 </body>
+
 </html>

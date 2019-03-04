@@ -1,0 +1,16 @@
+//
+// content layout
+//
+.container
+{
+  margin-top: ($calc * 10);
+  padding-bottom: ($calc * 10);
+  @include media-breakpoint-up(md) {
+    margin-top: ($calc * 105);
+  }
+}
+
+.container-fluid
+{
+  padding: 0;
+}
