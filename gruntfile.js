@@ -6,11 +6,10 @@ module.exports = function(grunt) {
     cssmin: {
       target: {
         files: [{
-          'www/css/main.style.min.css': [
+          'www/css/install.min.css': [
             'node_modules/open-sans-fontface/open-sans.css',
             'node_modules/font-awesome/css/font-awesome.css',
-            'node_modules/perfect-scrollbar/css/perfect-scrollbar.css',
-            'node_modules/sidebar-menu-accgit/css/sidebar.css',
+            'assets/css/install.css',
           ]
         }]
       }
@@ -44,11 +43,8 @@ module.exports = function(grunt) {
         files: {
           'www/js/main.min.js': [
             'node_modules/jquery/dist/jquery.js',
-            'node_modules/perfect-scrollbar/dist/perfect-scrollbar.js',
             'node_modules/popper/dist/popper.js',
             'node_modules/bootstrap/dist/js/bootstrap.js',
-            'node_modules/nanobar/nanobar.js',
-            'node_modules/sidebar-menu-accgit/js/sidebar.menu.js',
             'node_modules/live-form-validation/live-form-validation.js',
             'node_modules/nette.ajax.js/nette.ajax.js',
             'assets/js/spinner.js'

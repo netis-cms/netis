@@ -1,0 +1,11 @@
+//
+// custom component
+//
+.info-delete
+{
+    padding: ($calc * 15);
+    margin-bottom: ($calc * 15);
+    background: #f4f4f4;
+
+    @include border-radius($border-radius);
+}

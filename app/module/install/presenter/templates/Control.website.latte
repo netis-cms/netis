@@ -1,28 +1,24 @@
-
 {* website settings *}
 {form website class => 'ajax'}
 
-	{* form ajax errors *}
-	{snippet errors}
-	<ul class="errors" n:if="$form->hasErrors()">
-		<li n:foreach="$form->errors as $error">{_$error}</li>
-	</ul>
-	{/snippet}
+{* form ajax errors *}
+{snippet errors}
+<ul class="errors" n:if="$form->hasErrors()">
+	<li n:foreach="$form->errors as $error">{_$error}</li>
+</ul>
+{/snippet}
 
-	{* form elements *}
-	<div class="row">
-		<div class="six columns">
-			{label website/}
-			{input website class => 'full width'}
-		</div>
-		<div class="six columns">
-			{label description/}
-			{input description class => 'full width'}
-		</div>
+{* form elements *}
+<div class="form-row">
+	<div class="form-group col-md-6">
+		{label website/}{input website class => 'form-control'}
 	</div>
 
-	{* form send button *}
-	<div class="wrapper">
-		{input send class => 'button primary'}
+	<div class="form-group col-md-6">
+		{label description/}{input description class => 'form-control'}
 	</div>
+</div>
+
+{* form send button *}
+{input send class => 'btn btn-custom'}
 {/form}

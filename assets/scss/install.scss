@@ -1,10 +1,8 @@
-/*!
- * Sidebar menu for Bootstrap 4
- * Copyright Zdenek Papucik
- * MIT License
-*/
+//
+// install style
+//
 
-// custom buttons
+// add custom button to bootstrap
 $theme-colors: (
   'custom': #2197f4
 );
@@ -22,6 +20,7 @@ $input-btn-focus-width: 0;
 @import 'base/_typography';
 @import 'layout/_container';
 @import 'layout/_header';
+@import 'components/_custom';
 @import 'components/_steps';
 @import 'components/_forms';
 @import 'components/_spinner';

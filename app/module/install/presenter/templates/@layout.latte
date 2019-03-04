@@ -6,10 +6,7 @@
 	<meta name="description" content="{_'subtitle'}">
 	<meta name="author" content="Zdeněk Papučík, zdenek.papucik@gmail.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	{* css *}
-	<link rel="stylesheet" href="{$basePath}/www/css/main.style.min.css">
-	<link rel="stylesheet" href="{$basePath}/www/css/install.css">
+	<link rel="stylesheet" href="{$basePath}/www/css/install.min.css">
 
 	{* website title and subtitle *}
 	<title>{include subtitle|stripHtml|firstUpper}</title>
@@ -47,8 +44,8 @@
 			</div>
 		</div>
 
-		<div  class="alert alert-secondary alert-dismissible fade show border-0 rounded-0" role="alert">
-			text
+		<div n:foreach="$flashes as $flash" class="alert alert-secondary alert-dismissible fade show border-0 rounded-0" role="alert">
+			<strong>{_$flash->message}</strong>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
@@ -75,10 +72,6 @@
 	<script src="{$basePath}/www/js/main.min.js"></script>
 	<script>
 		$(function() {
-
-			// nanobar settings
-			var nanobar = new Nanobar();
-			nanobar.go(100);
 
 			// alert message
 			$('.alert').alert();

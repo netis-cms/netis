@@ -4,9 +4,9 @@
   "description": "Sidebar menu skeleton for dashboard on bootstrap 4",
   "main": "gruntfile.js",
   "dependencies": {
-    "sidebar-menu-accgit": "^1.2.2",
     "live-form-validation": "1.9.0",
-    "nette.ajax.js": "^2.3.0"
+    "nette.ajax.js": "^2.3.0",
+    "sidebar-menu-accgit": "^1.2.3"
   },
   "devDependencies": {
     "grunt": "^1.0.3",

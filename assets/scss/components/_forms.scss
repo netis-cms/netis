@@ -17,3 +17,8 @@
   @include border-radius($border-radius);
   @include font-size($font-size);
 }
+
+.form .errors {
+    color: #ff3e59;
+    font-weight: 600;
+}

@@ -56,13 +56,14 @@
 
 {* delete files *}
 <p class="info">{_'install.remove'}</p>
-<div class="delete">
-	<p>/app/modules/install</p>
-	<p>/storage/cache</p>
+<div class="info-delete">
+	<ul class="list-group">
+		<li class="list-group-item text-danger">/app/modules/install</li>
+		<li class="list-group-item text-danger">/storage/cache</li>
+	</ul>
 </div>
 
 {* go to administration *}
-<p>{_'install.end'}</p>
-<p><a n:href=":Admin:Admin:" class="button primary">{_'install.go.admin'}</a></p>
+<p><a n:href=":Admin:Admin:" class="btn btn-custom">{_'install.go.admin'}</a></p>
 {/if}
 {/block}
