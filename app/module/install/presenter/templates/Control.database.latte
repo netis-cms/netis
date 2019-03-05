@@ -1,9 +1,9 @@
 {* database server settings *}
-{form database class => 'ajax form'}
+{form database class => 'ajax'}
 
 {* form ajax errors *}
 {snippet errors}
-<ul class="errors" n:if="$form->hasErrors()">
+<ul class="form-errors" n:if="$form->hasErrors()">
 	<li n:foreach="$form->errors as $error">{_$error}</li>
 </ul>
 {/snippet}

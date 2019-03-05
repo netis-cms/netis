@@ -9801,12 +9801,12 @@ body {
   font-size: 3.125rem;
 }
 
-.container {
+.container-top {
   margin-top: 0.625rem;
   padding-bottom: 0.625rem;
 }
 @media (min-width: 768px) {
-  .container {
+  .container-top {
     margin-top: 6.5625rem;
   }
 }
@@ -9825,6 +9825,10 @@ body {
   margin-bottom: 0.9375rem;
   background: #f4f4f4;
   border-radius: 0.1875rem;
+}
+
+.alert {
+  font-weight: 600;
 }
 
 .steps {
@@ -9874,7 +9878,14 @@ body {
   margin-top: 3.125rem;
 }
 
-.form-error {
+.form-errors {
+  color: #ff3e59;
+  font-weight: 600;
+  list-style-position: inside;
+  padding: 0;
+}
+
+.form-errors-live {
   background: #ff3e59;
   color: #fff;
   display: block;
@@ -9883,11 +9894,6 @@ body {
   font-weight: 600;
   border-radius: 0.1875rem;
   font-size: 0.875rem;
-}
-
-.form .errors {
-  color: #ff3e59;
-  font-weight: 600;
 }
 
 #spinner {
