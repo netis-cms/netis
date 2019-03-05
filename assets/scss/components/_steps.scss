@@ -1,6 +1,7 @@
 //
 // steps component
 //
+
 .steps
 {
   font-size: $font-size-sm;
@@ -13,8 +14,35 @@
 
 .steps-ico
 {
-    display: none;
-    @include media-breakpoint-up(md) {
-      display: block;
-    }
+  display: none;
+  color: $color-blue;
+  background: $color-light;
+  width: ($calc * 285);
+  height: ($calc * 285);
+  margin-left: ($calc * 50);
+  text-align: center;
+  position: relative;
+  padding-top: ($calc * 45);
+
+  @include font-size(130);
+  @include border-radius(50%);
+  @include media-breakpoint-up(md) {
+    display: block;
+  }
+}
+
+.steps-ico:after {
+  content: '';
+  z-index: -999;
+  position: absolute;
+  left: 0;
+  top: 20%;
+  width: 0;
+  height: 0;
+  border: ($calc * 120) solid transparent;
+  border-right-color: $color-light;
+  border-left: 0;
+  border-bottom: 0;
+  margin-top: 0;
+  margin-left: - ($calc * 60);
 }

@@ -2,9 +2,12 @@
 // install style
 //
 
+$color-blue:  #2197f4;
+$color-light: #f4f4f4;
+
 // add custom button to bootstrap
 $theme-colors: (
-  'custom': #2197f4
+  'custom': $color-blue
 );
 
 // re-settings bootstrap

@@ -30,12 +30,12 @@
 
 					{* steps icons *}
 					{if $step === 0}
-					{var $item = 'info.png'}
-					{elseif $step === 1}{var $item = 'server.png'}
-					{elseif $step === 2}{var $item = 'db.png'}
-					{elseif $step === 3}{var $item = 'website.png'}
-					{elseif $step === 4}{var $item = 'account.png'}
-					{elseif $step === 5}{var $item = 'done.png'}
+					{var $item = 'fa-question'}
+					{elseif $step === 1}{var $item = 'fa-server'}
+					{elseif $step === 2}{var $item = 'fa-database'}
+					{elseif $step === 3}{var $item = 'fa-globe'}
+					{elseif $step === 4}{var $item = 'fa-user-plus'}
+					{elseif $step === 5}{var $item = 'fa-check'}
 					{/if}
 
 					{* steps info *}
@@ -61,7 +61,9 @@
 
 				{* step icon *}
 				<div class="col-md-5">
-					<img src="{$basePath}/www/img/{$item}" class="steps-ico" alt="ico">
+					<div class="steps-ico">
+						<i class="fa {$item}" aria-hidden="true"></i>
+					</div>
 				</div>
 			</div>
 		</div>
