@@ -1,9 +1,9 @@
 //
-// base elements
+// class only for body element
 //
-body
-{
+
+.body {
   overflow-x: hidden;
   margin-top: 0;
-  color: darken($color, 50);
+  color: darken($color-white, 50);
 }

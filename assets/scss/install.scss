@@ -1,5 +1,5 @@
 //
-// install style
+// customize bootstrap
 //
 
 $color-blue:  #2197f4;
@@ -19,10 +19,12 @@ $input-btn-focus-width: 0;
 // bootstrap
 @import '../../node_modules/bootstrap/scss/bootstrap';
 
+// sidebar-menu
+@import '../../node_modules/sidebar-menu-accgit/scss/utils/_variables';
+@import '../../node_modules/sidebar-menu-accgit/scss/utils/_functions';
+
 // install
-@import 'utils/_variables';
 @import 'base/_body';
-@import 'base/_typography';
 @import 'layout/_container';
 @import 'layout/_header';
 @import 'components/_custom';

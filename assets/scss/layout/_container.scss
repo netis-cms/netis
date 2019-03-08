@@ -1,16 +1,22 @@
 //
-// content layout
+// custom container layout
 //
-.container-top
-{
-  margin-top: ($calc * 10);
-  padding-bottom: ($calc * 10);
+
+.container-install {
+  margin-top: rem(10);
+  padding-bottom: rem(10);
   @include media-breakpoint-up(md) {
-    margin-top: ($calc * 105);
+    margin-top: rem(105);
   }
 }
 
-.container-fluid
-{
+.container-install-heading {
+  color: darken($color-white, 60);
+  margin-bottom: rem(25);
+  font-weight: normal;
+  @include font-size(50);
+}
+
+.container-fluid-install {
   padding: 0;
 }

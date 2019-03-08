@@ -1,8 +1,8 @@
 //
-// header laypout
+// install header layout
 //
-.header
-{
-  background: darken($color, 4.5);
-  padding: ($calc * 10) ($calc * 15);
+
+.header-install {
+  background-color: darken($color-white, 4.5);
+  padding: rem(10) rem(15);
 }

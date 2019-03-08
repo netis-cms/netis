@@ -11,5 +11,5 @@ dibi:
 	driver: mysqli
 	lazy: true
 	substitutes:
-		prefix: ""
+		prefix: ns_
 

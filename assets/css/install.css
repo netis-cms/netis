@@ -9788,77 +9788,76 @@ a.text-custom:hover, a.text-custom:focus {
     border-color: #dee2e6;
   }
 }
-body {
+.body {
   overflow-x: hidden;
   margin-top: 0;
   color: gray;
 }
 
-.container-heading {
+.container-install {
+  margin-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+@media (min-width: 768px) {
+  .container-install {
+    margin-top: 6.5625rem;
+  }
+}
+
+.container-install-heading {
   color: #666666;
   margin-bottom: 1.5625rem;
   font-weight: normal;
   font-size: 3.125rem;
 }
 
-.container-top {
-  margin-top: 0.625rem;
-  padding-bottom: 0.625rem;
-}
-@media (min-width: 768px) {
-  .container-top {
-    margin-top: 6.5625rem;
-  }
-}
-
-.container-fluid {
+.container-fluid-install {
   padding: 0;
 }
 
-.header {
-  background: #f4f4f4;
+.header-install {
+  background-color: #f4f4f4;
   padding: 0.625rem 0.9375rem;
 }
 
-.info-delete {
+.info-install-delete {
   padding: 0.9375rem;
   margin-bottom: 0.9375rem;
-  background: #f4f4f4;
+  background-color: #f4f4f4;
   border-radius: 0.1875rem;
 }
 
-.alert {
+.alert-install {
   font-weight: 600;
 }
 
-.steps {
-  font-size: 12;
-  font-weight: 600;
-  padding-top: 0.3125rem;
+.steps-install {
   margin: 0;
+  padding-top: 0.3125rem;
+  font-weight: 600;
   font-size: 0.875rem;
 }
 
-.steps-ico {
+.steps-install-ico {
   display: none;
   color: #2197f4;
-  background: #f4f4f4;
+  background-color: #f4f4f4;
   width: 17.8125rem;
   height: 17.8125rem;
   margin-left: 3.125rem;
   text-align: center;
   position: relative;
   padding-top: 2.8125rem;
-  font-size: 8.125rem;
   border-radius: 50%;
+  font-size: 8.125rem;
 }
 @media (min-width: 768px) {
-  .steps-ico {
+  .steps-install-ico {
     display: block;
   }
 }
 
-.steps-ico:after {
+.steps-install-ico:after {
   content: '';
   z-index: -999;
   position: absolute;

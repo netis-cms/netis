@@ -12,10 +12,11 @@
 	<title>{include subtitle|stripHtml|firstUpper}</title>
 </head>
 
-<body>
+<body class="body">
+
 	{snippet install}
-	<div class="container-fluid">
-		<div class="header">
+	<div class="container-fluid container-fluid-install">
+		<div class="header-install">
 			<div class="clearfix">
 
 				{* logo *}
@@ -39,12 +40,12 @@
 					{/if}
 
 					{* steps info *}
-					<p class="steps">{_'install.steps'} {$step}/5</p>
+					<p class="steps-install">{_'install.steps'} {$step}/5</p>
 				</div>
 			</div>
 		</div>
 
-		<div n:foreach="$flashes as $flash" class="alert alert-secondary fade show border-0 rounded-0" role="alert">
+		<div n:foreach="$flashes as $flash" class="alert alert-install alert-secondary fade show border-0 rounded-0" role="alert">
 			<div class="container alert-dismissible">
 				{_$flash->message}
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -53,7 +54,7 @@
 			</div>
 		</div>
 
-		<div class="container container-top">
+		<div class="container container-install">
 			<div class="row">
 
 				{* content *}
@@ -63,7 +64,7 @@
 
 				{* step icon *}
 				<div class="col-md-5">
-					<div class="steps-ico">
+					<div class="steps-install-ico">
 						<i class="fa {$item}" aria-hidden="true"></i>
 					</div>
 				</div>

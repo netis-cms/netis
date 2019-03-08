@@ -1,15 +1,14 @@
 //
-// custom component
+// info for delete files after install
 //
-.info-delete
-{
-    padding: ($calc * 15);
-    margin-bottom: ($calc * 15);
-    background: #f4f4f4;
 
-    @include border-radius($border-radius);
+.info-install-delete {
+  padding: rem(15);
+  margin-bottom: rem(15);
+  background-color: $color-light;
+  @include border-radius($border-radius);
 }
 
-.alert {
+.alert-install {
   font-weight: 600;
 }

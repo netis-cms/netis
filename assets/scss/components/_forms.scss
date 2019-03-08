@@ -1,28 +1,25 @@
 //
-// form errors component
+// errors style for forms
 //
-.form
-{
-  margin-top: ($calc * 50);
+
+.form {
+  margin-top: rem(50);
 }
 
-.form-errors
-{
+.form-errors {
   color: $color-error;
   font-weight: 600;
   list-style-position: inside;
   padding: 0;
 }
 
-.form-errors-live
-{
+.form-errors-live {
   background: $color-error;
   color: $color-white;
   display: block;
-  margin-top: ($calc * 2);
-  padding: ($calc * 6) ($calc * 8);
+  margin-top: rem(2);
+  padding: rem(6) rem(8);
   font-weight: 600;
-
   @include border-radius($border-radius);
   @include font-size($font-size);
 }
