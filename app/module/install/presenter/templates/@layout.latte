@@ -6,9 +6,8 @@
 	<meta name="description" content="{_'subtitle'}">
 	<meta name="author" content="Zdeněk Papučík, zdenek.papucik@gmail.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="{$basePath}/www/css/install.min.css">
 
-	{* website title and subtitle *}
+	<link rel="stylesheet" href="{$basePath}/www/css/install.min.css">
 	<title>{include subtitle|stripHtml|firstUpper}</title>
 </head>
 
@@ -45,6 +44,7 @@
 			</div>
 		</div>
 
+		{* flash message *}
 		<div n:foreach="$flashes as $flash" class="alert alert-install alert-secondary fade show border-0 rounded-0" role="alert">
 			<div class="container alert-dismissible">
 				{_$flash->message}
@@ -54,6 +54,7 @@
 			</div>
 		</div>
 
+		{* content *}
 		<div class="container container-install">
 			<div class="row">
 
@@ -72,6 +73,13 @@
 		</div>
 	</div>
 	{/snippet}
+
+	{* copyright info *}
+	<div class="footer">
+		<div class="container">
+			<p class="footer-text text-center">&copy 2016 - {date(Y)} Netis, Little CMS</p>
+		</div>
+	</div>
 
 	{* javascript libraries and plugins *}
 	<script src="{$basePath}/www/js/main.min.js"></script>
@@ -93,5 +101,4 @@
 		});
 	</script>
 </body>
-
 </html>

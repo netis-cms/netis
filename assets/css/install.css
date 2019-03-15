@@ -9902,4 +9902,21 @@ a.text-custom:hover, a.text-custom:focus {
   font-size: 3.75rem;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 3.75rem;
+  line-height: 3.75rem;
+}
+
+.footer-text {
+  margin-bottom: 0;
+}
+
 /*# sourceMappingURL=install.css.map */

@@ -1,0 +1,34 @@
+//
+// customize bootstrap
+//
+
+$color-blue:  #2197f4;
+$color-light: #f4f4f4;
+$color-error: #ff3e59;
+$color-white: #fff;
+
+// add custom button to bootstrap
+$theme-colors: (
+  'custom': $color-blue,
+);
+
+// re-settings bootstrap
+$border-radius: 0.1875rem;
+$input-btn-focus-width: 0;
+
+// bootstrap
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+
+// sidebar-menu
+@import '../../../node_modules/sidebar-menu-accgit/scss/utils/variables';
+@import '../../../node_modules/sidebar-menu-accgit/scss/utils/functions';
+
+// install
+@import 'install/base/body';
+@import 'install/layout/container';
+@import 'install/layout/header';
+@import 'install/components/custom';
+@import 'install/components/steps';
+@import 'install/components/forms';
+@import 'install/components/spinner';
+@import 'install/components/footer';
