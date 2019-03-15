@@ -20,3 +20,9 @@ application:
 # enabling system container for Tracy bar
 di:
 	debugger: yes
+
+# extension for nette
+extensions:
+
+	# an overview of installed versions of packages
+	vendorVersions: Milo\VendorVersions\Bridges\Nette\DI\Extension(%debugMode%)
