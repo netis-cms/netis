@@ -4,10 +4,12 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
+
 namespace Module\Install\Service;
 
 use Drago;
 use Exception;
+use Dibi;
 
 /**
  * Install database tables.
@@ -17,29 +19,32 @@ class Query extends Drago\Database\Connection
 	// Exception error code.
 	const COLLIDE_TABLE = 1;
 
+
 	/**
 	 * Add tables to database.
 	 * @param array $args
-	 * @return void
+	 * @throws Dibi\Exception
 	 */
 	public function addTable($args)
 	{
-		return $this->db
+		$this->db
 			->query($args);
 	}
+
 
 	/**
 	 * Add records.
 	 * @param string $table
 	 * @param array $args
-	 * @return void
+	 * @throws Dibi\Exception
 	 */
 	public function addRecord($table, $args)
 	{
-		return $this->db
+		$this->db
 			->insert($table, $args)
 			->execute();
 	}
+
 
 	/**
 	 * Checking the existence of a table in the database.
@@ -52,5 +57,4 @@ class Query extends Drago\Database\Connection
 			throw new Exception('Sorry, but collide in a database table names.', self::COLLIDE_TABLE);
 		}
 	}
-
 }

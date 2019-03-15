@@ -6,34 +6,34 @@
 {block content}
 	<h4>{_'menu.settings'}</h4>
 	{snippet factory}
-	{form settings class => 'ajax'}
+		{form settings class => 'ajax'}
 
-		{* form ajax errors *}
-		{snippet errors}
-		<ul class="errors" n:if="$form->hasErrors()">
-			<li n:foreach="$form->errors as $error">{_$error}</li>
-		</ul>
-		{/snippet}
+			{* form ajax errors *}
+			{snippet errors}
+				<ul class="errors" n:if="$form->hasErrors()">
+					<li n:foreach="$form->errors as $error">{_$error}</li>
+				</ul>
+			{/snippet}
 
-		{* form elements *}
-		<fieldset>
-			<legend>{_'settings.legend'}</legend>
-			<div class="row">
-				<div class="six columns">
-					<div class="two columns">{label website class => 'label-inline' /}</div>
-					<div class="eight columns">{input website class => 'full width'}</div>
+			{* form elements *}
+			<fieldset>
+				<legend>{_'settings.legend'}</legend>
+				<div class="row">
+					<div class="six columns">
+						<div class="two columns">{label website class => 'label-inline' /}</div>
+						<div class="eight columns">{input website class => 'full width'}</div>
+					</div>
+					<div class="six columns">
+						<div class="two columns">{label description class => 'label-inline' /}</div>
+						<div class="eight columns">{input description class => 'full width'}</div>
+					</div>
 				</div>
-				<div class="six columns">
-					<div class="two columns">{label description class => 'label-inline' /}</div>
-					<div class="eight columns">{input description class => 'full width'}</div>
-				</div>
+			</fieldset>
+
+			{* form send button *}
+			<div class="wrapper">
+				{input send class => 'button primary'}
 			</div>
-		</fieldset>
-
-		{* form send button *}
-		<div class="wrapper">
-			{input send class => 'button primary'}
-		</div>
-	{/form}
+		{/form}
 	{/snippet}
 {/block}

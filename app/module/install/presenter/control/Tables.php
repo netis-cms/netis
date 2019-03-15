@@ -4,6 +4,7 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
+
 namespace Module\Install\Control;
 
 use Drago;
@@ -36,6 +37,7 @@ final class Tables extends Drago\Application\UI\Control
 	 */
 	private $query;
 
+
 	public function __construct(
 		Http\Sessions $sessions,
 		Service\Steps $steps,
@@ -47,6 +49,7 @@ final class Tables extends Drago\Application\UI\Control
 		$this->query = $query;
 	}
 
+
 	public function render()
 	{
 		$template = $this->template;
@@ -55,6 +58,7 @@ final class Tables extends Drago\Application\UI\Control
 		$template->form = $this['tables'];
 		$template->render();
 	}
+
 
 	/**
 	 * @return UI\Form
@@ -68,6 +72,7 @@ final class Tables extends Drago\Application\UI\Control
 		$form->onSuccess[] = [$this, 'success'];
 		return $form;
 	}
+
 
 	public function success(UI\Form $form)
 	{
@@ -87,7 +92,7 @@ final class Tables extends Drago\Application\UI\Control
 			}
 
 			$this->query->addTable('
-				CREATE TABLE ['.$databaseTable['menu_category'].'](
+				CREATE TABLE [' . $databaseTable['menu_category'] . '](
 				[categoryId] int(11) unsigned NOT NULL AUTO_INCREMENT,
 				[category] varchar(30) NOT NULL,
 				PRIMARY KEY (categoryId))
@@ -102,14 +107,14 @@ final class Tables extends Drago\Application\UI\Control
 			}
 
 			$this->query->addTable('
-				CREATE TABLE ['.$databaseTable['menu'].'](
+				CREATE TABLE [' . $databaseTable['menu'] . '](
 				[menuId] int(11) unsigned NOT NULL AUTO_INCREMENT,
 				[categoryId] int(11) unsigned NOT NULL,
 				[link] char(30) NOT NULL,
 				[name] char(30) NOT NULL,
 				PRIMARY KEY (menuId),
 				KEY [category] (categoryId),
-				CONSTRAINT [enu_ibfk_'. rand(5, 999).'] FOREIGN KEY (categoryId) REFERENCES ['.$prefix.'menu_category] (categoryId))
+				CONSTRAINT [enu_ibfk_' . rand(5, 999) . '] FOREIGN KEY (categoryId) REFERENCES [' . $prefix . 'menu_category] (categoryId))
 				ENGINE=InnoDB DEFAULT CHARSET=UTF8');
 
 			$menu = [
@@ -122,14 +127,14 @@ final class Tables extends Drago\Application\UI\Control
 			}
 
 			$this->query->addTable('
-				CREATE TABLE ['.$databaseTable['settings'].'](
+				CREATE TABLE [' . $databaseTable['settings'] . '](
 				[name] varchar(100) NOT NULL,
 				[value] varchar(255) NOT NULL)
 				ENGINE=InnoDB DEFAULT CHARSET=UTF8'
 			);
 
 			$this->query->addTable('
-				CREATE TABLE ['.$databaseTable['users'].'](
+				CREATE TABLE [' . $databaseTable['users'] . '](
 				[userId] int(11) unsigned NOT NULL AUTO_INCREMENT,
 				[realname] varchar(50) NOT NULL,
 				[email] varchar(50) NOT NULL,
@@ -152,5 +157,4 @@ final class Tables extends Drago\Application\UI\Control
 			}
 		}
 	}
-
 }

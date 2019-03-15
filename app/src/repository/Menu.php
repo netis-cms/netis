@@ -4,8 +4,11 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
+
 namespace Repository;
+
 use Drago;
+use Dibi;
 
 /**
  * Menu repository.
@@ -13,7 +16,8 @@ use Drago;
 class Menu extends Drago\Database\Connection
 {
 	/**
-	 * @return array
+	 * @return Dibi\Result|int
+	 * @throws Dibi\Exception
 	 */
 	public function all()
 	{
@@ -23,8 +27,10 @@ class Menu extends Drago\Database\Connection
 				USING (categoryId) ORDER BY menuId ASC');
 	}
 
+
 	/**
-	 * @return array
+	 * @return Dibi\Result|int
+	 * @throws Dibi\Exception
 	 */
 	public function category()
 	{
@@ -33,5 +39,4 @@ class Menu extends Drago\Database\Connection
 				SELECT * FROM :prefix:menu AS m LEFT JOIN :prefix:menu_category AS c
 				USING (categoryId) GROUP BY categoryId');
 	}
-
 }

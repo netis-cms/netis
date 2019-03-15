@@ -5,11 +5,10 @@ extensions:
 
 dibi:
 	host: localhost
-	username: root
-	password: ""
-	database: test
+	username: accgit
+	password: root
+	database: webapp
 	driver: mysqli
 	lazy: true
 	substitutes:
-		prefix: ns_
-
+		prefix: ""

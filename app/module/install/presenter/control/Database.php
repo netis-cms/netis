@@ -4,6 +4,7 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
+
 namespace Module\Install\Control;
 
 use Drago;
@@ -46,6 +47,7 @@ final class Database extends Drago\Application\UI\Control
 	 */
 	private $dirs;
 
+
 	public function __construct(
 		Config\Loader $loader,
 		Http\Sessions $sessions,
@@ -59,6 +61,7 @@ final class Database extends Drago\Application\UI\Control
 		$this->dirs = $dirs;
 	}
 
+
 	public function render()
 	{
 		$template = $this->template;
@@ -67,6 +70,7 @@ final class Database extends Drago\Application\UI\Control
 		$template->form = $this['database'];
 		$template->render();
 	}
+
 
 	/**
 	 * @return UI\Form
@@ -93,7 +97,7 @@ final class Database extends Drago\Application\UI\Control
 
 		// Database drivers.
 		$drivers = [
-			'mysql'  => 'MySQL',
+			'mysql' => 'MySQL',
 			'mysqli' => 'MySQLi'
 		];
 
@@ -105,6 +109,7 @@ final class Database extends Drago\Application\UI\Control
 		return $form;
 	}
 
+
 	public function success(UI\Form $form)
 	{
 		$values = $form->values;
@@ -114,18 +119,18 @@ final class Database extends Drago\Application\UI\Control
 
 				// Parameters for generate config neon file.
 				$arr = ['extensions' => [
-						'dibi' => 'Dibi\Bridges\Nette\DibiExtension22'
-					], 'dibi' => [
-						'host' => $values->host,
-						'username' => $values->user,
-						'password' => $values->password,
-						'database' => $values->database,
-						'driver' => $values->driver,
-						'lazy' => TRUE,
-						'substitutes' => [
-							'prefix' => $values->prefix
-						]
+					'dibi' => 'Dibi\Bridges\Nette\DibiExtension22'
+				], 'dibi' => [
+					'host' => $values->host,
+					'username' => $values->user,
+					'password' => $values->password,
+					'database' => $values->database,
+					'driver' => $values->driver,
+					'lazy' => TRUE,
+					'substitutes' => [
+						'prefix' => $values->prefix
 					]
+				]
 				];
 
 				// Generate and save the configuration file.

@@ -4,6 +4,7 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
+
 namespace Module\Admin;
 
 use Base;
@@ -28,6 +29,7 @@ abstract class DashboardPresenter extends Base\BasePresenter
 	 */
 	public $repositoryMenu;
 
+
 	/**
 	 * @return Drago\Localization\Translator
 	 */
@@ -38,6 +40,7 @@ abstract class DashboardPresenter extends Base\BasePresenter
 		return $this->createTranslator($path);
 	}
 
+
 	protected function startup()
 	{
 		parent::startup();
@@ -45,6 +48,7 @@ abstract class DashboardPresenter extends Base\BasePresenter
 			$this->redirect(':Admin:Sign:in');
 		}
 	}
+
 
 	protected function beforeRender()
 	{
@@ -55,6 +59,7 @@ abstract class DashboardPresenter extends Base\BasePresenter
 		$this->template->menu = $this->repositoryMenu->all();
 	}
 
+
 	/**
 	 * @return string
 	 */
@@ -63,5 +68,4 @@ abstract class DashboardPresenter extends Base\BasePresenter
 		$email = $this->user->identity->data['email'];
 		return $this->gravatar->getGravatar($email, $size);
 	}
-
 }

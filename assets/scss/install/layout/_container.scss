@@ -10,13 +10,6 @@
   }
 }
 
-.container-install-heading {
-  color: darken($color-white, 60);
-  margin-bottom: rem(25);
-  font-weight: normal;
-  @include font-size(50);
-}
-
 .container-fluid-install {
   padding: 0;
 }

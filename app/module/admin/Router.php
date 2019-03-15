@@ -4,6 +4,7 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
+
 namespace Module\Admin;
 
 use Nette;
@@ -27,5 +28,4 @@ class Router
 		$module[] = new Routers\Route($locale . 'admin/<presenter>/<action>/[<id>/]', 'Admin:main');
 		return $router;
 	}
-
 }

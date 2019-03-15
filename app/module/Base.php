@@ -4,6 +4,7 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
+
 namespace Base;
 
 use Drago;
@@ -34,7 +35,8 @@ abstract class BasePresenter extends UI\Presenter
 	 * @var string
 	 */
 	public $presenterName;
-	
+
+
 	/**
 	 * @return Drago\Localization\Translator
 	 */
@@ -43,6 +45,7 @@ abstract class BasePresenter extends UI\Presenter
 		$path = __DIR__ . '/web/locale/' . $this->lang . '.ini';
 		return $this->createTranslator($path);
 	}
+
 
 	protected function startup()
 	{
@@ -55,16 +58,16 @@ abstract class BasePresenter extends UI\Presenter
 		$this->presenterName = $a ? substr($this->getName(), $a + 1) : $this->getName();
 	}
 
+
 	protected function beforeRender()
 	{
 		parent::beforeRender();
 		$this->template->lang = $this->lang;
 		$this->template->setTranslator($this->translator());
-		$this->template->web = (object) $this->repositoryWebsite->all();
+		$this->template->web = (object)$this->repositoryWebsite->all();
 		$this->template->moduleName = $this->moduleName;
 		$this->template->presenterName = $this->presenterName;
 		$breadcrumb = Utils\Strings::webalize($this->presenterName);
 		$this->template->breadcrumb = 'menu.' . $breadcrumb;
 	}
-
 }

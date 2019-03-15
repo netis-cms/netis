@@ -13,7 +13,7 @@
 
 <body class="body">
 
-	{snippet install}
+{snippet install}
 	<div class="container-fluid container-fluid-install">
 		<div class="header-install">
 			<div class="clearfix">
@@ -30,7 +30,7 @@
 
 					{* steps icons *}
 					{if $step === 0}
-					{var $item = 'fa-question'}
+						{var $item = 'fa-question'}
 					{elseif $step === 1}{var $item = 'fa-server'}
 					{elseif $step === 2}{var $item = 'fa-database'}
 					{elseif $step === 3}{var $item = 'fa-globe'}
@@ -45,7 +45,8 @@
 		</div>
 
 		{* flash message *}
-		<div n:foreach="$flashes as $flash" class="alert alert-install alert-secondary fade show border-0 rounded-0" role="alert">
+		<div n:foreach="$flashes as $flash" class="alert alert-install alert-secondary fade show border-0 rounded-0"
+											role="alert">
 			<div class="container alert-dismissible">
 				{_$flash->message}
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -58,7 +59,7 @@
 		<div class="container container-install">
 			<div class="row">
 
-				{* content *}
+				{* include block content *}
 				<div class="col-md-7">
 					{include content|indent:5}
 				</div>
@@ -72,33 +73,33 @@
 			</div>
 		</div>
 	</div>
-	{/snippet}
+{/snippet}
 
-	{* copyright info *}
-	<div class="footer">
-		<div class="container">
-			<p class="footer-text text-center">&copy 2016 - {date(Y)} Netis, Little CMS</p>
-		</div>
+{* copyright info *}
+<div class="footer">
+	<div class="container">
+		<p class="footer-text text-center">&copy 2016 - {date(Y)} Netis, Little CMS</p>
 	</div>
+</div>
 
-	{* javascript libraries and plugins *}
-	<script src="{$basePath}/www/js/main.min.js"></script>
-	<script>
-		$(function() {
+{* javascript libraries and plugins *}
+<script src="{$basePath}/www/js/main.min.js"></script>
+<script>
+    $(function () {
 
-			// alert message
-			$('.alert').alert();
+        // alert message
+        $('.alert').alert();
 
-			// live form validation
-			LiveForm.setOptions({
-				messageErrorClass: 'form-errors-live',
-				messageErrorPrefix: '',
-				wait: 500
-			});
+        // live form validation
+        LiveForm.setOptions({
+            messageErrorClass: 'form-errors-live',
+            messageErrorPrefix: '',
+            wait: 500
+        });
 
-			// nette ajax
-			$.nette.init();
-		});
-	</script>
+        // nette ajax
+        $.nette.init();
+    });
+</script>
 </body>
 </html>

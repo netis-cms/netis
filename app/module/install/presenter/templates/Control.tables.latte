@@ -1,13 +1,13 @@
 {* install database tables *}
 {form tables class => 'ajax'}
 
-{* form ajax errors *}
-{snippet errors}
-<ul class="form-errors" n:if="$form->hasErrors()">
-	<li n:foreach="$form->errors as $error">{_$error}</li>
-</ul>
-{/snippet}
+	{* form ajax errors *}
+	{snippet errors}
+		<ul class="form-errors" n:if="$form->hasErrors()">
+			<li n:foreach="$form->errors as $error">{_$error}</li>
+		</ul>
+	{/snippet}
 
-{* form send button *}
-{input send class => 'btn btn-custom'}
+	{* form send button *}
+	{input send class => 'btn btn-custom'}
 {/form}

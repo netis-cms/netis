@@ -4,6 +4,7 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
+
 namespace Module\Install\Control;
 
 use Drago;
@@ -36,6 +37,7 @@ final class Account extends Drago\Application\UI\Control
 	 */
 	private $query;
 
+
 	public function __construct(
 		Http\Sessions $sessions,
 		Service\Steps $steps,
@@ -47,6 +49,7 @@ final class Account extends Drago\Application\UI\Control
 		$this->query = $query;
 	}
 
+
 	public function render()
 	{
 		$template = $this->template;
@@ -55,6 +58,7 @@ final class Account extends Drago\Application\UI\Control
 		$template->form = $this['account'];
 		$template->render();
 	}
+
 
 	/**
 	 * @return UI\Form
@@ -86,10 +90,11 @@ final class Account extends Drago\Application\UI\Control
 		return $form;
 	}
 
+
 	public function success(UI\Form $form)
 	{
 		$values = $form->getValues();
-		$table  = $this->sessions->getSessionSection()->prefix . 'users';
+		$table = $this->sessions->getSessionSection()->prefix . 'users';
 
 		// Hash password.
 		$values->password = Security\Passwords::hash($values->password);
@@ -104,5 +109,4 @@ final class Account extends Drago\Application\UI\Control
 		$this->steps->cache->save(Service\Steps::STEP, ['step' => 5]);
 		$this->flashMessage('message.acc', 'success');
 	}
-
 }

@@ -4,6 +4,7 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
+
 namespace Repository;
 
 use Drago;
@@ -23,5 +24,4 @@ class Settings extends Drago\Database\Connection
 					WHERE name = ?', $key);
 		}
 	}
-
 }

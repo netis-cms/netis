@@ -4,6 +4,7 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
+
 namespace Module\Admin;
 
 use Base;
@@ -24,6 +25,7 @@ final class SignPresenter extends Base\BasePresenter
 	 */
 	public $gravatar;
 
+
 	/**
 	 * @return Drago\Localization\Translator
 	 */
@@ -34,18 +36,20 @@ final class SignPresenter extends Base\BasePresenter
 		return $this->createTranslator($path);
 	}
 
+
 	protected function beforeRender()
 	{
 		parent::beforeRender();
 		$user = $this->user->identity;
 		if ($user) {
-			$welcome  = 'login.welcome.back';
+			$welcome = 'login.welcome.back';
 			$gravatar = $user->data['email'];
 		}
 		$this->template->form = $this['signIn'];
-		$this->template->welcome  = isset($welcome) ? $welcome : 'login.welcome';
+		$this->template->welcome = isset($welcome) ? $welcome : 'login.welcome';
 		$this->template->gravatar = $this->gravatar->getGravatar(isset($gravatar) ? $gravatar : null, 100);
 	}
+
 
 	/**
 	 * @return UI\Form
@@ -70,6 +74,7 @@ final class SignPresenter extends Base\BasePresenter
 		return $form;
 	}
 
+
 	public function success(UI\Form $form, $values)
 	{
 		try {
@@ -78,8 +83,12 @@ final class SignPresenter extends Base\BasePresenter
 
 		} catch (Security\AuthenticationException $e) {
 			switch ($e->getCode()) {
-				case 1: $message = 'form.user.error'; break;
-				case 2: $message = 'form.password.error'; break;
+				case 1:
+					$message = 'form.user.error';
+					break;
+				case 2:
+					$message = 'form.password.error';
+					break;
 			}
 			$form->addError($message);
 			if ($this->isAjax()) {
@@ -87,6 +96,7 @@ final class SignPresenter extends Base\BasePresenter
 			}
 		}
 	}
+
 
 	/**
 	 * Logout user.
@@ -96,5 +106,4 @@ final class SignPresenter extends Base\BasePresenter
 		$this->user->logout();
 		$this->redirect(':Admin:Sign:in');
 	}
-
 }

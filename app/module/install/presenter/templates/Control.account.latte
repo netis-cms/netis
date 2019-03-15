@@ -1,34 +1,34 @@
 {* Add administrator account *}
 {form account class => 'ajax form'}
 
-{* form ajax errors *}
-{snippet errors}
-<ul class="form-errors" n:if="$form->hasErrors()">
-	<li n:foreach="$form->errors as $error">{_$error}</li>
-</ul>
-{/snippet}
+	{* form ajax errors *}
+	{snippet errors}
+		<ul class="form-errors" n:if="$form->hasErrors()">
+			<li n:foreach="$form->errors as $error">{_$error}</li>
+		</ul>
+	{/snippet}
 
-{* form elements *}
-<div class="form-row">
-	<div class="form-group col-md-6">
-		{label realname/}{input realname class => 'form-control'}
+	{* form elements *}
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			{label realname/}{input realname class => 'form-control'}
+		</div>
+
+		<div class="form-group col-md-6">
+			{label email/}{input email class => 'form-control'}
+		</div>
 	</div>
 
-	<div class="form-group col-md-6">
-		{label email/}{input email class => 'form-control'}
-	</div>
-</div>
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			{label password/}{input password class => 'form-control'}
+		</div>
 
-<div class="form-row">
-	<div class="form-group col-md-6">
-		{label password/}{input password class => 'form-control'}
+		<div class="form-group col-md-6">
+			{label verify/}{input verify class => 'form-control'}
+		</div>
 	</div>
 
-	<div class="form-group col-md-6">
-		{label verify/}{input verify class => 'form-control'}
-	</div>
-</div>
-
-{* form send button *}
-{input send class => 'btn btn-custom'}
+	{* form send button *}
+	{input send class => 'btn btn-custom'}
 {/form}

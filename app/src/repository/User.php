@@ -4,11 +4,13 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
+
 namespace Repository;
 
 use Drago;
 use Entity;
 use Drago\Database\Iterator;
+use Dibi;
 
 /**
  * User repository.
@@ -17,7 +19,8 @@ class User extends Drago\Database\Connection
 {
 	/**
 	 * @param string $email
-	 * @return array
+	 * @return Dibi\Row|false
+	 * @throws Dibi\Exception
 	 */
 	public function find($email)
 	{
@@ -26,6 +29,7 @@ class User extends Drago\Database\Connection
 				SELECT * FROM :prefix:users
 				WHERE email = ?', $email);
 	}
+
 
 	public function save(Entity\User $entity)
 	{
@@ -36,5 +40,4 @@ class User extends Drago\Database\Connection
 					WHERE userId = ?', $entity->getId());
 		}
 	}
-
 }

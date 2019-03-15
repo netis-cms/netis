@@ -4,7 +4,9 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
+
 namespace Module\Web;
+
 use Base;
 
 /**

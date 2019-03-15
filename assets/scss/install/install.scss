@@ -24,11 +24,11 @@ $input-btn-focus-width: 0;
 @import '../../../node_modules/sidebar-menu-accgit/scss/utils/functions';
 
 // install
-@import 'install/base/body';
-@import 'install/layout/container';
-@import 'install/layout/header';
-@import 'install/components/custom';
-@import 'install/components/steps';
-@import 'install/components/forms';
-@import 'install/components/spinner';
-@import 'install/components/footer';
+@import 'base/body';
+@import 'layout/container';
+@import 'layout/header';
+@import 'components/custom';
+@import 'components/steps';
+@import 'components/forms';
+@import 'components/spinner';
+@import 'components/footer';

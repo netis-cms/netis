@@ -4,6 +4,7 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
+
 namespace Module\Install;
 
 use Drago;
@@ -46,6 +47,7 @@ final class InstallPresenter extends Nette\Application\UI\Presenter
 	 */
 	public $account;
 
+
 	/**
 	 * @return Drago\Localization\Translator
 	 */
@@ -54,6 +56,7 @@ final class InstallPresenter extends Nette\Application\UI\Presenter
 		$path = __DIR__ . '/../locale/' . $this->lang . '.ini';
 		return $this->createTranslator($path);
 	}
+
 
 	protected function beforeRender()
 	{
@@ -64,12 +67,14 @@ final class InstallPresenter extends Nette\Application\UI\Presenter
 		$this->template->step = $step ? $step['step'] : 0;
 	}
 
+
 	public function renderDefault()
 	{
 		if ($this->isAjax()) {
 			$this->redrawControl('install');
 		}
 	}
+
 
 	/**
 	 * Run the installation.
@@ -78,6 +83,7 @@ final class InstallPresenter extends Nette\Application\UI\Presenter
 	{
 		$this->steps->cache->save(Service\Steps::STEP, ['step' => 1]);
 	}
+
 
 	/**
 	 * @return Control\Database
@@ -89,6 +95,7 @@ final class InstallPresenter extends Nette\Application\UI\Presenter
 		return $control;
 	}
 
+
 	/**
 	 * @return Control\Tables
 	 */
@@ -98,6 +105,7 @@ final class InstallPresenter extends Nette\Application\UI\Presenter
 		$control->setTranslator($this->translator());
 		return $control;
 	}
+
 
 	/**
 	 * @return Control\Website
@@ -109,6 +117,7 @@ final class InstallPresenter extends Nette\Application\UI\Presenter
 		return $control;
 	}
 
+
 	/**
 	 * @return Control\Account
 	 */
@@ -118,5 +127,4 @@ final class InstallPresenter extends Nette\Application\UI\Presenter
 		$control->setTranslator($this->translator());
 		return $control;
 	}
-
 }

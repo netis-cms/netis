@@ -4,10 +4,12 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
+
 namespace Repository;
 
 use Nette\Security;
 use Entity;
+use Dibi;
 
 /**
  * User authentication.
@@ -24,15 +26,19 @@ class Auth implements Security\IAuthenticator
 	 */
 	private $entityUser;
 
+
 	public function __construct(User $repositoryUser, Entity\User $entityUser)
 	{
 		$this->repositoryUser = $repositoryUser;
 		$this->entityUser = $entityUser;
 	}
 
+
 	/**
-	 * @return Security\Identity
+	 * @param array $credentials
+	 * @return Security\Identity|Security\IIdentity
 	 * @throws Security\AuthenticationException
+	 * @throws Dibi\Exception
 	 */
 	public function authenticate(array $credentials)
 	{
@@ -45,11 +51,11 @@ class Auth implements Security\IAuthenticator
 		if (!$row) {
 			throw new Security\AuthenticationException('User not found.', self::IDENTITY_NOT_FOUND);
 
-		// Invalid password.
+			// Invalid password.
 		} elseif (!Security\Passwords::verify($password, $row->password)) {
 			throw new Security\AuthenticationException('The password is incorrect.', self::INVALID_CREDENTIAL);
 
-		// Re-hash password.
+			// Re-hash password.
 		} elseif (Security\Passwords::needsRehash($row->password)) {
 			$entity = $this->entityUser;
 			$entity->setId($row->id);
@@ -59,5 +65,4 @@ class Auth implements Security\IAuthenticator
 		unset($row->password);
 		return new Security\Identity($row->userId, null, $row->toArray());
 	}
-
 }

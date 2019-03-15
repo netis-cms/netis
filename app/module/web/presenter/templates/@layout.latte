@@ -1,27 +1,18 @@
 <!DOCTYPE html>
 <html lang="{$lang}">
+
 <head>
 	<meta charset="utf-8">
-	<meta name="description" content="{ifset $web}{$web->description}{/ifset}">
+	<meta name="description" content="{_'subtitle'}">
 	<meta name="author" content="Zdeněk Papučík, zdenek.papucik@gmail.com">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	{* mobile specific metas *}
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	{* favicon *}
-	<link rel="icon" type="image/png" href="{$basePath}/www/">
-
-	{* cascading style sheets *}
-	<link rel="stylesheet" href="{$basePath}/www/">
-
-	{* website title and subtitle *}
-	<title>{include subtitle|stripHtml|firstUpper}{ifset $web} | {$web->website}{/ifset}</title>
+	<title>{include subtitle|stripHtml|firstUpper}</title>
 </head>
-<body>
-	<p n:foreach="$flashes as $flash" class="flash {$flash->type}">{_$flash->message}</p>
-	{include content|indent:1}
 
-	{* javascript libraries and plugins *}
-	<script src="{$basePath}/www/"></script>
+<body>
+
+{include content|indent:1}
+
 </body>
 </html>

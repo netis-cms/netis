@@ -4,7 +4,9 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
+
 namespace Module\Install\Service;
+
 use Nette\Caching;
 
 /**
@@ -22,9 +24,9 @@ class Steps
 	 */
 	const STEP = 'Install step';
 
+
 	public function __construct(Caching\Cache $cache)
 	{
 		$this->cache = $cache;
 	}
-
 }

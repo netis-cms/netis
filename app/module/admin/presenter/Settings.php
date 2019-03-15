@@ -4,6 +4,7 @@
  * Netis, Little CMS
  * Copyright (c) 2015, Zdeněk Papučík
  */
+
 namespace Module\Admin;
 
 use Nette\Application\UI;
@@ -28,6 +29,7 @@ final class SettingsPresenter extends DashboardPresenter
 	 */
 	public $entitySettings;
 
+
 	/**
 	 * @return UI\Form
 	 */
@@ -46,6 +48,7 @@ final class SettingsPresenter extends DashboardPresenter
 		$form->onSuccess[] = [$this, 'process'];
 		return $form;
 	}
+
 
 	public function process(UI\Form $form)
 	{
@@ -71,11 +74,11 @@ final class SettingsPresenter extends DashboardPresenter
 
 	}
 
+
 	public function renderWeb()
 	{
 		$form = $this['settings'];
 		$form->setDefaults($this->repositoryWebsite->all());
 		$this->template->form = $form;
 	}
-
 }
