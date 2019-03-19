@@ -4,7 +4,7 @@ Based on:
 - [Nette Framework](https://github.com/nette/nette)
 - [Drago Extension Nette Framework](https://github.com/drago-ex)
 - [dibi - smart database abstraction layer](https://github.com/dg/dibi)
-- [CSS UI Simple CSS Styles](https://github.com/css-ui)
+- [Bootstrap 4](https://github.com/twbs/bootstrap)
 
 ### Screenshot
 
