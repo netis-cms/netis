@@ -7,7 +7,7 @@
 	{* information before installation *}
 	{if $step === 0}
 
-		<h1 class="display-4">{_'install.info'}</h1>
+		<h1 class="display-4 heading">{_'install.info'}</h1>
 		<p>
 			{_'install.text'}
 			{_'install.text.2'}
@@ -17,14 +17,14 @@
 		{* database server settings *}
 	{elseif $step === 1}
 
-		<h1 class="display-4">{_'install.db'}</h1>
+		<h1 class="display-4 heading">{_'install.db'}</h1>
 		<p>{_'install.text.db'}</p>
 		{control database}
 
 		{* install database tables *}
 	{elseif $step === 2}
 
-		<h1 class="display-4">{_'install.tables'}</h1>
+		<h1 class="display-4 heading">{_'install.tables'}</h1>
 		<p>
 			{_'install.text.tables'}
 			{_'install.text.tables.2'}
@@ -34,21 +34,21 @@
 		{* database server settings *}
 	{elseif $step === 3}
 
-		<h1 class="display-4">{_'install.web'}</h1>
+		<h1 class="display-4 heading">{_'install.web'}</h1>
 		<p>{_'install.text.web'}</p>
 		{control website}
 
 		{* add administrator account *}
 	{elseif $step === 4}
 
-		<h1 class="display-4">{_'install.acc'}</h1>
+		<h1 class="display-4 heading">{_'install.acc'}</h1>
 		<p>{_'install.text.acc'}</p>
 		{control account}
 
 		{* complete the installation *}
 	{elseif $step === 5}
 
-		<h1 class="display-4">{_'install.completion'}</h1>
+		<h1 class="display-4 heading">{_'install.completion'}</h1>
 		<p>
 			{_'install.text.completion'}
 			{_'install.text.completion.2'}

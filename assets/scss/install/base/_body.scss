@@ -1,9 +1,13 @@
 //
-// class only for body element
+// class only for element
 //
 
 .body {
   overflow-x: hidden;
   margin-top: 0;
   color: darken($color-white, 54);
+}
+
+.heading {
+  margin-bottom: rem(45);
 }
