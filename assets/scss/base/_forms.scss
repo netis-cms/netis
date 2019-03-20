@@ -1,0 +1,21 @@
+//
+// errors style for forms
+//
+
+.form-errors {
+  color: $color-error;
+  font-weight: 600;
+  list-style-position: inside;
+  padding: 0;
+}
+
+.form-errors-live {
+  background: $color-error;
+  color: $color-white;
+  display: block;
+  margin-top: rem(2);
+  padding: rem(6) rem(8);
+  font-weight: 600;
+  @include font-size($font-size);
+  @include border-radius($border-radius);
+}

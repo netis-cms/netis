@@ -65,6 +65,7 @@ final class InstallPresenter extends Nette\Application\UI\Presenter
 		$this->template->lang = $this->lang;
 		$step = $this->steps->cache->load(Service\Steps::STEP);
 		$this->template->step = $step ? $step['step'] : 0;
+		$this->template->date = date('Y');
 	}
 
 

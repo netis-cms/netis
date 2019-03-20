@@ -23,6 +23,10 @@ $input-btn-focus-width: 0;
 @import '../../../node_modules/sidebar-menu-accgit/scss/utils/variables';
 @import '../../../node_modules/sidebar-menu-accgit/scss/utils/functions';
 
+// base
+@import '../base/spinner';
+@import '../base/forms';
+
 // install
 @import 'base/body';
 @import 'layout/container';
@@ -30,5 +34,4 @@ $input-btn-focus-width: 0;
 @import 'components/custom';
 @import 'components/steps';
 @import 'components/forms';
-@import 'components/spinner';
 @import 'components/footer';

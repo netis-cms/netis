@@ -67,7 +67,6 @@ final class Tables extends Drago\Application\UI\Control
 	{
 		$form = $this->createForm();
 		$form->setTranslator($this->translation);
-
 		$form->addSubmit('send', 'form.send.tables');
 		$form->onSuccess[] = [$this, 'success'];
 		return $form;
@@ -148,8 +147,8 @@ final class Tables extends Drago\Application\UI\Control
 			$this->flashMessage('message.tables', 'success');
 
 		} catch (Exception $e) {
-			if ($e->getCode() === 1) {
-				$form->addError('form.table.error');
+			if ($e->getCode()) {
+				$form->addError('form.error.' . $e->getCode());
 			}
 
 			if ($this->isAjax()) {

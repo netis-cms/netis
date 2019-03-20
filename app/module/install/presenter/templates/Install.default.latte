@@ -3,10 +3,9 @@
 
 {* website content *}
 {block content}
-
-	{* information before installation *}
 	{if $step === 0}
 
+		{* information before installation *}
 		<h1 class="display-4 heading">{_'install.info'}</h1>
 		<p>
 			{_'install.text'}
@@ -14,16 +13,16 @@
 		</p>
 		<p><a n:href="run!" class="btn btn-custom ajax">{_'install.start'}</a></p>
 
-		{* database server settings *}
 	{elseif $step === 1}
 
+		{* database server settings *}
 		<h1 class="display-4 heading">{_'install.db'}</h1>
 		<p>{_'install.text.db'}</p>
 		{control database}
 
-		{* install database tables *}
 	{elseif $step === 2}
 
+		{* install database tables *}
 		<h1 class="display-4 heading">{_'install.tables'}</h1>
 		<p>
 			{_'install.text.tables'}
@@ -31,23 +30,23 @@
 		</p>
 		{control tables}
 
-		{* database server settings *}
 	{elseif $step === 3}
 
+		{* database server settings *}
 		<h1 class="display-4 heading">{_'install.web'}</h1>
 		<p>{_'install.text.web'}</p>
 		{control website}
 
-		{* add administrator account *}
 	{elseif $step === 4}
 
+		{* add administrator account *}
 		<h1 class="display-4 heading">{_'install.acc'}</h1>
 		<p>{_'install.text.acc'}</p>
 		{control account}
 
-		{* complete the installation *}
 	{elseif $step === 5}
 
+		{* complete the installation *}
 		<h1 class="display-4 heading">{_'install.completion'}</h1>
 		<p>
 			{_'install.text.completion'}

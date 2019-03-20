@@ -16,12 +16,11 @@
   background-color: $color-light;
   width: rem(285);
   height: rem(285);
-  margin-left: rem(50);
   text-align: center;
   position: relative;
-  padding-top: rem(40);
+  margin-left: rem(50);
+  padding-top: rem(38);
   border-radius: 50%;
-
   @include font-size(130);
   @include media-breakpoint-up(md) {
     display: block;

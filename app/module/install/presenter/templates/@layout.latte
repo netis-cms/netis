@@ -3,103 +3,98 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta name="description" content="{_'subtitle'}">
-	<meta name="author" content="Zdeněk Papučík, zdenek.papucik@gmail.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 	<link rel="stylesheet" href="{$basePath}/www/css/install.min.css">
 	<title>{include subtitle|stripHtml|firstUpper}</title>
 </head>
 
 <body class="body">
+<div n:snippet="install" class="container-fluid container-fluid-install">
 
-{snippet install}
-	<div class="container-fluid container-fluid-install">
-		<div class="header-install">
-			<div class="clearfix">
+	{* header*}
+	<div class="header-install">
+		<div class="clearfix">
 
-				{* logo *}
-				<div class="float-left">
-					<a n:href=":Install:Install:" title="Netis, Little CMS">
-						<img src="{$basePath}/www/img/logo.png" alt="Netis, Little CMS">
-					</a>
-				</div>
+			{* logo *}
+			<div class="float-left">
+				<a n:href=":Install:Install:" title="Netis, Little CMS">
+					<img src="{$basePath}/www/img/logo.png" alt="Netis, Little CMS">
+				</a>
+			</div>
 
-				{* steps install *}
-				<div class="float-right">
+			{* steps install *}
+			<div class="float-right">
 
-					{* steps icons *}
-					{if $step === 0}
-						{var $item = 'fa-question'}
-					{elseif $step === 1}{var $item = 'fa-server'}
-					{elseif $step === 2}{var $item = 'fa-database'}
-					{elseif $step === 3}{var $item = 'fa-globe'}
-					{elseif $step === 4}{var $item = 'fa-user-plus'}
-					{elseif $step === 5}{var $item = 'fa-check'}
-					{/if}
+				{* steps icons *}
+				{if $step === 0}
+					{var $item = 'fa-question'}
+				{elseif $step === 1}{var $item = 'fa-server'}
+				{elseif $step === 2}{var $item = 'fa-database'}
+				{elseif $step === 3}{var $item = 'fa-globe'}
+				{elseif $step === 4}{var $item = 'fa-user-plus'}
+				{elseif $step === 5}{var $item = 'fa-check'}
+				{/if}
 
-					{* steps info *}
-					<p class="steps-install">{_'install.steps'} {$step}/5</p>
-				</div>
+				{* steps info *}
+				<p class="steps-install">{_'install.steps'} {$step}/5</p>
 			</div>
 		</div>
+	</div>
 
-		{* flash message *}
-		<div n:foreach="$flashes as $flash" class="alert alert-install alert-secondary fade show border-0 rounded-0"
-											role="alert">
-			<div class="container alert-dismissible">
-				{_$flash->message}
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
+	{* flash message *}
+	<div n:foreach="$flashes as $flash" class="alert alert-install alert-secondary fade show border-0 rounded-0" role="alert">
+		<div class="container alert-dismissible">{_$flash->message}
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
 		</div>
+	</div>
 
-		{* content *}
-		<div class="container container-install">
-			<div class="row">
+	{* content *}
+	<div class="container container-install">
+		<div class="row">
 
-				{* include block content *}
-				<div class="col-md-7">
-					{include content|indent:5}
-				</div>
+			{* include block content *}
+			<div class="col-md-7">
+				{include content|indent:5}
+			</div>
 
-				{* step icon *}
-				<div class="col-md-5">
-					<div class="steps-install-ico">
-						<i class="fa {$item}" aria-hidden="true"></i>
-					</div>
+			{* step icon *}
+			<div class="col-md-5">
+				<div class="steps-install-ico">
+					<i class="fa {$item}" aria-hidden="true"></i>
 				</div>
 			</div>
 		</div>
 	</div>
-{/snippet}
+
+</div>
 
 {* copyright info *}
 <div class="footer">
 	<div class="container">
-		<p class="footer-text text-center">&copy 2016 - {date(Y)} Netis, Little CMS</p>
+		<p class="footer-text text-center">&copy 2016 - {$date} Netis, Little CMS</p>
 	</div>
 </div>
 
 {* javascript libraries and plugins *}
 <script src="{$basePath}/www/js/main.min.js"></script>
 <script>
-    $(function () {
+	$(function() {
 
-        // alert message
-        $('.alert').alert();
+		// alert message
+		$('.alert').alert();
 
-        // live form validation
-        LiveForm.setOptions({
-            messageErrorClass: 'form-errors-live',
-            messageErrorPrefix: '',
-            wait: 500
-        });
+		// live form validation
+		LiveForm.setOptions({
+			messageErrorClass: 'form-errors-live',
+			messageErrorPrefix: '',
+			wait: 500
+		});
 
-        // nette ajax
-        $.nette.init();
-    });
+		// nette ajax
+		$.nette.init();
+	});
 </script>
 </body>
 </html>

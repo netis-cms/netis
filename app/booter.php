@@ -14,7 +14,7 @@ $app->setTimeZone('Europe/Prague');
 // Directory of temporary files.
 $app->setTempDirectory(__DIR__ . '/../storage');
 
-// Autoloading classes.
+// Auto-loading classes.
 $app->addAutoload(__DIR__);
 
 // Create DI container from configuration files.
