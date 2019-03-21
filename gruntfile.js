@@ -2,34 +2,47 @@ module.exports = function (grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
-		// sass compile
+		// task scss
 		sass: {
 			dist: {
 				options: {
 					style: 'compressed'
 				},
 				files: {
-					'www/css/bootstrap.css': 'assets/scss/base/bootstrap.scss',
+					'assets/css/bootstrap.css': 'assets/scss/base/bootstrap.scss',
 					'www/css/install.css': 'assets/scss/install/install.scss',
 					'www/css/sign-in.css': 'assets/scss/sign-in/sign-in.scss',
 				}
 			}
 		},
 
-		// copy files
-		copy: {
-			main: {
-				files: [{
-					expand: true,
-					cwd: 'node_modules/font-awesome/fonts/',
-					src: ['**'],
-					dest: 'www/fonts/'
+		// task minify css
+		cssmin: {
+			options: {
+				sourceMap: true
+			},
+			target: {
+				files: {
+					'www/css/main.css': [
+						'assets/css/bootstrap.css',
+						'node_modules/font-awesome/css/font-awesome.css'
+					]
 				}
-				]
 			}
 		},
 
-		// js minify
+		// task copy files or folder
+		copy: {
+			main: {
+				files: [{
+					expand: true, cwd: 'node_modules/font-awesome/fonts/',
+					src: ['**'],
+					dest: 'www/fonts/'
+				}]
+			}
+		},
+
+		// task minify js
 		uglify: {
 			options: {
 				reserved: ['jQuery']
@@ -51,7 +64,8 @@ module.exports = function (grunt) {
 
 	// grunt tasks
 	grunt.loadNpmTasks('grunt-contrib-sass');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.registerTask('task-all', ['sass', 'uglify', 'copy']);
+	grunt.registerTask('task-all', ['sass', 'uglify', 'copy', 'cssmin']);
 };
