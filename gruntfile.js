@@ -9,6 +9,9 @@ module.exports = function (grunt) {
 					'www/css/install.min.css': [
 						'node_modules/font-awesome/css/font-awesome.css',
 						'assets/css/install.css',
+					],
+					'www/css/sign-in.min.css': [
+						'assets/css/sign-in.css',
 					]
 				}]
 			}

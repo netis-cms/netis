@@ -69,5 +69,6 @@ abstract class BasePresenter extends UI\Presenter
 		$this->template->presenterName = $this->presenterName;
 		$breadcrumb = Utils\Strings::webalize($this->presenterName);
 		$this->template->breadcrumb = 'menu.' . $breadcrumb;
+		$this->template->date = date('Y');
 	}
 }

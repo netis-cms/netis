@@ -43,11 +43,12 @@ final class SignPresenter extends Base\BasePresenter
 		$user = $this->user->identity;
 		if ($user) {
 			$welcome = 'login.welcome.back';
-			$gravatar = $user->data['email'];
+			$email = $user->data['email'];
 		}
-		$this->template->form = $this['signIn'];
 		$this->template->welcome = isset($welcome) ? $welcome : 'login.welcome';
-		$this->template->gravatar = $this->gravatar->getGravatar(isset($gravatar) ? $gravatar : null, 100);
+		$this->template->gravatar = $this->gravatar->getGravatar(isset($email) ? $email : null, 120);
+		$this->template->form = $this['signIn'];
+
 	}
 
 
@@ -82,15 +83,7 @@ final class SignPresenter extends Base\BasePresenter
 			$this->redirect(':Admin:Admin:main');
 
 		} catch (Security\AuthenticationException $e) {
-			switch ($e->getCode()) {
-				case 1:
-					$message = 'form.user.error';
-					break;
-				case 2:
-					$message = 'form.password.error';
-					break;
-			}
-			$form->addError($message);
+			$form->addError('form.error.' . $e->getCode());
 			if ($this->isAjax()) {
 				$this->redrawControl('errors');
 			}

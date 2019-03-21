@@ -1,0 +1,16 @@
+//
+// layout for sign in user
+//
+
+.sign-in {
+  width: 100%;
+  max-width: 400px;
+  padding: 25px;
+  margin: auto;
+  background-color: $color-white;
+  @include border-radius($border-radius);
+}
+
+.sign-in .sign-in-gravatar {
+  border-radius: 50%;
+}

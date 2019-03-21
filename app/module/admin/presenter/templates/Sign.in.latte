@@ -7,22 +7,31 @@
 
 {* website content *}
 {block content}
-	{form signIn class => 'group ajax'}
 
-		{* form ajax errors *}
+	{* sing in user *}
+	<form n:name="signIn" class="ajax">
+
+		{* form errors *}
 		{snippet errors}
-			<ul class="errors" n:if="$form->hasErrors()">
+			<ul n:if="$form->hasErrors()" class="form-errors">
 				<li n:foreach="$form->errors as $error">{_$error}</li>
 			</ul>
 		{/snippet}
 
-		{* form elements *}
-		<div class="sign-email">{input email class => 'unite first full width'}</div>
-		<div class="sign-password">{input password class => 'unite last full width'}</div>
-
-		{* form send button *}
-		<div class="align right">
-			{input send class => 'button primary'}
+		{* input elements *}
+		<div class="form-group mb-1">
+			<label n:name="email" class="sr-only" />
+			<input n:name="email" class="form-control">
 		</div>
-	{/form}
+
+		<div class="form-group">
+			<label n:name="password" class="sr-only" />
+			<input n:name="password" class="form-control">
+		</div>
+
+		{* send button *}
+		<input n:name="send" class="btn btn-custom">
+
+	</form>
+
 {/block}

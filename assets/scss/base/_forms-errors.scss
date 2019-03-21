@@ -3,15 +3,15 @@
 //
 
 .form-errors {
-  color: $color-error;
+  color: darken($color-error, 18);
   font-weight: 600;
   list-style-position: inside;
   padding: 0;
 }
 
 .form-errors-live {
-  background: $color-error;
-  color: $color-white;
+  background-color: lighten($color-error, 30);
+  color: darken($color-error, 18);
   display: block;
   margin-top: rem(2);
   padding: rem(6) rem(8);
