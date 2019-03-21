@@ -4,8 +4,8 @@
 
 .sign-in {
   width: 100%;
-  max-width: 400px;
-  padding: 25px;
+  max-width: rem(400);
+  padding: rem(25);
   margin: auto;
   background-color: $color-white;
   @include border-radius($border-radius);

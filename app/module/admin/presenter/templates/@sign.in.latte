@@ -4,7 +4,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="{$basePath}/www/css/sign-in.min.css">
+	<link rel="stylesheet" href="{$basePath}/www/css/bootstrap.css">
+	<link rel="stylesheet" href="{$basePath}/www/css/sign-in.css">
 	<title>{include subtitle|stripHtml|firstUpper}{ifset $web} | {$web->website}{/ifset}</title>
 </head>
 
@@ -20,11 +21,11 @@
 	{include content}
 
 	{* copyright *}
-	<p class="mt-5 mb-3 text-muted text-center">&copy {date(Y)} Netis</p>
+	<p class="mt-5 mb-3 text-muted text-center">&copy {$date} Netis</p>
 </div>
 
 {* javascript libraries and plugins *}
-<script src="{$basePath}/www/js/main.min.js"></script>
+<script src="{$basePath}/www/js/main.js"></script>
 <script>
 	$(function() {
 

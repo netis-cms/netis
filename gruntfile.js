@@ -2,18 +2,17 @@ module.exports = function (grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
-		// css minify
-		cssmin: {
-			target: {
-				files: [{
-					'www/css/install.min.css': [
-						'node_modules/font-awesome/css/font-awesome.css',
-						'assets/css/install.css',
-					],
-					'www/css/sign-in.min.css': [
-						'assets/css/sign-in.css',
-					]
-				}]
+		// sass compile
+		sass: {
+			dist: {
+				options: {
+					style: 'compressed'
+				},
+				files: {
+					'www/css/bootstrap.css': 'assets/scss/base/bootstrap.scss',
+					'www/css/install.css': 'assets/scss/install/install.scss',
+					'www/css/sign-in.css': 'assets/scss/sign-in/sign-in.scss',
+				}
 			}
 		},
 
@@ -37,7 +36,7 @@ module.exports = function (grunt) {
 			},
 			my_target: {
 				files: {
-					'www/js/main.min.js': [
+					'www/js/main.js': [
 						'node_modules/jquery/dist/jquery.js',
 						'node_modules/popper/dist/popper.js',
 						'node_modules/bootstrap/dist/js/bootstrap.js',
@@ -51,8 +50,8 @@ module.exports = function (grunt) {
 	});
 
 	// grunt tasks
-	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.registerTask('minify-all', ['cssmin', 'uglify', 'copy']);
+	grunt.registerTask('task-all', ['sass', 'uglify', 'copy']);
 };
