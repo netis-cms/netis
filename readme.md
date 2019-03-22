@@ -37,4 +37,4 @@ Grunt task: ```grunt task-all```
 
 ## Sign in to dashboard
 
-![Screenshot](https://raw.githubusercontent.com/netis-cms/netis/master/assets/steps/step5.png)
+![Screenshot](https://raw.githubusercontent.com/netis-cms/netis/master/assets/steps/sign-in.png)
