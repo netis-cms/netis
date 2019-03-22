@@ -13,6 +13,6 @@ Install npm: ```npm install```
 Install composer: ```composer install```  
 Grunt task: ```grunt task-all```
 
-## Screenshot
+## Demo install
 
-![Screenshot](https://raw.githubusercontent.com/netis-cms/netis/master/netis.png)
+![Screenshot](https://raw.githubusercontent.com/netis-cms/netis/master/assets/steps/step1.png)
