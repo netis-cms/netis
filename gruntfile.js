@@ -9,9 +9,9 @@ module.exports = function (grunt) {
 					style: 'compressed'
 				},
 				files: {
-					'assets/css/bootstrap.css': 'assets/scss/base/bootstrap.scss',
+					'www/css/base.css': 'assets/scss/base/base.scss',
 					'www/css/install.css': 'assets/scss/install/install.scss',
-					'www/css/sign-in.css': 'assets/scss/sign-in/sign-in.scss',
+					'www/css/sign-in.css': 'assets/scss/sign-in.scss',
 				}
 			}
 		},
@@ -23,8 +23,8 @@ module.exports = function (grunt) {
 			},
 			target: {
 				files: {
-					'www/css/main.css': [
-						'assets/css/bootstrap.css',
+					'www/css/base.css': [
+						'www/css/base.css',
 						'node_modules/font-awesome/css/font-awesome.css'
 					]
 				}
