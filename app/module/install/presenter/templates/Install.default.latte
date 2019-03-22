@@ -11,7 +11,11 @@
 			{_'install.text'}
 			{_'install.text.2'}
 		</p>
-		<p><a n:href="run!" class="btn btn-custom ajax">{_'install.start'}</a></p>
+		<p>
+			<a n:href="run!" class="ajax">
+				<button class="btn btn-custom btn-spinner">{_'install.start'}</button>
+			</a>
+		</p>
 
 	{elseif $step === 1}
 
@@ -63,6 +67,10 @@
 		</div>
 
 		{* go to administration *}
-		<p><a n:href=":Admin:Admin:" class="btn btn-custom">{_'install.go.admin'}</a></p>
+		<p>
+			<a n:href=":Admin:Admin:">
+				<button class="btn btn-custom btn-spinner">{_'install.go.admin'}</button>
+			</a>
+		</p>
 	{/if}
 {/block}

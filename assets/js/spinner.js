@@ -1,5 +1,5 @@
 /*
- * Extension spinner for Nette ajax.
+ * Extension for Nette ajax.
  */
 (function($) {
   $.nette.ext('spinner', {

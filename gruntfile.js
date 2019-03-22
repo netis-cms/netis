@@ -55,7 +55,7 @@ module.exports = function (grunt) {
 						'node_modules/bootstrap/dist/js/bootstrap.js',
 						'node_modules/live-form-validation/live-form-validation.js',
 						'node_modules/nette.ajax.js/nette.ajax.js',
-						'assets/js/spinner.js'
+						'assets/js/spinner-btn.js'
 					]
 				}
 			}
