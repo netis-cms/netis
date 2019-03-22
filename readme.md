@@ -15,4 +15,22 @@ Grunt task: ```grunt task-all```
 
 ## Demo install
 
+## Step 1
+
 ![Screenshot](https://raw.githubusercontent.com/netis-cms/netis/master/assets/steps/step1.png)
+
+## Step 2
+
+![Screenshot](https://raw.githubusercontent.com/netis-cms/netis/master/assets/steps/step2.png)
+
+## Step 3
+
+![Screenshot](https://raw.githubusercontent.com/netis-cms/netis/master/assets/steps/step3.png)
+
+## Step 4
+
+![Screenshot](https://raw.githubusercontent.com/netis-cms/netis/master/assets/steps/step4.png)
+
+## Step 5
+
+![Screenshot](https://raw.githubusercontent.com/netis-cms/netis/master/assets/steps/step5.png)
