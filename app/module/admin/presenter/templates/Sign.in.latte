@@ -1,7 +1,4 @@
 
-{* layout for login *}
-{extends '@sign.in.latte'}
-
 {* subtitle sites *}
 {block subtitle}{_'subtitle.sign'}{/block}
 
@@ -12,11 +9,9 @@
 	<form n:name="signIn" class="ajax">
 
 		{* form errors *}
-		{snippet errors}
-			<ul n:if="$form->hasErrors()" class="form-errors">
-				<li n:foreach="$form->errors as $error">{_$error}</li>
-			</ul>
-		{/snippet}
+		<ul n:snippet="errors" n:if="$form->hasErrors()" class="form-errors">
+			<li n:foreach="$form->errors as $error">{_$error}</li>
+		</ul>
 
 		{* input elements *}
 		<div class="form-group mb-1">
@@ -30,7 +25,7 @@
 		</div>
 
 		{* send button *}
-		<input n:name="send" class="btn btn-custom">
+		<button n:name="send" class="btn btn-custom btn-spinner">{_'form.send.login'}</button>
 
 	</form>
 

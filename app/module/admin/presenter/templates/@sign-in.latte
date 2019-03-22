@@ -18,7 +18,9 @@
 	</div>
 
 	{* include content block *}
-	{include content}
+	{snippet sign-in}
+		{include content}
+	{/snippet}
 
 	{* copyright *}
 	<p class="mt-5 mb-3 text-muted text-center">&copy {$date} Netis</p>
@@ -31,6 +33,8 @@
 
 		// alert message
 		//$('.alert').alert();
+
+		console.log('hello');
 
 		// live form validation
 		LiveForm.setOptions({

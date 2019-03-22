@@ -40,6 +40,7 @@ final class SignPresenter extends Base\BasePresenter
 	protected function beforeRender()
 	{
 		parent::beforeRender();
+		$this->setLayout('sign-in');
 		$user = $this->user->identity;
 		if ($user) {
 			$welcome = 'login.welcome.back';
@@ -47,8 +48,15 @@ final class SignPresenter extends Base\BasePresenter
 		}
 		$this->template->welcome = isset($welcome) ? $welcome : 'login.welcome';
 		$this->template->gravatar = $this->gravatar->getGravatar(isset($email) ? $email : null, 120);
-		$this->template->form = $this['signIn'];
+	}
 
+
+	public function renderIn()
+	{
+		$this->template->form = $this['signIn'];
+		if($this->isAjax()) {
+			$this->redrawControl('sign-in');
+		}
 	}
 
 
