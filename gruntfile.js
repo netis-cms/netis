@@ -9,9 +9,9 @@ module.exports = function (grunt) {
 					style: 'compressed'
 				},
 				files: {
-					'www/css/base.css': 'assets/scss/base/base.scss',
-					'www/css/install.css': 'assets/scss/install/install.scss',
-					'www/css/sign-in.css': 'assets/scss/sign-in.scss',
+					'www/css/base.css': 	['assets/scss/base/base.scss'],
+					'www/css/install.css': 	['assets/scss/install/install.scss'],
+					'www/css/sign-in.css': 	['assets/scss/sign-in.scss']
 				}
 			}
 		},
@@ -26,6 +26,11 @@ module.exports = function (grunt) {
 					'www/css/base.css': [
 						'www/css/base.css',
 						'node_modules/font-awesome/css/font-awesome.css'
+					],
+					'www/css/sidebar.css': [
+						'node_modules/open-sans-fontface/open-sans.css',
+						'node_modules/perfect-scrollbar/css/perfect-scrollbar.css',
+						'node_modules/sidebar-menu-accgit/css/sidebar.css',
 					]
 				}
 			}
@@ -34,11 +39,13 @@ module.exports = function (grunt) {
 		// task copy files or folder
 		copy: {
 			main: {
-				files: [{
-					expand: true, cwd: 'node_modules/font-awesome/fonts/',
-					src: ['**'],
-					dest: 'www/fonts/'
-				}]
+				files: [
+					{
+						expand: true, cwd: 'node_modules/font-awesome/fonts/',
+						src: ['**'],
+						dest: 'www/fonts/'
+					}
+				]
 			}
 		},
 
@@ -51,11 +58,16 @@ module.exports = function (grunt) {
 				files: {
 					'www/js/main.js': [
 						'node_modules/jquery/dist/jquery.js',
-						'node_modules/popper/dist/popper.js',
-						'node_modules/bootstrap/dist/js/bootstrap.js',
+						'node_modules/bootstrap/dist/js/bootstrap.bundle.js',
 						'node_modules/live-form-validation/live-form-validation.js',
+						'vendor/nette/forms/src/assets/netteForms.js',
 						'node_modules/nette.ajax.js/nette.ajax.js',
 						'assets/js/spinner-btn.js'
+					],
+					'www/js/sidebar.js': [
+						'node_modules/perfect-scrollbar/dist/perfect-scrollbar.js',
+						'node_modules/nanobar/nanobar.js',
+						'node_modules/sidebar-menu-accgit/js/sidebar.menu.js'
 					]
 				}
 			}
