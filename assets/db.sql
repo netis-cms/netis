@@ -9,6 +9,12 @@ CREATE TABLE `menu_category` (
   PRIMARY KEY (`categoryId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+-- ---- insert values to table:
+INSERT INTO `menu_category` (`categoryId`, `category`)
+VALUES (1, 'category.system');
+
+
 -- ---- create table:
 CREATE TABLE `menu` (
   `menuId` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -20,6 +26,13 @@ CREATE TABLE `menu` (
   CONSTRAINT `menu` FOREIGN KEY (`categoryId`)
   REFERENCES `menu_category` (`categoryId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- ---- insert values to table:
+INSERT INTO `menu` (`menuId`, `categoryId`, `link`, `name`)
+VALUES
+(1, 1, ':Admin:Admin:main', 'menu.admin'),
+(2, 1, ':Admin:Settings:web', 'menu.settings');
 
 
 -- ---- create table:
