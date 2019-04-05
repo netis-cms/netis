@@ -64,7 +64,10 @@ abstract class BasePresenter extends UI\Presenter
 		parent::beforeRender();
 		$this->template->lang = $this->lang;
 		$this->template->setTranslator($this->translator());
-		$this->template->web = (object)$this->repositoryWebsite->all();
+
+		$website = $this->repositoryWebsite->all();
+		$this->template->web = $website ? (object) $website : null;
+
 		$this->template->moduleName = $this->moduleName;
 		$this->template->presenterName = $this->presenterName;
 		$breadcrumb = Utils\Strings::webalize($this->presenterName);
