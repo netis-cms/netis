@@ -70,7 +70,8 @@ module.exports = function (grunt) {
         processhtml: {
             dist: {
                 files: {
-                    'app/module/install/presenter/templates/@layout.latte': ['app/module/install/presenter/templates/@dev.latte']
+                    'app/module/install/presenter/templates/@layout.latte': ['app/module/install/presenter/templates/@dev.latte'],
+                    'app/module/admin/presenter/templates/@sign.latte':     ['app/module/admin/presenter/templates/@dev.sign.latte']
                 }
             }
         },
