@@ -62,16 +62,16 @@ module.exports = function (grunt) {
         cssmin: {
             dist: {
                 files: {
-                    'www/css/install.min.css':  ['assets/combined/css/install.css'],
-                    'www/css/sign.min.css':     ['assets/combined/css/sign.css']
+                    'www/css/install.min.css': ['assets/combined/css/install.css'],
+                    'www/css/sign.min.css':    ['assets/combined/css/sign.css']
                 },
             }
         },
         processhtml: {
             dist: {
                 files: {
-                    'app/module/install/presenter/templates/@layout.latte': ['app/module/install/presenter/templates/@dev.latte'],
-                    'app/module/admin/presenter/templates/@sign.latte':     ['app/module/admin/presenter/templates/@dev.sign.latte']
+                    'app/module/install/presenter/templates/@layout.latte':    ['app/module/install/presenter/templates/@dev.latte'],
+                    'app/module/admin/presenter/templates/Sign/@layout.latte': ['app/module/admin/presenter/templates/Sign/@dev.latte']
                 }
             }
         },

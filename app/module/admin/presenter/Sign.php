@@ -19,12 +19,6 @@ final class SignPresenter extends DashboardPresenter
 	 */
 	public $gravatar;
 
-	protected function startup(): void
-	{
-		parent::startup();
-		$this->setTemplate('sign', 'dev.sign');
-	}
-
 
 	protected function beforeRender(): void
 	{
