@@ -1,9 +1,7 @@
-
-# module install
 services:
 
 	router: {setup: {offsetSet(null, @router.install)}}
-	router.install: {factory: Module\Install\Router::create(%router%), autowired: no}
+	router.install: {factory: Module\Install\Router::create, autowired: no}
 
 	# cache for install steps
 	install.cache: {class: Nette\Caching\Cache, arguments: [@Nette\Caching\IStorage, 'Install.CacheSteps'], autowired: no}
@@ -18,8 +16,3 @@ services:
 
 	- Drago\Http\Sessions(@Nette\Http\Session, 'db.prefix')
 	- Nette\DI\Config\Loader
-
-extensions:
-
-	# easier access to individual directories in an application
-	dirs: Drago\Directory\DirsExtension
