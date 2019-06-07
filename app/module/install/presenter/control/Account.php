@@ -98,7 +98,7 @@ final class Account extends Control
 		unset($values->verify, $values->prefix);
 
 		// Insert records into the database.
-		$this->query->addRecord($table, $values);
+		$this->query->addRecord($table, (array) $values);
 
 		// Save the installation step.
 		$this->steps->cache->save(Steps::STEP, ['step' => 5]);
