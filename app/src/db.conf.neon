@@ -1,12 +1,3 @@
-
-# repository and entity
 services:
 
-	- Repository\Website
-	- Repository\User
-	- Repository\Auth
-	- Repository\Menu
-	- Repository\Settings
 
-	- Entity\User
-	- Entity\Settings

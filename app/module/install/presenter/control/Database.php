@@ -14,6 +14,7 @@ use Module\Install\Service\Steps;
 use Nette\Application\UI\Form;
 use Nette\DI\Config\Loader;
 use Nette\Utils\FileSystem;
+use Tracy\Debugger;
 
 
 /**
@@ -78,7 +79,6 @@ final class Database extends Control
 
 		// Database drivers.
 		$drivers = [
-			'mysql' => 'MySQL',
 			'mysqli' => 'MySQLi'
 		];
 
@@ -124,7 +124,7 @@ final class Database extends Control
 
 				// Save the installation step.
 				$this->steps->cache->save(Steps::STEP, ['step' => 2]);
-				$this->presenter->flashMessage('message.db', 'success');
+				//$this->presenter->flashMessage('message.db', 'success');
 
 				// Save db prefix.
 				if ($values->prefix) {
