@@ -1,31 +1,24 @@
 <?php
 
-/**
- * Netis, Little CMS
- * Copyright (c) 2015, Zdeněk Papučík
- */
+declare(strict_types = 1);
 
 namespace Module\Install\Service;
 
-use Drago;
-use Exception;
 use Dibi;
+use Drago\Database\Connection;
+use Exception;
+
 
 /**
  * Install database tables.
  */
-class Query extends Drago\Database\Connection
+class Query extends Connection
 {
-	// Exception error code.
-	const COLLIDE_TABLE = 1;
-
-
 	/**
 	 * Add tables to database.
-	 * @param array $args
 	 * @throws Dibi\Exception
 	 */
-	public function addTable($args)
+	public function addTable(string $args): void
 	{
 		$this->db
 			->query($args);
@@ -34,11 +27,9 @@ class Query extends Drago\Database\Connection
 
 	/**
 	 * Add records.
-	 * @param string $table
-	 * @param array $args
 	 * @throws Dibi\Exception
 	 */
-	public function addRecord($table, $args)
+	public function addRecord(string $table, array $args): void
 	{
 		$this->db
 			->insert($table, $args)
@@ -47,14 +38,19 @@ class Query extends Drago\Database\Connection
 
 
 	/**
-	 * Checking the existence of a table in the database.
-	 * @param string $name
+	 * Verify that a table exists by name.
 	 * @throws Exception
 	 */
-	public function isExistTable($name)
+	public function isTable(string $table): bool
 	{
-		if ($this->db->fetch('SHOW TABLES LIKE %like~', $name) ? true : false) {
-			throw new Exception('Sorry, but collide in a database table names.', self::COLLIDE_TABLE);
+		$query = $this->db
+			->getDatabaseInfo()
+			->hasTable($table);
+
+		if ($query) {
+			throw new Exception('Sorry, but collide in a database table names.', 1);
 		}
+		return $query;
+
 	}
 }
