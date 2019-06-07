@@ -1,76 +1,29 @@
 <?php
 
-/**
- * Netis, Little CMS
- * Copyright (c) 2015, Zdeněk Papučík
- */
+declare(strict_types = 1);
 
-namespace Base;
+namespace App;
 
-use Drago;
-use Repository;
-use Nette\Application\UI;
-use Nette\Utils;
+use Drago\Parameters\Environment;
+use Nette\Application\UI\Presenter;
+
 
 /**
- * The basic for module.
+ * Base class for all modules.
  */
-abstract class BasePresenter extends UI\Presenter
+abstract class BasePresenter extends Presenter
 {
-	use Drago\Application\UI\Factory;
-	use Drago\Localization\Locale;
-
 	/**
-	 * @var Repository\Website
+	 * @var Environment
 	 * @inject
 	 */
-	public $repositoryWebsite;
-
-	/**
-	 * @var string
-	 */
-	public $moduleName;
-
-	/**
-	 * @var string
-	 */
-	public $presenterName;
+	public $environment;
 
 
-	/**
-	 * @return Drago\Localization\Translator
-	 */
-	public function translator()
-	{
-		$path = __DIR__ . '/web/locale/' . $this->lang . '.ini';
-		return $this->createTranslator($path);
-	}
-
-
-	protected function startup()
+	protected function startup(): void
 	{
 		parent::startup();
-		if (is_dir(__DIR__ . '/install')) {
-			$this->redirect(':Install:Install:');
-		}
-		$a = strrpos($this->getName(), ':');
-		$this->moduleName = $a ? substr($this->getName(), 0, $a + 1) : '';
-		$this->presenterName = $a ? substr($this->getName(), $a + 1) : $this->getName();
-	}
-
-
-	protected function beforeRender()
-	{
-		parent::beforeRender();
-		$this->template->lang = $this->lang;
-		$this->template->setTranslator($this->translator());
-
-		$website = $this->repositoryWebsite->all();
-		$this->template->web = $website ? (object) $website : null;
-
-		$this->template->moduleName = $this->moduleName;
-		$this->template->presenterName = $this->presenterName;
-		$breadcrumb = Utils\Strings::webalize($this->presenterName);
-		$this->template->breadcrumb = 'menu.' . $breadcrumb;
+		$mode = $this->environment->isProduction();
+		$mode ? $this->setLayout('layout') : $this->setLayout('dev');
 	}
 }
