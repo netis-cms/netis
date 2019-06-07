@@ -1,0 +1,16 @@
+//
+// class only for element
+//
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  color: darken($color-white, 54);
+}
+
+h1 {
+  margin-bottom: rem(45);
+}
