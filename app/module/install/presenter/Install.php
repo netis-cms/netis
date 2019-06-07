@@ -1,74 +1,81 @@
 <?php
 
-/**
- * Netis, Little CMS
- * Copyright (c) 2015, Zdeněk Papučík
- */
+declare(strict_types = 1);
 
 namespace Module\Install;
 
-use Drago;
-use Nette;
+use App\BasePresenter;
+use Drago\Localization\Locale;
+use Drago\Localization\Translator;
+use Module\Install\Control\Account;
+use Module\Install\Control\Database;
+use Module\Install\Control\Tables;
+use Module\Install\Control\Website;
+use Module\Install\Service\Steps;
+
 
 /**
- * Installation and configuration application.
+ * Installation and configuration application
  */
-final class InstallPresenter extends Nette\Application\UI\Presenter
+final class InstallPresenter extends BasePresenter
 {
-	use Drago\Localization\Locale;
+	use Locale;
 
 	/**
-	 * @var Service\Steps
+	 * @var Steps
 	 * @inject
 	 */
 	public $steps;
 
 	/**
-	 * @var Control\Database
+	 * @var Database
 	 * @inject
 	 */
 	public $database;
 
 	/**
-	 * @var Control\Tables
+	 * @var Tables
 	 * @inject
 	 */
 	public $tables;
 
 	/**
-	 * @var Control\Website
+	 * @var Website
 	 * @inject
 	 */
 	public $website;
 
 	/**
-	 * @var Control\Account
+	 * @var Account
 	 * @inject
 	 */
 	public $account;
 
 
-	/**
-	 * @return Drago\Localization\Translator
-	 */
-	public function translator()
+	public function getTranslator(): Translator
 	{
 		$path = __DIR__ . '/../locale/' . $this->lang . '.ini';
 		return $this->createTranslator($path);
 	}
 
 
-	protected function beforeRender()
+	protected function beforeRender(): void
 	{
 		parent::beforeRender();
-		$this->template->setTranslator($this->translator());
+
+		// The current language parameter.
 		$this->template->lang = $this->lang;
-		$step = $this->steps->cache->load(Service\Steps::STEP);
+
+		// Translation for Templates.
+		$this->template->setTranslator($this->getTranslator());
+
+		// Current step in template.
+		$step = $this->steps->cache->load(Steps::STEP);
 		$this->template->step = $step ? $step['step'] : 0;
 	}
 
 
-	public function renderDefault()
+	public function renderDefault(): void
 	{
 		if ($this->isAjax()) {
 			$this->redrawControl('install');
@@ -77,54 +84,42 @@ final class InstallPresenter extends Nette\Application\UI\Presenter
 
 
 	/**
-	 * Run the installation.
+	 * Run install application.
 	 */
-	public function handleRun()
+	public function handleRun(): void
 	{
-		$this->steps->cache->save(Service\Steps::STEP, ['step' => 1]);
+		$this->steps->cache->save(Steps::STEP, ['step' => 1]);
 	}
 
 
-	/**
-	 * @return Control\Database
-	 */
-	protected function createComponentDatabase()
+	protected function createComponentDatabase(): Database
 	{
 		$control = $this->database;
-		$control->setTranslator($this->translator());
+		$control->setTranslator($this->getTranslator());
 		return $control;
 	}
 
 
-	/**
-	 * @return Control\Tables
-	 */
-	protected function createComponentTables()
+	protected function createComponentTables(): Tables
 	{
 		$control = $this->tables;
-		$control->setTranslator($this->translator());
+		$control->setTranslator($this->getTranslator());
 		return $control;
 	}
 
 
-	/**
-	 * @return Control\Website
-	 */
-	protected function createComponentWebsite()
+	protected function createComponentWebsite(): Website
 	{
 		$control = $this->website;
-		$control->setTranslator($this->translator());
+		$control->setTranslator($this->getTranslator());
 		return $control;
 	}
 
 
-	/**
-	 * @return Control\Account
-	 */
-	protected function createComponentAccount()
+	protected function createComponentAccount(): Account
 	{
 		$control = $this->account;
-		$control->setTranslator($this->translator());
+		$control->setTranslator($this->getTranslator());
 		return $control;
 	}
 }
