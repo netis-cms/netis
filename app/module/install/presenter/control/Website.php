@@ -1,71 +1,58 @@
 <?php
 
-/**
- * Netis, Little CMS
- * Copyright (c) 2015, Zdeněk Papučík
- */
 
 namespace Module\Install\Control;
 
-use Drago;
-use Drago\Http;
+use Dibi;
+use Drago\Application\UI\Control;
+use Drago\Application\UI\Factory;
+use Drago\Http\Sessions;
+use Drago\Localization\TranslateControl;
+use Module\Install\Service\Query;
+use Module\Install\Service\Steps;
+use Nette\Application\UI\Form;
 
-use Module\Install\Service;
-use Nette\Application\UI;
 
 /**
  * Website settings.
  */
-final class Website extends Drago\Application\UI\Control
+final class Website extends Control
 {
-	use Drago\Application\UI\Factory;
-	use Drago\Localization\TranslateControl;
+	use Factory;
+	use TranslateControl;
 
-	/**
-	 * @var Http\Sessions
-	 */
+	/** @var Sessions */
 	private $sessions;
 
-	/**
-	 * @var Service\Steps
-	 */
+	/** @var Steps */
 	private $steps;
 
-	/**
-	 * @var Service\Query
-	 */
+	/** @var Query */
 	private $query;
 
 
-	public function __construct(
-		Http\Sessions $sessions,
-		Service\Steps $steps,
-		Service\Query $query)
+	public function __construct(Sessions $sessions, Steps $steps, Query $query)
 	{
-		parent::__construct();
 		$this->sessions = $sessions;
 		$this->steps = $steps;
 		$this->query = $query;
 	}
 
 
-	public function render()
+	public function render(): void
 	{
 		$template = $this->template;
 		$template->setFile(__DIR__ . '/../templates/Control.website.latte');
-		$template->setTranslator($this->translation);
+		$template->setTranslator($this->getTranslator());
 		$template->form = $this['website'];
 		$template->render();
 	}
 
 
-	/**
-	 * @return UI\Form
-	 */
-	public function createComponentWebsite()
+	public function createComponentWebsite(): Form
 	{
 		$form = $this->createForm();
-		$form->setTranslator($this->translation);
+		$form->setTranslator($this->getTranslator());
 
 		$form->addText('website', 'form.name.web')
 			->setRequired('form.required');
@@ -79,7 +66,10 @@ final class Website extends Drago\Application\UI\Control
 	}
 
 
-	public function success(UI\Form $form)
+	/**
+	 * @throws Dibi\Exception
+	 */
+	public function success(Form $form): void
 	{
 		$values = $form->getValues();
 		$table = $this->sessions->getSessionSection()->prefix . 'settings';
@@ -94,7 +84,7 @@ final class Website extends Drago\Application\UI\Control
 		}
 
 		// Save the installation step.
-		$this->steps->cache->save(Service\Steps::STEP, ['step' => 4]);
-		$this->flashMessage('message.web', 'success');
+		$this->steps->cache->save(Steps::STEP, ['step' => 4]);
+		$this->presenter->flashMessage('message.web', 'success');
 	}
 }
