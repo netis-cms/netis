@@ -9,9 +9,9 @@ Based on:
 ## Installation
 
 Git clone:   ```git clone https://github.com/netis-cms/netis.git```  
-Install npm: ```npm install```  
 Install composer: ```composer install```  
-Grunt task: ```grunt task-all```
+Install npm: ```npm install```  
+Grunt task: ```grunt grint-sass```
 
 ## Demo install
 
