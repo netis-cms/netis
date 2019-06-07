@@ -22,7 +22,7 @@ final class SignPresenter extends DashboardPresenter
 	protected function startup(): void
 	{
 		parent::startup();
-		$this->setLayout('sign');
+		$this->setTemplate('sign', 'dev.sign');
 	}
 
 

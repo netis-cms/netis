@@ -82,7 +82,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.registerTask('grunt-sass', ['sass',]);
-    grunt.registerTask('grunt-concat', ['concat',]);
     grunt.registerTask('grunt-run', [
         'copy', 'concat', 'uglify', 'cssmin', 'processhtml'
     ]);

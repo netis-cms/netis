@@ -12,6 +12,13 @@ use Drago\Localization\Translator;
  */
 class FrontPresenter extends BasePresenter
 {
+	protected function startup(): void
+	{
+		parent::startup();
+		$this->setTemplate('layout', 'dev');
+	}
+
+
 	protected function beforeRender(): void
 	{
 		parent::beforeRender();

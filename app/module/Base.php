@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace App;
 
-use Drago\Application\UI\Factory;
 use Nette;
 use Nette\Application\UI\Presenter;
+use Drago\Application\UI\Factory;
 use Drago\Parameters\Environment;
 use Drago\Localization\Locale;
 use Repository\WebsiteRepository;
@@ -50,10 +50,16 @@ abstract class BasePresenter extends Presenter
 		if (is_dir(__DIR__ . '/install')) {
 			$this->redirect(':Install:Install:');
 		}
+	}
 
-		// Environment in application.
+
+	/**
+	 * Set layout for production and dev mode.
+	 */
+	public function setTemplate(string $productionLayout, string $devLayout): void
+	{
 		$mode = $this->environment->isProduction();
-		$mode ? $this->setLayout('layout') : $this->setLayout('dev');
+		$mode ? $this->setLayout($productionLayout) : $this->setLayout($devLayout);
 	}
 
 
