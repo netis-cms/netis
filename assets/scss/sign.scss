@@ -6,6 +6,7 @@
 html,
 body {
   height: 100%;
+  background-color: $color-light;
 }
 
 body {
@@ -13,8 +14,7 @@ body {
   display: flex;
   -ms-flex-align: center;
   align-items: center;
-  padding-bottom: rem(150);
-  background-color: $color-light;
+  padding-bottom: rem(300);
 }
 
 // layout for sign in user
@@ -23,7 +23,6 @@ body {
   max-width: rem(400);
   padding: rem(25);
   margin: auto;
-  background-color: $color-white;
   @include border-radius($border-radius);
 }
 
