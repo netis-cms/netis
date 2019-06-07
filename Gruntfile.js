@@ -2,13 +2,13 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         sass: {
-            dist: {
+            dev: {
                 options: {
                     style: 'expanded'
                 },
                 files: {
-                    'assets/css/base.css': 	    ['assets/scss/base.scss'],
                     'assets/css/bootstrap.css': ['assets/scss/base/bootstrap.scss'],
+                    'assets/css/base.css': 	    ['assets/scss/base.scss'],
                     'assets/css/install.css':   ['assets/scss/install/install.scss'],
                     'assets/css/sign.css':      ['assets/scss/sign.scss']
                 }
@@ -27,32 +27,50 @@ module.exports = function (grunt) {
         },
         concat: {
             css: {
-                src: ['node_modules/bootstrap/dist/css/bootstrap.css'],
-                dest: 'assets/combined/css/style.css'
+                files: {
+                    'assets/combined/css/install.css':  [
+                        'assets/css/bootstrap.css',
+                        'assets/css/base.css',
+                        'assets/css/install.css'
+                    ],
+                    'assets/combined/css/sign.css':     [
+                        'assets/css/bootstrap.css',
+                        'assets/css/base.css',
+                        'assets/css/sign.css'
+                    ],
+                },
             },
             js: {
-                src: ['vendor/nette/forms/src/assets/netteForms.js'],
-                dest: 'assets/combined/js/app.js'
+                files: {
+                    'assets/combined/js/app.js':  [
+                        'node_modules/jquery/dist/jquery.js',
+                        'node_modules/bootstrap/dist/js/bootstrap.bundle.js',
+                        'vendor/nette/forms/src/assets/netteForms.js',
+                        'node_modules/nette.ajax.js/nette.ajax.js',
+                        'node_modules/live-form-validation/live-form-validation.js'
+                    ],
+                },
             }
         },
         uglify: {
-            js: {
-                src: 'assets/combined/js/app.js',
-                dest: 'www/js/app.min.js'
+            dist: {
+                files: {
+                    'www/js/app.min.js': ['assets/combined/js/app.js']
+                },
             }
         },
         cssmin: {
-            css: {
-                src: 'assets/combined/css/style.css',
-                dest: 'www/css/style.min.css'
+            dist: {
+                files: {
+                    'www/css/install.min.css':  ['assets/combined/css/install.css'],
+                    'www/css/sign.min.css':     ['assets/combined/css/sign.css']
+                },
             }
         },
         processhtml: {
             dist: {
                 files: {
-                    'app/module/web/presenter/templates/@layout.latte': [
-                        'app/module/web/presenter/templates/@dev.latte'
-                    ]
+                    'app/module/install/presenter/templates/@layout.latte': ['app/module/install/presenter/templates/@dev.latte']
                 }
             }
         },
@@ -64,6 +82,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.registerTask('grunt-sass', ['sass',]);
+    grunt.registerTask('grunt-concat', ['concat',]);
     grunt.registerTask('grunt-run', [
         'copy', 'concat', 'uglify', 'cssmin', 'processhtml'
     ]);
