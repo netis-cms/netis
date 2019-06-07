@@ -8,9 +8,9 @@ use Drago\Localization\Translator;
 
 
 /**
- * Base class for admin module.
+ * Dashboard class for admin module.
  */
-class DashbaordPresenter extends BasePresenter
+class DashboardPresenter extends BasePresenter
 {
 	protected function beforeRender(): void
 	{

@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App;
 
+use Drago\Application\UI\Factory;
 use Nette;
 use Nette\Application\UI\Presenter;
 use Drago\Parameters\Environment;
@@ -18,6 +19,7 @@ use Entity\WebsiteEntity;
 abstract class BasePresenter extends Presenter
 {
 	use Locale;
+	use Factory;
 
 	/**
 	 * @var Environment

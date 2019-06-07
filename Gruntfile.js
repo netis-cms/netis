@@ -9,7 +9,8 @@ module.exports = function (grunt) {
                 files: {
                     'assets/css/base.css': 	    ['assets/scss/base.scss'],
                     'assets/css/bootstrap.css': ['assets/scss/base/bootstrap.scss'],
-                    'assets/css/install.css':   ['assets/scss/install/install.scss']
+                    'assets/css/install.css':   ['assets/scss/install/install.scss'],
+                    'assets/css/sign.css':      ['assets/scss/sign.scss']
                 }
             }
         },

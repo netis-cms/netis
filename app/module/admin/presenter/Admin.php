@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace Module\Admin;
 
-use App\DashbaordPresenter;
+use App\SecuredPresenter;
 
 
-final class AdminPresenter extends DashbaordPresenter
+final class AdminPresenter extends SecuredPresenter
 {
 
 }
