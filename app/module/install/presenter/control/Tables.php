@@ -1,79 +1,66 @@
 <?php
 
-/**
- * Netis, Little CMS
- * Copyright (c) 2015, Zdeněk Papučík
- */
+declare(strict_types = 1);
 
 namespace Module\Install\Control;
 
-use Drago;
-use Drago\Http;
-
-use Module\Install\Service;
-use Nette\Application\UI;
+use Drago\Application\UI\Control;
+use Drago\Application\UI\Factory;
+use Drago\Http\Sessions;
+use Drago\Localization\TranslateControl;
+use Module\Install\Service\Query;
+use Module\Install\Service\Steps;
+use Nette\Application\UI\Form;
 use Exception;
+
 
 /**
  * Install database tables.
  */
-final class Tables extends Drago\Application\UI\Control
+final class Tables extends Control
 {
-	use Drago\Application\UI\Factory;
-	use Drago\Localization\TranslateControl;
+	use Factory;
+	use TranslateControl;
 
-	/**
-	 * @var Http\Sessions
-	 */
+	/** @var Sessions */
 	private $sessions;
 
-	/**
-	 * @var Service\Steps
-	 */
+	/** @var Steps */
 	private $steps;
 
-	/**
-	 * @var Service\Query
-	 */
+	/** @var Query */
 	private $query;
 
 
-	public function __construct(
-		Http\Sessions $sessions,
-		Service\Steps $steps,
-		Service\Query $query)
+	public function __construct(Sessions $sessions, Steps $steps, Query $query)
 	{
-		parent::__construct();
 		$this->sessions = $sessions;
 		$this->steps = $steps;
 		$this->query = $query;
 	}
 
 
-	public function render()
+	public function render(): void
 	{
 		$template = $this->template;
 		$template->setFile(__DIR__ . '/../templates/Control.tables.latte');
-		$template->setTranslator($this->translation);
+		$template->setTranslator($this->getTranslator());
 		$template->form = $this['tables'];
 		$template->render();
 	}
 
 
-	/**
-	 * @return UI\Form
-	 */
-	public function createComponentTables()
+	public function createComponentTables(): Form
 	{
 		$form = $this->createForm();
-		$form->setTranslator($this->translation);
+		$form->setTranslator($this->getTranslator());
 		$form->addSubmit('send', 'form.send.tables');
 		$form->onSuccess[] = [$this, 'success'];
 		return $form;
 	}
 
 
-	public function success(UI\Form $form)
+	public function success(Form $form): void
 	{
 		$prefix = $this->sessions->getSessionSection()->prefix;
 		$databaseTable = [
@@ -85,11 +72,10 @@ final class Tables extends Drago\Application\UI\Control
 
 		try {
 			foreach ($databaseTable as $check) {
-				if (!$this->query->isExistTable($check)) {
+				if (!$this->query->isTable($check)) {
 					continue;
 				}
 			}
-
 			$this->query->addTable('
 				CREATE TABLE [' . $databaseTable['menu_category'] . '](
 				[categoryId] int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -143,8 +129,8 @@ final class Tables extends Drago\Application\UI\Control
 			);
 
 			// Save the installation step.
-			$this->steps->cache->save(Service\Steps::STEP, ['step' => 3]);
-			$this->flashMessage('message.tables', 'success');
+			$this->steps->cache->save(Steps::STEP, ['step' => 3]);
+			$this->presenter->flashMessage('message.tables', 'success');
 
 		} catch (Exception $e) {
 			if ($e->getCode()) {
