@@ -8,9 +8,9 @@ use Drago\Localization\Translator;
 
 
 /**
- * Base class for frontend module.
+ * Base class for admin module.
  */
-class FrontPresenter extends BasePresenter
+class DashbaordPresenter extends BasePresenter
 {
 	protected function beforeRender(): void
 	{
@@ -23,7 +23,7 @@ class FrontPresenter extends BasePresenter
 
 	public function getTranslator(): Translator
 	{
-		$file = __DIR__ . '/web/locale/' . $this->lang . '.ini';
+		$file = __DIR__ . '/admin/locale/' . $this->lang . '.ini';
 		return $this->createTranslator($file);
 	}
 }
