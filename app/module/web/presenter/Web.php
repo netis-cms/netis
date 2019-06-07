@@ -1,18 +1,13 @@
 <?php
 
-/**
- * Netis, Little CMS
- * Copyright (c) 2015, Zdeněk Papučík
- */
+declare(strict_types = 1);
 
 namespace Module\Web;
 
-use Base;
+use App\FrontPresenter;
 
-/**
- * Web module.
- */
-final class WebPresenter extends Base\BasePresenter
+
+final class WebPresenter extends FrontPresenter
 {
 
 }
