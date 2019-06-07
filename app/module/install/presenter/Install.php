@@ -4,20 +4,24 @@ declare(strict_types = 1);
 
 namespace Module\Install;
 
-use App\BasePresenter;
+use Drago\Localization\Locale;
 use Drago\Localization\Translator;
+use Drago\Parameters\Environment;
 use Module\Install\Control\Account;
 use Module\Install\Control\Database;
 use Module\Install\Control\Tables;
 use Module\Install\Control\Website;
 use Module\Install\Service\Steps;
+use Nette\Application\UI\Presenter;
 
 
 /**
  * Installation and configuration application
  */
-final class InstallPresenter extends BasePresenter
+final class InstallPresenter extends Presenter
 {
+	use Locale;
+
 	/**
 	 * @var Steps
 	 * @inject
@@ -48,11 +52,27 @@ final class InstallPresenter extends BasePresenter
 	 */
 	public $account;
 
+	/**
+	 * @var Environment
+	 * @inject
+	 */
+	public $environment;
+
 
 	public function getTranslator(): Translator
 	{
 		$path = __DIR__ . '/../locale/' . $this->lang . '.ini';
 		return $this->createTranslator($path);
+	}
+
+
+	public function startup(): void
+	{
+		parent::startup();
+
+		// Environment in application.
+		$mode = $this->environment->isProduction();
+		$mode ? $this->setLayout('layout') : $this->setLayout('dev');
 	}
 
 
