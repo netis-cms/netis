@@ -1,60 +1,44 @@
 <?php
 
-/**
- * Netis, Little CMS
- * Copyright (c) 2015, Zdeněk Papučík
- */
+declare(strict_types = 1);
 
 namespace Module\Install\Control;
 
-use Drago;
-use Drago\Directory;
-use Drago\Http;
+use dibi;
+use Drago\Application\UI\Control;
+use Drago\Application\UI\Factory;
+use Drago\Http\Sessions;
+use Drago\Localization\TranslateControl;
+use Drago\Parameters\Directory;
+use Module\Install\Service\Steps;
+use Nette\Application\UI\Form;
+use Nette\DI\Config\Loader;
+use Nette\Utils\FileSystem;
 
-use Dibi;
-use dibi as dibiDatabase;
-use Module\Install\Service;
-
-use Nette\Application\UI;
-use Nette\DI\Config;
-use Nette\Utils;
 
 /**
  * Database server settings.
  */
-final class Database extends Drago\Application\UI\Control
+final class Database extends Control
 {
-	use Drago\Application\UI\Factory;
-	use Drago\Localization\TranslateControl;
+	use Factory;
+	use TranslateControl;
 
-	/**
-	 * @var Config\Loader
-	 */
+	/** @var Loader */
 	private $loader;
 
-	/**
-	 * @var Http\Sessions
-	 */
+	/** @var Sessions */
 	private $sessions;
 
-	/**
-	 * @var Service\Steps
-	 */
+	/** @var Steps */
 	private $steps;
 
-	/**
-	 * @var Directory\Dirs
-	 */
+	/** @var Directory */
 	private $dirs;
 
 
-	public function __construct(
-		Config\Loader $loader,
-		Http\Sessions $sessions,
-		Service\Steps $steps,
-		Directory\Dirs $dirs)
+	public function __construct(Loader $loader, Sessions $sessions, Steps $steps, Directory $dirs)
 	{
-		parent::__construct();
 		$this->loader = $loader;
 		$this->sessions = $sessions;
 		$this->steps = $steps;
@@ -62,23 +46,20 @@ final class Database extends Drago\Application\UI\Control
 	}
 
 
-	public function render()
+	public function render(): void
 	{
 		$template = $this->template;
 		$template->setFile(__DIR__ . '/../templates/Control.database.latte');
-		$template->setTranslator($this->translation);
+		$template->setTranslator($this->getTranslator());
 		$template->form = $this['database'];
 		$template->render();
 	}
 
 
-	/**
-	 * @return UI\Form
-	 */
-	protected function createComponentDatabase()
+	protected function createComponentDatabase(): Form
 	{
 		$form = $this->createForm();
-		$form->setTranslator($this->translation);
+		$form->setTranslator($this->getTranslator());
 
 		$form->addText('host', 'form.host')
 			->setRequired('form.required');
@@ -93,7 +74,7 @@ final class Database extends Drago\Application\UI\Control
 			->setRequired('form.required');
 
 		$form->addText('prefix', 'form.prefix')
-			->setAttribute('placeholder', 'ns_');
+			->setHtmlAttribute('placeholder', 'ns_');
 
 		// Database drivers.
 		$drivers = [
@@ -110,13 +91,13 @@ final class Database extends Drago\Application\UI\Control
 	}
 
 
-	public function success(UI\Form $form)
+	public function success(Form $form): void
 	{
 		$values = $form->values;
 		try {
 
 			// Check database connection.
-			if (dibiDatabase::connect($values)) {
+			if (dibi::connect((array) $values)) {
 
 				// Parameters for generate config neon file.
 				$arr = ['extensions' => [
@@ -139,11 +120,11 @@ final class Database extends Drago\Application\UI\Control
 				$this->loader->save($arr, $this->dirs->getAppDir() . '/src/db.neon');
 
 				// Removing the old cache for updating the system container.
-				Utils\FileSystem::delete($this->dirs->getTempDir() . '/cache/Nette.Configurator');
+				FileSystem::delete($this->dirs->getTempDir() . '/cache/Nette.Configurator');
 
 				// Save the installation step.
-				$this->steps->cache->save(Service\Steps::STEP, ['step' => 2]);
-				$this->flashMessage('message.db', 'success');
+				$this->steps->cache->save(Steps::STEP, ['step' => 2]);
+				$this->presenter->flashMessage('message.db', 'success');
 
 				// Save db prefix.
 				if ($values->prefix) {
