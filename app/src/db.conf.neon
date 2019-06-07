@@ -2,6 +2,9 @@ services:
 
 	# entity
 	- Entity\WebsiteEntity
+	- Entity\UserEntity
 
 	# repository
 	- Repository\WebsiteRepository
+	- Repository\UserRepository
+	- Repository\AuthRepository
