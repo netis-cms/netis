@@ -2,21 +2,26 @@
 # default parameters
 parameters:
 
-	# router for translate
-	router: '[<lang=cs cs>/]'
 
-# parameters for sessions
+# settings for sessions
 session:
 	expiration: 14 days
-	savePath: '%tempDir%/sessions'
 
-# settings for application
+
+# application settings
 application:
 
-	# mapping application
+
+	# application mapping
 	mapping:
 		*: Module\*\*Presenter
+
 
 # enabling system container for Tracy bar
 di:
 	debugger: yes
+
+
+# application extension
+extensions:
+	- Drago\Parameters\ParametersExtension
