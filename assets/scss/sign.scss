@@ -37,5 +37,9 @@ body {
   box-sizing: border-box;
   height: auto;
   padding: rem(10);
-  @include font-size($font-size);
+  @include font-size(16);
+}
+
+.sign-in .btn-custom {
+
 }
