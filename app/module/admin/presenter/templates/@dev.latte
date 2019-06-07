@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="{$lang}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- build:css {$basePath}/www/css/style.min.css -->
+    <link rel="stylesheet" href="{$basePath}/node_modules/bootstrap/dist/css/bootstrap.css">
+    <!-- /build -->
+
+    <title>{include subtitle|stripHtml|firstUpper}{ifset $web} &bull; {$web->website}{/ifset}</title>
+</head>
+
+<body>
+
+    <div class="container mt-3">
+
+        {* content block *}
+        {include content|indent:1}
+
+        {* language switching *}
+        <a n:href="this, 'lang' => 'cs'">Czech</a>
+        <a n:href="this, 'lang' => 'en'">English</a>
+    </div>
+
+    <!-- build:js {$basePath}/www/js/app.min.js -->
+    <script src="{$basePath}/vendor/nette/forms/src/assets/netteForms.js"></script>
+    <!-- /build -->
+
+</body>
+</html>
