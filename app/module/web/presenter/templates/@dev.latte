@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{$basePath}/node_modules/bootstrap/dist/css/bootstrap.css">
     <!-- /build -->
 
-    <title>Title &bull; {include subtitle|stripHtml|firstUpper}</title>
+    <title>{include subtitle|stripHtml|firstUpper}{ifset $web} &bull; {$web->website}{/ifset}</title>
 </head>
 
 <body>

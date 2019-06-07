@@ -1,3 +1,7 @@
 services:
 
+	# entity
+	- Entity\WebsiteEntity
 
+	# repository
+	- Repository\WebsiteRepository

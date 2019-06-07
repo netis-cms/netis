@@ -5,8 +5,11 @@ declare(strict_types = 1);
 namespace App;
 
 use Nette;
+use Entity\WebsiteEntity;
 use Drago\Localization\Locale;
 use Drago\Localization\Translator;
+use Repository\WebsiteRepository;
+use Tracy\Debugger;
 
 
 /**
@@ -15,6 +18,17 @@ use Drago\Localization\Translator;
 class FrontPresenter extends BasePresenter
 {
 	use Locale;
+
+	/** @var WebsiteRepository
+	 *  @inject
+	 */
+	public $websiteRepository;
+
+	/**
+	 * @var WebsiteEntity
+	 * @inject
+	 */
+	public $websiteEntity;
 
 	/**
 	 * @throws Nette\Application\AbortException
@@ -31,8 +45,11 @@ class FrontPresenter extends BasePresenter
 		// The current language parameter.
 		$this->template->lang = $this->lang;
 
-		// Translation for Templates.
+		// Translation for templates.
 		$this->template->setTranslator($this->getTranslator());
+
+		// Website settings for templates.
+		$this->template->web = (object) $this->websiteRepository->get()->fetchPairs();
 	}
 
 
