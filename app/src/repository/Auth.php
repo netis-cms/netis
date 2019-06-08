@@ -12,6 +12,7 @@ use Nette\Security\Identity;
 use Nette\Security\IIdentity;
 use Nette\Security\Passwords;
 
+
 /**
  * User authentication.
  */
