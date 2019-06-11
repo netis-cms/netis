@@ -1,7 +1,6 @@
 // base sass
 @import 'base/base/base';
 
-
 // base elements
 html,
 body {
@@ -30,7 +29,6 @@ body {
   border-radius: 50%;
 }
 
-
 // customize form for sign in
 .sign-in .form-control {
   position: relative;
@@ -38,8 +36,4 @@ body {
   height: auto;
   padding: rem(10);
   @include font-size(16);
-}
-
-.sign-in .btn-custom {
-
 }

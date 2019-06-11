@@ -63,7 +63,8 @@ module.exports = function (grunt) {
                         'node_modules/bootstrap/dist/js/bootstrap.bundle.js',
                         'vendor/nette/forms/src/assets/netteForms.js',
                         'node_modules/nette.ajax.js/nette.ajax.js',
-                        'node_modules/live-form-validation/live-form-validation.js'
+                        'node_modules/live-form-validation/live-form-validation.js',
+                        'assets/js/spinner-btn.js'
                     ],
                     'assets/combined/js/admin.js':  [
                         'assets/combined/js/app.js',
