@@ -43,7 +43,7 @@ class UserEntity extends Drago\Database\Entity
 	}
 
 
-	public function seRealname(string $realname)
+	public function setRealname(string $realname)
 	{
 		$this['realname'] = $realname;
 	}
