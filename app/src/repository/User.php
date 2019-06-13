@@ -22,16 +22,15 @@ class UserRepository extends Connection
 
 
 	/**
-	 * Find user name.
+	 * Find user by email.
 	 * @param string $email
 	 * @return array|UserEntity|null
 	 * @throws Dibi\Exception
 	 */
 	public function findUser(string $email)
 	{
-		return $this->get()
-			->where('email = ?', $email)
-			->execute()
+		return $this
+			->find(UserEntity::EMAIL, $email)->execute()
 			->setRowClass(UserEntity::class)
 			->fetch();
 	}
