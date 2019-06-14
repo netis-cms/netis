@@ -21,17 +21,13 @@ class AuthRepository implements IAuthenticator
 	/** @var UserRepository */
 	private $userRepository;
 
-	/** @var UserEntity */
-	private $userEntity;
-
 	/** @var Passwords */
 	private $password;
 
 
-	public function __construct(UserRepository $userRepository, UserEntity $userEntity, Passwords $password)
+	public function __construct(UserRepository $userRepository, Passwords $password)
 	{
 		$this->userRepository = $userRepository;
-		$this->userEntity = $userEntity;
 		$this->password = $password;
 	}
 
@@ -62,10 +58,7 @@ class AuthRepository implements IAuthenticator
 
 			// Re-hash password.
 		} elseif ($this->password->needsRehash($row->password)) {
-			$entity = $this->userEntity;
-			$entity->userId = $row->userId;
-			$entity->password = $this->password->hash($row->password);
-			$this->userRepository->save($entity->getModify());
+			$this->userRepository->save($row->setPassword($this->password->hash($password)));
 		}
 		unset($row->password);
 		return new Identity($row->userId, null, $row);
