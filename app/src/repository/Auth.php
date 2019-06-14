@@ -33,8 +33,6 @@ class AuthRepository implements IAuthenticator
 
 
 	/**
-	 * @param array $credentials
-	 * @return IIdentity
 	 * @throws AuthenticationException
 	 * @throws Dibi\Exception
 	 */
@@ -45,7 +43,7 @@ class AuthRepository implements IAuthenticator
 		// Find user.
 		$row = $this
 			->userRepository
-			->findUser($email);
+			->FindByEmail($email);
 
 		// User not found.
 		if (!$row) {
@@ -60,6 +58,8 @@ class AuthRepository implements IAuthenticator
 		} elseif ($this->password->needsRehash($row->password)) {
 			$entity = $row;
 			$entity->setPassword($this->password->hash($password));
+
+			// Save update record.
 			$this->userRepository->saveUser($entity);
 		}
 		unset($row->password);
