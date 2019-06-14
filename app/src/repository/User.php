@@ -46,7 +46,7 @@ class UserRepository extends Connection
 	{
 		$id = $entity->getUserId();
 		$query = $id
-			? $this->save($entity->getModify(), $this->primaryKey, $id)
+			? $this->saveById($entity->getModify(), $id)
 			: $this->save($entity->getModify());
 
 		return $query->execute();
