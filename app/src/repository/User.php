@@ -18,20 +18,37 @@ class UserRepository extends Connection
 	use Repository;
 
 	/** @var string table name */
-	private $table = UserEntity::TABLE;
+	public $table = UserEntity::TABLE;
+
+	/** @var int primary id */
+	public $primaryId = UserEntity::USER_ID;
 
 
 	/**
 	 * Find user by email.
-	 * @param string $email
 	 * @return array|UserEntity|null
 	 * @throws Dibi\Exception
 	 */
-	public function findUser(string $email)
+	public function FindByEmail(string $email)
 	{
 		return $this
 			->find(UserEntity::EMAIL, $email)->execute()
 			->setRowClass(UserEntity::class)
 			->fetch();
+	}
+	
+	/**
+	 * Save record.
+	 * @return Dibi\Result|int|null
+	 * @throws Dibi\Exception
+	 */
+	public function save(UserEntity $entity)
+	{
+		$id = $entity->getUserId();
+		$query = $id
+			? $this->save($entity->getModify(), $this->primaryKey, $id)
+			: $this->save($entity->getModify());
+
+		return $query->execute();
 	}
 }
