@@ -58,7 +58,9 @@ class AuthRepository implements IAuthenticator
 
 			// Re-hash password.
 		} elseif ($this->password->needsRehash($row->password)) {
-			$this->userRepository->save($row->setPassword($this->password->hash($password)));
+			$entity = $row;
+			$entity->setPassword($this->password->hash($password));
+			$this->userRepository->saveUser($entity);
 		}
 		unset($row->password);
 		return new Identity($row->userId, null, $row);
