@@ -36,8 +36,8 @@
 
 					<!-- list items -->
 					<ul class="list-unstyled">
-						<li><a n:href="this, 'lang' => 'cs'" class="list-link">{_'menu.cs'}</a></li>
-						<li><a n:href="this, 'lang' => 'en'" class="list-link current">{_'menu.en'}</a></li>
+						<li><a n:href="this, 'lang' => 'cs'" n:class="$lang === 'cs' ? 'list-link link-current' : 'list-link'">{_'menu.cs'}</a></li>
+						<li><a n:href="this, 'lang' => 'en'" n:class="$lang === 'en' ? 'list-link link-current' : 'list-link'">{_'menu.en'}</a></li>
 					</ul>
 				</li>
 
@@ -50,68 +50,6 @@
 					<!-- list items, first level -->
 					<ul class="list-unstyled">
 						<li><a href="#" class="list-link"><span class="list-icon"><i class="fa fa-home" aria-hidden="true"></i></span>Home</a></li>
-						<li><a href="#" class="list-link link-arrow link-current"><span class="list-icon"><i class="fa fa-cog" aria-hidden="true"></i></span>Settings</a>
-
-							<!-- list items, second level -->
-							<ul class="list-unstyled list-hidden">
-								<li><a href="#" class="list-link">Timezone</a></li>
-								<li><a href="#" class="list-link">Permissions</a></li>
-								<li><a href="#" class="list-link link-arrow link-current">Maintenance</a>
-
-									<!-- list items, third level -->
-									<ul class="list-unstyled list-hidden">
-										<li><a href="#" class="list-link">On</a></li>
-										<li><a href="#" class="list-link link-current">Off</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-
-						<!-- notice info -->
-						<li>
-							<a href="#" class="list-link">
-								<div class="clearfix">
-									<div class="float-left"><span class="list-icon"><i class="fa fa-bell-o" aria-hidden="true"></i></span>Notice</div>
-									<div class="float-right">
-										<span class="badge badge-danger">New</span>
-										<span class="badge badge-secondary">4</span>
-									</div>
-								</div>
-							</a>
-						</li>
-					</ul>
-				</li>
-
-				<!-- multi-level dropdown menu -->
-				<li class="list-item">
-
-					<!-- list title -->
-					<p class="list-title text-uppercase">Coments</p>
-
-					<!-- list items, first level -->
-					<ul class="list-unstyled">
-						<li><a href="#" class="list-link"><span class="list-icon"><i class="fa fa-plus" aria-hidden="true"></i></span>New</a></li>
-						<li><a href="#" class="list-link link-arrow"><span class="list-icon"><i class="fa fa-comments-o" aria-hidden="true"></i></span>Settings comments</a>
-
-							<!-- list items, second level -->
-							<ul class="list-unstyled list-hidden">
-								<li><a href="#" class="list-link">Disable</a></li>
-								<li><a href="#" class="list-link">Enable</a></li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-
-				<!-- simple menu -->
-				<li class="list-item">
-
-					<!-- list title -->
-					<p class="list-title text-uppercase">Blog</p>
-
-					<!-- list items -->
-					<ul class="list-unstyled">
-						<li><a href="#" class="list-link"><span class="list-icon"><i class="fa fa-plus" aria-hidden="true"></i></span>Add</a></li>
-						<li><a href="#" class="list-link"><span class="list-icon"><i class="fa fa-table" aria-hidden="true"></i></span>List</a></li>
 					</ul>
 				</li>
 			</ul>
