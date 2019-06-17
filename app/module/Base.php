@@ -71,7 +71,7 @@ abstract class BasePresenter extends Presenter
 		$this->template->lang = $this->lang;
 
 		// Website settings for templates.
-		$webSettings = $this->websiteRepository->getRecords()->fetchPairs();
+		$webSettings = $this->websiteRepository->all()->fetchPairs();
 		$this->template->web = (object) $webSettings;
 	}
 }

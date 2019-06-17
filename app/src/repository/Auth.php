@@ -41,28 +41,24 @@ class AuthRepository implements IAuthenticator
 		[$email, $password] = $credentials;
 
 		// Find user.
-		$row = $this
-			->userRepository
-			->FindByEmail($email);
+		$repository = $this->userRepository;
+		$user = $repository->findBy($email);
 
 		// User not found.
-		if (!$row) {
+		if (!$user) {
 			throw new AuthenticationException('User not found.', self::IDENTITY_NOT_FOUND);
 
 			// Invalid password.
-		} elseif (!$this->password->verify($password, $row->password)) {
+		} elseif (!$this->password->verify($password, $user->password)) {
 			throw new AuthenticationException('The password is incorrect.', self::INVALID_CREDENTIAL);
 
 
 			// Re-hash password.
-		} elseif ($this->password->needsRehash($row->password)) {
-			$entity = $row;
-			$entity->setPassword($this->password->hash($password));
-
-			// Save update record.
-			$this->userRepository->saveUser($entity);
+		} elseif ($this->password->needsRehash($user->password)) {
+			$user->setPassword($this->password->hash($password));
+			$repository->save($user);
 		}
-		unset($row->password);
-		return new Identity($row->userId, null, $row);
+		unset($user->password);
+		return new Identity($user->userId, null, $user);
 	}
 }

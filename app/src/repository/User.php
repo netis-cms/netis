@@ -29,12 +29,10 @@ class UserRepository extends Connection
 	 * @return array|UserEntity|null
 	 * @throws Dibi\Exception
 	 */
-	public function FindByEmail(string $email)
+	public function findBy(string $email)
 	{
-		return $this
-			->find(UserEntity::EMAIL, $email)->execute()
-			->setRowClass(UserEntity::class)
-			->fetch();
+		return $this->discover(UserEntity::EMAIL, $email)
+			->setRowClass(UserEntity::class)->fetch();
 	}
 	
 	/**
@@ -45,10 +43,6 @@ class UserRepository extends Connection
 	public function save(UserEntity $entity)
 	{
 		$id = $entity->getUserId();
-		$query = $id
-			? $this->saveById($entity->getModify(), $id)
-			: $this->save($entity->getModify());
-
-		return $query->execute();
+		return $this->add($entity, $id);
 	}
 }
