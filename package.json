@@ -6,7 +6,7 @@
     "live-form-validation": "1.9.0",
     "nette.ajax.js": "^2.3.0",
     "sidebar-menu-compostrap": "^1.0.2",
-    "jquery": "^3.4.1"
+    "jquery": "^3.5.0"
   },
   "devDependencies": {
     "grunt": "^1.0.4",
