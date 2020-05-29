@@ -9,9 +9,7 @@
           .html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
     },
     complete: function() {
-      console.log('end');
       $('.btn-spinner').removeAttr('disabled');
     }
-
   });
 }(jQuery));
