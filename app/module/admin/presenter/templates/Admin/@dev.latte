@@ -7,86 +7,149 @@
 
 	<!-- build:css {$basePath}/www/css/admin.min.css -->
 	<link rel="stylesheet" href="{$basePath}/node_modules/bootstrap/dist/css/bootstrap.css">
-	<link rel="stylesheet" href="{$basePath}/node_modules/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" href="{$basePath}/node_modules/sidebar-skeleton-compostrap/dist/css/sidebar.css">
 	<link rel="stylesheet" href="{$basePath}/node_modules/open-sans-fontface/open-sans.css">
+	<link rel="stylesheet" href="{$basePath}/node_modules/@fortawesome/fontawesome-free/css/all.css">
 	<link rel="stylesheet" href="{$basePath}/node_modules/perfect-scrollbar/css/perfect-scrollbar.css">
-	<link rel="stylesheet" href="{$basePath}/node_modules/sidebar-menu-compostrap/dist/css/sidebar.css"
+	<link rel="stylesheet" href="{$basePath}/node_modules/sidebar-menu-2-compostrap/dist/css/sidebar.menu.css">
+	<link rel="stylesheet" href="{$basePath}/node_modules/user-logged-compostrap/dist/css/user.logged.css">
+	<link rel="stylesheet" href="{$basePath}/node_modules/dashboard-skeleton-compostrap/dist/css/dashbaord.css">
 	<!-- /build -->
 
-	<title>{include subtitle|stripHtml|firstUpper}{ifset $web} &bullet; {$web->website}{/ifset}</title>
+	<title>{include subtitle|stripHtml|firstUpper}{ifset $settings} &bullet; {$settings->website}{/ifset}</title>
 </head>
 
 <body class="bg-light">
-<div class="d-flex nav-fixed" id="wrapper">
 
-	<!-- sidebar -->
-	<nav role="navigation" class="sidebar sidebar-white sidebar-menu-magenta rounded-0">
+<header>
+	<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
 
-		<!-- sidebar menu -->
-		<div class="sidebar-menu">
+		<!-- title -->
+		<a class="navbar-brand" href="#"><i class="fab fa-bootstrap mr-1 text-purple"></i>
+			<span class="text-purple text-bolder">{_'subtitle'}</span>
+		</a>
 
-			<!-- menu -->
-			<ul class="list list-unstyled list-scrollbar">
+		<!-- sidebar toggle -->
+		<button class="navbar-toggler btn btn-link border-0" type="button" id="sidebar" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-				<!-- simple menu -->
-				<li class="list-item">
+		<!-- user panel -->
+		<div class="collapse navbar-collapse">
+			<ul class="navbar-nav ml-auto">
 
-					<!-- list title -->
-					<p class="list-title text-uppercase">{_'category.language'}</p>
+				<!-- username and avatar -->
+				<li class="nav-item nav-item-user"><span class="navbar-text mr-2">{$user->identity->data['realname']}</span></li>
+				<li class="nav-item nav-item-avatar"><img src="{$gravatar}" width="34" alt="avatar"></li>
 
-					<!-- list items -->
-					<ul class="list-unstyled">
-						<li><a n:href="this, 'lang' => 'cs'" n:class="$lang === 'cs' ? 'list-link link-current' : 'list-link'">{_'menu.cs'}</a></li>
-						<li><a n:href="this, 'lang' => 'en'" n:class="$lang === 'en' ? 'list-link link-current' : 'list-link'">{_'menu.en'}</a></li>
-					</ul>
-				</li>
-
-				<!-- multi-level dropdown menu -->
-				<li class="list-item">
-
-					<!-- list title -->
-					<p class="list-title text-uppercase">Dashboard</p>
-
-					<!-- list items, first level -->
-					<ul class="list-unstyled">
-						<li><a href="#" class="list-link"><span class="list-icon"><i class="fa fa-home" aria-hidden="true"></i></span>Home</a></li>
-					</ul>
+				<!-- dropdown menu -->
+				<li class="nav-item dropdown"><a class="nav-link" href="#" data-toggle="dropdown">
+						<i class="fas fa-angle-down"></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right dropdown-menu-bg-purple border-0">
+						<div class="dropdown-menu-arrow"></div>
+						<a class="dropdown-item" href="#">{_'user.profile'}</a>
+						<a class="dropdown-item" href="#">{_'user.settings'}</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="{link :Admin:Sign:out}">{_'user.logout'}</a>
+					</div>
 				</li>
 			</ul>
 		</div>
 	</nav>
+</header>
 
-	<!-- content wrapper -->
-	<div class="content">
+<div class="d-flex wrapper wrapper-navbar-used wrapper-navbar-fixed">
+	<nav role="navigation" class="sidebar sidebar-bg-white" id="navigation">
 
-		<!-- navbar -->
-		<nav class="navbar navbar-expand-lg fixed-top navbar-light">
+		<!-- sidebar -->
+		<div class="sidebar-menu sidebar-rounded-top-right">
 
-			<!-- navbar title -->
-			<a class="navbar-brand" href="#">{_'subtitle'}</a>
+			<!--  menu fixed -->
+			<div class="sidebar-menu-fixed">
 
-			<!-- navbar nav -->
-			<div class="navbar-nav">
-				<a class="nav-item nav-link nav-bars" id="sidebar-toggle" href="#">
-					<i class="fa fa-bars" aria-hidden="true"></i>
-				</a>
+				<!-- menu scrollbar -->
+				<div class="scrollbar scrollbar-bg-light">
+
+					<!-- menu -->
+					<ul class="list list-unstyled list-bg-light list-bg-menu-purple mb-0">
+
+						<!-- simple menu -->
+						<li class="list-item">
+
+							<!-- list title -->
+							<p class="list-title text-uppercase">{_'category.language'}</p>
+
+							<!-- list items -->
+							<ul class="list-unstyled">
+								<li><a n:href="this, 'lang' => 'cs'" n:class="'list-link', $lang === 'cs' ? 'link-current'">{_'menu.cs'}</a></li>
+								<li><a n:href="this, 'lang' => 'en'" n:class="'list-link', $lang === 'en' ? 'link-current'">{_'menu.en'}</a></li>
+							</ul>
+						</li>
+
+						<!-- multi-level dropdown menu -->
+						<li class="list-item">
+
+							<!-- list title -->
+							<p class="list-title text-uppercase">{_'category.system'}</p>
+
+							<!-- list items, first level -->
+							<ul class="list-unstyled">
+								<li><a href="#" n:class="'list-link', $presenter->isLinkCurrent(':Admin:Admin:') ? 'link-current'"><span class="list-icon"><i class="fas fa-home"></i></span>{_'menu.admin'}</a></li>
+								<li><a href="#" n:class="'list-link', $presenter->isLinkCurrent(':Admin:Admin:settings') ? 'link-current'"><span class="list-icon"><i class="fas fa-tools"></i></span>{_'menu.settings'}</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+
+		<!-- content -->
+		<main role="main">
+
+			<!-- full box -->
+			<div class="content-box mb-3 bg-white">
+				<h3>Full conent</h3>
+				<p>Here is content this website page.</p>
 			</div>
 
-		</nav>
+			<!-- grid -->
+			<div class="row">
 
-		<!-- main content -->
-		<main role="main" class="container-fluid">
-			<h2>Sidebar menu build on Bootstrap 4</h2>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-			</p>
+				<!-- six box -->
+				<div class="mb-3 col-xl-6">
+					<div class="content-box bg-white">
+						<h3>50% content</h3>
+						<p>Here is content this website page.</p>
+					</div>
+				</div>
+
+				<!-- six box -->
+				<div class="mb-3 col-xl-6">
+					<div class="content-box bg-white">
+						<h3>50% content</h3>
+						<p>Here is content this website page.</p>
+					</div>
+				</div>
+			</div>
 		</main>
+
+		<!-- license rights, do not delete this piece of code -->
+		<footer class="text-right mt-3 mr-3 mb-3">
+			<p class="text-silver">Code licensed
+				<a href="https://github.com/compostrap/dashboard-skeleton/blob/master/license.md" class="text-muted" target="_blank" rel="license noopener">MIT</a>
+			</p>
+		</footer>
 	</div>
 </div>
 
 <!-- build:js {$basePath}/www/js/admin.min.js -->
 <script src="{$basePath}/node_modules/jquery/dist/jquery.js"></script>
 <script src="{$basePath}/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script src="{$basePath}/node_modules/sidebar-skeleton-compostrap/dist/js/sidebar.js"></script>
 <script src="{$basePath}/node_modules/perfect-scrollbar/dist/perfect-scrollbar.js"></script>
 <script src="{$basePath}/node_modules/nanobar/nanobar.js"></script>
 <script src="{$basePath}/node_modules/sidebar-menu-compostrap/dist/js/sidebar.menu.js"></script>
@@ -94,9 +157,8 @@
 
 <script>
 	$(function() {
-		new PerfectScrollbar('.list-scrollbar');
-		const nanobar = new Nanobar();
-		nanobar.go(100);
+		new Nanobar().go(100);
+		new PerfectScrollbar('.scrollbar');
 	});
 </script>
 

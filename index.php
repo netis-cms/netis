@@ -6,5 +6,5 @@ declare(strict_types = 1);
 require __DIR__ . '/vendor/autoload.php';
 
 // Run application.
-$app = App\Bootstrap::boot();
-$app->run();
+$boot = App\Bootstrap::boot();
+$boot->app()->run();

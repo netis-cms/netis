@@ -5,38 +5,34 @@ declare(strict_types = 1);
 namespace Module\Install\Control;
 
 use Dibi;
-use Drago\Application\UI\Control;
-use Drago\Application\UI\Factory;
 use Drago\Http\Sessions;
-use Drago\Localization\TranslateControl;
-use Module\Install\Service\Query;
-use Module\Install\Service\Steps;
-use Nette\Application\UI\Form;
+use Drago\Localization;
+use Module\Install\Service;
+use Nette\Application\UI;
 use Nette\Security\Passwords;
 
 
 /**
  * Add administrator account.
  */
-final class Account extends Control
+final class Account extends UI\Control
 {
-	use Factory;
-	use TranslateControl;
+	use Localization\TranslatorControl;
 
 	/** @var Sessions */
 	private $sessions;
 
-	/** @var Steps */
+	/** @var Service\Steps */
 	private $steps;
 
-	/** @var Query  */
+	/** @var Service\Query  */
 	private $query;
 
 	/** @var Passwords */
 	private $password;
 
 
-	public function __construct(Sessions $sessions, Steps $steps, Query $query, Passwords $password)
+	public function __construct(Sessions $sessions, Service\Steps $steps, Service\Query $query, Passwords $password)
 	{
 		$this->sessions = $sessions;
 		$this->steps = $steps;
@@ -55,9 +51,9 @@ final class Account extends Control
 	}
 
 
-	public function createComponentAccount(): Form
+	public function createComponentAccount(): UI\Form
 	{
-		$form = $this->createForm();
+		$form = new UI\Form;
 		$form->setTranslator($this->getTranslator());
 
 		$form->addText('realname', 'form.name.acc')
@@ -67,15 +63,15 @@ final class Account extends Control
 			->setDefaultValue('@')
 			->setHtmlType('email')
 			->setRequired('form.required')
-			->addRule(Form::EMAIL, 'form.email.rule');
+			->addRule(UI\Form::EMAIL, 'form.email.rule');
 
 		$form->addPassword('password', 'form.password')
 			->setRequired('form.required')
-			->addRule(Form::MIN_LENGTH, 'form.password.rule', 6);
+			->addRule(UI\Form::MIN_LENGTH, 'form.password.rule', 6);
 
 		$form->addPassword('verify', 'form.password.verify')
 			->setRequired('form.required')
-			->addRule(Form::EQUAL, 'form.password.verify.rule', $form['password']);
+			->addRule(UI\Form::EQUAL, 'form.password.verify.rule', $form['password']);
 
 		$form->addSubmit('send', 'form.send.acc');
 		$form->onSuccess[] = [$this, 'success'];
@@ -86,7 +82,7 @@ final class Account extends Control
 	/**
 	 * @throws Dibi\Exception
 	 */
-	public function success(Form $form): void
+	public function success(UI\Form $form): void
 	{
 		$values = $form->getValues();
 		$table = $this->sessions->getSessionSection()->prefix . 'users';
@@ -101,7 +97,7 @@ final class Account extends Control
 		$this->query->addRecord($table, (array) $values);
 
 		// Save the installation step.
-		$this->steps->cache->save(Steps::STEP, ['step' => 5]);
+		$this->steps->cache->save(Service\Steps::STEP, ['step' => 5]);
 		$this->presenter->flashMessage('message.acc', 'success');
 	}
 }

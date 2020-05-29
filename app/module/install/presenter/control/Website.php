@@ -4,34 +4,30 @@
 namespace Module\Install\Control;
 
 use Dibi;
-use Drago\Application\UI\Control;
-use Drago\Application\UI\Factory;
 use Drago\Http\Sessions;
-use Drago\Localization\TranslateControl;
-use Module\Install\Service\Query;
-use Module\Install\Service\Steps;
-use Nette\Application\UI\Form;
+use Drago\Localization;
+use Module\Install\Service;
+use Nette\Application\UI;
 
 
 /**
  * Website settings.
  */
-final class Website extends Control
+final class Website extends UI\Control
 {
-	use Factory;
-	use TranslateControl;
+	use Localization\TranslatorControl;
 
 	/** @var Sessions */
 	private $sessions;
 
-	/** @var Steps */
+	/** @var Service\Steps */
 	private $steps;
 
-	/** @var Query */
+	/** @var Service\Query */
 	private $query;
 
 
-	public function __construct(Sessions $sessions, Steps $steps, Query $query)
+	public function __construct(Sessions $sessions, Service\Steps $steps, Service\Query $query)
 	{
 		$this->sessions = $sessions;
 		$this->steps = $steps;
@@ -49,9 +45,9 @@ final class Website extends Control
 	}
 
 
-	public function createComponentWebsite(): Form
+	public function createComponentWebsite(): UI\Form
 	{
-		$form = $this->createForm();
+		$form = new UI\Form;
 		$form->setTranslator($this->getTranslator());
 
 		$form->addText('website', 'form.name.web')
@@ -69,7 +65,7 @@ final class Website extends Control
 	/**
 	 * @throws Dibi\Exception
 	 */
-	public function success(Form $form): void
+	public function success(UI\Form $form): void
 	{
 		$values = $form->getValues();
 		$table = $this->sessions->getSessionSection()->prefix . 'settings';
@@ -84,7 +80,7 @@ final class Website extends Control
 		}
 
 		// Save the installation step.
-		$this->steps->cache->save(Steps::STEP, ['step' => 4]);
+		$this->steps->cache->save(Service\Steps::STEP, ['step' => 4]);
 		$this->presenter->flashMessage('message.web', 'success');
 	}
 }

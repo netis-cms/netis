@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="{$lang}">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>{include subtitle|stripHtml|firstUpper} &bull; Title</title>
+</head>
+
+<body>
+	{* content block *}
+	{include content|indent:1}
+
+	{* language switching *}
+	<a n:href="this, 'lang' => 'cs'" n:class="$presenter->linkCurrent ? 'current'">Czech</a>
+	<a n:href="this, 'lang' => 'en'" n:class="$presenter->linkCurrent ? 'current'">English</a>
+</body>
+</html>

@@ -17,8 +17,9 @@ $border-radius: 0.1875rem;
 $input-btn-focus-width: 0;
 
 // sidebar-menu
-@import '../../../../node_modules/sidebar-menu-compostrap/scss/utils/variables';
-@import '../../../../node_modules/sidebar-menu-compostrap/scss/utils/functions';
+@import '../../../../node_modules/sidebar-menu-2-compostrap/scss/utils/variables';
+@import '../../../../node_modules/sidebar-skeleton-compostrap/scss/utils/variables';
+@import '../../../../node_modules/sidebar-skeleton-compostrap/scss/utils/functions';
 
 // bootstrap
 @import '../../../../node_modules/bootstrap/scss/functions';

@@ -1,36 +1,22 @@
-## Netis, Little CMS
+<p align="center">
+  <img src="https://avatars0.githubusercontent.com/u/11717487?s=400&u=40ecb522587ebbcfe67801ccb6f11497b259f84b&v=4" width="100" alt="logo">
+</p>
 
-Based on:
-- [Nette Framework](https://github.com/nette/nette)
-- [Drago Extension Nette Framework](https://github.com/drago-ex)
-- [dibi - smart database abstraction layer](https://github.com/dg/dibi)
-- [Bootstrap](https://github.com/twbs/bootstrap)
+<h3 align="center">Drago Extension</h3>
+<p align="center">Simple packages built on Nette Framework</p>
+
+## Info
+The basis for new projects.
+
+[![PHP version](https://badge.fury.io/ph/drago-ex%2Fproject.svg)](https://badge.fury.io/ph/drago-ex%2Fproject)
+[![Build Status](https://travis-ci.org/drago-ex/project.svg?branch=master)](https://travis-ci.org/drago-ex/project)
+[![CodeFactor](https://www.codefactor.io/repository/github/drago-ex/project/badge)](https://www.codefactor.io/repository/github/drago-ex/project)
+
+## Requirements
+- PHP 7.1 or higher
+- composer
 
 ## Installation
-
-Git clone:   ```git clone https://github.com/netis-cms/netis.git```
-Install composer: ```composer install```
-Install npm: ```npm install```
-Grunt task: ```grunt grunt-sass```
-
-## Demo install
-
-## Step 1
-
-![Screenshot](https://raw.githubusercontent.com/netis-cms/netis/master/assets/steps/step1.png)
-
-## Step 2
-
-![Screenshot](https://raw.githubusercontent.com/netis-cms/netis/master/assets/steps/step2.png)
-
-## Step 3
-
-![Screenshot](https://raw.githubusercontent.com/netis-cms/netis/master/assets/steps/step3.png)
-
-## Step 4
-
-![Screenshot](https://raw.githubusercontent.com/netis-cms/netis/master/assets/steps/step4.png)
-
-## Step 5
-
-![Screenshot](https://raw.githubusercontent.com/netis-cms/netis/master/assets/steps/step5.png)
+```
+composer create-project drago-ex/project
+```

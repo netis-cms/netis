@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="{$basePath}/node_modules/bootstrap/dist/css/bootstrap.css">
 	<!-- /build -->
 
-	<title>{include subtitle|stripHtml|firstUpper}{ifset $web} &bullet; {$web->website}{/ifset}</title>
+	<title>{include subtitle|stripHtml|firstUpper}{ifset $settings} &bullet; {$settings->website}{/ifset}</title>
 </head>
 
 <body>
@@ -17,10 +17,6 @@
 
 	{* content block *}
 	{include content|indent:1}
-
-	{* language switching *}
-	<a n:href="this, 'lang' => 'cs'">Czech</a>
-	<a n:href="this, 'lang' => 'en'">English</a>
 </div>
 
 <!-- build:js {$basePath}/www/js/app.min.js -->

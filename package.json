@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "Gruntfile.js",
   "dependencies": {
-    "live-form-validation": "1.9.0",
+    "live-form-validation": "^1.9.0",
     "nette.ajax.js": "^2.3.0",
-    "sidebar-menu-compostrap": "^1.0.2",
-    "jquery": "^3.4.1"
+    "dashboard-skeleton-compostrap": "^1.0.3",
+    "jquery": "^3.5.1"
   },
   "devDependencies": {
     "grunt": "^1.0.4",

@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Module\Install;
 
 use Nette;
-use Nette\Application\Routers;
+use Nette\Application\Routers\RouteList;
 
 
 class Router
@@ -11,11 +13,10 @@ class Router
 	use Nette\StaticClass;
 
 
-	public static function create(): Nette\Routing\Router
+	public static function create(): RouteList
 	{
-		$router = new Routers\RouteList;
-		$router
-			->withModule('Install')
+		$router = new RouteList;
+		$router->withModule('Install')
 			->addRoute('[<lang=cs cs|en>/]install/', 'Install:default');
 
 		return $router;

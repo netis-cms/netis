@@ -2,9 +2,7 @@
 	"name": "netis-cms/netis",
 	"type": "project",
 	"description": "Little CMS.",
-	"license": [
-		"MIT"
-	],
+	"license": ["MIT"],
 	"authors": [
 		{
 			"name": "Zdeněk Papučík",
@@ -13,19 +11,18 @@
 	],
 	"require": {
 		"php": ">=7.1",
-		"latte/latte": "^2.5",
-		"nette/forms": "^3.0",
-		"nette/robot-loader": "^3.0",
+		"nette/robot-loader": "^3.2",
 		"nette/security": "^3.0",
-		"tracy/tracy": "^2.6",
-		"accgit/gravatar": "^2.0",
-		"drago-ex/bootstrap": "^2.0",
-		"drago-ex/application": "^2.0",
-		"drago-ex/database": "^2.0",
-		"drago-ex/parameters": "^2.0",
-		"drago-ex/translator": "^2.0",
-		"drago-ex/sessions": "^2.0",
-		"dg/composer-cleaner": "^2.0"
+		"latte/latte": "^2.5",
+		"tracy/tracy": "^2.7",
+		"drago-ex/bootstrap": "^1.0",
+		"drago-ex/translator": "^1.0",
+		"drago-ex/sessions": "^1.0",
+		"drago-ex/application": "^1.0",
+		"drago-ex/parameters": "^1.0",
+		"drago-ex/database": "^1.0",
+		"drago-ex/gravatar": "^1.0",
+		"dg/composer-cleaner": "^2.1"
 	},
 	"autoload": {
 		"classmap": ["app/Bootstrap.php"]

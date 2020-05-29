@@ -2,22 +2,37 @@
 
 namespace Module\Admin;
 
-use Nette;
-use Nette\Application\UI\Form;
-use App\DashboardPresenter;
-use Supplement\Gravatar;
+use Drago\Application\UI\Factory;
+use Drago\Localization\TranslatorAdapter;
+use Drago\User\Gravatar;
+use Nette\Application\UI;
 
 
 /**
  * Sing-in user.
  */
-final class SignPresenter extends DashboardPresenter
+final class SignPresenter extends UI\Presenter
 {
+	use TranslatorAdapter;
+
 	/**
 	 * @var Gravatar
 	 * @inject
 	 */
 	public $gravatar;
+
+	/**
+	 * @var Factory
+	 * @inject
+	 */
+	public $factory;
+
+
+	protected function startup(): void
+	{
+		parent::startup();
+		$this->setLayout('dev');
+	}
 
 
 	protected function beforeRender(): void
@@ -28,8 +43,13 @@ final class SignPresenter extends DashboardPresenter
 			$welcome = 'login.welcome.back';
 			$email = $user->data['email'];
 		}
+
+		$gravatar = $this->gravatar;
+		$gravatar->setEmail($email ?? 'someone@somewhere.com');
+		$gravatar->setSize(120);
+
 		$this->template->welcome = isset($welcome) ? $welcome : 'login.welcome';
-		$this->template->gravatar = $this->gravatar->getGravatar(isset($email) ? $email : '', 120);
+		$this->template->gravatar = $this->gravatar->getGravatar();
 	}
 
 
@@ -42,16 +62,16 @@ final class SignPresenter extends DashboardPresenter
 	}
 
 
-	protected function createComponentSignIn(): Form
+	protected function createComponentSignIn(): UI\Form
 	{
-		$form = $this->createForm();
+		$form = $this->factory->create();
 		$form->setTranslator($this->getTranslator());
 
 		$form->addText('email', 'form.email')
 			->setHtmlAttribute('email')
 			->setHtmlAttribute('placeholder', 'form.email.full')
 			->setRequired('form.required')
-			->addRule(Form::EMAIL, 'form.email.rule');
+			->addRule(UI\Form::EMAIL, 'form.email.rule');
 
 		$form->addPassword('password', 'form.password')
 			->setHtmlAttribute('placeholder', 'form.password.full')
@@ -64,15 +84,15 @@ final class SignPresenter extends DashboardPresenter
 
 
 	/**
-	 * @throws Nette\Application\AbortException
+	 * @throws \Nette\Application\AbortException
 	 */
-	public function success(Form $form, $values): void
+	public function success(UI\Form $form, $values): void
 	{
 		try {
 			$this->user->login($values->email, $values->password);
 			$this->redirect(':Admin:Admin:');
 
-		} catch (Nette\Security\AuthenticationException $e) {
+		} catch (\Nette\Security\AuthenticationException $e) {
 			$form->addError('form.error.' . $e->getCode());
 			if ($this->isAjax()) {
 				$this->redrawControl('errors');
@@ -83,7 +103,7 @@ final class SignPresenter extends DashboardPresenter
 
 	/**
 	 * Logout user from application.
-	 * @throws Nette\Application\AbortException
+	 * @throws \Nette\Application\AbortException
 	 */
 	public function actionOut()
 	{

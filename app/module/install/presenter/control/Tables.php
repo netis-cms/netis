@@ -4,35 +4,30 @@ declare(strict_types = 1);
 
 namespace Module\Install\Control;
 
-use Drago\Application\UI\Control;
-use Drago\Application\UI\Factory;
 use Drago\Http\Sessions;
-use Drago\Localization\TranslateControl;
-use Module\Install\Service\Query;
-use Module\Install\Service\Steps;
-use Nette\Application\UI\Form;
-use Exception;
+use Drago\Localization;
+use Module\Install\Service;
+use Nette\Application\UI;
 
 
 /**
  * Install database tables.
  */
-final class Tables extends Control
+final class Tables extends UI\Control
 {
-	use Factory;
-	use TranslateControl;
+	use Localization\TranslatorControl;
 
 	/** @var Sessions */
 	private $sessions;
 
-	/** @var Steps */
+	/** @var Service\Steps */
 	private $steps;
 
-	/** @var Query */
+	/** @var Service\Query */
 	private $query;
 
 
-	public function __construct(Sessions $sessions, Steps $steps, Query $query)
+	public function __construct(Sessions $sessions, Service\Steps $steps, Service\Query $query)
 	{
 		$this->sessions = $sessions;
 		$this->steps = $steps;
@@ -50,9 +45,9 @@ final class Tables extends Control
 	}
 
 
-	public function createComponentTables(): Form
+	public function createComponentTables(): UI\Form
 	{
-		$form = $this->createForm();
+		$form = new UI\Form;
 		$form->setTranslator($this->getTranslator());
 		$form->addSubmit('send', 'form.send.tables');
 		$form->onSuccess[] = [$this, 'success'];
@@ -60,7 +55,7 @@ final class Tables extends Control
 	}
 
 
-	public function success(Form $form): void
+	public function success(UI\Form $form): void
 	{
 		$prefix = $this->sessions->getSessionSection()->prefix;
 		$databaseTable = [
@@ -129,15 +124,15 @@ final class Tables extends Control
 			);
 
 			// Save the installation step.
-			$this->steps->cache->save(Steps::STEP, ['step' => 3]);
+			$this->steps->cache->save(Service\Steps::STEP, ['step' => 3]);
 			$this->presenter->flashMessage('message.tables', 'success');
 
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			if ($e->getCode()) {
 				$form->addError('form.error.' . $e->getCode());
 			}
 
-			if ($this->isAjax()) {
+			if ($this->presenter->isAjax()) {
 				$this->redrawControl('errors');
 			}
 		}

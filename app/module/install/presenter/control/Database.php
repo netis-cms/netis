@@ -5,24 +5,21 @@ declare(strict_types = 1);
 namespace Module\Install\Control;
 
 use dibi;
-use Drago\Application\UI\Control;
-use Drago\Application\UI\Factory;
 use Drago\Http\Sessions;
-use Drago\Localization\TranslateControl;
-use Drago\Parameters\Directory;
+use Drago\Localization;
+use Drago\Parameters\Parameters;
 use Module\Install\Service\Steps;
-use Nette\Application\UI\Form;
+use Nette;
 use Nette\DI\Config\Loader;
-use Nette\Utils\FileSystem;
+use Nette\Application\UI;
 
 
 /**
  * Database server settings.
  */
-final class Database extends Control
+final class Database extends UI\Control
 {
-	use Factory;
-	use TranslateControl;
+	use Localization\TranslatorControl;
 
 	/** @var Loader */
 	private $loader;
@@ -33,11 +30,11 @@ final class Database extends Control
 	/** @var Steps */
 	private $steps;
 
-	/** @var Directory */
+	/** @var Parameters */
 	private $dirs;
 
 
-	public function __construct(Loader $loader, Sessions $sessions, Steps $steps, Directory $dirs)
+	public function __construct(Loader $loader, Sessions $sessions, Steps $steps, Parameters $dirs)
 	{
 		$this->loader = $loader;
 		$this->sessions = $sessions;
@@ -56,9 +53,9 @@ final class Database extends Control
 	}
 
 
-	protected function createComponentDatabase(): Form
+	protected function createComponentDatabase(): UI\Form
 	{
-		$form = $this->createForm();
+		$form = new UI\Form;
 		$form->setTranslator($this->getTranslator());
 
 		$form->addText('host', 'form.host')
@@ -90,7 +87,7 @@ final class Database extends Control
 	}
 
 
-	public function success(Form $form): void
+	public function success(UI\Form $form): void
 	{
 		$values = $form->values;
 		try {
@@ -119,7 +116,7 @@ final class Database extends Control
 				$this->loader->save($arr, $this->dirs->getAppDir() . '/src/db.neon');
 
 				// Removing the old cache for updating the system container.
-				FileSystem::delete($this->dirs->getTempDir() . '/cache/Nette.Configurator');
+				Nette\Utils\FileSystem::delete($this->dirs->getTempDir() . '/cache/Nette.Configurator');
 
 				// Save the installation step.
 				$this->steps->cache->save(Steps::STEP, ['step' => 2]);
@@ -137,7 +134,7 @@ final class Database extends Control
 				$form->addError('form.error.' . $e->getCode());
 			}
 
-			if ($this->isAjax()) {
+			if ($this->presenter->isAjax()) {
 				$this->redrawControl('errors');
 			}
 		}

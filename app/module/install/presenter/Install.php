@@ -4,23 +4,20 @@ declare(strict_types = 1);
 
 namespace Module\Install;
 
-use Drago\Localization\Locale;
 use Drago\Localization\Translator;
-use Drago\Parameters\Environment;
-use Module\Install\Control\Account;
-use Module\Install\Control\Database;
-use Module\Install\Control\Tables;
-use Module\Install\Control\Website;
+use Drago\Localization\TranslatorAdapter;
+use Module\Install\Control;
 use Module\Install\Service\Steps;
-use Nette\Application\UI\Presenter;
+use Nette;
+use Tracy\Debugger;
 
 
 /**
- * Installation and configuration application
+ * Installation and configuration application.
  */
-final class InstallPresenter extends Presenter
+final class InstallPresenter extends Nette\Application\UI\Presenter
 {
-	use Locale;
+	use TranslatorAdapter;
 
 	/**
 	 * @var Steps
@@ -29,49 +26,34 @@ final class InstallPresenter extends Presenter
 	public $steps;
 
 	/**
-	 * @var Database
+	 * @var Control\Database
 	 * @inject
 	 */
 	public $database;
 
 	/**
-	 * @var Tables
+	 * @var Control\Tables
 	 * @inject
 	 */
 	public $tables;
 
 	/**
-	 * @var Website
+	 * @var Control\Website
 	 * @inject
 	 */
 	public $website;
 
 	/**
-	 * @var Account
+	 * @var Control\Account
 	 * @inject
 	 */
 	public $account;
-
-	/**
-	 * @var Environment
-	 * @inject
-	 */
-	public $environment;
-
-
-	public function getTranslator(): Translator
-	{
-		$path = __DIR__ . '/../locale/' . $this->lang . '.ini';
-		return $this->createTranslator($path);
-	}
 
 
 	public function startup(): void
 	{
 		parent::startup();
-
-		// Environment in application.
-		$mode = $this->environment->isProduction();
+		$mode = Debugger::$productionMode;
 		$mode ? $this->setLayout('layout') : $this->setLayout('dev');
 	}
 
@@ -80,15 +62,17 @@ final class InstallPresenter extends Presenter
 	{
 		parent::beforeRender();
 
-		// The current language parameter.
-		$this->template->lang = $this->lang;
-
-		// Translation for Templates.
-		$this->template->setTranslator($this->getTranslator());
-
 		// Current step in template.
 		$step = $this->steps->cache->load(Steps::STEP);
 		$this->template->step = $step ? $step['step'] : 0;
+	}
+
+
+	public function getTranslator(): Translator
+	{
+		$translator = $this->translator;
+		$translator->setCustomTranslate(__DIR__ . '/../locale/' . $this->lang . '.ini');
+		return $translator;
 	}
 
 
@@ -109,7 +93,7 @@ final class InstallPresenter extends Presenter
 	}
 
 
-	protected function createComponentDatabase(): Database
+	protected function createComponentDatabase(): Control\Database
 	{
 		$control = $this->database;
 		$control->setTranslator($this->getTranslator());
@@ -117,7 +101,7 @@ final class InstallPresenter extends Presenter
 	}
 
 
-	protected function createComponentTables(): Tables
+	protected function createComponentTables(): Control\Tables
 	{
 		$control = $this->tables;
 		$control->setTranslator($this->getTranslator());
@@ -125,7 +109,7 @@ final class InstallPresenter extends Presenter
 	}
 
 
-	protected function createComponentWebsite(): Website
+	protected function createComponentWebsite(): Control\Website
 	{
 		$control = $this->website;
 		$control->setTranslator($this->getTranslator());
@@ -133,7 +117,7 @@ final class InstallPresenter extends Presenter
 	}
 
 
-	protected function createComponentAccount(): Account
+	protected function createComponentAccount(): Control\Account
 	{
 		$control = $this->account;
 		$control->setTranslator($this->getTranslator());
