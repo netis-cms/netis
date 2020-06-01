@@ -15,6 +15,10 @@ Grunt task: ```grunt grunt-sass``` ```grunt grunt-run```
 
 ## Demo install
 
+## Information before starting the installation
+
+![Screenshot](https://raw.githubusercontent.com/netis-cms/netis/master/assets/steps/step0.png)
+
 ## Step 1
 
 ![Screenshot](https://raw.githubusercontent.com/netis-cms/netis/master/assets/steps/step1.png)
