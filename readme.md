@@ -9,22 +9,22 @@ Based on:
 
 ## Installation
 
-Git clone:
+Git clone
 ```
 git clone https://github.com/netis-cms/netis.git
 ```
 
-Install composer:
+Install composer
 ```
 composer install
 ```
 
-Install npm:
+Install npm
 ```
 npm install
 ```
 
-Grunt task:
+Grunt task
 ```
 grunt run-minify
 ```
