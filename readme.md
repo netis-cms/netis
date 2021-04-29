@@ -14,11 +14,20 @@ Git clone:
 git clone https://github.com/netis-cms/netis.git
 ```
 
-Install composer: ```composer install```
+Install composer:
+```
+composer install
+```
 
-Install npm: ```npm install```
+Install npm:
+```
+npm install
+```
 
-Grunt task: ```grunt run-minify```
+Grunt task:
+```
+grunt run-minify
+```
 
 ## Demo install
 
