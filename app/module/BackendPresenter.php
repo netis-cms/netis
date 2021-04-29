@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Base;
 
+use Drago\Authorization\Control\Authorization;
 use Nette\Application\AbortException;
 
 
 class BackendPresenter extends BasePresenter
 {
+	use Authorization;
+
 	/**
 	 * @throws AbortException
 	 */

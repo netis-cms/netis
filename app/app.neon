@@ -27,6 +27,7 @@ extensions:
 	- Drago\Localization\DI\TranslatorExtension(%appDir%/locale)
 	- Drago\Parameters\DI\ParametersExtension(%appDir%, %wwwDir%, %tempDir%)
 	- Drago\User\DI\GravatarExtension(80, 'mm', 'g')
+	authorization: Drago\Authorization\DI\AuthorizationExtension
 
 
 # automatic class registration

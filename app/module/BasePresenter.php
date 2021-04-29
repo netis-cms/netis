@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Base;
 
+use Drago\Authorization\Permission;
 use Drago\Localization\TranslatorAdapter;
 use Nette\Application\AbortException;
 use Nette\Application\UI\Presenter;
@@ -15,6 +16,7 @@ use Tracy\Debugger;
 abstract class BasePresenter extends Presenter
 {
 	use TranslatorAdapter;
+	use Permission;
 
 	#[Inject]
 	public SettingsRepository $settingsRepository;
