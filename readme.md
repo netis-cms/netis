@@ -9,7 +9,10 @@ Based on:
 
 ## Installation
 
-Git clone: ```git clone https://github.com/netis-cms/netis.git```
+Git clone:
+```
+git clone https://github.com/netis-cms/netis.git
+```
 
 Install composer: ```composer install```
 
