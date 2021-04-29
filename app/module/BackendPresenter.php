@@ -1,10 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Base;
 
+use Nette\Application\AbortException;
 
-class Backend extends Base
+
+class BackendPresenter extends BasePresenter
 {
+	/**
+	 * @throws AbortException
+	 */
 	protected function startup(): void
 	{
 		parent::startup();

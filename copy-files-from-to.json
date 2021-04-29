@@ -1,0 +1,72 @@
+{
+	"copyFiles": [
+		{
+			"from": "node_modules/bootstrap/dist/js/bootstrap.bundle.js",
+			"to": "assets/vendor/bootstrap/js/bootstrap.bundle.js"
+		},
+		{
+			"from": "node_modules/open-sans-fontface/open-sans.css",
+			"to": "assets/vendor/open-sans-fontface/css/open-sans.css"
+		},
+		{
+			"from": "node_modules/open-sans-fontface/fonts/**/*",
+			"to": "www/css/fonts"
+		},
+		{
+			"from": "node_modules/@fortawesome/fontawesome-free/css/all.css",
+			"to": "assets/vendor/fontawesome-free/css/fontawesome.css"
+		},
+		{
+			"from": "node_modules/@fortawesome/fontawesome-free/webfonts/*",
+			"to": "www/webfonts"
+		},
+		{
+			"from": "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+			"to": "assets/vendor/perfect-scrollbar/css/perfect-scrollbar.css"
+		},
+		{
+			"from": "node_modules/perfect-scrollbar/dist/perfect-scrollbar.js",
+			"to": "assets/vendor/perfect-scrollbar/js/perfect-scrollbar.js"
+		},
+		{
+			"from": "node_modules/sidebar-skeleton-compostrap/dist/css/sidebar.css",
+			"to": "assets/vendor/sidebar-skeleton-compostrap/css/sidebar.css"
+		},
+		{
+			"from": "node_modules/sidebar-skeleton-compostrap/dist/js/sidebar.js",
+			"to": "assets/vendor/sidebar-skeleton-compostrap/js/sidebar.js"
+		},
+		{
+			"from": "node_modules/sidebar-menu-compostrap/dist/css/sidebar.menu.css",
+			"to": "assets/vendor/sidebar-menu-compostrap/css/sidebar.menu.css"
+		},
+		{
+			"from": "node_modules/sidebar-menu-compostrap/dist/js/sidebar.menu.js",
+			"to": "assets/vendor/sidebar-menu-compostrap/js/sidebar.menu.js"
+		},
+		{
+			"from": "node_modules/dashboard-skeleton-compostrap/dist/css/dashboard.css",
+			"to": "assets/vendor/dashboard-skeleton-compostrap/css/dashboard.css"
+		},
+		{
+			"from": "node_modules/jquery/dist/jquery.js",
+			"to": "assets/vendor/jquery/js/jquery.js"
+		},
+		{
+			"from": "node_modules/nanobar/nanobar.js",
+			"to": "assets/vendor/nanobar/js/nanobar.js"
+		},
+		{
+			"from": "node_modules/nette-forms/src/assets/netteForms.js",
+			"to": "assets/vendor/nette/js/netteForms.js"
+		},
+		{
+			"from": "node_modules/nette.ajax.js/nette.ajax.js",
+			"to": "assets/vendor/nette.ajax.js/js/nette.ajax.js"
+		},
+		{
+			"from": "node_modules/live-form-validation/live-form-validation.js",
+			"to": "assets/vendor/live-form-validation.js/js/live-form-validation.js"
+		}
+	]
+}

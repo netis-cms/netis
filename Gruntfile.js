@@ -1,120 +1,62 @@
 module.exports = function (grunt) {
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        sass: {
-            dev: {
-                options: {
-                    style: 'expanded'
-                },
-                files: {
-                    'assets/css/bootstrap.css': ['assets/scss/base/bootstrap.scss'],
-                    'assets/css/base.css': ['assets/scss/base.scss'],
-                    'assets/css/install.css': ['assets/scss/install/install.scss'],
-                    'assets/css/sign.css': ['assets/scss/sign.scss']
-                }
-            }
-        },
-        copy: {
-            main: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'node_modules/@fortawesome/fontawesome-free/webfonts/',
-                        src: ['**'],
-                        dest: 'www/webfonts/'
-                    },
 
-                    {
-                        expand: true,
-                        cwd: 'node_modules/open-sans-fontface/fonts/',
-                        src: ['**'],
-                        dest: 'www/css/fonts/'
-                    }
-                ]
-            }
-        },
-        concat: {
-            css: {
-                files: {
-                    'assets/combined/css/base.css': [
-                        'assets/css/bootstrap.css',
-                        'assets/css/base.css',
-                        'node_modules/open-sans-fontface/open-sans.css',
-                        'node_modules/@fortawesome/fontawesome-free/css/all.css'
-                    ],
-                    'assets/combined/css/install.css':[
-                        'assets/combined/css/base.css',
-                        'assets/css/install.css'
-                    ],
-                    'assets/combined/css/sign.css': [
-                        'assets/combined/css/base.css',
-                        'assets/css/sign.css'
-                    ],
-                    'assets/combined/css/admin.css': [
-                        'assets/combined/css/base.css',
-                        'node_modules/perfect-scrollbar/css/perfect-scrollbar.css',
-                        'node_modules/sidebar-skeleton-compostrap/dist/css/sidebar.css"',
-                        'node_modules/sidebar-menu-2-compostrap/dist/css/sidebar.menu.css',
-                        'node_modules/user-logged-compostrap/dist/css/user.logged.css',
-                        'node_modules/dashboard-skeleton-compostrap/dist/css/dashboard.css'
-                    ],
-                },
-            },
-            js: {
-                files: {
-                    'assets/combined/js/app.js': [
-                        'node_modules/jquery/dist/jquery.js',
-                        'node_modules/bootstrap/dist/js/bootstrap.bundle.js',
-                        'vendor/nette/forms/src/assets/netteForms.js',
-                        'node_modules/nette.ajax.js/nette.ajax.js',
-                        'node_modules/live-form-validation/live-form-validation.js',
-                        'assets/js/spinner-btn.js'
-                    ],
-                    'assets/combined/js/admin.js': [
-                        'assets/combined/js/app.js',
-                        'node_modules/nanobar/nanobar.js',
-                        'node_modules/perfect-scrollbar/dist/perfect-scrollbar.js',
-                        'node_modules/sidebar-skeleton-compostrap/dist/js/sidebar.js',
-                        'node_modules/sidebar-menu-2-compostrap/dist/js/sidebar.menu.js'
-                    ],
-                },
-            }
-        },
-        uglify: {
-            dist: {
-                files: {
-                    'www/js/app.min.js':['assets/combined/js/app.js'],
-                    'www/js/admin.min.js': ['assets/combined/js/admin.js']
-                },
-            }
-        },
-        cssmin: {
-            dist: {
-                files: {
-                    'www/css/install.min.css': ['assets/combined/css/install.css'],
-                    'www/css/sign.min.css': ['assets/combined/css/sign.css'],
-                    'www/css/admin.min.css': ['assets/combined/css/admin.css']
-                },
-            }
-        },
-        processhtml: {
-            dist: {
-                files: {
-                    'app/module/install/presenter/templates/@layout.latte': ['app/module/install/presenter/templates/@dev.latte'],
-                    'app/module/admin/presenter/templates/Sign/@layout.latte': ['app/module/admin/presenter/templates/Sign/@dev.latte'],
-                    'app/module/admin/presenter/templates/Admin/@layout.latte': ['app/module/admin/presenter/templates/Admin/@dev.latte']
-                }
-            }
-        },
-    });
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-processhtml');
-    grunt.registerTask('grunt-sass', ['sass',]);
-    grunt.registerTask('grunt-run', [
-        'copy', 'concat', 'uglify', 'cssmin', 'processhtml'
-    ]);
+	require('load-grunt-tasks')(grunt);
+
+	grunt.initConfig({
+		pkg: grunt.file.readJSON('package.json'),
+		cssmin: {
+			dist: {
+				files: {
+					'www/css/dashboard.min.css': [
+						'assets/dist/css/bootstrap.css',
+						'assets/vendor/**/css/open-sans.css',
+						'assets/vendor/**/css/fontawesome.css',
+						'assets/vendor/**/css/perfect-scrollbar.css',
+						'assets/vendor/**/css/sidebar.css',
+						'assets/vendor/**/css/sidebar.menu.css',
+						'assets/vendor/**/css/dashboard.css',
+						'assets/dist/css/base.cs',
+					],
+					'www/css/install.min.css': [
+						'assets/dist/css/bootstrap.css',
+						'assets/vendor/**/css/open-sans.css',
+						'assets/vendor/**/css/fontawesome.css',
+						'assets/dist/css/install.css',
+						'assets/dist/css/base.css',
+					],
+					'www/css/sign.min.css': [
+						'assets/dist/css/bootstrap.css',
+						'assets/vendor/**/css/open-sans.css',
+						'assets/dist/css/sign.css',
+						'assets/dist/css/base.css',
+					],
+				}
+			}
+		},
+		uglify: {
+			dist: {
+				files: {
+					'www/js/dashboard.min.js': [
+						'assets/vendor/**/js/jquery.js',
+						'assets/vendor/**/js/bootstrap.bundle.js',
+						'assets/vendor/**/js/perfect-scrollbar.js',
+						'assets/vendor/**/js/nanobar.js',
+						'assets/vendor/**/js/sidebar.js',
+						'assets/vendor/**/sidebar.menu.js',
+					],
+					'www/js/app.min.js': [
+						'assets/vendor/**/js/jquery.js',
+						'assets/vendor/**/js/bootstrap.bundle.js',
+						'assets/vendor/**/js/netteForms.js',
+						'assets/vendor/**/js/nette.ajax.js',
+						'assets/vendor/**/js/live-form-validation.js',
+						'assets/dist/js/spinner.btn.js',
+					],
+				},
+			}
+		}
+	});
+	grunt.registerTask('run-minify', [
+		'cssmin', 'uglify'
+	]);
 };

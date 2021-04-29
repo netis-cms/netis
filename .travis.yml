@@ -1,9 +1,6 @@
 language: php
 php:
-  - 7.1
-  - 7.2
-  - 7.3
-  - 7.4
+  - 8.0
 
 before_install:
   - composer self-update
@@ -20,11 +17,9 @@ jobs:
       install:
         - travis_retry composer create-project nette/code-checker temp/code-checker ^3 --no-progress
       script:
-        - php temp/code-checker/code-checker --strict-types
+        - php temp/code-checker/code-checker --ignore js --strict-types
 
 
-    - name: Nette Coding Standard
-      install:
-        - travis_retry composer create-project nette/coding-standard temp/coding-standard ^2 --no-progress
+    - name: Static Analysis
       script:
-        - php temp/coding-standard/ecs check app --config temp/coding-standard/coding-standard-php71.yml
+        - composer run-script phpstan

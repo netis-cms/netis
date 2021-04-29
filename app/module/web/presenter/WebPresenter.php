@@ -1,14 +1,12 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Module\Web;
 
-use Base\Base;
-use Drago\Localization;
+use Base\BasePresenter;
 
 
-final class WebPresenter extends Base
+final class WebPresenter extends BasePresenter
 {
-	use Localization\TranslatorAdapter;
 }

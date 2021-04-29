@@ -9,6 +9,7 @@
   @include border-radius($border-radius);
 }
 
-.alert-install {
+.alert-install,
+.logo {
   font-weight: 600;
 }

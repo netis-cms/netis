@@ -4,7 +4,7 @@ parameters:
 
 # settings for sessions
 session:
-	name: netis-cms
+	name: drago-webapp
 	expiration: 14 days
 	savePath: '%tempDir%/sessions'
 
@@ -27,7 +27,6 @@ extensions:
 	- Drago\Localization\DI\TranslatorExtension(%appDir%/locale)
 	- Drago\Parameters\DI\ParametersExtension(%appDir%, %wwwDir%, %tempDir%)
 	- Drago\User\DI\GravatarExtension(80, 'mm', 'g')
-	- Drago\Application\UI\DI\FactoryExtension
 
 
 # automatic class registration
@@ -35,5 +34,4 @@ search:
 	section:
 		in: %appDir%/src
 		classes:
-			- *Entity
 			- *Repository

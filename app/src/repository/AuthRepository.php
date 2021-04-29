@@ -1,23 +1,24 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Repository;
 
-use Dibi;
-use Nette\Security;
+use DateTimeImmutable;
+use Dibi\Exception;
+use Nette\Security\AuthenticationException;
+use Nette\Security\Authenticator;
+use Nette\Security\Passwords;
+use Nette\Security\SimpleIdentity;
 
 
-class AuthRepository implements Security\IAuthenticator
+class AuthRepository implements Authenticator
 {
-	/** @var UsersRepository */
-	private $usersRepository;
-
-	/** @var Security\Passwords */
-	private $password;
+	private UsersRepository $usersRepository;
+	private Passwords $password;
 
 
-	public function __construct(UsersRepository $usersRepository, Security\Passwords $password)
+	public function __construct(UsersRepository $usersRepository, Passwords $password)
 	{
 		$this->usersRepository = $usersRepository;
 		$this->password = $password;
@@ -25,32 +26,30 @@ class AuthRepository implements Security\IAuthenticator
 
 
 	/**
-	 * @throws Security\AuthenticationException
-	 * @throws Dibi\Exception
+	 * @throws AuthenticationException
+	 * @throws Exception
 	 */
-	public function authenticate(array $credentials): Security\IIdentity
+	public function authenticate(string $email, string $password): SimpleIdentity
 	{
-		[$email, $password] = $credentials;
-
 		// Find user.
 		$repository = $this->usersRepository;
-		$user = $repository->findBy($email);
+		$user = $repository->find($email);
 
 		// User not found.
 		if (!$user) {
-			throw new Security\AuthenticationException('User not found.', self::IDENTITY_NOT_FOUND);
+			throw new AuthenticationException('User not found.', self::IDENTITY_NOT_FOUND);
 
-			// Invalid password.
+		// Invalid password.
 		} elseif (!$this->password->verify($password, $user->password)) {
-			throw new Security\AuthenticationException('The password is incorrect.', self::INVALID_CREDENTIAL);
+			throw new AuthenticationException('The password is incorrect.', self::INVALID_CREDENTIAL);
 
 
-			// Re-hash password.
+		// Re-hash password.
 		} elseif ($this->password->needsRehash($user->password)) {
-			$user->setPassword($this->password->hash($password));
-			$repository->save($user);
+			$user->password = $this->password->hash($password);
+			$repository->put($user->toArray());
 		}
-		unset($user->password);
-		return new Security\Identity($user->userId, null, $user);
+		$user->offsetUnset('password');
+		return new SimpleIdentity($user->id, null, $user);
 	}
 }

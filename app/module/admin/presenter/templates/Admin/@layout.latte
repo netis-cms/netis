@@ -1,1 +1,191 @@
-{* use Grunt to generate the template *}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	{if $mode === false}
+		<link rel="stylesheet" href="{$basePath}/node_modules/bootstrap/dist/css/bootstrap.css">
+		<link rel="stylesheet" href="{$basePath}/node_modules/open-sans-fontface/open-sans.css">
+		<link rel="stylesheet" href="{$basePath}/node_modules/@fortawesome/fontawesome-free/css/all.css">
+		<link rel="stylesheet" href="{$basePath}/node_modules/perfect-scrollbar/css/perfect-scrollbar.css">
+		<link rel="stylesheet" href="{$basePath}/node_modules/sidebar-menu-compostrap/dist/css/sidebar.menu.css">
+		<link rel="stylesheet" href="{$basePath}/node_modules/sidebar-skeleton-compostrap/dist/css/sidebar.css">
+		<link rel="stylesheet" href="{$basePath}/node_modules/dashboard-skeleton-compostrap/dist/css/dashboard.css">
+		<link rel="stylesheet" href="{$basePath}/assets/dist/css/base.css">
+
+		{else}
+		<link rel="stylesheet" href="{$basePath}/www/css/dashboard.min.css">
+	{/if}
+
+	<title>{include subtitle|stripHtml|firstUpper}{ifset $settings} &bullet; {$settings->website}{/ifset}</title>
+
+</head>
+
+<body class="bg-light">
+
+<header>
+	<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+
+		<!-- title -->
+		<a class="navbar-brand" href="#"><i class="fas fa-mug-hot mr-1 text-purple"></i>
+			<span class="text-purple text-bolder">{$settings->website}</span>
+		</a>
+
+		<!-- sidebar toggle -->
+		<button class="navbar-toggler btn btn-link border-0" type="button" id="sidebar" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- navbar navigation -->
+		<div class="collapse navbar-collapse">
+
+			<!-- breadcrumb -->
+			<ul class="navbar-nav navbar-nav-breadcrumb">
+				<li class="nav-item"><a class="nav-link" n:href=":Admin:Admin:">{_'subtitle'}</a></li>
+				<li n:if="$module !== 'Admin:Admin:default'" class="nav-item">
+					<a n:class="'nav-link', $module !== 'Admin:Admin:default' ? 'disabled'" href="#">{include subtitle|stripHtml|firstUpper}</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</header>
+
+<div class="d-flex wrapper wrapper-navbar-used wrapper-navbar-fixed">
+	<nav role="navigation" class="sidebar sidebar-bg-white sidebar-rounded-top-right shadow-sm" id="navigation">
+
+		<!-- sidebar -->
+		<div class="sidebar-menu">
+
+			<!-- menu fixed -->
+			<div class="sidebar-menu-fixed">
+
+				<!-- menu scrollbar -->
+				<div class="scrollbar scrollbar-use-navbar scrollbar-bg-white">
+
+					<!-- menu -->
+					<ul class="list list-unstyled list-bg-white mb-0">
+
+						<li class="list-item">
+
+							<!-- list title -->
+							<p class="list-title text-uppercase">{_'category.logged'}</p>
+
+							<!-- list items, first level -->
+							<ul class="list-unstyled">
+								<li>
+									<a href="#" class="list-link link-arrow">
+										<span class="list-icon"><i class="far fa-user"></i></span>{$user->identity->username}
+									</a>
+
+									<!-- list items, second level -->
+									<ul class="list-unstyled list-hidden">
+										<li><a href="{link :Admin:Sign:out}" class="list-link">{_'user.logout'}</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+
+					<!-- menu -->
+					<ul class="list list-unstyled list-bg-white list-icon-purple mb-0">
+
+						<!-- multi-level dropdown menu -->
+						<li class="list-item">
+
+							<!-- list title -->
+							<p class="list-title text-uppercase">{_'category.language'}</p>
+
+							<!-- list items -->
+							<ul class="list-unstyled">
+
+								<!-- translate -->
+								<li>
+									<a href="#" n:class="'list-link link-arrow', $presenter->isLinkCurrent('this') ? link-current">
+										<span class="list-icon"><i class="fas fa-globe"></i></span>Translate
+									</a>
+
+									<!-- list items, second level -->
+									<ul class="list-unstyled list-hidden">
+										<li><a n:href="this, 'lang' => 'cs'" n:class="list-link, $presenter->isLinkCurrent('this', ['lang' => 'cs']) ? link-current">Czech</a></li>
+										<li><a n:href="this, 'lang' => 'en'" n:class="list-link, $presenter->isLinkCurrent('this', ['lang' => 'en']) ? link-current">English</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+
+					<!-- system -->
+					<ul class="list list-unstyled list-bg-white list-icon-purple mb-0">
+
+						<li class="list-item">
+
+							<!-- list title -->
+							<p class="list-title text-uppercase">{_'category.system'}</p>
+
+							<!-- list items, first level -->
+							<ul class="list-unstyled">
+								<li>
+									<a n:href=":Admin:Admin:" n:class="'list-link', $presenter->isLinkCurrent(':Admin:Admin:default') ? 'link-current'">
+										<span class="list-icon"><i class="fas fa-mug-hot"></i></span>{_'menu.admin'}
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+
+		<!-- content -->
+		<main role="main">
+			{snippet message}
+				<div n:foreach="$flashes as $flash" n:class="'alert fade show border-0 rounded', 'alert-' . $flash->type">
+					<div class="alert-dismissible">{_$flash->message}
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+			{/snippet}
+
+			{include content}
+		</main>
+
+		<!-- license rights, do not delete this piece of code -->
+		<footer class="text-right mt-3 mr-3 mb-3">
+			<p class="text-silver">Code licensed
+				<a href="https://github.com/compostrap/dashboard-skeleton/blob/master/license.md" class="text-muted" target="_blank" rel="license noopener">MIT</a>
+			</p>
+		</footer>
+	</div>
+</div>
+
+{if $mode === false}
+	<script src="{$basePath}/node_modules/jquery/dist/jquery.js"></script>
+	<script src="{$basePath}/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+	<script src="{$basePath}/node_modules/perfect-scrollbar/dist/perfect-scrollbar.js"></script>
+	<script src="{$basePath}/node_modules/nanobar/nanobar.js"></script>
+	<script src="{$basePath}/node_modules/sidebar-skeleton-compostrap/dist/js/sidebar.js"></script>
+	<script src="{$basePath}/node_modules/sidebar-menu-compostrap/dist/js/sidebar.menu.js"></script>
+
+{else}
+	<script src="{$basePath}/www/js/dashboard.min.js"></script>
+{/if}
+
+<script>
+	$(function() {
+		new Nanobar().go(100);
+		new PerfectScrollbar('.scrollbar', {
+			wheelSpeed: 0.3
+		});
+	});
+</script>
+
+</body>
+</html>

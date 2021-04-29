@@ -1,17 +1,17 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Repository;
 
-use Drago\Database;
-use Entity\SettingsEntity;
+use App\Entity\SettingsEntity;
+use Drago\Database\Connect;
+use Drago\Database\Repository;
 
 
-class SettingsRepository extends Database\Connect
+class SettingsRepository extends Connect
 {
-	use Database\Repository;
+	use Repository;
 
-	/** @var string table name */
-	private $table = SettingsEntity::TABLE;
+	public string $table = SettingsEntity::TABLE;
 }

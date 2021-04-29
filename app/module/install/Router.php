@@ -1,17 +1,16 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Module\Install;
 
-use Nette;
 use Nette\Application\Routers\RouteList;
+use Nette\StaticClass;
 
 
 class Router
 {
-	use Nette\StaticClass;
-
+	use StaticClass;
 
 	public static function create(): RouteList
 	{

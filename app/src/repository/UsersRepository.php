@@ -1,44 +1,32 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Repository;
 
-use Dibi;
-use Drago\Database;
-use Entity\UsersEntity;
+use App\Entity\UsersEntity;
+use Dibi\Exception;
+use Drago\Database\Connect;
+use Drago\Database\Repository;
+use Nette\SmartObject;
 
 
-class UsersRepository extends Database\Connect
+class UsersRepository extends Connect
 {
-	use Database\Repository;
+	use SmartObject;
+	use Repository;
 
-	/** @var string table name */
-	private $table = UsersEntity::TABLE;
-
-	/** @var int primary id */
-	private $primaryId = UsersEntity::USER_ID;
+	public string $table = UsersEntity::TABLE;
+	public string $primary = UsersEntity::PRIMARY;
 
 
 	/**
 	 * Find user by email.
-	 * @return array|UsersEntity|null
-	 * @throws Dibi\Exception
+	 * @throws Exception
 	 */
-	public function findBy(string $email)
+	public function find(string $email): array|UsersEntity|null
 	{
-		return $this->discover(UsersEntity::EMAIL, $email)
+		return $this->discover(UsersEntity::EMAIL, $email)->execute()
 			->setRowClass(UsersEntity::class)->fetch();
-	}
-	
-	/**
-	 * Save record.
-	 * @return Dibi\Result|int|null
-	 * @throws Dibi\Exception
-	 */
-	public function save(UsersEntity $entity)
-	{
-		$id = $entity->getUserId();
-		return $this->put($entity, $id);
 	}
 }

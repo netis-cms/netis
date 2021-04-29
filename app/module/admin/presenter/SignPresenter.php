@@ -1,45 +1,40 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Module\Admin;
 
-use Drago\Application\UI\Factory;
-use Drago\Localization\TranslatorAdapter;
+use Base\BasePresenter;
 use Drago\User\Gravatar;
-use Nette\Application\UI;
+use Exception;
+use Nette\Application\AbortException;
+use Nette\Application\UI\Form;
+use Nette\Security\AuthenticationException;
+use Nette\Security\SimpleIdentity;
 
 
 /**
  * Sing-in user.
  */
-final class SignPresenter extends UI\Presenter
+final class SignPresenter extends BasePresenter
 {
-	use TranslatorAdapter;
-
-	/**
-	 * @var Gravatar
-	 * @inject
-	 */
-	public $gravatar;
-
-	/**
-	 * @var Factory
-	 * @inject
-	 */
-	public $factory;
-
-
-	protected function startup(): void
-	{
-		parent::startup();
-		$this->setLayout('dev');
+	public function __construct(
+		private Gravatar $gravatar,
+	) {
+		parent::__construct();
 	}
 
 
+	/**
+	 * @throws Exception
+	 */
 	protected function beforeRender(): void
 	{
 		parent::beforeRender();
+
+		/** @var SimpleIdentity $user */
 		$user = $this->user->identity;
-		if ($user) {
+		if ($user !== null) {
 			$welcome = 'login.welcome.back';
 			$email = $user->data['email'];
 		}
@@ -48,7 +43,7 @@ final class SignPresenter extends UI\Presenter
 		$gravatar->setEmail($email ?? 'someone@somewhere.com');
 		$gravatar->setSize(120);
 
-		$this->template->welcome = isset($welcome) ? $welcome : 'login.welcome';
+		$this->template->welcome = $welcome ?? 'login.welcome';
 		$this->template->gravatar = $this->gravatar->getGravatar();
 	}
 
@@ -56,22 +51,22 @@ final class SignPresenter extends UI\Presenter
 	public function renderIn(): void
 	{
 		$this->template->form = $this['signIn'];
-		if($this->isAjax()) {
+		if ($this->isAjax()) {
 			$this->redrawControl('sign-in');
 		}
 	}
 
 
-	protected function createComponentSignIn(): UI\Form
+	protected function createComponentSignIn(): Form
 	{
-		$form = $this->factory->create();
+		$form = new Form;
 		$form->setTranslator($this->getTranslator());
 
 		$form->addText('email', 'form.email')
 			->setHtmlAttribute('email')
 			->setHtmlAttribute('placeholder', 'form.email.full')
 			->setRequired('form.required')
-			->addRule(UI\Form::EMAIL, 'form.email.rule');
+			->addRule(Form::EMAIL, 'form.email.rule');
 
 		$form->addPassword('password', 'form.password')
 			->setHtmlAttribute('placeholder', 'form.password.full')
@@ -84,15 +79,15 @@ final class SignPresenter extends UI\Presenter
 
 
 	/**
-	 * @throws \Nette\Application\AbortException
+	 * @throws AbortException
 	 */
-	public function success(UI\Form $form, $values): void
+	public function success(Form $form, $values): void
 	{
 		try {
 			$this->user->login($values->email, $values->password);
 			$this->redirect(':Admin:Admin:');
 
-		} catch (\Nette\Security\AuthenticationException $e) {
+		} catch (AuthenticationException $e) {
 			$form->addError('form.error.' . $e->getCode());
 			if ($this->isAjax()) {
 				$this->redrawControl('errors');
@@ -103,9 +98,9 @@ final class SignPresenter extends UI\Presenter
 
 	/**
 	 * Logout user from application.
-	 * @throws \Nette\Application\AbortException
+	 * @throws AbortException
 	 */
-	public function actionOut()
+	public function actionOut(): void
 	{
 		$this->user->logout();
 		$this->redirect(':Admin:Sign:in');
