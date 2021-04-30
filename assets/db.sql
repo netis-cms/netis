@@ -87,25 +87,6 @@ INSERT INTO `roles` (`id`, `name`, `parent`) VALUES
 (1,	'guest',	0),
 (2,	'member',	1);
 
--- ---- create trigger:
-DELIMITER ;;
-
-CREATE TRIGGER `insert` BEFORE INSERT ON `roles` FOR EACH ROW
-BEGIN
-    IF (new.name = 'admin') THEN
-    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'This name is not allowed for the role.';
-END IF;
-END;;
-
-CREATE TRIGGER `update` BEFORE UPDATE ON `roles` FOR EACH ROW
-BEGIN
-    IF (new.name = 'admin') THEN
-    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'The role is not allowed to change to this name.';
-END IF;
-END;;
-
-DELIMITER ;
-
 -- ---- create table:
 CREATE TABLE `settings` (
     `name` varchar(100) NOT NULL,
