@@ -28,7 +28,8 @@ CREATE TABLE `permissions` (
 INSERT INTO `permissions` (`id`, `role_id`, `resource_id`, `privilege_id`, `allowed`) VALUES
 (1,	1,	1,	1,	'yes'),
 (2,	1,	2,	2,	'yes'),
-(3,	3,	2,	1,	'yes');
+(3,	1,	3,	1,	'yes'),
+(4,	3,	2,	1,	'yes');
 
 -- ---- create view:
 CREATE TABLE `permissions_roles_view` (
