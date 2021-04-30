@@ -24,6 +24,12 @@ CREATE TABLE `permissions` (
     CONSTRAINT `permissions_ibfk_3` FOREIGN KEY (`privilege_id`) REFERENCES `privileges` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ---- insert values to table:
+INSERT INTO `permissions` (`id`, `role_id`, `resource_id`, `privilege_id`, `allowed`) VALUES
+(1,	1,	1,	1,	'yes'),
+(2,	1,	2,	2,	'yes'),
+(3,	1,	3,	1,	'yes');
+
 -- ---- create view:
 CREATE TABLE `permissions_roles_view` (
     `id` int(11) unsigned,
@@ -51,8 +57,7 @@ CREATE TABLE `privileges` (
 -- ---- insert values to table:
 INSERT INTO `privileges` (`id`, `name`) VALUES
 (1,	'*all'),
-(2,	'default'),
-(3,	'submit');
+(2,	'default');
 
 -- ---- create table:
 CREATE TABLE `resources` (
@@ -128,7 +133,8 @@ CREATE TABLE `users_roles` (
 
 -- ---- create view:
 CREATE TABLE `users_roles_view` (
-    `role` varchar(40)
+    `role` varchar(40),
+    `user_id` int(11) unsigned
 );
 
 -- ---- create query:
@@ -147,5 +153,5 @@ from (((`permissions` `p`
 
 -- ---- create query:
 DROP TABLE IF EXISTS `users_roles_view`;
-CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `users_roles_view` AS select `r`.`name` AS `role`
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `users_roles_view` AS select `r`.`name` AS `role`,`u`.`user_id` AS `user_id`
 from (`users_roles` `u` left join `roles` `r` on(`u`.`role_id` = `r`.`id`));

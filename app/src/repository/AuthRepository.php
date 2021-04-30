@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Repository;
 
-use DateTimeImmutable;
 use Dibi\Exception;
 use Nette\Security\AuthenticationException;
 use Nette\Security\Authenticator;
@@ -14,14 +13,11 @@ use Nette\Security\SimpleIdentity;
 
 class AuthRepository implements Authenticator
 {
-	private UsersRepository $usersRepository;
-	private Passwords $password;
-
-
-	public function __construct(UsersRepository $usersRepository, Passwords $password)
-	{
-		$this->usersRepository = $usersRepository;
-		$this->password = $password;
+	public function __construct(
+		private UsersRepository $usersRepository,
+		private Passwords $password,
+		private UsersRolesRepository $usersRolesRepository,
+	) {
 	}
 
 
@@ -50,6 +46,7 @@ class AuthRepository implements Authenticator
 			$repository->put($user->toArray());
 		}
 		$user->offsetUnset('password');
-		return new SimpleIdentity($user->id, null, $user);
+		$roles = $this->usersRolesRepository->getUserRoles($user->id);
+		return new SimpleIdentity($user->id, $roles, $user);
 	}
 }
