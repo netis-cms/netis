@@ -28,7 +28,7 @@ CREATE TABLE `permissions` (
 INSERT INTO `permissions` (`id`, `role_id`, `resource_id`, `privilege_id`, `allowed`) VALUES
 (1,	1,	1,	1,	'yes'),
 (2,	1,	2,	2,	'yes'),
-(3,	1,	3,	1,	'yes');
+(3,	3,	2,	1,	'yes');
 
 -- ---- create view:
 CREATE TABLE `permissions_roles_view` (
@@ -57,7 +57,8 @@ CREATE TABLE `privileges` (
 -- ---- insert values to table:
 INSERT INTO `privileges` (`id`, `name`) VALUES
 (1,	'*all'),
-(2,	'default');
+(2,	'default'),
+(3,	'submit');
 
 -- ---- create table:
 CREATE TABLE `resources` (
@@ -85,7 +86,8 @@ CREATE TABLE `roles` (
 -- ---- insert values to table:
 INSERT INTO `roles` (`id`, `name`, `parent`) VALUES
 (1,	'guest',	0),
-(2,	'member',	1);
+(2,	'member',	1),
+(3,	'admin',	2);
 
 -- ---- create table:
 CREATE TABLE `settings` (

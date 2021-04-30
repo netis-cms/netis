@@ -7,6 +7,7 @@ namespace Module\Install\Control;
 use App\Entity\UsersEntity;
 use Dibi\Connection;
 use Dibi\Exception;
+use Drago\Authorization\Entity\UsersRolesEntity;
 use Drago\Localization\Translator;
 use Drago\Utils\ExtraArrayHash;
 use Module\Install\Service\Steps;
@@ -79,6 +80,10 @@ final class AccountControl extends Control
 
 		// Insert records into the database.
 		$this->db->insert(UsersEntity::TABLE, $data->toArray())->execute();
+		$this->db->insert(UsersRolesEntity::TABLE, [
+			UsersRolesEntity::USER_ID => 1,
+			UsersRolesEntity::ROLE_ID => 3,
+		])->execute();
 
 		// Save the installation step.
 		$this->steps->cache->save(Steps::STEP, ['step' => 5]);
