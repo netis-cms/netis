@@ -43,9 +43,9 @@
 
 			<!-- breadcrumb -->
 			<ul class="navbar-nav navbar-nav-breadcrumb">
-				<li class="nav-item"><a class="nav-link" n:href=":Admin:Admin:">{_'subtitle'}</a></li>
+				<li class="nav-item"><a class="nav-link" n:href=":Admin:Admin:">{_'subtitle.default'}</a></li>
 				<li n:if="$module !== 'Admin:Admin:default'" class="nav-item">
-					<a n:class="'nav-link', $module !== 'Admin:Admin:default' ? 'disabled'" href="#">{include subtitle|stripHtml|firstUpper}</a>
+					<a n:class="'nav-link', $module !== 'Admin:Admin:default' ? disabled" href="#">{include subtitle|stripHtml|firstUpper}</a>
 				</li>
 			</ul>
 		</div>
@@ -127,9 +127,22 @@
 							<!-- list items, first level -->
 							<ul class="list-unstyled">
 								<li>
-									<a n:href=":Admin:Admin:" n:class="'list-link', $presenter->isLinkCurrent(':Admin:Admin:default') ? 'link-current'">
+									<a n:href=":Admin:Admin:" n:class="'list-link', $presenter->isLinkCurrent(':Admin:Admin:default') ? link-current">
 										<span class="list-icon"><i class="fas fa-mug-hot"></i></span>{_'menu.admin'}
 									</a>
+								</li>
+								<li>
+									<a href="#" n:class="'list-link link-arrow', $presenter->isLinkCurrent(':Admin:AccessControl:*') ? link-current">
+										<span class="list-icon"><i class="fas fa-cog"></i></span>Access control
+									</a>
+
+									<!-- list items, second level -->
+									<ul class="list-unstyled list-hidden">
+										<li><a n:href=":Admin:AccessControl:permissions" n:class="'list-link', $presenter->isLinkCurrent(':Admin:AccessControl:permissions') ? link-current">Permissions</a></li>
+										<li><a n:href=":Admin:AccessControl:roles" n:class="'list-link', $presenter->isLinkCurrent(':Admin:AccessControl:roles') ? link-current">Roles</a></li>
+										<li><a n:href=":Admin:AccessControl:resources" n:class="'list-link', $presenter->isLinkCurrent(':Admin:AccessControl:resources') ? link-current">Resources</a></li>
+										<li><a n:href=":Admin:AccessControl:privileges" n:class="'list-link', $presenter->isLinkCurrent(':Admin:AccessControl:privileges') ? link-current">Privileges</a></li>
+									</ul>
 								</li>
 							</ul>
 						</li>
@@ -173,10 +186,16 @@
 	<script src="{$basePath}/node_modules/nanobar/nanobar.js"></script>
 	<script src="{$basePath}/node_modules/sidebar-skeleton-compostrap/dist/js/sidebar.js"></script>
 	<script src="{$basePath}/node_modules/sidebar-menu-compostrap/dist/js/sidebar.menu.js"></script>
+	<script src="{$basePath}/node_modules/nette-forms/src/assets/netteForms.js"></script>
+	<script src="{$basePath}/node_modules/live-form-validation/live-form-validation.js"></script>
+	<script src="{$basePath}/node_modules/nette.ajax.js/nette.ajax.js"></script>
 
 {else}
 	<script src="{$basePath}/www/js/dashboard.min.js"></script>
 {/if}
+
+{* js for reset ajax forms *}
+{control resetControl}
 
 <script>
 	$(function() {
@@ -184,6 +203,16 @@
 		new PerfectScrollbar('.scrollbar', {
 			wheelSpeed: 0.3
 		});
+
+		// live form validation
+		LiveForm.setOptions({
+			messageErrorClass: 'form-errors-live',
+			messageErrorPrefix: '',
+			wait: 500
+		});
+
+		// nette ajax
+		$.nette.init();
 	});
 </script>
 

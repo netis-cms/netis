@@ -22,4 +22,10 @@ class BackendPresenter extends BasePresenter
 			$this->redirect(':Admin:Sign:in');
 		}
 	}
+
+
+	protected function beforeRender(): void
+	{
+		$this->template->module = $this->getName() . ':' . $this->getView();
+	}
 }
