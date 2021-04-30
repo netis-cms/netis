@@ -24,7 +24,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ---- create table:
-CREATE TABLE `acl` (
+CREATE TABLE `authorization` (
     `role_id` int(11) unsigned NOT NULL,
     `user_id` int(11) unsigned NOT NULL,
      KEY `user` (`user_id`),
@@ -32,6 +32,9 @@ CREATE TABLE `acl` (
      CONSTRAINT `acl_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
      CONSTRAINT `acl_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ---- create view:
+CREATE TABLE `authorization_view` (`role` varchar(40));
 
 -- ---- create table:
 CREATE TABLE `permissions` (
@@ -75,7 +78,9 @@ CREATE TABLE `privileges` (
 
 -- ---- insert values to table:
 INSERT INTO `privileges` (`id`, `name`) VALUES
-(1,	'*all');
+(1,	'*all'),
+(2,	'default'),
+(2,	'submit');
 
 -- ---- create table:
 CREATE TABLE `resources` (
@@ -84,6 +89,12 @@ CREATE TABLE `resources` (
     PRIMARY KEY (`id`),
     UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ---- insert values to table:
+INSERT INTO `resources` (`id`, `name`) VALUES
+(1,	'Web:Web'),
+(2,	'Admin:Admin'),
+(3,	'Admin:Sign');
 
 -- ---- create table:
 CREATE TABLE `roles` (
@@ -117,6 +128,10 @@ BEGIN
 END;;
 
 DELIMITER ;
+
+-- ---- create query:
+DROP TABLE IF EXISTS `authorization_view`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `authorization_view` AS select `r`.`name` AS `role` from (`authorization` `a` left join `roles` `r` on(`a`.`role_id` = `r`.`id`));
 
 -- ---- create query:
 DROP TABLE IF EXISTS `permissions_roles_view`;
