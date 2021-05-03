@@ -13,8 +13,8 @@ use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
 use Nette\Bridges\ApplicationLatte\Template;
 use Nette\DI\Config\Loader;
+use Nette\InvalidStateException;
 use Nette\Utils\FileSystem;
-use Tracy\Debugger;
 
 
 /**
@@ -33,12 +33,15 @@ final class DatabaseControl extends Control
 
 	public function render(): void
 	{
-		/** @var Template $template */
-		$template = $this->template;
-		$template->setFile(__DIR__ . '/../templates/Control.database.latte');
-		$template->setTranslator($this->translator);
-		$template->form = $this['database'];
-		$template->render();
+		if ($this->template instanceof Template) {
+			$template = $this->template;
+			$template->setFile(__DIR__ . '/../templates/Control.database.latte');
+			$template->setTranslator($this->translator);
+			$template->form = $this['database'];
+			$template->render();
+		} else {
+			throw new InvalidStateException('Control is without template.');
+		}
 	}
 
 
