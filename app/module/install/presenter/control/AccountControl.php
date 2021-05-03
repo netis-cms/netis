@@ -14,6 +14,7 @@ use Module\Install\Service\Steps;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
 use Nette\Bridges\ApplicationLatte\Template;
+use Nette\InvalidStateException;
 use Nette\Security\Passwords;
 
 
@@ -33,12 +34,15 @@ final class AccountControl extends Control
 
 	public function render(): void
 	{
-		/** @var Template $template */
-		$template = $this->template;
-		$template->setFile(__DIR__ . '/../templates/Control.account.latte');
-		$template->setTranslator($this->translator);
-		$template->form = $this['account'];
-		$template->render();
+		if ($this->template instanceof Template) {
+			$template = $this->template;
+			$template->setFile(__DIR__ . '/../templates/Control.account.latte');
+			$template->setTranslator($this->translator);
+			$template->form = $this['account'];
+			$template->render();
+		} else {
+			throw new InvalidStateException('Control is without template.');
+		}
 	}
 
 
