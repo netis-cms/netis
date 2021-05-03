@@ -10,6 +10,7 @@ use Module\Install\Service\Steps;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
 use Nette\Bridges\ApplicationLatte\Template;
+use Nette\InvalidStateException;
 
 
 /**
@@ -27,12 +28,15 @@ final class TablesControl extends Control
 
 	public function render(): void
 	{
-		/** @var Template $template */
-		$template = $this->template;
-		$template->setFile(__DIR__ . '/../templates/Control.tables.latte');
-		$template->setTranslator($this->translator);
-		$template->form = $this['tables'];
-		$template->render();
+		if ($this->template instanceof Template) {
+			$template = $this->template;
+			$template->setFile(__DIR__ . '/../templates/Control.tables.latte');
+			$template->setTranslator($this->translator);
+			$template->form = $this['tables'];
+			$template->render();
+		} else {
+			throw new InvalidStateException('Control is without template.');
+		}
 	}
 
 
