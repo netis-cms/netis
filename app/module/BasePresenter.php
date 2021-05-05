@@ -16,7 +16,6 @@ use Tracy\Debugger;
 abstract class BasePresenter extends Presenter
 {
 	use TranslatorAdapter;
-	use Authorization;
 
 	#[Inject]
 	public SettingsRepository $settingsRepository;
@@ -30,6 +29,19 @@ abstract class BasePresenter extends Presenter
 		parent::startup();
 		if (is_dir(__DIR__ . '/install')) {
 			$this->redirect(':Install:Install:');
+		}
+
+		$presenter = $this->getPresenter();
+		$user = $this->getUser();
+		$signal = $presenter->getSignal();
+		if ((!empty($signal[0])) && isset($signal[1])) {
+			if (!$user->isAllowed($presenter->getName(), $signal[0])) {
+				$this->error('Forbidden', 403);
+			}
+		} else {
+			if (!$user->isAllowed($presenter->getName(), $signal[1] ?? $presenter->getAction())) {
+				$this->error('Forbidden', 403);
+			}
 		}
 
 		$this->template->mode = Debugger::$productionMode;
