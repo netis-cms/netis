@@ -110,6 +110,7 @@ CREATE TABLE `users` (
 CREATE TABLE `users_roles` (
     `role_id` int(11) unsigned NOT NULL,
     `user_id` int(11) unsigned NOT NULL,
+    UNIQUE KEY `role_id_user_id` (`role_id`,`user_id`),
     KEY `user` (`user_id`),
     KEY `role` (`role_id`),
     CONSTRAINT `users_roles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
