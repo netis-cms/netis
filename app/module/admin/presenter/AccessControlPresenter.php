@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Module\Admin;
 
 use Base\BackendPresenter;
+use Drago\Authorization\Control\AccessControl;
 use Drago\Authorization\Control\PermissionsControl;
 use Drago\Authorization\Control\PrivilegesControl;
 use Drago\Authorization\Control\ResourcesControl;
@@ -58,6 +59,18 @@ final class AccessControlPresenter extends BackendPresenter
 		$control = $this->privilegesControl;
 		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/privileges.add.latte');
 		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/privileges.records.latte', 'records');
+		return $control;
+	}
+
+
+	/**
+	 * @throws FileNotFoundException
+	 */
+	protected function createComponentAccessControl(): AccessControl
+	{
+		$control = $this->accessControl;
+		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/users.add.latte');
+		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/users.records.latte', 'records');
 		return $control;
 	}
 }
