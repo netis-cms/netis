@@ -119,8 +119,9 @@ CREATE TABLE `users_roles` (
 
 -- ---- create view:
 CREATE TABLE `users_roles_view` (
-    `role` varchar(40),
-    `user_id` int(11) unsigned
+    `user_id` int(11) unsigned, 
+    `username` varchar(50), 
+    `role` varchar(40)
 );
 
 -- ---- create query:
@@ -139,5 +140,7 @@ from (((`permissions` `p`
 
 -- ---- create query:
 DROP TABLE IF EXISTS `users_roles_view`;
-CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `users_roles_view` AS select `r`.`name` AS `role`,`u`.`user_id` AS `user_id`
-from (`users_roles` `u` left join `roles` `r` on(`u`.`role_id` = `r`.`id`));
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `users_roles_view` AS select `u`.`id` AS `user_id`,`u`.`username` AS `username`,`r`.`name` AS `role`
+from ((`users_roles` `ur`
+    left join `roles` `r` on(`r`.`id` = `ur`.`role_id`))
+    left join `users` `u` on(`u`.`id` = `ur`.`user_id`));
