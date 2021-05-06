@@ -119,8 +119,8 @@ CREATE TABLE `users_roles` (
 
 -- ---- create view:
 CREATE TABLE `users_roles_view` (
-    `user_id` int(11) unsigned, 
-    `username` varchar(50), 
+    `user_id` int(11) unsigned,
+    `username` varchar(50),
     `role` varchar(40)
 );
 
