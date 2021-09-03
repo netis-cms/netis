@@ -1,0 +1,11 @@
+# docker version
+version: '3.7'
+
+# docker service
+services:
+
+
+  # php server
+  php:
+    environment:
+      - NETTE_DEBUG=1

@@ -1,0 +1,32 @@
+{* database server settings *}
+<form n:name="database" class="ajax form-install">
+
+	{* form errors *}
+	<ul n:snippet="errors" n:if="$form->hasErrors()" class="form-errors">
+		<li n:foreach="$form->errors as $error">{_$error}</li>
+	</ul>
+
+	{* input group *}
+	<div class="form-floating mb-3">
+		<input n:name="host" class="form-control">
+		<label n:name="host" class="form-label" />
+	</div>
+	<div class="form-floating mb-3">
+		<input n:name="user" class="form-control">
+		<label n:name="user" class="form-label" />
+	</div>
+
+	{* input group *}
+	<div class="form-floating mb-3">
+		<input n:name="database" class="form-control">
+		<label n:name="database" class="form-label" />
+	</div>
+	<div class="form-floating mb-3">
+		<input n:name="password" class="form-control">
+		<label n:name="password" class="form-label" />
+	</div>
+
+	{* send button *}
+	<button n:name="send" class="btn btn-secondary" data-btn-submit>{_'form.send.db'}</button>
+
+</form>

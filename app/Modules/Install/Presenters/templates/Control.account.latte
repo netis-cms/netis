@@ -1,0 +1,32 @@
+{* Add administrator account *}
+<form n:name="account" class="ajax form-install">
+
+	{* form errors *}
+	<ul n:snippet="errors" n:if="$form->hasErrors()" class="form-errors">
+		<li n:foreach="$form->errors as $error">{_$error}</li>
+	</ul>
+
+	{* input group *}
+	<div class="form-floating mb-3">
+		<input n:name="username" class="form-control">
+		<label n:name="username" class="form-label" />
+	</div>
+	<div class="form-floating mb-3">
+		<input n:name="email" class="form-control">
+		<label n:name="email" class="form-label" />
+	</div>
+
+	{* input group *}
+	<div class="form-floating mb-3">
+		<input n:name="password" class="form-control">
+		<label n:name="password" class="form-label" />
+	</div>
+	<div class="form-floating mb-3">
+		<input n:name="verify" class="form-control">
+		<label n:name="verify" class="form-label" />
+	</div>
+
+	{* send button *}
+	<button n:name="send" class="btn btn-secondary" data-btn-submit>{_'form.send.acc'}</button>
+
+</form>

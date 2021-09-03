@@ -1,0 +1,4 @@
+services:
+
+	router: {setup: {offsetSet(null, @router.admin)}}
+	router.admin: {factory: App\Modules\Admin\Router::create, autowired: no}

@@ -4,7 +4,7 @@ parameters:
 
 # settings for sessions
 session:
-	name: drago-webapp
+	name: netis-cms
 	expiration: 14 days
 	savePath: '%tempDir%/sessions'
 
@@ -14,7 +14,7 @@ application:
 
 	# application mapping
 	mapping:
-		*: Module\*\*Presenter
+		*: [App, Modules\*, Presenters\*Presenter]
 
 
 # enabling system container for Tracy bar
@@ -24,7 +24,7 @@ di:
 
 # application extensions
 extensions:
-	- Drago\Localization\DI\TranslatorExtension(%appDir%/locale)
+	- Drago\Localization\DI\TranslatorExtension(%appDir%/Locales)
 	- Drago\Parameters\DI\ParametersExtension(%appDir%, %wwwDir%, %tempDir%)
 	- Drago\User\DI\GravatarExtension(80, 'mm', 'g')
 	authorization: Drago\Authorization\DI\AuthorizationExtension
@@ -33,6 +33,6 @@ extensions:
 # automatic class registration
 search:
 	section:
-		in: %appDir%/src
+		in: %appDir%/Services/Repository
 		classes:
 			- *Repository

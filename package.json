@@ -1,26 +1,56 @@
 {
-  "name": "netis",
+  "name": "project",
   "version": "1.0.0",
-  "main": "Gruntfile.js",
   "dependencies": {
-    "dashboard-skeleton-compostrap": "^1.0.10",
+    "dashboard-skeleton-compostrap": "^2.0.3",
     "jquery": "^3.6.0",
-    "live-form-validation": "^1.9.0",
-    "nette-forms": "^3.2.0",
-    "nette.ajax.js": "^2.3.0"
+    "live-form-validation": "^1.10.0",
+    "naja": "^2.1.5",
+    "nette-forms": "^3.3.0",
+    "nette.ajax.js": "^2.3.0",
+    "perfect-scrollbar": "^1.5.2"
   },
   "devDependencies": {
-    "copy-files-from-to": "^3.2.0",
-    "grunt": "^1.4.0",
-    "grunt-contrib-cssmin": "^4.0.0",
-    "grunt-contrib-uglify": "^5.0.0",
-    "load-grunt-tasks": "^5.1.0",
-    "node-sass": "^5.0.0",
-    "nodemon": "^2.0.7"
+    "bootstrap": "^5.1.0",
+    "concurrently": "^6.2.0",
+    "nanobar": "^0.4.2",
+    "parcel-bundler": "^1.12.5",
+    "parcel-plugin-custom-dist-structure": "^1.1.18",
+    "sass": "^1.38.1"
   },
   "scripts": {
-    "postinstall": "copy-files-from-to && npm run scss",
-    "scss": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 assets/scss -o assets/dist/css",
-    "watch": "nodemon -e assets/scss -x \"npm run scss\""
+    "postinstall": "npm run docker:build && npm run docker:dev",
+    "docker:build": "concurrently -n=build -c=green \"docker-compose build\"",
+    "docker:dev": "concurrently -n=dev -c=blue \"docker-compose -f docker-compose.yml -f docker-compose.dev.yml up\"",
+    "docker:pro": "concurrently -n=pro -c=blue \"docker-compose up --no-deps php\"",
+    "docker:off": "docker-compose down",
+    "parcel-dev": "parcel watch public/scripts/install.js --public-url ./",
+    "parcel-build": "parcel build public/scripts/install.js --public-url ./"
+  },
+  "customDistStructure": {
+    "config": {
+      "js": [
+        ".js",
+        ".js.map"
+      ],
+      "css": [
+        ".css",
+        ".css.map"
+      ],
+      "fonts": [
+        ".woff",
+        ".woff2",
+        ".svg",
+        ".eot",
+        ".ttf"
+      ],
+      "images": [
+        ".jpg",
+        ".png"
+      ]
+    },
+    "options": {
+      "development": true
+    }
   }
 }

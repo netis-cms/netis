@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App;
 
 use Drago\Bootstrap\ExtraConfigurator;
-use Throwable;
 
 
 /**
@@ -13,16 +12,15 @@ use Throwable;
  */
 class Bootstrap
 {
-	/**
-	 * @throws Throwable
-	 */
 	public static function boot(): ExtraConfigurator
 	{
 		$app = new ExtraConfigurator;
 		$appDir = dirname(__DIR__);
 
 		// Enable debug mode.
-		//$app->setDebugMode('127.0.0.1');
+		if (getenv('NETTE_DEBUG') === '1') {
+			$app->setDebugMode(true);
+		}
 
 		// Enable Tracy tool.
 		$app->enableTracy($appDir . '/log');
@@ -31,7 +29,7 @@ class Bootstrap
 		$app->setTimeZone('Europe/Prague');
 
 		// Directory of temporary files.
-		$app->setTempDirectory($appDir . '/storage');
+		$app->setTempDirectory($appDir . '/temp');
 
 		// Auto-loading classes.
 		$app->createRobotLoader()

@@ -1,0 +1,43 @@
+# docker version
+version: '3.7'
+
+# docker service
+services:
+
+
+  # php server
+  php:
+    build: .
+    container_name: php
+    restart: always
+    volumes:
+      - ./:/var/www/html/
+    ports:
+      - 8000:80
+      - 443:443
+
+
+  # database
+  db:
+    image: library/mariadb:10.6.1
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app
+      MYSQL_USER: super
+      MYSQL_PASSWORD: pass
+    volumes:
+      - ./docker/mysql/:/var/lib/mysql
+    ports:
+      - 6033:3306
+
+
+  # database management
+  adminer:
+    image: library/adminer:4.8.0
+    container_name: adminer
+    restart: always
+    ports:
+      - 8080:8080

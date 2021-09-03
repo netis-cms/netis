@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="{$lang}">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>{include subtitle|stripHtml|firstUpper}</title>
+	<link rel="stylesheet" href="{$basePath}/dist/css/install.css">
+</head>
+
+<body>
+<div n:snippet="install" class="container-fluid container-fluid-install">
+
+	{* header*}
+	<div class="header-install">
+		<div class="clearfix">
+
+			{* logo *}
+			<div class="float-start">
+				<a n:href=":Install:Install:" class="text-decoration-none logo">Netis</a>
+			</div>
+
+			{* steps install *}
+			<div class="float-end">
+
+				{* steps icons *}
+				{if $step === 0}
+					{var $item = 'fa-question'}
+				{elseif $step === 1}{var $item = 'fa-server'}
+				{elseif $step === 2}{var $item = 'fa-database'}
+				{elseif $step === 3}{var $item = 'fa-globe'}
+				{elseif $step === 4}{var $item = 'fa-user-plus'}
+				{elseif $step === 5}{var $item = 'fa-check'}
+				{/if}
+
+				{* steps info *}
+				<p class="steps-install">{_'install.steps'} {$step}/5</p>
+			</div>
+		</div>
+	</div>
+
+	{* flash message *}
+	<div n:foreach="$flashes as $flash" class="alert alert-install alert-secondary alert-dismissible fade show border-0 rounded-0" role="alert">
+		<div class="container">{_$flash->message}
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+	</div>
+
+	{* content *}
+	<div class="container container-install">
+		<div class="row">
+
+			{* include block content *}
+			<div class="col-md-7">
+				{include content|indent:5}
+			</div>
+
+			{* step icon *}
+			<div class="col-md-5">
+				<div class="steps-install-ico">
+					<i class="fa {$item}" aria-hidden="true"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{* copyright info *}
+<div class="footer">
+	<div class="container">
+		<p class="footer-text text-center">&copy {date(Y)} Netis</p>
+	</div>
+</div>
+
+<script src="{$basePath}/dist/js/install.js" defer></script>
+
+</body>
+</html>
