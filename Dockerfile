@@ -5,8 +5,6 @@ MAINTAINER Zdeněk Papučík <zdenek.papucik@gmail.com>
 # build-time customization
 ARG DEBIAN_FRONTEND=noninteractive
 
-WORKDIR app
-
 # run commands
 RUN apt update && apt upgrade -y && a2enmod ssl && a2enmod rewrite
 RUN apt install libfreetype6-dev libjpeg62-turbo-dev libpng-dev libicu-dev -y

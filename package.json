@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "dependencies": {
     "dashboard-skeleton-compostrap": "^2.0.3",
-    "jquery": "^3.6.0",
     "live-form-validation": "^1.10.0",
     "naja": "^2.1.5",
     "nette-forms": "^3.3.0",
@@ -24,8 +23,8 @@
     "docker:dev": "concurrently -n=dev -c=blue \"docker-compose -f docker-compose.yml -f docker-compose.dev.yml up\"",
     "docker:pro": "concurrently -n=pro -c=blue \"docker-compose up --no-deps php\"",
     "docker:off": "docker-compose down",
-    "parcel-dev": "parcel watch public/scripts/install.js --public-url ./",
-    "parcel-build": "parcel build public/scripts/install.js --public-url ./"
+    "parcel-dev": "parcel watch public/scripts/install.js --public-url ./ --out-dir www",
+    "parcel-build": "parcel build public/scripts/install.js --public-url ./ --out-dir www"
   },
   "customDistStructure": {
     "config": {
