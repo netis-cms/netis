@@ -52,23 +52,19 @@ final class AccountControl extends Control
 		$form->setTranslator($this->translator);
 
 		$form->addText('username', 'form.name.acc')
-			->setHtmlAttribute('placeholder', 'form.name.acc')
 			->setRequired('form.required');
 
 		$form->addText('email', 'form.email')
-			->setHtmlAttribute('placeholder', 'form.email')
 			->setDefaultValue('@')
 			->setHtmlType('email')
 			->setRequired('form.required')
 			->addRule(Form::EMAIL, 'form.email.rule');
 
 		$form->addPassword('password', 'form.password')
-			->setHtmlAttribute('placeholder', 'form.password')
 			->setRequired('form.required')
 			->addRule(Form::MIN_LENGTH, 'form.password.rule', 6);
 
 		$form->addPassword('verify', 'form.password.verify')
-			->setHtmlAttribute('placeholder', 'form.password.verify')
 			->setRequired('form.required')
 			->addRule(Form::EQUAL, 'form.password.verify.rule', $form['password']);
 

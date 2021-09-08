@@ -4,9 +4,10 @@ extensions:
 	dibi: Dibi\Bridges\Nette\DibiExtension22
 
 dibi:
-	host: localhost
-	username:
-	password:
-	database:
+	host: "172.25.18.36"
+	username: monty
+	password: monty
+	database: test
 	driver: mysqli
 	lazy: true
+

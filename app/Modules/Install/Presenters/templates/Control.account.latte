@@ -1,5 +1,5 @@
 {* Add administrator account *}
-<form n:name="account" class="ajax form-install row g-2">
+<form n:name="account" class="ajax form-install row g-3">
 
 	{* form errors *}
 	<ul n:snippet="errors" n:if="$form->hasErrors()" class="form-errors">
@@ -7,23 +7,23 @@
 	</ul>
 
 	{* input group *}
-	<div class="form-floating col-md-6">
-		<input n:name="username" class="form-control">
+	<div class="col-md-6">
 		<label n:name="username" class="form-label" />
+		<input n:name="username" class="form-control">
 	</div>
-	<div class="form-floating col-md-6">
-		<input n:name="email" class="form-control">
+	<div class="col-md-6">
 		<label n:name="email" class="form-label" />
+		<input n:name="email" class="form-control">
 	</div>
 
 	{* input group *}
-	<div class="form-floating col-md-6">
-		<input n:name="password" class="form-control">
+	<div class="col-md-6">
 		<label n:name="password" class="form-label" />
+		<input n:name="password" class="form-control">
 	</div>
-	<div class="form-floating col-md-6">
-		<input n:name="verify" class="form-control">
+	<div class="col-md-6">
 		<label n:name="verify" class="form-label" />
+		<input n:name="verify" class="form-control">
 	</div>
 
 	{* send button *}

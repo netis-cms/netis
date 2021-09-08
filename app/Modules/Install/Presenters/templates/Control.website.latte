@@ -1,5 +1,5 @@
 {* website settings *}
-<form n:name="website" class="ajax form-install row g-2">
+<form n:name="website" class="ajax form-install row g-3">
 
 	{* form errors *}
 	<ul n:snippet="errors" n:if="$form->hasErrors()" class="form-errors">
@@ -7,13 +7,13 @@
 	</ul>
 
 	{* input group *}
-	<div class="form-floating col-md-6">
-		<input n:name="website" class="form-control">
+	<div class="col-md-6">
 		<label n:name="website" class="form-label" />
+		<input n:name="website" class="form-control">
 	</div>
-	<div class="form-floating col-md-6">
-		<input n:name="description" class="form-control">
+	<div class="col-md-6">
 		<label n:name="description" class="form-label" />
+		<input n:name="description" class="form-control">
 	</div>
 
 	{* send button *}

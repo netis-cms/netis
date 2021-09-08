@@ -1,5 +1,5 @@
 {* database server settings *}
-<form n:name="database" class="ajax form-install row g-2">
+<form n:name="database" class="ajax form-install row g-3">
 
 	{* form errors *}
 	<ul n:snippet="errors" n:if="$form->hasErrors()" class="form-errors">
@@ -7,23 +7,23 @@
 	</ul>
 
 	{* input group *}
-	<div class="form-floating col-md-6">
-		<input n:name="host" class="form-control">
+	<div class="col-md-6">
 		<label n:name="host" class="form-label" />
+		<input n:name="host" class="form-control">
 	</div>
-	<div class="form-floating col-md-6">
-		<input n:name="user" class="form-control">
+	<div class="col-md-6">
 		<label n:name="user" class="form-label" />
+		<input n:name="user" class="form-control">
 	</div>
 
 	{* input group *}
-	<div class="form-floating col-md-6">
-		<input n:name="database" class="form-control">
+	<div class="col-md-6">
 		<label n:name="database" class="form-label" />
+		<input n:name="database" class="form-control">
 	</div>
-	<div class="form-floating col-md-6">
-		<input n:name="password" class="form-control">
+	<div class="col-md-6">
 		<label n:name="password" class="form-label" />
+		<input n:name="password" class="form-control">
 	</div>
 
 	{* send button *}

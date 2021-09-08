@@ -51,19 +51,15 @@ final class DatabaseControl extends Control
 		$form->setTranslator($this->translator);
 
 		$form->addText('host', 'form.host')
-			->setHtmlAttribute('placeholder', 'form.host')
 			->setRequired('form.required');
 
 		$form->addText('user', 'form.user')
-			->setHtmlAttribute('placeholder', 'form.user')
 			->setRequired('form.required');
 
 		$form->addText('password', 'form.password')
-			->setHtmlAttribute('placeholder', 'form.password')
 			->setRequired('form.required');
 
 		$form->addText('database', 'form.name.db')
-			->setHtmlAttribute('placeholder', 'form.name.db')
 			->setRequired('form.required');
 
 		$form->addSubmit('send', 'form.send.db');

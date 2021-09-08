@@ -48,11 +48,9 @@ final class WebsiteControl extends Control
 		$form->setTranslator($this->translator);
 
 		$form->addText('website', 'form.name.web')
-			->setHtmlAttribute('placeholder', 'form.name.web')
 			->setRequired('form.required');
 
 		$form->addText('description', 'form.description')
-			->setHtmlAttribute('placeholder', 'form.description')
 			->setRequired('form.required');
 
 		$form->addSubmit('send', 'form.send.web');
