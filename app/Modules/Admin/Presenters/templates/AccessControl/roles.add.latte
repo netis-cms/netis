@@ -1,5 +1,5 @@
 <h3 class="text-primary">Edit or add roles</h3>
-<form n:name="factory" class="ajax">
+<form n:name="factory" class="ajax row g-2">
 
 	{snippet errors}
 		<ul n:if="$form->hasErrors()" class="errors">
@@ -7,19 +7,17 @@
 		</ul>
 	{/snippet}
 
-	<div class="form-row">
-
-		<div class="form-group col-md-6">
-			<input n:name="name" class="form-control">
-		</div>
-
-		<div class="form-group col-md-6">
-			<select n:name="parent" class="form-control"></select>
-		</div>
-
+	<div class="col-md-6">
+		<input n:name="name" class="form-control">
 	</div>
 
-	<input type="submit" n:name="send" class="btn btn-primary">
-	<input type="reset" class="reset-form-factory btn btn-secondary">
+	<div class="col-md-6">
+		<select n:name="parent" class="form-control"></select>
+	</div>
+
+	<div class="col-md-auto">
+		<input type="submit" n:name="send" class="btn btn-primary">
+		<input type="reset" class="reset-form-factory btn btn-secondary">
+	</div>
 
 </form>

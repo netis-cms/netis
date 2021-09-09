@@ -1,5 +1,5 @@
 <h3 class="text-primary">Edit or add roles to users</h3>
-<form n:name="factory" class="ajax">
+<form n:name="factory" class="ajax row g-2">
 
 	{snippet errors}
 		<ul n:if="$form->hasErrors()" class="errors">
@@ -7,20 +7,18 @@
 		</ul>
 	{/snippet}
 
-	<div class="form-row">
-		<div class="form-group col-md-12">
-			<select n:name="user_id" class="form-control"></select>
-		</div>
+	<div class="col-md-12">
+		<select n:name="user_id" class="form-control"></select>
 	</div>
 
-	<div class="form-row">
-		<div class="form-group col-md-12">
-			<select n:name="role_id" class="form-control"></select>
-		</div>
+	<div class="col-md-12">
+		<select n:name="role_id" class="form-control"></select>
 	</div>
 
-	<input type="submit" n:name="send" class="btn btn-primary">
-	<input type="reset" class="reset-form-factory btn btn-secondary">
-	<a href="#" class="btn btn-secondary" id="multiselect">Deselect role selection</a>
+	<div class="col-md-auto">
+		<input type="submit" n:name="send" class="btn btn-primary">
+		<input type="reset" class="reset-form-factory btn btn-secondary">
+		<a href="#" class="btn btn-secondary" id="multiselect">Deselect role selection</a>
+	</div>
 
 </form>

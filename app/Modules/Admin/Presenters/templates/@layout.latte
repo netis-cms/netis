@@ -4,21 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	{if $mode === false}
-		<link rel="stylesheet" href="{$basePath}/node_modules/bootstrap/dist/css/bootstrap.css">
-		<link rel="stylesheet" href="{$basePath}/node_modules/open-sans-fontface/open-sans.css">
-		<link rel="stylesheet" href="{$basePath}/node_modules/@fortawesome/fontawesome-free/css/all.css">
-		<link rel="stylesheet" href="{$basePath}/node_modules/perfect-scrollbar/css/perfect-scrollbar.css">
-		<link rel="stylesheet" href="{$basePath}/node_modules/sidebar-menu-compostrap/dist/css/sidebar.menu.css">
-		<link rel="stylesheet" href="{$basePath}/node_modules/sidebar-skeleton-compostrap/dist/css/sidebar.css">
-		<link rel="stylesheet" href="{$basePath}/node_modules/dashboard-skeleton-compostrap/dist/css/dashboard.css">
-		<link rel="stylesheet" href="{$basePath}/assets/dist/css/base.css">
-
-		{else}
-		<link rel="stylesheet" href="{$basePath}/www/css/dashboard.min.css">
-	{/if}
-
+	<link rel="stylesheet" href="{$basePath}/css/admin.css">
 	<title>{include subtitle|stripHtml|firstUpper}{ifset $settings} &bullet; {$settings->website}{/ifset}</title>
 
 </head>
@@ -27,27 +13,29 @@
 
 <header>
 	<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+		<div class="container-fluid">
 
-		<!-- title -->
-		<a class="navbar-brand" href="#"><i class="fas fa-mug-hot mr-1 text-primary"></i>
-			<span class="text-primary text-bolder">{$settings->website}</span>
-		</a>
+			<!-- title -->
+			<a class="navbar-brand" href="#"><i class="fas fa-mug-hot px-1 text-primary"></i>
+				<span class="text-primary text-bolder">{$settings->website}</span>
+			</a>
 
-		<!-- sidebar toggle -->
-		<button class="navbar-toggler btn btn-link border-0" type="button" id="sidebar" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+			<!-- sidebar toggle -->
+			<button class="navbar-toggler btn btn-link border-0" type="button" id="sidebar" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-		<!-- navbar navigation -->
-		<div class="collapse navbar-collapse">
+			<!-- navbar navigation -->
+			<div class="collapse navbar-collapse">
 
-			<!-- breadcrumb -->
-			<ul class="navbar-nav navbar-nav-breadcrumb">
-				<li class="nav-item"><a class="nav-link" n:href=":Admin:Admin:">{_'subtitle.default'}</a></li>
-				<li n:if="$module !== 'Admin:Admin:default'" class="nav-item">
-					<a n:class="'nav-link', $module !== 'Admin:Admin:default' ? disabled" href="#">{include subtitle|stripHtml|firstUpper}</a>
-				</li>
-			</ul>
+				<!-- breadcrumb -->
+				<ul class="navbar-nav navbar-nav-breadcrumb">
+					<li class="nav-item"><a class="nav-link" n:href=":Admin:Admin:">{_'subtitle.default'}</a></li>
+					<li n:if="$module !== 'Admin:Admin:default'" class="nav-item">
+						<a n:class="'nav-link', $module !== 'Admin:Admin:default' ? disabled" href="#">{include subtitle|stripHtml|firstUpper}</a>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</nav>
 </header>
@@ -168,11 +156,12 @@
 				</div>
 			{/snippet}
 
+			{* page content *}
 			{include content}
 		</main>
 
 		<!-- license rights, do not delete this piece of code -->
-		<footer class="text-right mt-3 mr-3 mb-3">
+		<footer class="text-end mt-3 mb-3">
 			<p class="text-silver">Code licensed
 				<a href="https://github.com/compostrap/dashboard-skeleton/blob/master/license.md" class="text-muted" target="_blank" rel="license noopener">MIT</a>
 			</p>
@@ -180,42 +169,7 @@
 	</div>
 </div>
 
-{if $mode === false}
-	<script src="{$basePath}/node_modules/jquery/dist/jquery.js"></script>
-	<script src="{$basePath}/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-	<script src="{$basePath}/node_modules/perfect-scrollbar/dist/perfect-scrollbar.js"></script>
-	<script src="{$basePath}/node_modules/nanobar/nanobar.js"></script>
-	<script src="{$basePath}/node_modules/sidebar-skeleton-compostrap/dist/js/sidebar.js"></script>
-	<script src="{$basePath}/node_modules/sidebar-menu-compostrap/dist/js/sidebar.menu.js"></script>
-	<script src="{$basePath}/node_modules/nette-forms/src/assets/netteForms.js"></script>
-	<script src="{$basePath}/node_modules/live-form-validation/live-form-validation.js"></script>
-	<script src="{$basePath}/node_modules/nette.ajax.js/nette.ajax.js"></script>
-
-{else}
-	<script src="{$basePath}/www/js/dashboard.min.js"></script>
-{/if}
-
-{* js for reset ajax forms *}
-{control resetControl}
-
-<script>
-	$(function() {
-		new Nanobar().go(100);
-		new PerfectScrollbar('.scrollbar', {
-			wheelSpeed: 0.3
-		});
-
-		// live form validation
-		LiveForm.setOptions({
-			messageErrorClass: 'form-errors-live',
-			messageErrorPrefix: '',
-			wait: 500
-		});
-
-		// nette ajax
-		$.nette.init();
-	});
-</script>
+<script src="{$basePath}/js/admin.js" defer></script>
 
 </body>
 </html>

@@ -41,7 +41,7 @@ final class SignPresenter extends BasePresenter
 
 		$gravatar = $this->gravatar;
 		$gravatar->setEmail($email ?? 'someone@somewhere.com');
-		$gravatar->setSize(120);
+		$gravatar->setSize(100);
 
 		$this->template->welcome = $welcome ?? 'login.welcome';
 		$this->template->gravatar = $this->gravatar->getGravatar();
@@ -51,9 +51,6 @@ final class SignPresenter extends BasePresenter
 	public function renderIn(): void
 	{
 		$this->template->form = $this['signIn'];
-		if ($this->isAjax()) {
-			$this->redrawControl('sign-in');
-		}
 	}
 
 

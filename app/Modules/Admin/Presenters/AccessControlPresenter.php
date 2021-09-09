@@ -11,10 +11,17 @@ use Drago\Authorization\Control\PrivilegesControl;
 use Drago\Authorization\Control\ResourcesControl;
 use Drago\Authorization\Control\RolesControl;
 use Drago\Authorization\FileNotFoundException;
+use Drago\Parameters\Parameters;
+use Nette\DI\Attributes\Inject;
+use Tracy\Debugger;
 
 
 final class AccessControlPresenter extends DashboardPresenter
 {
+	#[Inject]
+	public Parameters $dirs;
+
+
 	/**
 	 * @throws FileNotFoundException
 	 */
