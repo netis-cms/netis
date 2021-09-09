@@ -3,8 +3,7 @@
 //
 
 .container-install {
-  margin-top: rem(10);
-  padding-bottom: rem(10);
+  padding: rem(35) rem(70);
   @include media-breakpoint-up(md) {
     margin-top: rem(105);
   }
