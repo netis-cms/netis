@@ -23,7 +23,7 @@
     "docker:dev": "concurrently -n=dev -c=blue \"docker-compose -f docker-compose.yml -f docker-compose.dev.yml up\"",
     "docker:pro": "concurrently -n=pro -c=blue \"docker-compose up --no-deps php\"",
     "docker:off": "docker-compose down",
-    "parcel-dev": "parcel watch public/scripts/install.js public/scripts/sign.js --public-url ./ --out-dir www",
+    "parcel-dev": "parcel watch public/scripts/install.js public/scripts/sign.js public/scripts/admin.js --public-url ./ --out-dir www",
     "parcel-build": "parcel build public/scripts/install.js public/scripts/sign.js public/scripts/admin.js --public-url ./ --out-dir www"
   },
   "customDistStructure": {

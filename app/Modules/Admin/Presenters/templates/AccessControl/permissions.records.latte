@@ -21,12 +21,12 @@
 				<td style="width: 25%">{$permission->privilege}</td>
 				<td style="width: 25%">{$permission->allowed}</td>
 				<td style="width: 25%">
-					<a n:href="edit!, $permission->id" class="ajax">Edit</a>
+					<a n:href="edit!, $permission->id" class="ajax" data-naja-history="off">Edit</a>
 					{if $deleteId === $permission->id}
-						<a n:href="deleteConfirm!, 0, $permission->id" class="ajax">No</a>
-						<a n:href="deleteConfirm!, 1, $permission->id" class="ajax">Yes</a>
+						<a n:href="deleteConfirm!, 0, $permission->id" class="ajax" data-naja-history="off">No</a>
+						<a n:href="deleteConfirm!, 1, $permission->id" class="ajax" data-naja-history="off">Yes</a>
 					{else}
-						<a n:href="delete!, $permission->id" class="ajax">Delete</a>
+						<a n:href="delete!, $permission->id" class="ajax" data-naja-history="off">Delete</a>
 					{/if}
 				</td>
 			</tr>

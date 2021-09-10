@@ -12,6 +12,7 @@ LiveForm.setOptions({
 Nette.initOnLoad();
 window.Nette = Nette;
 window.LiveForm = LiveForm;
+window.naja = naja;
 
 /* naja initialize */
 document.addEventListener('DOMContentLoaded', () => naja.initialize());
