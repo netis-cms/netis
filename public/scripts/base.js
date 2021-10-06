@@ -35,7 +35,7 @@ naja.uiHandler.addEventListener('interaction', e => {
 
 naja.addEventListener('start', e => {
 	const submit = document.querySelector('[data-btn-submit]')
-	if(e.detail.options.element === submit) {
+	if (e.detail.options.element === submit) {
 		submit.disabled = true;
 		submit.innerText = null;
 		submit.innerHTML += '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
