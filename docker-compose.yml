@@ -8,7 +8,6 @@ services:
   # php server
   php:
     build: .
-    container_name: php
     restart: always
     volumes:
       - ./:/var/www/html/
@@ -21,7 +20,6 @@ services:
   db:
     image: library/mariadb:10.6.1
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    container_name: db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -37,7 +35,6 @@ services:
   # database management
   adminer:
     image: library/adminer:4.8.0
-    container_name: adminer
     restart: always
     ports:
       - 8080:8080

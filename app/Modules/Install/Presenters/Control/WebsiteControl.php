@@ -47,13 +47,13 @@ final class WebsiteControl extends Control
 		$form = new Form;
 		$form->setTranslator($this->translator);
 
-		$form->addText('website', 'form.name.web')
-			->setRequired('form.required');
+		$form->addText('website', 'Site name')
+			->setRequired();
 
-		$form->addText('description', 'form.description')
-			->setRequired('form.required');
+		$form->addText('description', 'Site description')
+			->setRequired();
 
-		$form->addSubmit('send', 'form.send.web');
+		$form->addSubmit('send');
 		$form->onSuccess[] = [$this, 'success'];
 		return $form;
 	}
@@ -76,6 +76,6 @@ final class WebsiteControl extends Control
 
 		// Save the installation step.
 		$this->steps->cache->save(Steps::STEP, ['step' => 4]);
-		$this->presenter->flashMessage('message.web', 'success');
+		$this->presenter->flashMessage('Site settings successful.', 'success');
 	}
 }

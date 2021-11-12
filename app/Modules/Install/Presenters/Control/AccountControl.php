@@ -51,24 +51,24 @@ final class AccountControl extends Control
 		$form = new Form;
 		$form->setTranslator($this->translator);
 
-		$form->addText('username', 'form.name.acc')
-			->setRequired('form.required');
+		$form->addText('username', 'Full name')
+			->setRequired();
 
-		$form->addText('email', 'form.email')
+		$form->addText('email', 'Email')
 			->setDefaultValue('@')
 			->setHtmlType('email')
-			->setRequired('form.required')
-			->addRule(Form::EMAIL, 'form.email.rule');
+			->setRequired()
+			->addRule(Form::EMAIL);
 
-		$form->addPassword('password', 'form.password')
-			->setRequired('form.required')
-			->addRule(Form::MIN_LENGTH, 'form.password.rule', 6);
+		$form->addPassword('password', 'Password')
+			->setRequired()
+			->addRule(Form::MIN_LENGTH, null, 6);
 
-		$form->addPassword('verify', 'form.password.verify')
-			->setRequired('form.required')
-			->addRule(Form::EQUAL, 'form.password.verify.rule', $form['password']);
+		$form->addPassword('verify', 'Password to check')
+			->setRequired()
+			->addRule(Form::EQUAL, 'Passwords do not match.', $form['password']);
 
-		$form->addSubmit('send', 'form.send.acc');
+		$form->addSubmit('send');
 		$form->onSuccess[] = [$this, 'success'];
 		return $form;
 	}
@@ -91,6 +91,6 @@ final class AccountControl extends Control
 
 		// Save the installation step.
 		$this->steps->cache->save(Steps::STEP, ['step' => 5]);
-		$this->presenter->flashMessage('message.acc', 'success');
+		$this->presenter->flashMessage('Administrator registration was successful.', 'success');
 	}
 }

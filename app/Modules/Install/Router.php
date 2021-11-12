@@ -16,7 +16,7 @@ class Router
 	{
 		$router = new RouteList;
 		$router->withModule('Install')
-			->addRoute('[<lang=cs cs|en>/]install/', 'Install:default');
+			->addRoute('[<lang=en cs|en>/]install/', 'Install:default');
 
 		return $router;
 	}

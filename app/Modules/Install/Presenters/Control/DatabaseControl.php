@@ -15,6 +15,7 @@ use Nette\Bridges\ApplicationLatte\Template;
 use Nette\DI\Config\Loader;
 use Nette\InvalidStateException;
 use Nette\Utils\FileSystem;
+use Tracy\Debugger;
 
 
 /**
@@ -50,19 +51,19 @@ final class DatabaseControl extends Control
 		$form = new Form;
 		$form->setTranslator($this->translator);
 
-		$form->addText('host', 'form.host')
-			->setRequired('form.required');
+		$form->addText('host', 'Database server')
+			->setRequired();
 
-		$form->addText('user', 'form.user')
-			->setRequired('form.required');
+		$form->addText('user', 'Username')
+			->setRequired();
 
-		$form->addText('password', 'form.password')
-			->setRequired('form.required');
+		$form->addText('password', 'Password')
+			->setRequired();
 
-		$form->addText('database', 'form.name.db')
-			->setRequired('form.required');
+		$form->addText('database', 'Database name')
+			->setRequired();
 
-		$form->addSubmit('send', 'form.send.db');
+		$form->addSubmit('send');
 		$form->onSuccess[] = [$this, 'success'];
 		return $form;
 	}
@@ -97,12 +98,22 @@ final class DatabaseControl extends Control
 
 				// Save the installation step.
 				$this->steps->cache->save(Steps::STEP, ['step' => 2]);
-				$this->presenter->flashMessage('message.db', 'success');
+				$this->presenter->flashMessage('Database settings were successful.', 'success');
 			}
 
 		} catch (\Exception $e) {
 			if ($e->getCode()) {
-				$form->addError('form.error.' . $e->getCode());
+				$message = match ($e->getCode()) {
+					0 => 'The server does not support the selected database type.',
+					1 => 'Database cannot be uploaded, table names conflict.',
+					1044 => 'Access denied, check database settings.',
+					1045 => 'Failed to verify database username or password.',
+					1049 => 'The database name does not exist.',
+					1050 => 'Table already exists.',
+					2002 => 'The database server did not respond.',
+					default => 'Unknown status code.',
+				};
+				$form->addError($message);
 			}
 
 			if ($this->presenter->isAjax()) {

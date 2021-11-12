@@ -44,7 +44,7 @@ final class TablesControl extends Control
 	{
 		$form = new Form;
 		$form->setTranslator($this->translator);
-		$form->addSubmit('send', 'form.send.tables');
+		$form->addSubmit('send', );
 		$form->onSuccess[] = [$this, 'success'];
 		return $form;
 	}
@@ -59,11 +59,15 @@ final class TablesControl extends Control
 
 			// Save the installation step.
 			$this->steps->cache->save(Steps::STEP, ['step' => 3]);
-			$this->presenter->flashMessage('message.tables', 'success');
+			$this->presenter->flashMessage('Database installation was successful.', 'success');
 
 		} catch (\Exception $e) {
 			if ($e->getCode()) {
-				$form->addError('form.error.' . $e->getCode());
+				$message = match ($e->getCode()) {
+					1050 => 'Table already exists.',
+					default => 'Unknown status code.',
+				};
+				$form->addError($message);
 			}
 
 			if ($this->presenter->isAjax()) {

@@ -1,64 +1,64 @@
 {* subtitle sites *}
-{block subtitle}{_'subtitle'}{/block}
+{block subtitle}{_'System installation'}{/block}
 
 {* website content *}
 {block content}
 	{if $step === 0}
 
 		{* information before installation *}
-		<h1 class="display-4 mb-5">{_'install.info'}</h1>
+		<h1 class="display-4 mb-5">{_'Information before installing the system'}</h1>
 		<p>
-			{_'install.text'}
-			{_'install.text.2'}
+			{_'Welcome, please prepare your database server data before installing the system.'}
+			{_'However, if you do not have them for some reason, you may need to create the database manually through hosting administration.'}
 		</p>
 		<p>
 			<button class="btn btn-custom-color text-white" type="button" id="btn-send" data-url="{link run!}">
-				{_'install.start'}
+				{_'Start with installation'}
 			</button>
 		</p>
 
 	{elseif $step === 1}
 
 		{* database server settings *}
-		<h1 class="display-4 mb-5">{_'install.db'}</h1>
-		<p>{_'install.text.db'}</p>
+		<h1 class="display-4 mb-5">{_'Database settings'}</h1>
+		<p>{_'If there is a problem with database server authentication, please contact your web hosting vendor to verify the correctness of the data.'}</p>
 		{control database}
 
 	{elseif $step === 2}
 
 		{* install database tables *}
-		<h1 class="display-4 mb-5">{_'install.tables'}</h1>
+		<h1 class="display-4 mb-5">{_'Database installation'}</h1>
 		<p>
-			{_'install.text.tables'}
-			{_'install.text.tables.2'}
+			{_'Before installing the database, please verify that your database server has an empty database or uses other table prefixes.'}
+			{_'If the table names match your table in the database, you will not be able to upload the database.'}
 		</p>
 		{control tables}
 
 	{elseif $step === 3}
 
-		{* database server settings *}
-		<h1 class="display-4 mb-5">{_'install.web'}</h1>
-		<p>{_'install.text.web'}</p>
+		{* website settings *}
+		<h1 class="display-4 mb-5">{_'Site name and description'}</h1>
+		<p>{_'Please enter basic information for the website.'}</p>
 		{control website}
 
 	{elseif $step === 4}
 
 		{* add administrator account *}
-		<h1 class="display-4 mb-5">{_'install.acc'}</h1>
-		<p>{_'install.text.acc'}</p>
+		<h1 class="display-4 mb-5">{_'Registration'}</h1>
+		<p>{_'Admin account registration.'}</p>
 		{control account}
 
 	{elseif $step === 5}
 
 		{* complete the installation *}
-		<h1 class="display-4 mb-5">{_'install.completion'}</h1>
+		<h1 class="display-4 mb-5">{_'Installation is complete'}</h1>
 		<p>
-			{_'install.text.completion'}
-			{_'install.text.completion.2'}
+			{_'The installation of the system is almost over, now it is necessary to remove the installation packages in order for the system to boot properly.'}
+			{_'Please follow the instructions below.'}
 		</p>
 
 		{* info for delete files *}
-		<p>{_'install.remove'}</p>
+		<p>{_'Delete the following directories'}</p>
 		<div class="info-install-delete">
 			<ul class="list-group">
 				<li class="list-group-item text-danger">/app/modules/install</li>
@@ -68,7 +68,7 @@
 
 		{* go to administration *}
 		<p>
-			<a n:href=":Admin:Admin:" class="btn btn-custom-color text-white">{_'install.go.admin'}</a>
+			<a n:href=":Admin:Admin:" class="btn btn-custom-color text-white">{_'Entering administration'}</a>
 		</p>
 	{/if}
 {/block}
