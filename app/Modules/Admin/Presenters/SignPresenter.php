@@ -35,7 +35,7 @@ final class SignPresenter extends BasePresenter
 		/** @var SimpleIdentity $user */
 		$user = $this->user->identity;
 		if ($user !== null) {
-			$welcome = 'login.welcome.back';
+			$welcome = 'Welcome back!';
 			$email = $user->data['email'];
 		}
 
@@ -43,7 +43,7 @@ final class SignPresenter extends BasePresenter
 		$gravatar->setEmail($email ?? 'someone@somewhere.com');
 		$gravatar->setSize(100);
 
-		$this->template->welcome = $welcome ?? 'login.welcome';
+		$this->template->welcome = $welcome ?? 'Welcome!';
 		$this->template->gravatar = $this->gravatar->getGravatar();
 	}
 
@@ -59,17 +59,17 @@ final class SignPresenter extends BasePresenter
 		$form = new Form;
 		$form->setTranslator($this->getTranslator());
 
-		$form->addText('email', 'form.email')
+		$form->addText('email', 'Email')
 			->setHtmlAttribute('email')
-			->setHtmlAttribute('placeholder', 'form.email.full')
-			->setRequired('form.required')
-			->addRule(Form::EMAIL, 'form.email.rule');
+			->setHtmlAttribute('placeholder', 'Email address')
+			->setRequired()
+			->addRule(Form::EMAIL);
 
-		$form->addPassword('password', 'form.password')
-			->setHtmlAttribute('placeholder', 'form.password.full')
-			->setRequired('form.required');
+		$form->addPassword('password', 'Password')
+			->setHtmlAttribute('placeholder', 'Your password')
+			->setRequired();
 
-		$form->addSubmit('send', 'form.send.login');
+		$form->addSubmit('send');
 		$form->onSuccess[] = [$this, 'success'];
 		return $form;
 	}
@@ -85,7 +85,15 @@ final class SignPresenter extends BasePresenter
 			$this->redirect(':Admin:Admin:');
 
 		} catch (AuthenticationException $e) {
-			$form->addError('form.error.' . $e->getCode());
+			if ($e->getCode()) {
+				$message = match ($e->getCode()) {
+					1 => 'User not found.',
+					2 => 'The password is incorrect.',
+					default => 'Unknown status code.',
+				};
+				$form->addError($message);
+			}
+
 			if ($this->isAjax()) {
 				$this->redrawControl('errors');
 			}
