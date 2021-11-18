@@ -17,7 +17,7 @@ final class Router
 		$router = new Routers\RouteList;
 		$router
 			->withModule('Admin')
-			->addRoute('[<lang=cs cs|en>/]admin/<presenter>/<action>', 'Admin:default');
+			->addRoute('[<lang=en cs>/]admin/<presenter>/<action>', 'Admin:default');
 
 		return $router;
 	}

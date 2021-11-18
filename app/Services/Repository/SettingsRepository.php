@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace App\Services\Repository;
 
 use App\Services\Entity\SettingsEntity;
+use Drago\Attr\Table;
 use Drago\Database\Connect;
-use Drago\Database\Repository;
 
 
+#[Table(SettingsEntity::TABLE)]
 class SettingsRepository extends Connect
 {
-	use Repository;
-
-	public string $table = SettingsEntity::TABLE;
 }

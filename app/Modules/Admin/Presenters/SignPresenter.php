@@ -32,18 +32,22 @@ final class SignPresenter extends BasePresenter
 	{
 		parent::beforeRender();
 
-		/** @var SimpleIdentity $user */
-		$user = $this->user->identity;
-		if ($user !== null) {
-			$welcome = 'Welcome back!';
-			$email = $user->data['email'];
+		$user = $this->user;
+		if ($user->isLoggedIn()) {
+			$this->redirect(':Admin:Admin:');
+		} else {
+			if ($user->getIdentity() !== null) {
+				$welcome = 'Welcome back';
+				$email = $user->getIdentity()
+					->getData()['email'];
+			}
 		}
 
 		$gravatar = $this->gravatar;
 		$gravatar->setEmail($email ?? 'someone@somewhere.com');
 		$gravatar->setSize(100);
 
-		$this->template->welcome = $welcome ?? 'Welcome!';
+		$this->template->welcome = $welcome ?? 'Welcome';
 		$this->template->gravatar = $this->gravatar->getGravatar();
 	}
 
