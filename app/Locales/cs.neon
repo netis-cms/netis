@@ -1,0 +1,34 @@
+# subtitle page
+'Dashboard': 'Administrace'
+'Login to the system': 'Přihlášení do systému'
+'Access settings': 'Nastavení přístupů'
+'Roles settings': 'Nastavení rolí'
+'Resources settings': 'Nastavení zdrojů'
+'Privileges settings': 'Nastavení signalů a akcí'
+'Setting roles for users': 'Nastavení rolí uživatelů'
+
+# form
+'Email': 'Email'
+'Email address': 'Emailová adresa'
+'Password': 'Heslo'
+'Your password': 'Vaše heslo'
+'Sign in': 'Přihlásit se'
+
+# form rule
+'This field is required.': 'Vyplňte prázdné pole.'
+'Please enter a valid email address.': 'Zadejte email ve správném tvaru.'
+
+# form error
+'User not found.': 'Uživatel nebyl nalezen.'
+'The password is incorrect.': 'Zadané heslo neodpovídá.'
+'Unknown status code.': 'Neznámý stavový kód.'
+
+# sign in
+'Welcome!': Vítejte!
+'Welcome back!': Vítejte zpět!
+
+# admin
+'Sign out': 'Odhlásit se'
+'User': 'Uživatel'
+'Translate': 'Překlad'
+'System': 'Systém'

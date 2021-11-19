@@ -37,7 +37,7 @@ final class SignPresenter extends BasePresenter
 			$this->redirect(':Admin:Admin:');
 		} else {
 			if ($user->getIdentity() !== null) {
-				$welcome = 'Welcome back';
+				$welcome = 'Welcome back!';
 				$email = $user->getIdentity()
 					->getData()['email'];
 			}
@@ -47,7 +47,7 @@ final class SignPresenter extends BasePresenter
 		$gravatar->setEmail($email ?? 'someone@somewhere.com');
 		$gravatar->setSize(100);
 
-		$this->template->welcome = $welcome ?? 'Welcome';
+		$this->template->welcome = $welcome ?? 'Welcome!';
 		$this->template->gravatar = $this->gravatar->getGravatar();
 	}
 
