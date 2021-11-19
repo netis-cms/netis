@@ -37,7 +37,7 @@ class Bootstrap
 			->register();
 
 		// Create DI container from configuration files.
-		$app->addFindConfig(__DIR__);
+		$app->addFindConfig(__DIR__, 'Locales');
 
 		return $app;
 	}

@@ -49,7 +49,7 @@ final class InstallPresenter extends Presenter
 	public function getTranslator(): Translator
 	{
 		$translator = $this->translator;
-		$translator->setCustomTranslate(__DIR__ . '/../Locales/' . $this->lang . '.ini');
+		$translator->setCustomTranslate(__DIR__ . '/../Locales/', $this->lang);
 		return $translator;
 	}
 
