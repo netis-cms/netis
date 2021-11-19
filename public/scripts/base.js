@@ -1,6 +1,13 @@
 /* js */
 import naja from 'naja';
 import {LiveForm, Nette} from 'live-form-validation';
+import bootstrap from 'bootstrap';
+
+/* bootstrap alert */
+const alertList = document.querySelectorAll('.alert');
+const alerts = [].slice.call(alertList).map(function (element) {
+	return new bootstrap.Alert(element)
+});
 
 /* live form validation */
 LiveForm.setOptions({

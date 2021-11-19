@@ -147,12 +147,8 @@
 		<!-- content -->
 		<main role="main">
 			{snippet message}
-				<div n:foreach="$flashes as $flash" n:class="'alert fade show border-0 rounded', 'alert-' . $flash->type">
-					<div class="alert-dismissible">{_$flash->message}
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
+				<div n:foreach="$flashes as $flash" n:class="'alert alert-dismissible fade show border-0 rounded', 'alert-' . $flash->type" role="alert">{_$flash->message}
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
 			{/snippet}
 
