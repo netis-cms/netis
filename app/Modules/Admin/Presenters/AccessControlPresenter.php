@@ -30,6 +30,7 @@ final class AccessControlPresenter extends DashboardPresenter
 		$control = $this->permissionsControl;
 		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/permissions.add.latte');
 		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/permissions.records.latte', 'records');
+		$control->setTranslator($this->getTranslator());
 		return $control;
 	}
 
@@ -42,6 +43,7 @@ final class AccessControlPresenter extends DashboardPresenter
 		$control = $this->rolesControl;
 		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/roles.add.latte');
 		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/roles.records.latte', 'records');
+		$control->setTranslator($this->getTranslator());
 		return $control;
 	}
 
@@ -54,6 +56,7 @@ final class AccessControlPresenter extends DashboardPresenter
 		$control = $this->resourcesControl;
 		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/resources.add.latte');
 		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/resources.records.latte', 'records');
+		$control->setTranslator($this->getTranslator());
 		return $control;
 	}
 
@@ -66,6 +69,7 @@ final class AccessControlPresenter extends DashboardPresenter
 		$control = $this->privilegesControl;
 		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/privileges.add.latte');
 		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/privileges.records.latte', 'records');
+		$control->setTranslator($this->getTranslator());
 		return $control;
 	}
 
@@ -78,6 +82,7 @@ final class AccessControlPresenter extends DashboardPresenter
 		$control = $this->accessControl;
 		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/users.add.latte');
 		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/users.records.latte', 'records');
+		$control->setTranslator($this->getTranslator());
 		return $control;
 	}
 }

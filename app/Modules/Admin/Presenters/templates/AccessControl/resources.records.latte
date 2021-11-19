@@ -1,12 +1,12 @@
 {varType Drago\Authorization\Entity\ResourcesEntity $resource}
-<h3 class="text-primary">Resources</h3>
+<h3 class="text-primary">{_'Resources'}</h3>
 <div class="table-responsive-sm">
 	<table class="table table-sm table-striped table-hover table-borderless">
 
 		<thead>
 		<tr>
-			<th scope="col">Name</th>
-			<th scope="col">Action</th>
+			<th scope="col">{_'Name'}</th>
+			<th scope="col">{_'Action'}</th>
 		</tr>
 		</thead>
 
@@ -14,12 +14,12 @@
 		<tr n:foreach="$resources as $resource">
 			<td style="width: 75%">{$resource->name}</td>
 			<td style="width: 25%">
-				<a n:href="edit!, $resource->id" class="ajax">Edit</a>
+				<a n:href="edit!, $resource->id" class="ajax">{_'Edit'}</a>
 				{if $deleteId === $resource->id}
-					<a n:href="deleteConfirm!, 0, $resource->id" class="ajax">No</a>
-					<a n:href="deleteConfirm!, 1, $resource->id" class="ajax">Yes</a>
+					<a n:href="deleteConfirm!, 0, $resource->id" class="ajax">{_'No'}</a>
+					<a n:href="deleteConfirm!, 1, $resource->id" class="ajax">{_'Yes'}</a>
 				{else}
-					<a n:href="delete!, $resource->id" class="ajax">Delete</a>
+					<a n:href="delete!, $resource->id" class="ajax">{_'Delete'}</a>
 				{/if}
 			</td>
 		</tr>

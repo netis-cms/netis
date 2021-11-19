@@ -1,13 +1,13 @@
 {varType Drago\Authorization\Entity\UsersRolesViewEntity $usersRoles}
-<h3 class="text-primary">List of assigned roles</h3>
+<h3 class="text-primary">{_'List of assigned roles'}</h3>
 <div class="table-responsive-sm">
 	<table class="table table-sm table-striped table-hover table-borderless">
 
 		<thead>
 		<tr>
-			<th scope="col">Username</th>
-			<th scope="col">Roles</th>
-			<th scope="col">Action</th>
+			<th scope="col">{_'Username'}</th>
+			<th scope="col">{_'Roles'}</th>
+			<th scope="col">{_'Action'}</th>
 		</tr>
 		</thead>
 
@@ -20,12 +20,12 @@
 				{/foreach}
 			</td>
 			<td style="width: 25%">
-				<a n:href="edit!, $item->user_id" class="ajax">Edit</a>
+				<a n:href="edit!, $item->user_id" class="ajax">{_'Edit'}</a>
 				{if $deleteId === $item->user_id}
-					<a n:href="deleteConfirm!, 0, $item->user_id" class="ajax">No</a>
-					<a n:href="deleteConfirm!, 1, $item->user_id" class="ajax">Yes</a>
+					<a n:href="deleteConfirm!, 0, $item->user_id" class="ajax">{_'No'}</a>
+					<a n:href="deleteConfirm!, 1, $item->user_id" class="ajax">{_'Yes'}</a>
 				{else}
-					<a n:href="delete!, $item->user_id" class="ajax">Delete</a>
+					<a n:href="delete!, $item->user_id" class="ajax">{_'Delete'}</a>
 				{/if}
 			</td>
 		</tr>
