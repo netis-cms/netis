@@ -13,7 +13,6 @@ use Drago\Authorization\Control\RolesControl;
 use Drago\Authorization\FileNotFoundException;
 use Drago\Parameters\Parameters;
 use Nette\DI\Attributes\Inject;
-use Tracy\Debugger;
 
 
 final class AccessControlPresenter extends DashboardPresenter
