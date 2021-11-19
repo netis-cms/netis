@@ -16,6 +16,7 @@ CREATE TABLE `permissions` (
     `privilege_id` int(11) unsigned NOT NULL,
     `allowed` enum('no','yes') NOT NULL DEFAULT 'yes',
     PRIMARY KEY (`id`),
+    UNIQUE KEY `role_id_resource_id_privilege_id` (`role_id`,`resource_id`,`privilege_id`),
     KEY `resource` (`resource_id`),
     KEY `role` (`role_id`),
     KEY `privilege` (`privilege_id`),
