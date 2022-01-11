@@ -1,7 +1,6 @@
-/* js */
 import naja from 'naja';
 import {LiveForm, Nette} from 'live-form-validation';
-import bootstrap from 'bootstrap';
+import * as bootstrap from 'bootstrap';
 
 /* bootstrap alert */
 const alertList = document.querySelectorAll('.alert');

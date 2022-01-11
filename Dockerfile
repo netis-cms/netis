@@ -1,5 +1,5 @@
 # image from docker hub
-FROM php:8.0-apache
+FROM php:8.1-apache
 MAINTAINER Zdeněk Papučík <zdenek.papucik@gmail.com>
 
 # build-time customization
