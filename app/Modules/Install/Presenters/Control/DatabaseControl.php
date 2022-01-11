@@ -94,7 +94,7 @@ final class DatabaseControl extends Control
 				$this->loader->save($arr, $this->dirs->getAppDir() . '/Services/db.neon');
 
 				// Removing the old cache for updating the system container.
-				FileSystem::delete($this->dirs->getTempDir() . '/cache/Nette.Configurator');
+				//FileSystem::delete($this->dirs->getTempDir() . '/cache/Nette.Configurator');
 
 				// Save the installation step.
 				$this->steps->cache->save(Steps::STEP, ['step' => 2]);
