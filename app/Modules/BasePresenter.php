@@ -9,7 +9,6 @@ use Drago\Localization\TranslatorAdapter;
 use Nette\Application\UI\Presenter;
 use Nette\DI\Attributes\Inject;
 use App\Services\Repository\SettingsRepository;
-use Tracy\Debugger;
 
 
 abstract class BasePresenter extends Presenter
@@ -21,6 +20,13 @@ abstract class BasePresenter extends Presenter
 	public SettingsRepository $settingsRepository;
 
 
+	protected function startup(): void
+	{
+		parent::startup();
+		$this->template->settings = (object) $this->settingsRepository->all()->fetchPairs();
+	}
+
+
 	public function injectInstall(Presenter $presenter)
 	{
 		$presenter->onStartup[] = function () use ($presenter) {
@@ -28,13 +34,5 @@ abstract class BasePresenter extends Presenter
 				$presenter->redirect(':Install:Install:');
 			}
 		};
-	}
-
-
-	protected function beforeRender(): void
-	{
-		parent::beforeRender();
-		$this->template->mode = Debugger::$productionMode;
-		$this->template->settings = (object) $this->settingsRepository->all()->fetchPairs();
 	}
 }
