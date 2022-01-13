@@ -19,14 +19,24 @@
 			<tr n:foreach="$permissions as $permission" n:if="$role->name == $permission->role">
 				<td style="width: 25%">{$permission->resource}</td>
 				<td style="width: 25%">{$permission->privilege}</td>
-				<td style="width: 25%">{$permission->allowed}</td>
 				<td style="width: 25%">
-					<a n:href="edit!, $permission->id" class="ajax" data-naja-history="off">{_'Edit'}</a>
+					{if $permission->allowed === 'yes'}
+						<i class="fas fa-check text-secondary"></i>
+						{else}
+						<i class="fas fa-minus text-danger"></i>
+					{/if}
+				</td>
+				<td style="width: 25%">
+					<a n:href="edit!, $permission->id" class="ajax link-custom-color text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="left" title="{_'Edit'}" data-naja-history="off">
+						<i class="fas fa-pencil-alt"></i>
+					</a>
 					{if $deleteId === $permission->id}
-						<a n:href="deleteConfirm!, 0, $permission->id" class="ajax" data-naja-history="off">{_'No'}</a>
-						<a n:href="deleteConfirm!, 1, $permission->id" class="ajax" data-naja-history="off">{_'Yes'}</a>
+						<a n:href="deleteConfirm!, 0, $permission->id" class="ajax text-secondary text-decoration-none" data-naja-history="off">{_'No'}</a>
+						<a n:href="deleteConfirm!, 1, $permission->id" class="ajax text-danger text-decoration-none" data-naja-history="off">{_'Yes'}</a>
 					{else}
-						<a n:href="delete!, $permission->id" class="ajax" data-naja-history="off">{_'Delete'}</a>
+						<a n:href="delete!, $permission->id" class="ajax link-custom-color text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="right" title="{_'Delete'}" data-naja-history="off">
+							<i class="fas fa-trash-alt"></i>
+						</a>
 					{/if}
 				</td>
 			</tr>

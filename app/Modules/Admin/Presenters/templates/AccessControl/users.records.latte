@@ -20,12 +20,16 @@
 				{/foreach}
 			</td>
 			<td style="width: 25%">
-				<a n:href="edit!, $item->user_id" class="ajax">{_'Edit'}</a>
+				<a n:href="edit!, $item->user_id" class="ajax link-custom-color text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="left" title="{_'Edit'}" data-naja-history="off">
+					<i class="fas fa-pencil-alt"></i>
+				</a>
 				{if $deleteId === $item->user_id}
-					<a n:href="deleteConfirm!, 0, $item->user_id" class="ajax">{_'No'}</a>
-					<a n:href="deleteConfirm!, 1, $item->user_id" class="ajax">{_'Yes'}</a>
+					<a n:href="deleteConfirm!, 0, $item->user_id" class="ajax text-secondary text-decoration-none" data-naja-history="off">{_'No'}</a>
+					<a n:href="deleteConfirm!, 1, $item->user_id" class="ajax text-danger text-decoration-none" data-naja-history="off">{_'Yes'}</a>
 				{else}
-					<a n:href="delete!, $item->user_id" class="ajax">{_'Delete'}</a>
+					<a n:href="delete!, $item->user_id" class="ajax link-custom-color text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="right" title="{_'Delete'}" data-naja-history="off">
+						<i class="fas fa-trash-alt"></i>
+					</a>
 				{/if}
 			</td>
 		</tr>

@@ -63,6 +63,7 @@
 'The role was inserted.': 'Role byla vložena.'
 'Role updated.': 'Role aktualizována.'
 'Role deleted.': 'Role smazána.'
+'The role is not allowed to be deleted.': 'Roli nelze smazat.'
 'Name': 'Název'
 'Parent': 'Rodič'
 'Resources': 'Zdroje'
