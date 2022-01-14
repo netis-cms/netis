@@ -1,5 +1,5 @@
-<h5>{_'Edit or add permissions'}</h5>
-<form n:name="factory" class="ajax row g-2">
+<h5 class="pb-2">{_'Edit or add permissions'}</h5>
+<form n:name="factory" class="ajax row g-2 bg-light p-2 rounded">
 
 	{snippet errors}
 		<ul n:if="$form->hasErrors()" class="errors">
@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="col-md-auto">
-		<button n:name="send" class="btn btn-custom-color text-white" data-btn-submit>{_'Send'}</button>
+		<button n:name="send" class="btn btn-primary" data-btn-submit>{_'Send'}</button>
 		<input type="reset" class="reset-form-factory btn btn-secondary">
 	</div>
 
