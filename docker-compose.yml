@@ -12,7 +12,7 @@ services:
     volumes:
       - ./:/var/www/html/
     ports:
-      - 8000:80
+      - 8008:80
       - 443:443
 
 
