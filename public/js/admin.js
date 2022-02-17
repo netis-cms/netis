@@ -3,6 +3,8 @@ import '../styles/admin.scss';
 
 /* js */
 import '../base';
+import '../bootstrap';
+import '../naja';
 import Nanobar from 'nanobar';
 import PerfectScrollbar from 'perfect-scrollbar';
 import 'sidebar-menu-compostrap';
