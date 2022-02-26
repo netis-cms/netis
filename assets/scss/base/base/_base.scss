@@ -2,26 +2,42 @@
 // colors and customize bootstrap
 //
 
+// bootstrap
+@import 'node_modules/bootstrap/scss/functions';
+
+// colors
 $color-blue:  #2197f4;
 $color-light: #f4f4f4;
 $color-error: #ff3e59;
 $color-white: #fff;
 
-// add custom button to bootstrap
-$theme-colors: (
-        'custom': $color-blue,
-);
-
 // re-settings bootstrap
 $border-radius: 0.1875rem;
 $input-btn-focus-width: 0;
 
-// sidebar-menu
-@import '../../../../node_modules/sidebar-menu-compostrap/scss/utils/variables';
-@import '../../../../node_modules/sidebar-skeleton-compostrap/scss/utils/variables';
-@import '../../../../node_modules/sidebar-skeleton-compostrap/scss/utils/functions';
+$alert-bg-level: 0;
+$alert-border-level: 0;
+$alert-color-level: -10;
+$alert-padding-x: 1rem;
+$alert-padding-y: 0.56rem;
 
-// bootstrap
-@import '../../../../node_modules/bootstrap/scss/functions';
-@import '../../../../node_modules/bootstrap/scss/variables';
-@import '../../../../node_modules/bootstrap/scss/mixins';
+$btn-padding-y: 0.26rem;
+
+@import 'node_modules/bootstrap/scss/variables';
+@import 'node_modules/bootstrap/scss/mixins';
+@import 'node_modules/bootstrap/scss/root';
+
+// Create your own map
+$custom-colors: (
+		"custom-color": $color-blue
+
+);
+
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+// sidebar-menu
+@import 'node_modules/sidebar-menu-compostrap/scss/utils/variables';
+@import 'node_modules/sidebar-skeleton-compostrap/scss/utils/variables';
+@import 'node_modules/sidebar-skeleton-compostrap/scss/utils/functions';
+

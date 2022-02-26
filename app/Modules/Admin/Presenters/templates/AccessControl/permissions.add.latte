@@ -1,0 +1,31 @@
+<h5 class="pb-2">{_'Edit or add permissions'}</h5>
+<form n:name="factory" class="ajax row g-2 bg-light p-2 rounded">
+
+	{snippet errors}
+		<ul n:if="$form->hasErrors()" class="errors">
+			<li n:foreach="$form->errors as $error">{$error}</li>
+		</ul>
+	{/snippet}
+
+	<div class="col-md-6">
+		<select n:name="role_id" class="form-control"></select>
+	</div>
+
+	<div class="col-md-6">
+		<select n:name="resource_id" class="form-control"></select>
+	</div>
+
+	<div class="col-md-6">
+		<select n:name="privilege_id" class="form-control"></select>
+	</div>
+
+	<div class="col-md-6">
+		<select n:name="allowed" class="form-control"></select>
+	</div>
+
+	<div class="col-md-auto">
+		<button n:name="send" class="btn btn-primary" data-btn-submit>{_'Send'}</button>
+		<input type="reset" class="reset-form-factory btn btn-secondary">
+	</div>
+
+</form>

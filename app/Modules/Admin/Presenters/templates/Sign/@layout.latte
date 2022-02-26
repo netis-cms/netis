@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="{$lang}">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="{$basePath}/parcel/sign.css">
+	<title>{include subtitle|stripHtml|firstUpper}{ifset $web} &bullet; {$web->website}{/ifset}</title>
+</head>
+
+<body>
+<div class="sign-in">
+	<div class="text-center mb-4">
+		<img src="{$gravatar}" alt="gravatar" class="sign-in-gravatar mb-3">
+		<h1 class="h3 mb-3 fw-normal">{_$welcome}</h1>
+	</div>
+
+	{* include content block *}
+	{include content}
+</div>
+
+{* copyright *}
+<div class="fixed-bottom">
+	<p class="text-muted text-center">&copy Netis</p>
+</div>
+
+<script src="{$basePath}/parcel/sign.js" defer></script>
+
+</body>
+</html>

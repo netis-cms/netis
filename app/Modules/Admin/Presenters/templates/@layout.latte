@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="{$basePath}/parcel/admin.css">
+	<title>{include subtitle|stripHtml|firstUpper}{ifset $settings} &bullet; {$settings->website}{/ifset}</title>
+
+</head>
+
+<body class="bg-light">
+
+<header>
+	<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+		<div class="container-fluid">
+
+			<!-- title -->
+			<a class="navbar-brand text-primary" href="#"><i class="fab fa-medapps px-1"></i>
+				<span class="text-bolder">{$settings->website}</span>
+			</a>
+
+			<!-- sidebar toggle -->
+			<button class="navbar-toggler btn btn-link border-0" type="button" id="sidebar" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<!-- navbar navigation -->
+			<div class="collapse navbar-collapse">
+
+				<!-- breadcrumb -->
+				<ul class="navbar-nav navbar-nav-breadcrumb">
+					<li class="nav-item"><a class="nav-link" n:href=":Admin:Admin:">{_'Dashboard'}</a></li>
+					<li n:if="$module !== 'Admin:Admin:default'" class="nav-item">
+						<a n:class="'nav-link', $module !== 'Admin:Admin:default' ? disabled" href="#">{include subtitle|stripHtml|firstUpper}</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>
+
+<div class="d-flex wrapper wrapper-navbar-used wrapper-navbar-fixed">
+	<nav role="navigation" class="sidebar sidebar-bg-white sidebar-rounded-top-right shadow-sm" id="navigation">
+
+		<!-- sidebar -->
+		<div class="sidebar-menu">
+
+			<!-- menu fixed -->
+			<div class="sidebar-menu-fixed">
+
+				<!-- menu scrollbar -->
+				<div class="scrollbar scrollbar-use-navbar scrollbar-bg-white">
+
+					<!-- menu -->
+					<ul class="list list-unstyled list-bg-white mb-0">
+
+						<li class="list-item">
+
+							<!-- list title -->
+							<p class="list-title text-uppercase">{_'User'}</p>
+
+							<!-- list items, first level -->
+							<ul class="list-unstyled">
+								<li>
+									<a href="#" class="list-link link-arrow">
+										<span class="list-icon"><i class="far fa-user"></i></span>{$user->identity->username}
+									</a>
+
+									<!-- list items, second level -->
+									<ul class="list-unstyled list-hidden">
+										<li><a href="{link :Admin:Sign:out}" class="list-link">{_'Sign out'}</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+
+					<!-- menu -->
+					<ul class="list list-unstyled list-bg-white list-icon-blue mb-0">
+
+						<!-- multi-level dropdown menu -->
+						<li class="list-item">
+
+							<!-- list title -->
+							<p class="list-title text-uppercase">{_'Translate'}</p>
+
+							<!-- list items -->
+							<ul class="list-unstyled">
+
+								<!-- translate -->
+								<li>
+									<a href="#" n:class="'list-link link-arrow', $presenter->isLinkCurrent('this') ? link-current">
+										<span class="list-icon"><i class="fas fa-globe"></i></span>Translate
+									</a>
+
+									<!-- list items, second level -->
+									<ul class="list-unstyled list-hidden">
+										<li><a n:href="this, 'lang' => 'cs'" n:class="list-link, $presenter->isLinkCurrent('this', ['lang' => 'cs']) ? link-current">Czech</a></li>
+										<li><a n:href="this, 'lang' => 'en'" n:class="list-link, $presenter->isLinkCurrent('this', ['lang' => 'en']) ? link-current">English</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+
+					<!-- system -->
+					<ul class="list list-unstyled list-bg-white list-icon-blue mb-0">
+
+						<li class="list-item">
+
+							<!-- list title -->
+							<p class="list-title text-uppercase">{_'System'}</p>
+
+							<!-- list items, first level -->
+							<ul class="list-unstyled">
+								<li>
+									<a n:href=":Admin:Admin:" n:class="'list-link', $presenter->isLinkCurrent(':Admin:Admin:default') ? link-current">
+										<span class="list-icon"><i class="fas fa-mug-hot"></i></span>{_'Dashboard'}
+									</a>
+								</li>
+								<li>
+									<a href="#" n:class="'list-link link-arrow', $presenter->isLinkCurrent(':Admin:AccessControl:*') ? link-current">
+										<span class="list-icon"><i class="fas fa-cog"></i></span>{_'Access control'}
+									</a>
+
+									<!-- list items, second level -->
+									<ul class="list-unstyled list-hidden">
+										<li><a n:href=":Admin:AccessControl:permissions" n:class="'list-link', $presenter->isLinkCurrent(':Admin:AccessControl:permissions') ? link-current">{_'Permissions'}</a></li>
+										<li><a n:href=":Admin:AccessControl:roles" n:class="'list-link', $presenter->isLinkCurrent(':Admin:AccessControl:roles') ? link-current">{_'Roles'}</a></li>
+										<li><a n:href=":Admin:AccessControl:resources" n:class="'list-link', $presenter->isLinkCurrent(':Admin:AccessControl:resources') ? link-current">{_'Resources'}</a></li>
+										<li><a n:href=":Admin:AccessControl:privileges" n:class="'list-link', $presenter->isLinkCurrent(':Admin:AccessControl:privileges') ? link-current">{_'Privileges'}</a></li>
+										<li><a n:href=":Admin:AccessControl:users" n:class="'list-link', $presenter->isLinkCurrent(':Admin:AccessControl:users') ? link-current">{_'Users'}</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+
+		<!-- content -->
+		<main role="main">
+			{snippet message}
+				<div n:foreach="$flashes as $flash" n:class="'alert alert-dismissible fade show border-0 rounded', 'alert-' . $flash->type" role="alert">{_$flash->message}
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			{/snippet}
+
+			{* page content *}
+			{include content}
+		</main>
+
+		<!-- license rights, do not delete this piece of code -->
+		<footer class="text-end mt-3 mb-3">
+			<p class="text-silver">&copy Netis</p>
+		</footer>
+	</div>
+</div>
+
+<script src="{$basePath}/parcel/admin.js" defer></script>
+
+{* reset javascript for access control *}
+{control resetControl}
+
+</body>
+</html>

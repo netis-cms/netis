@@ -1,0 +1,33 @@
+{varType Drago\Authorization\Entity\ResourcesEntity $resource}
+<h5>{_'Resources'}</h5>
+<div class="table-responsive-sm">
+	<table class="table table-sm table-striped table-hover table-borderless">
+
+		<thead>
+		<tr>
+			<th scope="col">{_'Name'}</th>
+			<th scope="col">{_'Action'}</th>
+		</tr>
+		</thead>
+
+		<tbody>
+		<tr n:foreach="$resources as $resource">
+			<td style="width: 75%">{$resource->name}</td>
+			<td style="width: 25%">
+				<a n:href="edit!, $resource->id" class="ajax link-secondary text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="left" title="{_'Edit'}" data-naja-history="off">
+					<i class="fas fa-pencil-alt"></i>
+				</a>
+				{if $deleteId === $resource->id}
+					<a n:href="deleteConfirm!, 0, $resource->id" class="ajax link-secondary text-bolder text-decoration-none" data-naja-history="off">{_'No'}</a>
+					<a n:href="deleteConfirm!, 1, $resource->id" class="ajax link-danger text-bolder text-decoration-none" data-naja-history="off">{_'Yes'}</a>
+				{else}
+					<a n:href="delete!, $resource->id" class="ajax link-secondary text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="right" title="{_'Delete'}" data-naja-history="off">
+						<i class="fas fa-trash-alt"></i>
+					</a>
+				{/if}
+			</td>
+		</tr>
+		</tbody>
+
+	</table>
+</div>

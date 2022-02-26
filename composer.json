@@ -15,21 +15,21 @@
 		"nette/security": "^3.0",
 		"latte/latte": "^2.9",
 		"tracy/tracy": "^2.8",
-		"drago-ex/bootstrap": "dev-master",
-		"drago-ex/translator": "dev-master",
-		"drago-ex/application": "dev-master",
-		"drago-ex/parameters": "dev-master",
-		"drago-ex/database": "dev-master",
-		"drago-ex/gravatar": "dev-master",
-		"drago-ex/utils": "dev-master",
-		"drago-ex/authorization": "dev-master",
+		"drago-ex/bootstrap": "^1.0",
+		"drago-ex/translator": "^1.0",
+		"drago-ex/application": "^1.0",
+		"drago-ex/parameters": "^1.0",
+		"drago-ex/database": "^1.0",
+		"drago-ex/gravatar": "^1.0",
+		"drago-ex/utils": "^1.0",
+		"drago-ex/authorization": "^1.0",
 		"dg/composer-cleaner": "^2.2"
 	},
 	"require-dev": {
 		"phpstan/phpstan-nette": "^0.12"
 	},
 	"autoload": {
-		"classmap": ["app/Bootstrap.php"]
+		"psr-4": {"App\\": "app"}
 	},
 	"scripts": {
 		"phpstan": "phpstan analyse --level 5 --configuration phpstan.neon app"

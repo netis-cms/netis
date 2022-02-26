@@ -1,0 +1,24 @@
+{* website settings *}
+<form n:name="website" class="ajax mt-5 row g-3">
+
+	{* form errors *}
+	<ul n:snippet="errors" n:if="$form->hasErrors()" class="form-errors">
+		<li n:foreach="$form->errors as $error">{_$error}</li>
+	</ul>
+
+	{* input group *}
+	<div class="col-md-6">
+		<label n:name="website" class="form-label" />
+		<input n:name="website" class="form-control">
+	</div>
+	<div class="col-md-6">
+		<label n:name="description" class="form-label" />
+		<input n:name="description" class="form-control">
+	</div>
+
+	{* send button *}
+	<div class="col-md-auto">
+		<button n:name="send" class="btn btn-custom-color text-white" data-btn-submit>{_'Save'}</button>
+	</div>
+
+</form>

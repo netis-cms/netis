@@ -1,0 +1,39 @@
+{varType Drago\Authorization\Entity\UsersRolesViewEntity $usersRoles}
+<h5>{_'List of assigned roles'}</h5>
+<div class="table-responsive-sm">
+	<table class="table table-sm table-striped table-hover table-borderless">
+
+		<thead>
+		<tr>
+			<th scope="col">{_'Username'}</th>
+			<th scope="col">{_'Roles'}</th>
+			<th scope="col">{_'Action'}</th>
+		</tr>
+		</thead>
+
+		<tbody>
+		<tr n:foreach="$usersRoles as $item">
+			<td style="width: 40%">{$item->username}</td>
+			<td style="width: 35%">
+				{foreach $item->role as $role}
+					{$role}{sep},{/sep}
+				{/foreach}
+			</td>
+			<td style="width: 25%">
+				<a n:href="edit!, $item->user_id" class="ajax link-secondary text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="left" title="{_'Edit'}" data-naja-history="off">
+					<i class="fas fa-pencil-alt"></i>
+				</a>
+				{if $deleteId === $item->user_id}
+					<a n:href="deleteConfirm!, 0, $item->user_id" class="ajax link-secondary text-bolder text-decoration-none" data-naja-history="off">{_'No'}</a>
+					<a n:href="deleteConfirm!, 1, $item->user_id" class="ajax link-danger text-bolder text-decoration-none" data-naja-history="off">{_'Yes'}</a>
+				{else}
+					<a n:href="delete!, $item->user_id" class="ajax link-secondary text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="right" title="{_'Delete'}" data-naja-history="off">
+						<i class="fas fa-trash-alt"></i>
+					</a>
+				{/if}
+			</td>
+		</tr>
+		</tbody>
+
+	</table>
+</div>

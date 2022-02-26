@@ -1,0 +1,23 @@
+<h5 class="pb-2">{_'Edit or add roles'}</h5>
+<form n:name="factory" class="ajax row g-2 bg-light p-2 rounded">
+
+	{snippet errors}
+		<ul n:if="$form->hasErrors()" class="errors">
+			<li n:foreach="$form->errors as $error">{$error}</li>
+		</ul>
+	{/snippet}
+
+	<div class="col-md-6">
+		<input n:name="name" class="form-control">
+	</div>
+
+	<div class="col-md-6">
+		<select n:name="parent" class="form-control"></select>
+	</div>
+
+	<div class="col-md-auto">
+		<button n:name="send" class="btn btn-primary" data-btn-submit>{_'Send'}</button>
+		<input type="reset" class="reset-form-factory btn btn-secondary">
+	</div>
+
+</form>

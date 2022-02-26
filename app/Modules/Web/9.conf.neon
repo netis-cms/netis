@@ -1,0 +1,4 @@
+services:
+
+	router: {factory: Nette\Application\Routers\RouteList, setup: {offsetSet(null, @router.web)}}
+	router.web: {factory: App\Modules\Web\Router::create, autowired: no}

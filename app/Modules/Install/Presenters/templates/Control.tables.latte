@@ -1,0 +1,12 @@
+{* install database tables *}
+<form n:name="tables" class="ajax">
+
+	{* form errors *}
+	<ul n:snippet="errors" n:if="$form->hasErrors()" class="form-errors">
+		<li n:foreach="$form->errors as $error">{_$error}</li>
+	</ul>
+
+	{* send button *}
+	<button n:name="send" class="btn btn-custom-color text-white" data-btn-submit>{_'Install'}</button>
+
+</form>

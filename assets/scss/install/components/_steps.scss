@@ -3,10 +3,9 @@
 //
 
 .steps-install {
-  margin: 0;
-  padding-top: rem(5);
+  padding-top: rem(2);
   font-weight: 600;
-  @include font-size($font-size);
+  @include font-size($font-size-sm);
 }
 
 // icons for install steps
@@ -21,7 +20,7 @@
   margin-left: rem(50);
   padding-top: rem(38);
   border-radius: 50%;
-  @include font-size(130);
+  font-size: rem(130);
   @include media-breakpoint-up(md) {
     display: block;
   }

@@ -1,0 +1,74 @@
+# subtitle page
+'System installation': 'Instalace systému'
+
+# form
+'Database server': 'Databázový server'
+'Username': 'Uživatelské jméno'
+'Password': 'Heslo'
+'Password to check': 'Heslo pro kontrolu'
+'Database name': 'Název databáze'
+'Site name': 'Název webu'
+'Full name': 'Celé jméno'
+'Site description': 'Popis webu'
+'Email': 'Email'
+'Verify database': 'Ověřit databázi'
+'Install': 'Instalovat'
+'Save': 'Uložit'
+'Register': 'Registrovat'
+
+# form rule
+'This field is required.': 'Vyplňte prázdné pole.'
+'Please enter a valid email address.': 'Zadejte email ve správném tvaru.'
+'Passwords do not match.': 'Hesla se neshodují.'
+'Please enter at least %d characters.': 'Zadejte prosím alespoň %d znaků.'
+
+# form error
+'The server does not support the selected database type.': 'Server nepodporuje zvolený typ databáze.'
+'Database cannot be uploaded, table names conflict.': 'Databázi nelze nahrát, kolidují názvy tabulek.'
+'Access denied, check database settings.': 'Přístup byl odepřen, zkontrolujte nastavení databáze.'
+'Failed to verify database username or password.': 'Nepovedlo se ověřit uživatelské jméno nebo heslo databáze.'
+'The database name does not exist.': 'Název databáze neexistuje.'
+'Table already exists.': 'Tabulka již existuje.'
+'The database server did not respond.': 'Databázový server neodpověděl.'
+'Unknown status code.': 'Neznámý stavový kód.'
+
+# messages
+'Database settings were successful.': 'Nastavení databáze proběhlo úspěšně.'
+'Database installation was successful.': 'Instalace databáze proběhla úspěšně.'
+'Site settings successful.': 'Nastavení webu proběhlo úspěšně.'
+'Administrator registration was successful.': 'Registrace administrátora proběhla úspěšně.'
+
+# template layout
+'Installation step': 'Krok instalace'
+
+# information before installation
+'Information before installing the system': 'Informace před zahájením instalace systému'
+'Welcome, please prepare your database server data before installing the system.': 'Vítejte, dříve než začnete s instalací systému, tak si prosím připravte údaje databázového serveru.'
+'However, if you do not have them for some reason, you may need to create the database manually through hosting administration.': 'Pokud je však z nějakého důvodu nemáte, tak je možné, že budete muset nejdříve databázi vytvořit ručně prostřednictvím administrace hostingu.'
+'Start with installation': 'Začít s instalací'
+
+# database server settings
+'Database settings': 'Nastavení databáze'
+'If there is a problem with database server authentication, please contact your web hosting vendor to verify the correctness of the data.': 'Pokud se vyskytne problém s ověřením databázového serveru, kontaktujte prosím vašeho dodavatele webového hostingu a oveřte si správnost údajů.'
+
+# install database tables
+'Database installation': 'Instalace databáze'
+'Before installing the database, please verify that your database server has an empty database or uses other table prefixes.': 'Před instalací databáze si prosím ověřte, že Váš databázový server má prázdnou databázi nebo používá jiné předpony tabulek.'
+'If the table names match your table in the database, you will not be able to upload the database.': 'V případě, že se budou shodovat názvy tabulek s některou Vaší tabulkou v databázi, nebude možné databázi nahrát.'
+
+# website settings
+'Site name and description': 'Název a popis webu'
+'Please enter basic information for the website.': 'Zadejte prosím základní informace webových stránek.'
+
+# add administrator account
+'Registration': 'Registrace'
+'Admin account registration.': 'Registrace administrátorského účtu.'
+
+# complete the installation
+'Installation is complete': 'Instalace je dokončená'
+'The installation of the system is almost over, now it is necessary to remove the installation packages in order for the system to boot properly.': 'Instalace systému je téměř u konce, nyní je nutné odstranit instalační balíčky, aby systém správně naběhnul.'
+'Please follow the instructions below.': 'Prosím postupujte dle níže uvedených pokynů.'
+'Delete the following directories': 'Odstraňte následující adresáře'
+'Entering administration': 'Vstup do administrace'
+
+
