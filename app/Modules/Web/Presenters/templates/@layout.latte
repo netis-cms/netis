@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="{$lang}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{$basePath}/files/style.css">
+
+    <title>{include subtitle|stripHtml|firstUpper}{ifset $settings} &bullet; {$settings->website}{/ifset}</title>
+</head>
+
+<body>
+<div class="container mt-3">
+
+    {* content block *}
+	{include content|indent:1}
+
+	{* language switching *}
+    <a n:href="this, 'lang' => 'cs'" n:class="$presenter->linkCurrent ? 'current'">Czech</a>
+    <a n:href="this, 'lang' => 'en'" n:class="$presenter->linkCurrent ? 'current'">English</a>
+
+</div>
+
+<script src="{$basePath}/files/script.js" defer></script>
+
+</body>
+</html>
