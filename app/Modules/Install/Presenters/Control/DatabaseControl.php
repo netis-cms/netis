@@ -14,8 +14,6 @@ use Nette\Application\UI\Form;
 use Nette\Bridges\ApplicationLatte\Template;
 use Nette\DI\Config\Loader;
 use Nette\InvalidStateException;
-use Nette\Utils\FileSystem;
-use Tracy\Debugger;
 
 
 /**
@@ -101,7 +99,7 @@ final class DatabaseControl extends Control
 				$this->presenter->flashMessage('Database settings were successful.', 'success');
 			}
 
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			if ($e->getCode()) {
 				$message = match ($e->getCode()) {
 					0 => 'The server does not support the selected database type.',

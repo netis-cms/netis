@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Modules;
 
+use App\Services\Repository\SettingsRepository;
 use Drago\Authorization\Authorization;
 use Drago\Localization\TranslatorAdapter;
 use Nette\Application\UI\Presenter;
 use Nette\DI\Attributes\Inject;
-use App\Services\Repository\SettingsRepository;
 
 
 abstract class BasePresenter extends Presenter

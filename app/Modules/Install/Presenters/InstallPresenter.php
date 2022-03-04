@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Modules\Install\Presenters;
 
-use App\Modules\Install\Services\Steps;
-use Drago\Localization\Translator;
-use Drago\Localization\TranslatorAdapter;
 use App\Modules\Install\Presenters\Control\AccountControl;
 use App\Modules\Install\Presenters\Control\DatabaseControl;
 use App\Modules\Install\Presenters\Control\TablesControl;
 use App\Modules\Install\Presenters\Control\WebsiteControl;
+use App\Modules\Install\Services\Steps;
+use Drago\Localization\Translator;
+use Drago\Localization\TranslatorAdapter;
 use Nette\Application\UI\Presenter;
 use Throwable;
 use Tracy\Debugger;

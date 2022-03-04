@@ -10,7 +10,6 @@ use Exception;
 use Nette\Application\AbortException;
 use Nette\Application\UI\Form;
 use Nette\Security\AuthenticationException;
-use Nette\Security\SimpleIdentity;
 
 
 /**

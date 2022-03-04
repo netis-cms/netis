@@ -1,10 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Modules\Install\Presenters\Control;
 
-use App\Services\Entity\SettingsEntity;
 use App\Modules\Install\Services\Steps;
+use App\Services\Entity\SettingsEntity;
 use Dibi\Connection;
 use Dibi\Exception;
 use Drago\Localization\Translator;
@@ -13,6 +14,8 @@ use Nette\Application\UI\Form;
 use Nette\Bridges\ApplicationLatte\Template;
 use Nette\InvalidStateException;
 use Nette\Utils\ArrayHash;
+
+
 
 
 /**

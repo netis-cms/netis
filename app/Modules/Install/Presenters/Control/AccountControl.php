@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Modules\Install\Presenters\Control;
 
-use App\Services\Entity\UsersEntity;
 use App\Modules\Install\Services\Steps;
+use App\Services\Entity\UsersEntity;
 use Dibi\Connection;
 use Dibi\Exception;
 use Drago\Authorization\Entity\UsersRolesEntity;

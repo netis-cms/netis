@@ -61,7 +61,7 @@ final class TablesControl extends Control
 			$this->steps->cache->save(Steps::STEP, ['step' => 3]);
 			$this->presenter->flashMessage('Database installation was successful.', 'success');
 
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			if ($e->getCode()) {
 				$message = match ($e->getCode()) {
 					1050 => 'Table already exists.',

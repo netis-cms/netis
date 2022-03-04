@@ -9,5 +9,4 @@ use App\Modules\DashboardPresenter;
 
 final class AdminPresenter extends DashboardPresenter
 {
-
 }
