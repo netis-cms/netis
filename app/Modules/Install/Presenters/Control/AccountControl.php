@@ -8,7 +8,7 @@ use App\Modules\Install\Services\Steps;
 use App\Services\Entity\UsersEntity;
 use Dibi\Connection;
 use Dibi\Exception;
-use Drago\Authorization\Entity\UsersRolesEntity;
+use Drago\Authorization\Service\Entity\UsersRolesEntity;
 use Drago\Localization\Translator;
 use Drago\Utils\ExtraArrayHash;
 use Nette\Application\UI\Control;
