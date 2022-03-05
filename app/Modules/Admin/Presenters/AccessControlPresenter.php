@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Modules\Admin\Presenters;
 
 use App\Modules\DashboardPresenter;
-use Drago\Authorization\Control\AccessControl;
-use Drago\Authorization\Control\PermissionsControl;
-use Drago\Authorization\Control\PrivilegesControl;
-use Drago\Authorization\Control\ResourcesControl;
-use Drago\Authorization\Control\RolesControl;
+use Drago\Authorization\Control\Access\AccessControl;
+use Drago\Authorization\Control\Permissions\PermissionsControl;
+use Drago\Authorization\Control\Privileges\PrivilegesControl;
+use Drago\Authorization\Control\Resources\ResourcesControl;
+use Drago\Authorization\Control\Roles\RolesControl;
 use Drago\Authorization\FileNotFoundException;
 use Drago\Parameters\Parameters;
 use Nette\DI\Attributes\Inject;

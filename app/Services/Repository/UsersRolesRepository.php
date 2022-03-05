@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Services\Repository;
 
 use Drago\Attr\Table;
-use Drago\Authorization\Entity\UsersRolesViewEntity;
+use Drago\Authorization\Service\Entity\UsersRolesViewEntity;
 use Drago\Database\Connect;
 
 
