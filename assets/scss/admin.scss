@@ -30,3 +30,31 @@
     color: #e93d3d;
   }
 }
+
+:root {
+  --cooltipz-fontawesome: 'Font Awesome 6 Free';
+}
+
+.custom {
+  &--edit {
+    --cooltipz-bg-color: #048ffa;
+    --cooltipz-border-color: #048ffa;
+
+  }
+
+  &--delete {
+    --cooltipz-bg-color: #e93d3d;
+    --cooltipz-border-color: #e93d3d
+  }
+}
+
+[data-cooltipz-dir]:not(:hover)::before,
+[data-cooltipz-dir]:not(:hover)::after {
+  display: none;
+}
+
+[data-cooltipz-dir]::before,
+[data-cooltipz-dir]::after {
+  box-shadow: none !important;
+  filter: none !important;
+}
