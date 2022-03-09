@@ -1,4 +1,4 @@
-import naja from "naja";
+import naja from 'naja';
 import * as bootstrap from 'bootstrap/dist/js/bootstrap.bundle';
 
 window.naja = naja;
@@ -10,18 +10,10 @@ const alerts = [].slice.call(alertList).map(function (element) {
 	return new bootstrap.Alert(element)
 });
 
-// bootstrap tooltips
-function tooltip () {
-	const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-	const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-		return new bootstrap.Tooltip(tooltipTriggerEl)
-	});
-}
-
 const submit = document.getElementById('btn-send');
 const submitSpinner = function (element) {
 	element.disabled = true;
-	element.innerText = 'Wait... ';
+	element.innerText = '';
 	element.innerHTML += '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
 }
 
@@ -51,17 +43,3 @@ naja.addEventListener('start', e => {
 		submitSpinner(submit);
 	}
 });
-
-// bootstrap tooltip
-const tooltipsExtension = {
-	initialize(naja) {
-		naja.addEventListener('init', () => {
-			tooltip();
-		});
-		naja.addEventListener('complete', () => {
-			tooltip();
-		});
-	}
-}
-
-naja.registerExtension(tooltipsExtension);

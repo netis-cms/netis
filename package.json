@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "bootstrap": "^5.1.3",
-    "dashboard-skeleton-compostrap": "^2.0.3",
+    "dashboard-skeleton-compostrap": "^2.0.6",
     "live-form-validation": "^1.10.0",
     "nanobar": "^0.4.2",
     "nette-forms": "^3.3.1",

@@ -14,7 +14,7 @@ CREATE TABLE `permissions` (
     `role_id` int(11) unsigned NOT NULL,
     `resource_id` int(11) unsigned NOT NULL,
     `privilege_id` int(11) unsigned NOT NULL,
-    `allowed` enum('no','yes') NOT NULL DEFAULT 'yes',
+    `allowed` tinyint(1) NOT NULL,
     PRIMARY KEY (`id`),
     UNIQUE KEY `role_id_resource_id_privilege_id` (`role_id`,`resource_id`,`privilege_id`),
     KEY `resource` (`resource_id`),
@@ -27,10 +27,10 @@ CREATE TABLE `permissions` (
 
 -- ---- insert values to table:
 INSERT INTO `permissions` (`id`, `role_id`, `resource_id`, `privilege_id`, `allowed`) VALUES
-(1,	1,	1,	1,	'yes'),
-(2,	1,	2,	2,	'yes'),
-(3,	1,	3,	1,	'yes'),
-(4,	3,	2,	1,	'yes');
+(1,	1,	1,	1,	1),
+(2,	1,	2,	2,	1),
+(3,	1,	3,	1,	1),
+(4,	3,	2,	1,	1);
 
 -- ---- create view:
 CREATE TABLE `permissions_roles_view` (
@@ -45,7 +45,7 @@ CREATE TABLE `permissions_view` (
     `resource` varchar(40),
     `privilege` varchar(40),
     `role` varchar(40),
-    `allowed` enum('no','yes')
+    `allowed` tinyint(1)
 );
 
 -- ---- create table:
