@@ -1,5 +1,5 @@
-<h5 class="pb-2">{_'Edit or add resources'}</h5>
-<form n:name="factory" class="ajax row g-2 bg-light p-2 rounded">
+<h5 class="border-bottom pb-2">{_'Edit or add resources'}</h5>
+<form n:name="factory" class="row g-3 ajax">
 
 	{snippet errors}
 		<ul n:if="$form->hasErrors()" class="errors">
@@ -8,12 +8,12 @@
 	{/snippet}
 
 	<div class="col-md-12">
+		<label n:name="name" class="form-label" />
 		<input n:name="name" class="form-control">
 	</div>
 
-	<div class="col-md-auto">
+	<div class="col-md-12">
 		<button n:name="send" class="btn btn-primary" data-btn-submit>{_'Send'}</button>
-		<input type="reset" class="reset-form-factory btn btn-secondary">
+		<button type="reset" class="reset-form-factory btn-block btn btn-outline-secondary">{_'Reset'}</button>
 	</div>
-
 </form>

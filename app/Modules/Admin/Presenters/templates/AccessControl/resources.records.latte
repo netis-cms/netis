@@ -1,12 +1,12 @@
 {varType Drago\Authorization\Entity\ResourcesEntity $resource}
-<h5>{_'Resources'}</h5>
+<h5 class="border-bottom pb-2">{_'Resources'}</h5>
 <div class="table-responsive-sm">
-	<table class="table table-sm table-striped table-hover table-borderless">
+	<table class="table table-sm table-hover table-borderless">
 
 		<thead>
 		<tr>
-			<th scope="col">{_'Name'}</th>
-			<th scope="col">{_'Action'}</th>
+			<th scope="col" class="text-uppercase small">{_'Name'}</th>
+			<th scope="col" class="text-uppercase small">{_'Action'}</th>
 		</tr>
 		</thead>
 
@@ -14,20 +14,20 @@
 		<tr n:foreach="$resources as $resource">
 			<td style="width: 75%">{$resource->name}</td>
 			<td style="width: 25%">
-				<a n:href="edit!, $resource->id" class="ajax link-secondary text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="left" title="{_'Edit'}" data-naja-history="off">
-					<i class="fas fa-pencil-alt"></i>
+				<a n:href="edit!, $resource->id" class="ajax link-edit me-1">
+					<i class="fa-regular fa-pen-to-square"></i>
 				</a>
 				{if $deleteId === $resource->id}
-					<a n:href="deleteConfirm!, 0, $resource->id" class="ajax link-secondary text-bolder text-decoration-none" data-naja-history="off">{_'No'}</a>
-					<a n:href="deleteConfirm!, 1, $resource->id" class="ajax link-danger text-bolder text-decoration-none" data-naja-history="off">{_'Yes'}</a>
+					<p class="d-inline text-secondary">{_'Confirm'}</p>
+					<a n:href="deleteConfirm!, 0, $resource->id" class="ajax text-decoration-none">{_'No'}</a>
+					<a n:href="deleteConfirm!, 1, $resource->id" class="ajax text-decoration-none">{_'Yes'}</a>
 				{else}
-					<a n:href="delete!, $resource->id" class="ajax link-secondary text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="right" title="{_'Delete'}" data-naja-history="off">
-						<i class="fas fa-trash-alt"></i>
+					<a n:href="delete!, $resource->id" class="ajax link-delete">
+						<i class="fa-regular fa-trash-can"></i>
 					</a>
 				{/if}
 			</td>
 		</tr>
 		</tbody>
-
 	</table>
 </div>

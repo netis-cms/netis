@@ -1,5 +1,5 @@
-<h5 class="pb-2">{_'Edit or add permissions'}</h5>
-<form n:name="factory" class="ajax row g-2 bg-light p-2 rounded">
+<h5 class="border-bottom pb-2">{_'Edit or add permissions'}</h5>
+<form n:name="factory" class="row g-3 ajax">
 
 	{snippet errors}
 		<ul n:if="$form->hasErrors()" class="errors">
@@ -8,24 +8,27 @@
 	{/snippet}
 
 	<div class="col-md-6">
+		<label n:name="role_id" class="form-label" />
 		<select n:name="role_id" class="form-control"></select>
 	</div>
 
 	<div class="col-md-6">
+		<label n:name="resource_id" class="form-label" />
 		<select n:name="resource_id" class="form-control"></select>
 	</div>
 
 	<div class="col-md-6">
+		<label n:name="privilege_id" class="form-label" />
 		<select n:name="privilege_id" class="form-control"></select>
 	</div>
 
 	<div class="col-md-6">
+		<label n:name="allowed" class="form-label" />
 		<select n:name="allowed" class="form-control"></select>
 	</div>
 
-	<div class="col-md-auto">
+	<div class="col-md-12">
 		<button n:name="send" class="btn btn-primary" data-btn-submit>{_'Send'}</button>
-		<input type="reset" class="reset-form-factory btn btn-secondary">
+		<button type="reset" class="reset-form-factory btn btn-outline-secondary">{_'Reset'}</button>
 	</div>
-
 </form>

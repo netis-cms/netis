@@ -1,13 +1,13 @@
 {varType Drago\Authorization\Entity\UsersRolesViewEntity $usersRoles}
-<h5>{_'List of assigned roles'}</h5>
+<h5 class="border-bottom pb-2">{_'List of assigned roles'}</h5>
 <div class="table-responsive-sm">
-	<table class="table table-sm table-striped table-hover table-borderless">
+	<table class="table table-sm table-hover table-borderless">
 
 		<thead>
 		<tr>
-			<th scope="col">{_'Username'}</th>
-			<th scope="col">{_'Roles'}</th>
-			<th scope="col">{_'Action'}</th>
+			<th scope="col" class="text-uppercase small">{_'Username'}</th>
+			<th scope="col" class="text-uppercase small">{_'Roles'}</th>
+			<th scope="col" class="text-uppercase small">{_'Action'}</th>
 		</tr>
 		</thead>
 
@@ -20,20 +20,20 @@
 				{/foreach}
 			</td>
 			<td style="width: 25%">
-				<a n:href="edit!, $item->user_id" class="ajax link-secondary text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="left" title="{_'Edit'}" data-naja-history="off">
-					<i class="fas fa-pencil-alt"></i>
+				<a n:href="edit!, $item->user_id" class="ajax link-edit me-1">
+					<i class="fa-regular fa-pen-to-square"></i>
 				</a>
 				{if $deleteId === $item->user_id}
-					<a n:href="deleteConfirm!, 0, $item->user_id" class="ajax link-secondary text-bolder text-decoration-none" data-naja-history="off">{_'No'}</a>
-					<a n:href="deleteConfirm!, 1, $item->user_id" class="ajax link-danger text-bolder text-decoration-none" data-naja-history="off">{_'Yes'}</a>
+					<p class="d-inline text-secondary">{_'Confirm'}</p>
+					<a n:href="deleteConfirm!, 0, $item->user_id" class="ajax text-decoration-none">{_'No'}</a>
+					<a n:href="deleteConfirm!, 1, $item->user_id" class="ajax text-decoration-none">{_'Yes'}</a>
 				{else}
-					<a n:href="delete!, $item->user_id" class="ajax link-secondary text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="right" title="{_'Delete'}" data-naja-history="off">
-						<i class="fas fa-trash-alt"></i>
+					<a n:href="delete!, $item->user_id" class="ajax link-delete">
+						<i class="fa-regular fa-trash-can"></i>
 					</a>
 				{/if}
 			</td>
 		</tr>
 		</tbody>
-
 	</table>
 </div>

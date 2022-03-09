@@ -1,0 +1,32 @@
+.link {
+  &-edit,
+  &-delete {
+    color: #b7b7b7;
+    text-decoration: none;
+  }
+
+  &-edit:hover {
+    color: #048ffa;
+  }
+
+  &-delete:hover {
+    color: #e93d3d;
+  }
+}
+
+.badge {
+  &-light-primary {
+    background-color: #c3e5ff;
+    color: #048ffa;
+  }
+
+  &-light-success {
+    background-color: #d5ffe1;
+    color: #198d66;
+  }
+
+  &-light-danger {
+    background-color: #ffd2d2;
+    color: #e93d3d;
+  }
+}

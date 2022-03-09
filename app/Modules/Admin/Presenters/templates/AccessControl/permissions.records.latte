@@ -2,16 +2,15 @@
 {varType Drago\Authorization\Entity\PermissionsViewEntity $permission}
 
 {foreach $roles as $role}
-	<h5>Role: {$role->name}</h5>
+	<h5 class="border-bottom pb-2">Role: {$role->name}</h5>
 	<div class="table-responsive-sm">
-		<table class="table table-sm table-striped table-hover table-borderless">
-
+		<table class="table table-sm table-hover table-borderless">
 			<thead>
 			<tr>
-				<th scope="col">{_'Resource'}</th>
-				<th scope="col">{_'Action / signal'}</th>
-				<th scope="col">{_'Permission'}</th>
-				<th scope="col">{_'Action'}</th>
+				<th scope="col" class="text-uppercase small">{_'Resource'}</th>
+				<th scope="col" class="text-uppercase small">{_'Action / signal'}</th>
+				<th scope="col" class="text-uppercase small">{_'Permission'}</th>
+				<th scope="col" class="text-uppercase small">{_'Action'}</th>
 			</tr>
 			</thead>
 
@@ -20,32 +19,28 @@
 				<td style="width: 25%">{$permission->resource}</td>
 				<td style="width: 25%">{$permission->privilege}</td>
 				<td style="width: 25%">
-					{if $permission->allowed === 'yes'}
-						<span class="badge bg-primary p-1">
-							<i class="fas fa-check"></i>
-						</span>
-						{else}
-						<span class="badge bg-danger p-1">
-							<i class="fas fa-minus"></i>
-						</span>
+					{if $permission->allowed === 1}
+						<span class="badge badge-light-primary rounded-pill p-1 ps-3 pe-3">{_'Allow'}</span>
+					{else}
+						<span class="badge badge-light-danger rounded-pill p-1 ps-3 pe-3">{_'Denny'}</span>
 					{/if}
 				</td>
 				<td style="width: 25%">
-					<a n:href="edit!, $permission->id" class="ajax text-decoration-none link-secondary" data-bs-toggle="tooltip" data-bs-placement="left" title="{_'Edit'}" data-naja-history="off">
-						<i class="fas fa-pencil-alt"></i>
+					<a n:href="edit!, $permission->id" class="ajax link-edit me-1">
+						<i class="fa-regular fa-pen-to-square"></i>
 					</a>
 					{if $deleteId === $permission->id}
-						<a n:href="deleteConfirm!, 0, $permission->id" class="ajax link-secondary text-bolder text-decoration-none" data-naja-history="off">{_'No'}</a>
-						<a n:href="deleteConfirm!, 1, $permission->id" class="ajax link-danger text-bolder text-decoration-none" data-naja-history="off">{_'Yes'}</a>
+						<p class="d-inline text-secondary">{_'Confirm'}</p>
+						<a n:href="deleteConfirm!, 0, $permission->id" class="ajax text-decoration-none">{_'No'}</a>
+						<a n:href="deleteConfirm!, 1, $permission->id" class="ajax text-decoration-none">{_'Yes'}</a>
 					{else}
-						<a n:href="delete!, $permission->id" class="ajax text-decoration-none link-secondary" data-bs-toggle="tooltip" data-bs-placement="right" title="{_'Delete'}" data-naja-history="off">
-							<i class="fas fa-trash-alt"></i>
+						<a n:href="delete!, $permission->id" class="ajax link-delete">
+							<i class="fa-regular fa-trash-can"></i>
 						</a>
 					{/if}
 				</td>
 			</tr>
 			</tbody>
-
 		</table>
 	</div>
 {/foreach}
