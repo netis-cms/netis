@@ -17,18 +17,14 @@ use Nette\DI\Attributes\Inject;
 
 final class AccessControlPresenter extends DashboardPresenter
 {
-	#[Inject]
-	public Parameters $dirs;
-
-
 	/**
 	 * @throws FileNotFoundException
 	 */
 	protected function createComponentPermissionsControl(): PermissionsControl
 	{
 		$control = $this->permissionsControl;
-		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/permissions.add.latte');
-		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/permissions.records.latte', 'records');
+		$control->setTemplateFile(__DIR__ . '/../../../UI/Templates/Permissions/Permissions.add.latte');
+		$control->setTemplateFile(__DIR__ . '/../../../UI/Templates/Permissions/Permissions.records.latte', 'records');
 		$control->setTranslator($this->getTranslator());
 		return $control;
 	}
@@ -40,8 +36,8 @@ final class AccessControlPresenter extends DashboardPresenter
 	protected function createComponentRolesControl(): RolesControl
 	{
 		$control = $this->rolesControl;
-		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/roles.add.latte');
-		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/roles.records.latte', 'records');
+		$control->setTemplateFile(__DIR__ . '/../../../UI/Templates/Roles/Roles.add.latte');
+		$control->setTemplateFile(__DIR__ . '/../../../UI/Templates/Roles/Roles.records.latte', 'records');
 		$control->setTranslator($this->getTranslator());
 		return $control;
 	}
@@ -53,8 +49,8 @@ final class AccessControlPresenter extends DashboardPresenter
 	protected function createComponentResourcesControl(): ResourcesControl
 	{
 		$control = $this->resourcesControl;
-		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/resources.add.latte');
-		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/resources.records.latte', 'records');
+		$control->setTemplateFile(__DIR__ . '/../../../UI/Templates/Resources/Resources.add.latte');
+		$control->setTemplateFile(__DIR__ . '/../../../UI/Templates/Resources/Resources.records.latte', 'records');
 		$control->setTranslator($this->getTranslator());
 		return $control;
 	}
@@ -66,8 +62,8 @@ final class AccessControlPresenter extends DashboardPresenter
 	protected function createComponentPrivilegesControl(): PrivilegesControl
 	{
 		$control = $this->privilegesControl;
-		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/privileges.add.latte');
-		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/privileges.records.latte', 'records');
+		$control->setTemplateFile(__DIR__ . '/../../../UI/Templates/Privileges/Privileges.add.latte');
+		$control->setTemplateFile(__DIR__ . '/../../../UI/Templates/Privileges/Privileges.records.latte', 'records');
 		$control->setTranslator($this->getTranslator());
 		return $control;
 	}
@@ -79,8 +75,8 @@ final class AccessControlPresenter extends DashboardPresenter
 	protected function createComponentAccessControl(): AccessControl
 	{
 		$control = $this->accessControl;
-		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/users.add.latte');
-		$control->setTemplateFile(__DIR__ . '/templates/AccessControl/users.records.latte', 'records');
+		$control->setTemplateFile(__DIR__ . '/../../../UI/Templates/Access/Access.add.latte');
+		$control->setTemplateFile(__DIR__ . '/../../../UI/Templates/Access/Access.records.latte', 'records');
 		$control->setTranslator($this->getTranslator());
 		return $control;
 	}

@@ -1,0 +1,21 @@
+{* subtitle page *}
+{block subtitle}{_'Setting roles for users'}{/block}
+
+{* website content *}
+{block content}
+	{embed '../../../../../UI/Templates/@offcanvas.latte', offcanvasId: access}
+		{block title}{_'Edit or add roles to users'}{/block}
+		{block content}
+			{snippet access}
+				{control accessControl}
+			{/snippet}
+		{/block}
+	{/embed}
+	{embed '../../../../../UI/Templates/@content.latte'}
+		{block content}
+			{snippet accessRecords}
+				{control accessControl:records}
+			{/snippet}
+		{/block}
+	{/embed}
+{/block}

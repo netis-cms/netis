@@ -3,15 +3,19 @@
 
 {* website content *}
 {block content}
-	<div class="content-box mb-3 bg-white shadow-sm">
-		{snippet resources}
-			{control resourcesControl}
-		{/snippet}
-	</div>
-
-	<div class="content-box mb-3 bg-white shadow-sm">
-		{snippet resourcesRecords}
-			{control resourcesControl:records}
-		{/snippet}
-	</div>
+	{embed '../../../../../UI/Templates/@offcanvas.latte', offcanvasId: resources}
+		{block title}{_'Edit or add resources'}{/block}
+		{block content}
+			{snippet resources}
+				{control resourcesControl}
+			{/snippet}
+		{/block}
+	{/embed}
+	{embed '../../../../../UI/Templates/@content.latte'}
+		{block content}
+			{snippet resourcesRecords}
+				{control resourcesControl:records}
+			{/snippet}
+		{/block}
+	{/embed}
 {/block}

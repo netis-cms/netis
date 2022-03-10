@@ -1,8 +1,14 @@
 {varType Drago\Authorization\Entity\RolesEntity $role}
 {varType Drago\Authorization\Entity\PermissionsViewEntity $permission}
 
+<h5 class="border-bottom pb-2">
+	<button class="btn btn-primary btn-sm me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#permissions" aria-controls="permissions">
+		<i class="fa-solid fa-plus"></i>
+	</button>
+	{_'Permissions'}
+</h5>
 {foreach $roles as $role}
-	<h5 class="border-bottom pb-2">Role: {$role->name}</h5>
+	<p class="border-bottom pb-2 text-secondary">Role {$role->name}</p>
 	<div class="table-responsive-sm">
 		<table class="table table-sm table-hover table-borderless">
 			<thead>

@@ -3,15 +3,19 @@
 
 {* website content *}
 {block content}
-	<div class="content-box mb-3 bg-white shadow-sm">
-		{snippet permissions}
-			{control permissionsControl}
-		{/snippet}
-	</div>
-
-	<div class="content-box mb-3 bg-white shadow-sm">
-		{snippet permissionsRecords}
-			{control permissionsControl:records}
-		{/snippet}
-	</div>
+	{embed '../../../../../UI/Templates/@offcanvas.latte', offcanvasId: permissions}
+		{block title}{_'Edit or add permissions'}{/block}
+		{block content}
+			{snippet permissions}
+				{control permissionsControl}
+			{/snippet}
+		{/block}
+	{/embed}
+	{embed '../../../../../UI/Templates/@content.latte'}
+		{block content}
+			{snippet permissionsRecords}
+				{control permissionsControl:records}
+			{/snippet}
+		{/block}
+	{/embed}
 {/block}

@@ -1,4 +1,3 @@
-<h5 class="border-bottom pb-2">{_'Edit or add roles to users'}</h5>
 <form n:name="factory" class="row g-3 ajax">
 
 	{snippet errors}
@@ -8,17 +7,13 @@
 	{/snippet}
 
 	<div class="col-md-12">
-		<label n:name="user_id" class="form-label" />
-		<select n:name="user_id" class="form-control"></select>
-	</div>
-
-	<div class="col-md-12">
-		<label n:name="role_id" class="form-label" />
-		<select n:name="role_id" class="form-control"></select>
+		<label n:name="name" class="form-label" />
+		<input n:name="name" class="form-control">
 	</div>
 
 	<div class="col-md-12">
 		<button n:name="send" class="btn btn-primary" data-btn-submit>{_'Send'}</button>
 		<button type="reset" class="reset-form-factory btn-block btn btn-outline-secondary">{_'Reset'}</button>
+		<button type="button" class="btn btn-outline-danger" data-bs-dismiss="offcanvas">{_'Cancel'}</button>
 	</div>
 </form>

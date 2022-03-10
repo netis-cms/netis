@@ -2,6 +2,7 @@ import naja from 'naja';
 import * as bootstrap from 'bootstrap/dist/js/bootstrap.bundle';
 
 window.naja = naja;
+window.bootstrap = bootstrap;
 document.addEventListener('DOMContentLoaded', () => naja.initialize());
 
 /* bootstrap alert */

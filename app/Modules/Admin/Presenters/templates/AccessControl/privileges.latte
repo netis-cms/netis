@@ -3,15 +3,19 @@
 
 {* website content *}
 {block content}
-	<div class="content-box mb-3 bg-white shadow-sm">
-		{snippet privileges}
-			{control privilegesControl}
-		{/snippet}
-	</div>
-
-	<div class="content-box mb-3 bg-white shadow-sm">
-		{snippet privilegesRecords}
-			{control privilegesControl:records}
-		{/snippet}
-	</div>
+	{embed '../../../../../UI/Templates/@offcanvas.latte', offcanvasId: privileges}
+		{block title}{_'Edit or add privileges'}{/block}
+		{block content}
+			{snippet privileges}
+				{control privilegesControl}
+			{/snippet}
+		{/block}
+	{/embed}
+	{embed '../../../../../UI/Templates/@content.latte'}
+		{block content}
+			{snippet privilegesRecords}
+				{control privilegesControl:records}
+			{/snippet}
+		{/block}
+	{/embed}
 {/block}

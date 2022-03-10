@@ -16,3 +16,25 @@ document.addEventListener('DOMContentLoaded', () => {
 		wheelSpeed: 0.3
 	});
 });
+
+/* bootstrap offcanvas */
+const offcanvas = (element) => {
+	const myOffcanvas = document.getElementById(element);
+	return new bootstrap.Offcanvas(myOffcanvas);
+}
+
+naja.addEventListener('success', e => {
+	const payload = e.detail.payload;
+	const items = [
+		'permissions',
+		'privileges',
+		'resources',
+		'roles',
+		'access',
+	];
+	items.forEach(function(item) {
+		if (typeof payload[item] !== 'undefined') {
+			offcanvas(payload[item]).show();
+		}
+	});
+});
