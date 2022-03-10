@@ -14,7 +14,7 @@
 		<tr n:foreach="$privileges as $privilege">
 			<td style="width: 75%">{$privilege->name}</td>
 			<td style="width: 25%">
-				<a n:href="edit!, $privilege->id" class="ajax link-edit me-1">
+				<a n:href="edit!, $privilege->id" class="ajax link-edit me-1 custom--edit" aria-label="{_'Edit'}" data-cooltipz-dir="top">
 					<i class="fa-regular fa-pen-to-square"></i>
 				</a>
 				{if $deleteId === $privilege->id}
@@ -22,7 +22,7 @@
 					<a n:href="deleteConfirm!, 0, $privilege->id" class="ajax text-decoration-none">{_'No'}</a>
 					<a n:href="deleteConfirm!, 1, $privilege->id" class="ajax text-decoration-none">{_'Yes'}</a>
 				{else}
-					<a n:href="delete!, $privilege->id" class="ajax link-delete">
+					<a n:href="delete!, $privilege->id" class="ajax link-delete custom--delete" aria-label="{_'Delete'}" data-cooltipz-dir="top">
 						<i class="fa-regular fa-trash-can"></i>
 					</a>
 				{/if}
