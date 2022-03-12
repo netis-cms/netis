@@ -2,9 +2,9 @@
 {varType Drago\Authorization\Entity\PermissionsViewEntity $permission}
 
 <h5 class="border-bottom pb-2">
-	<button class="btn btn-primary btn-sm me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#permissions" aria-controls="permissions">
+	<a n:href="clickOpen!" class="btn btn-primary btn-sm me-2 ajax">
 		<i class="fa-solid fa-plus"></i>
-	</button>
+	</a>
 	{_'Permissions'}
 </h5>
 {foreach $roles as $role}
