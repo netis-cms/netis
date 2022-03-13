@@ -3,38 +3,22 @@ import '../styles/admin.scss';
 
 /* js */
 import '../base';
-import '../main';
 import Nanobar from 'nanobar';
 import PerfectScrollbar from 'perfect-scrollbar';
-import 'sidebar-menu-compostrap';
 import 'sidebar-skeleton-compostrap';
+import 'sidebar-menu-compostrap';
 
-/* scripts */
-document.addEventListener('DOMContentLoaded', () => {
-	new Nanobar().go(100);
-	new PerfectScrollbar('.scrollbar', {
-		wheelSpeed: 0.3
-	});
+/* class */
+import '../js.class/button.disable';
+import '../js.class/bootstrap.offCanvas';
+
+new Nanobar().go(100);
+new PerfectScrollbar('.scrollbar', {
+	wheelSpeed: 0.3
 });
 
-/* bootstrap offcanvas */
-const offcanvas = (element) => {
-	const myOffcanvas = document.getElementById(element);
-	return new bootstrap.Offcanvas(myOffcanvas);
-}
-
-naja.addEventListener('success', e => {
-	const payload = e.detail.payload;
-	const items = [
-		'permissions',
-		'privileges',
-		'resources',
-		'roles',
-		'access',
-	];
-	items.forEach(function(item) {
-		if (typeof payload[item] !== 'undefined') {
-			offcanvas(payload[item]).show();
-		}
-	});
+/* bootstrap alert */
+const alertList = document.querySelectorAll('.alert');
+const alerts = [].slice.call(alertList).map(function (element) {
+	return new Bootstrap.Alert(element);
 });
