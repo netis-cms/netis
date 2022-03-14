@@ -1,22 +1,21 @@
 /**
  * Disable button running an ajax request.
  */
-class SubmitButtonDisable {
+export default class SubmitButtonDisable {
     initialize(Naja) {
         let submitButton;
-        const submitDisable = (el) => {
-            const submit = el.querySelector('[data-btn-submit]');
+        const submitDisable = (doc) => {
+            const submit = doc.querySelectorAll('[data-btn-submit]');
             if (submit) {
-                submit.addEventListener('click', () => submitButton = submit);
+                submit.forEach(function (button) {
+                    button.addEventListener('click', () => submitButton = button);
+                });
             }
         };
         submitDisable(document);
         Naja.snippetHandler.addEventListener('afterUpdate', (e) => submitDisable(e.detail.snippet));
         Naja.addEventListener('start', () => {
-            if (submitButton) {
-                submitButton.disabled = true;
-            }
+            if (submitButton) submitButton.disabled = true;
         });
     }
 }
-Naja.registerExtension(new SubmitButtonDisable());

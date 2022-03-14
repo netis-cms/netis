@@ -1,27 +1,32 @@
 /**
- * Disable button running an ajax request.
+ * Bootstrap show and hide OffCanvas.
  */
-class OffCanvas {
+export default class OffCanvas {
+
+    /** @param items {[]} */
+    constructor(items) {
+        this.items = items;
+    }
+
     initialize(Naja) {
-        const offCanvas = (el) => {
-            const element = document.getElementById(el);
-            return new Bootstrap.Offcanvas(element);
-        };
-        Naja.addEventListener('success', e => {
-            const payload = e.detail.payload;
-            const items = [
-                'permissions',
-                'privileges',
-                'resources',
-                'roles',
-                'access',
-            ];
-            items.forEach(function(item) {
+        const doc = document;
+        const offCanvas = doc.querySelectorAll('.offcanvas');
+        const elementId = (id) => doc.getElementById(id);
+        for (let c of offCanvas) c.bo = new Bootstrap.Offcanvas(c);
+        Naja.addEventListener('complete', (e) => {
+            this.items.forEach(function(item) {
+                const payload = e.detail.payload;
                 if (typeof payload[item] !== 'undefined') {
-                    offCanvas(payload[item]).show();
+                    let offCanvasElement = elementId(payload[item]);
+                    if (offCanvasElement) offCanvasElement.bo.show();
+
+                } else {
+                    if (payload['close'] === 'close') {
+                        let offCanvasElement = elementId(item);
+                        if (offCanvasElement) offCanvasElement.bo.hide();
+                    }
                 }
             });
         });
     }
 }
-Naja.registerExtension(new OffCanvas());

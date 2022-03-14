@@ -5,12 +5,10 @@ import '../styles/admin.scss';
 import '../base';
 import Nanobar from 'nanobar';
 import PerfectScrollbar from 'perfect-scrollbar';
+import OffCanvas from '../js.class/bootstrap.offCanvas';
+import SubmitButtonDisable from '../js.class/button.disable';
 import 'sidebar-skeleton-compostrap';
 import 'sidebar-menu-compostrap';
-
-/* class */
-import '../js.class/button.disable';
-import '../js.class/bootstrap.offCanvas';
 
 new Nanobar().go(100);
 new PerfectScrollbar('.scrollbar', {
@@ -22,3 +20,15 @@ const alertList = document.querySelectorAll('.alert');
 const alerts = [].slice.call(alertList).map(function (element) {
 	return new Bootstrap.Alert(element);
 });
+
+/* submit button disable */
+Naja.registerExtension(new SubmitButtonDisable());
+
+/* bootstrap offCanvas */
+Naja.registerExtension(new OffCanvas([
+	'permissions',
+	'privileges',
+	'resources',
+	'roles',
+	'access',
+]));
