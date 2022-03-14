@@ -3,6 +3,7 @@ import '../styles/install.scss';
 
 /* js */
 import '../base';
+import '../js.class/button.disable';
 
 // button disable
 const submit = document.getElementById('btn-send');
