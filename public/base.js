@@ -17,7 +17,7 @@ Nette.initOnLoad();
 
 /* live form validation */
 LiveForm.setOptions({
-	messageErrorClass: 'form-errors-live',
+	messageErrorClass: 'errors-live',
 	messageErrorPrefix: '',
 	wait: 500
 });

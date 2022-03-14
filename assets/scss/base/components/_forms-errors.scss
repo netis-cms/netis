@@ -2,14 +2,14 @@
 // errors style for forms
 //
 
-.form-errors {
+.errors {
   color: darken($color-error, 18);
   font-weight: 600;
   list-style-position: inside;
   padding: 0;
 }
 
-.form-errors-live {
+.errors-live {
   color: darken($color-error, 18);
   display: block;
   margin-top: rem(4);
