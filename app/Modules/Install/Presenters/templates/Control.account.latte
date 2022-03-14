@@ -2,7 +2,7 @@
 <form n:name="account" class="ajax mt-5 row g-3">
 
 	{* form errors *}
-	<ul n:snippet="errors" n:if="$form->hasErrors()" class="form-errors">
+	<ul n:snippet="errors" n:if="$form->hasErrors()" class="errors">
 		<li n:foreach="$form->errors as $error">{_$error}</li>
 	</ul>
 
