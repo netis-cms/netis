@@ -16,8 +16,6 @@ use Nette\InvalidStateException;
 use Nette\Utils\ArrayHash;
 
 
-
-
 /**
  * WebsiteControl settings.
  */
