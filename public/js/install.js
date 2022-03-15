@@ -4,6 +4,10 @@ import '../styles/install.scss';
 /* js */
 import '../base';
 import '../js.class/button.disable';
+import SubmitButtonDisable from "../js.class/button.disable";
+
+/* submit button disable */
+Naja.registerExtension(new SubmitButtonDisable());
 
 // button disable
 const submit = document.getElementById('btn-send');
