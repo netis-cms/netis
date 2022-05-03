@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Modules\Install\Presenters;
 
-use App\Modules\Install\Presenters\Control\AccountControl;
-use App\Modules\Install\Presenters\Control\DatabaseControl;
-use App\Modules\Install\Presenters\Control\TablesControl;
-use App\Modules\Install\Presenters\Control\WebsiteControl;
+use App\Modules\Install\Presenters\Control\Account\AccountControl;
+use App\Modules\Install\Presenters\Control\Database\DatabaseControl;
+use App\Modules\Install\Presenters\Control\Tables\TablesControl;
+use App\Modules\Install\Presenters\Control\Website\WebsiteControl;
 use App\Modules\Install\Services\Steps;
 use Drago\Localization\Translator;
 use Drago\Localization\TranslatorAdapter;

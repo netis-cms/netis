@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Install\Presenters\Control;
+namespace App\Modules\Install\Presenters\Control\Website;
 
 use App\Modules\Install\Services\Steps;
 use App\Services\Entity\SettingsEntity;
 use Dibi\Connection;
 use Dibi\Exception;
+use Drago\Application\UI\Alert;
 use Drago\Localization\Translator;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
-use Nette\Bridges\ApplicationLatte\Template;
-use Nette\InvalidStateException;
 use Nette\Utils\ArrayHash;
 
 
 /**
  * WebsiteControl settings.
+ * @property-read WebsiteTemplate $template
  */
 final class WebsiteControl extends Control
 {
@@ -31,15 +31,11 @@ final class WebsiteControl extends Control
 
 	public function render(): void
 	{
-		if ($this->template instanceof Template) {
-			$template = $this->template;
-			$template->setFile(__DIR__ . '/../templates/Control.website.latte');
-			$template->setTranslator($this->translator);
-			$template->form = $this['website'];
-			$template->render();
-		} else {
-			throw new InvalidStateException('Control is without template.');
-		}
+		$template = $this->template;
+		$template->setFile(__DIR__ . '/Website.latte');
+		$template->setTranslator($this->translator);
+		$template->form = $this['website'];
+		$template->render();
 	}
 
 
@@ -72,11 +68,14 @@ final class WebsiteControl extends Control
 
 		// Insert records into the database.
 		foreach ($settings as $rows) {
-			$this->db->insert(SettingsEntity::TABLE, $rows)->execute();
+			$this->db->insert(SettingsEntity::TABLE, $rows)
+				->execute();
 		}
 
 		// Save the installation step.
 		$this->steps->cache->save(Steps::STEP, ['step' => 4]);
-		$this->presenter->flashMessage('Site settings successful.', 'success');
+		$this->getPresenter()->flashMessage(
+			'Site settings successful.', Alert::SUCCESS
+		);
 	}
 }

@@ -11,6 +11,7 @@ namespace App\Services\Entity;
 use Drago;
 use Nette;
 
+
 class UsersEntity extends Drago\Database\Entity
 {
 	use Nette\SmartObject;

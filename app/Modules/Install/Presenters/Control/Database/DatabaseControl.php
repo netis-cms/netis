@@ -2,27 +2,26 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Install\Presenters\Control;
+namespace App\Modules\Install\Presenters\Control\Database;
 
 use App\Modules\Install\Services\Steps;
 use dibi;
-use Drago\Localization\Translator;
+use Drago\Application\UI\Alert;
+use Drago\Application\UI\ExtraControl;
 use Drago\Parameters\Parameters;
 use Drago\Utils\ExtraArrayHash;
-use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
-use Nette\Bridges\ApplicationLatte\Template;
 use Nette\DI\Config\Loader;
-use Nette\InvalidStateException;
+use Throwable;
 
 
 /**
  * Database server settings.
+ * @property-read DatabaseTemplate $template
  */
-final class DatabaseControl extends Control
+final class DatabaseControl extends ExtraControl
 {
 	public function __construct(
-		private Translator $translator,
 		private Steps $steps,
 		private Loader $loader,
 		private Parameters $dirs,
@@ -32,15 +31,11 @@ final class DatabaseControl extends Control
 
 	public function render(): void
 	{
-		if ($this->template instanceof Template) {
-			$template = $this->template;
-			$template->setFile(__DIR__ . '/../templates/Control.database.latte');
-			$template->setTranslator($this->translator);
-			$template->form = $this['database'];
-			$template->render();
-		} else {
-			throw new InvalidStateException('Control is without template.');
-		}
+		$template = $this->template;
+		$template->setFile(__DIR__ . '/Database.latte');
+		$template->setTranslator($this->translator);
+		$template->form = $this['database'];
+		$template->render();
 	}
 
 
@@ -96,10 +91,12 @@ final class DatabaseControl extends Control
 
 				// Save the installation step.
 				$this->steps->cache->save(Steps::STEP, ['step' => 2]);
-				$this->presenter->flashMessage('Database settings were successful.', 'success');
+				$this->getPresenter()->flashMessage(
+					'Database settings were successful.', Alert::SUCCESS
+				);
 			}
 
-		} catch (\Throwable $e) {
+		} catch (Throwable $e) {
 			if ($e->getCode()) {
 				$message = match ($e->getCode()) {
 					0 => 'The server does not support the selected database type.',
@@ -114,7 +111,7 @@ final class DatabaseControl extends Control
 				$form->addError($message);
 			}
 
-			if ($this->presenter->isAjax()) {
+			if ($this->isAjax()) {
 				$this->redrawControl('errors');
 			}
 		}

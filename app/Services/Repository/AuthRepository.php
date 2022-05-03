@@ -9,10 +9,13 @@ use Nette\Security\AuthenticationException;
 use Nette\Security\Authenticator;
 use Nette\Security\Passwords;
 use Nette\Security\SimpleIdentity;
+use Nette\SmartObject;
 
 
 class AuthRepository implements Authenticator
 {
+	use SmartObject;
+
 	public function __construct(
 		private UsersRepository $usersRepository,
 		private Passwords $password,

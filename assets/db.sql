@@ -75,7 +75,7 @@ INSERT INTO `resources` (`id`, `name`) VALUES
 (1,	'Web:Web'),
 (2,	'Admin:Admin'),
 (3,	'Admin:Sign'),
-(4,	'Admin:AccessControl');
+(4,	'Admin:Access');
 
 -- ---- create table:
 CREATE TABLE `roles` (
