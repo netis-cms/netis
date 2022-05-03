@@ -1,4 +1,6 @@
-{varType Drago\Authorization\Entity\UsersRolesViewEntity $usersRoles}
+{templateType Drago\Authorization\Control\Access\AccessTemplate}
+{varType Drago\Authorization\Control\Access\UsersRolesViewEntity[] $usersRoles}
+
 <h5 class="border-bottom pb-2">
 	<a n:href="clickOpen!" class="btn btn-primary btn-sm me-2 ajax">
 		<i class="fa-solid fa-plus"></i>
@@ -17,23 +19,23 @@
 		</thead>
 
 		<tbody>
-		<tr n:foreach="$usersRoles as $item">
-			<td style="width: 40%">{$item->username}</td>
+		<tr n:foreach="$usersRoles as $userRole">
+			<td style="width: 40%">{$userRole->username}</td>
 			<td style="width: 35%">
-				{foreach $item->role as $role}
+				{foreach $userRole->role as $role}
 					{$role}{sep},{/sep}
 				{/foreach}
 			</td>
 			<td style="width: 25%">
-				<a n:href="edit!, $item->user_id" class="ajax link-edit me-1 custom--edit" aria-label="{_'Edit'}" data-cooltipz-dir="top">
+				<a n:href="edit!, $userRole->user_id" class="ajax link-edit me-1 custom--edit" aria-label="{_'Edit'}" data-cooltipz-dir="top">
 					<i class="fa-regular fa-pen-to-square"></i>
 				</a>
-				{if $deleteId === $item->user_id}
+				{if $deleteId === $userRole->user_id}
 					<p class="d-inline text-secondary">{_'Confirm'}</p>
-					<a n:href="deleteConfirm!, 0, $item->user_id" class="ajax text-decoration-none">{_'No'}</a>
-					<a n:href="deleteConfirm!, 1, $item->user_id" class="ajax text-decoration-none">{_'Yes'}</a>
+					<a n:href="deleteConfirm!, 0, $userRole->user_id" class="ajax text-decoration-none">{_'No'}</a>
+					<a n:href="deleteConfirm!, 1, $userRole->user_id" class="ajax text-decoration-none">{_'Yes'}</a>
 				{else}
-					<a n:href="delete!, $item->user_id" class="ajax link-delete  custom--delete" aria-label="{_'Delete'}" data-cooltipz-dir="top">
+					<a n:href="delete!, $userRole->user_id" class="ajax link-delete  custom--delete" aria-label="{_'Delete'}" data-cooltipz-dir="top">
 						<i class="fa-regular fa-trash-can"></i>
 					</a>
 				{/if}

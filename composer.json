@@ -22,8 +22,7 @@
 		"drago-ex/database": "^1.0",
 		"drago-ex/gravatar": "^1.0",
 		"drago-ex/utils": "^1.0",
-		"drago-ex/authorization": "^1.0",
-		"dg/composer-cleaner": "^2.2"
+	  	"drago-ex/authorization": "@dev"
 	},
 	"require-dev": {
 		"phpstan/phpstan-nette": "^0.12"
