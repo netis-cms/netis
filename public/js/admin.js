@@ -3,14 +3,12 @@ import '../styles/admin.scss';
 
 /* js */
 import '../base';
-import Nanobar from 'nanobar';
-import PerfectScrollbar from 'perfect-scrollbar';
-import OffCanvas from '../js.class/bootstrap.offCanvas';
-import SubmitButtonDisable from '../js.class/button.disable';
 import 'sidebar-skeleton-compostrap';
 import 'sidebar-menu-compostrap';
+import PerfectScrollbar from 'perfect-scrollbar';
+import OffCanvas from '../offcanvas';
+import SubmitButtonDisable from '../button';
 
-new Nanobar().go(100);
 new PerfectScrollbar('.scrollbar', {
 	wheelSpeed: 0.3
 });

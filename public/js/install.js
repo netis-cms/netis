@@ -1,15 +1,23 @@
 /* sass */
 import '../styles/install.scss';
+import '../scss/spinner.scss';
 
 /* js */
 import '../base';
-import '../js.class/button.disable';
-import SubmitButtonDisable from "../js.class/button.disable";
+import SubmitButtonDisable from '../button';
+import SpinnerExtension from '../spinner';
 
 /* submit button disable */
-Naja.registerExtension(new SubmitButtonDisable());
+Naja.registerExtension(
+    new SubmitButtonDisable()
+);
 
-// button disable
+/* submit button disable */
+Naja.registerExtension(
+    new SpinnerExtension('.loader')
+);
+
+/* button disable */
 const submit = document.getElementById('btn-send');
 if (submit) {
     submit.addEventListener('click', (e) => {

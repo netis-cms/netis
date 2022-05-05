@@ -1,4 +1,4 @@
-import * as Bootstrap from 'bootstrap/dist/js/bootstrap.bundle';
+import Bootstrap from 'bootstrap/dist/js/bootstrap.bundle';
 import {LiveForm, Nette} from 'live-form-validation';
 import Naja from 'naja';
 

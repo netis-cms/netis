@@ -1,0 +1,28 @@
+.spinner {
+  position: fixed;
+  width: 100%;
+  height: 0.2rem;
+  overflow: hidden;
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+  }
+
+  &:after {
+    width: 15rem;
+    height: 0.2rem;
+    background: #9b9b9b;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    animation: anim 1.5s linear infinite;
+  }
+
+  @keyframes anim {
+    0% {left: 0;transform: translateX(-100%)}
+    100% {left: 100%;transform: translateX(0%)}
+  }
+}

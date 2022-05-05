@@ -7,6 +7,6 @@
 @import '../../node_modules/cooltipz-css/cooltipz.css';
 
 /* sass */
-@import 'assets/scss/bootstrap';
-@import 'assets/scss/base';
-@import 'assets/scss/admin';
+@import '../scss/bootstrap';
+@import '../scss/base/base';
+@import '../scss/admin';
