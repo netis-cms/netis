@@ -10,50 +10,52 @@
 	<link rel="stylesheet" href="{$basePath}/files/install.css">
 </head>
 
-<body n:snippet="install">
-<header class="fixed-top bg-light header">
-	<div class="d-flex">
-		<div class="pt-2 ps-3 pe-3 flex-grow-1">
-			<a n:href=":Install:Install:" class="text-decoration-none font-weight-bold">Netis</a>
-		</div>
-		<div class="pt-2 ps-3 pe-3">
-			<p class="m-0 font-weight-bold">{_'Installation step'}
-				<span class="badge bg-secondary">{$step} &#47; 5</span>
-			</p>
-		</div>
-	</div>
-</header>
-
-{* flash message *}
-<div n:foreach="$flashes as $flash" class="alert alert-primary alert-dismissible fade show rounded-0 font-weight-bold" role="alert">
-	<div class="container">{_$flash->message}
-		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-	</div>
-</div>
-
-{* steps icons *}
-{switch $step}
-	{case 0}{var $item = 'fa-question'}
-	{case 1}{var $item = 'fa-server'}
-	{case 2}{var $item = 'fa-database'}
-	{case 3}{var $item = 'fa-globe'}
-	{case 4}{var $item = 'fa-user-plus'}
-	{case 5}{var $item = 'fa-check'}
-{/switch}
-
-{* content *}
-<main class="container main">
-	<div class="row">
-		<div class="col-md-6">
-			{include content}
-		</div>
-		<div class="col-md-6">
-			<div class="steps-ico">
-				<i class="fa {$item}" aria-hidden="true"></i>
+<body>
+{snippet install}
+	<header class="fixed-top bg-light header">
+		<div class="d-flex">
+			<div class="pt-2 ps-3 pe-3 flex-grow-1">
+				<a n:href=":Install:Install:" class="text-decoration-none font-weight-bold">Netis</a>
+			</div>
+			<div class="pt-2 ps-3 pe-3">
+				<p class="m-0 font-weight-bold">{_'Installation step'}
+					<span class="badge bg-secondary">{$step} &#47; 5</span>
+				</p>
 			</div>
 		</div>
+	</header>
+
+	{* flash message *}
+	<div n:foreach="$flashes as $flash" class="alert alert-primary alert-dismissible fade show rounded-0 font-weight-bold" role="alert">
+		<div class="container">{_$flash->message}
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
 	</div>
-</main>
+
+	{* steps icons *}
+	{switch $step}
+		{case 0}{var $item = 'fa-question'}
+		{case 1}{var $item = 'fa-server'}
+		{case 2}{var $item = 'fa-database'}
+		{case 3}{var $item = 'fa-globe'}
+		{case 4}{var $item = 'fa-user-plus'}
+		{case 5}{var $item = 'fa-check'}
+	{/switch}
+
+	{* content *}
+	<main class="container main">
+		<div class="row">
+			<div class="col-md-6">
+				{include content}
+			</div>
+			<div class="col-md-6">
+				<div class="steps-ico">
+					<i class="fa {$item}" aria-hidden="true"></i>
+				</div>
+			</div>
+		</div>
+	</main>
+{/snippet}
 
 {* copyright info *}
 <footer class="fixed-bottom bg-white pt-2 pb-2">
