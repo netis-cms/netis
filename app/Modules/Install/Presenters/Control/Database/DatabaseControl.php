@@ -86,11 +86,8 @@ final class DatabaseControl extends ExtraControl
 				// Generate and save the configuration file.
 				$this->loader->save($arr, $this->dirs->getAppDir() . '/Services/db.neon');
 
-				// Removing the old cache for updating the system container.
-				//FileSystem::delete($this->dirs->getTempDir() . '/cache/Nette.Configurator');
-
 				// Save the installation step.
-				$this->steps->cache->save(Steps::STEP, ['step' => 2]);
+				$this->steps->setStep(2);
 				$this->getPresenter()->flashMessage(
 					'Database settings were successful.', Alert::SUCCESS
 				);

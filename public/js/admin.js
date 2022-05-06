@@ -7,7 +7,6 @@ import 'sidebar-skeleton-compostrap';
 import 'sidebar-menu-compostrap';
 import PerfectScrollbar from 'perfect-scrollbar';
 import OffCanvas from '../offcanvas';
-import SubmitButtonDisable from '../button';
 
 new PerfectScrollbar('.scrollbar', {
 	wheelSpeed: 0.3
@@ -18,9 +17,6 @@ const alertList = document.querySelectorAll('.alert');
 const alerts = [].slice.call(alertList).map(function (element) {
 	return new Bootstrap.Alert(element);
 });
-
-/* submit button disable */
-Naja.registerExtension(new SubmitButtonDisable());
 
 /* bootstrap offCanvas */
 Naja.registerExtension(new OffCanvas([

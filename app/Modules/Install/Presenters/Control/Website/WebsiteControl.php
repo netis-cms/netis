@@ -73,7 +73,7 @@ final class WebsiteControl extends Control
 		}
 
 		// Save the installation step.
-		$this->steps->cache->save(Steps::STEP, ['step' => 4]);
+		$this->steps->setStep(4);
 		$this->getPresenter()->flashMessage(
 			'Site settings successful.', Alert::SUCCESS
 		);

@@ -13,11 +13,11 @@ use Drago\Localization\Translator;
 use Drago\Localization\TranslatorAdapter;
 use Nette\Application\UI\Presenter;
 use Throwable;
-use Tracy\Debugger;
 
 
 /**
  * Installation and configuration application.
+ * @property-read InstallTemplate $template
  */
 final class InstallPresenter extends Presenter
 {
@@ -40,9 +40,8 @@ final class InstallPresenter extends Presenter
 	protected function beforeRender(): void
 	{
 		parent::beforeRender();
-		$step = $this->steps->cache->load(Steps::STEP);
-		$this->template->step = $step ? $step['step'] : 0;
-		$this->template->mode = Debugger::$productionMode;
+		$step = $this->steps->getStep();
+		$this->template->step = $step ?? 0;
 	}
 
 
@@ -67,7 +66,7 @@ final class InstallPresenter extends Presenter
 	 */
 	public function handleRun(): void
 	{
-		$this->steps->cache->save(Steps::STEP, ['step' => 1]);
+		$this->steps->setStep(1);
 	}
 
 

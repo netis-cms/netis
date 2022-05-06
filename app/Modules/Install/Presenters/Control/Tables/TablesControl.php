@@ -53,7 +53,7 @@ final class TablesControl extends ExtraControl
 			$this->db->loadFile(__DIR__ . '/../../../../../../assets/db.sql');
 
 			// Save the installation step.
-			$this->steps->cache->save(Steps::STEP, ['step' => 3]);
+			$this->steps->setStep(3);
 			$this->getPresenter()->flashMessage(
 				'Database installation was successful.', Alert::SUCCESS
 			);

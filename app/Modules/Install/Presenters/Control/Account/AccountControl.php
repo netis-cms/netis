@@ -84,7 +84,7 @@ final class AccountControl extends ExtraControl
 		])->execute();
 
 		// Save the installation step.
-		$this->steps->cache->save(Steps::STEP, ['step' => 5]);
+		$this->steps->setStep(5);
 		$this->getPresenter()->flashMessage(
 			'Administrator registration was successful.', Alert::SUCCESS
 		);
