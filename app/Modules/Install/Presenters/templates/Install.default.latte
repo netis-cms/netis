@@ -3,7 +3,10 @@
 
 {* website content *}
 {block content}
-	{if $step === 0}
+	{switch $step}
+
+		{* step before installing *}
+		{case 0}
 
 		{* information before installation *}
 		<h1 class="display-4 mb-5">{_'Information before installing the system'}</h1>
@@ -12,19 +15,21 @@
 			{_'However, if you do not have them for some reason, you may need to create the database manually through hosting administration.'}
 		</p>
 		<p>
-			<button class="btn btn-custom-color text-white" type="button" id="btn-send" data-url="{link run!}">
+			<button class="btn btn-primary text-white" type="button" id="btn-send" data-url="{link run!}">
 				{_'Start with installation'}
 			</button>
 		</p>
 
-	{elseif $step === 1}
+		{* first step *}
+		{case 1}
 
 		{* database server settings *}
 		<h1 class="display-4 mb-5">{_'Database settings'}</h1>
 		<p>{_'If there is a problem with database server authentication, please contact your web hosting vendor to verify the correctness of the data.'}</p>
 		{control database}
 
-	{elseif $step === 2}
+		{* second step *}
+		{case 2}
 
 		{* install database tables *}
 		<h1 class="display-4 mb-5">{_'Database installation'}</h1>
@@ -34,21 +39,24 @@
 		</p>
 		{control tables}
 
-	{elseif $step === 3}
+		{* third step *}
+		{case 3}
 
 		{* website settings *}
 		<h1 class="display-4 mb-5">{_'Site name and description'}</h1>
 		<p>{_'Please enter basic information for the website.'}</p>
 		{control website}
 
-	{elseif $step === 4}
+		{* fourth step *}
+		{case 4}
 
 		{* add administrator account *}
 		<h1 class="display-4 mb-5">{_'Registration'}</h1>
 		<p>{_'Admin account registration.'}</p>
 		{control account}
 
-	{elseif $step === 5}
+		{* nstallation completion step *}
+		{case 5}
 
 		{* complete the installation *}
 		<h1 class="display-4 mb-5">{_'Installation is complete'}</h1>
@@ -58,17 +66,21 @@
 		</p>
 
 		{* info for delete files *}
-		<p>{_'Delete the following directories'}</p>
-		<div class="info-install-delete">
-			<ul class="list-group">
-				<li class="list-group-item text-danger">/app/modules/install</li>
-				<li class="list-group-item text-danger">/temp/cache</li>
-			</ul>
-		</div>
+		<p class="font-weight-bold">{_'Delete the following directories:'}</p>
+		<ul class="list-group mb-3">
+			<li class="list-group-item d-flex justify-content-between align-items-start text-danger">
+				<div class="ms-2 me-auto">/app/modules/install</div>
+				<span class="badge bg-danger rounded-pill">1</span>
+			</li>
+			<li class="list-group-item list-group-item d-flex justify-content-between align-items-start text-danger">
+				<div class="ms-2 me-auto">/temp/cache</div>
+				<span class="badge bg-danger rounded-pill">2</span>
+			</li>
+		</ul>
 
 		{* go to administration *}
 		<p>
-			<a n:href=":Admin:Admin:" class="btn btn-custom-color text-white">{_'Entering administration'}</a>
+			<a n:href=":Admin:Admin:" class="btn btn-primary text-white">{_'Entering administration'}</a>
 		</p>
-	{/if}
+	{/switch}
 {/block}

@@ -1,7 +1,5 @@
-// base sass
 @import 'base/base/base';
 
-// base elements
 html,
 body {
   height: 85%;
@@ -15,15 +13,17 @@ body {
 
 .sign-in {
   width: 100%;
-  max-width: 350px;
-  padding: 15px;
+  max-width: rem(350);
+  padding: rem(15);
   margin: auto;
 }
 
-.sign-in .sign-in-gravatar {
+.sign-in
+.sign-in-gravatar {
   border-radius: 50%;
 }
 
-.sign-in .form-control {
+.sign-in
+.form-control {
   padding: rem(10);
 }

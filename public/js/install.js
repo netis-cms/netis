@@ -1,6 +1,5 @@
 /* sass */
 import '../styles/install.scss';
-import '../scss/spinner.scss';
 
 /* js */
 import '../base';
@@ -14,7 +13,7 @@ Naja.registerExtension(
 
 /* submit button disable */
 Naja.registerExtension(
-    new SpinnerExtension('.loader')
+    new SpinnerExtension()
 );
 
 /* button disable */

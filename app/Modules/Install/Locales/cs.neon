@@ -68,7 +68,7 @@
 'Installation is complete': 'Instalace je dokončená'
 'The installation of the system is almost over, now it is necessary to remove the installation packages in order for the system to boot properly.': 'Instalace systému je téměř u konce, nyní je nutné odstranit instalační balíčky, aby systém správně naběhnul.'
 'Please follow the instructions below.': 'Prosím postupujte dle níže uvedených pokynů.'
-'Delete the following directories': 'Odstraňte následující adresáře'
+'Delete the following directories:': 'Odstraňte následující adresáře:'
 'Entering administration': 'Vstup do administrace'
 
 

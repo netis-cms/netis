@@ -13,11 +13,8 @@ $color-white: #fff;
 
 // re-settings bootstrap
 $border-radius: 0.1875rem;
-//$input-btn-focus-width: 0;
 
-$alert-bg-level: 0;
-$alert-border-level: 0;
-$alert-color-level: -10;
+$alert-border-width: 0;
 $alert-padding-x: 1rem;
 $alert-padding-y: 0.56rem;
 
@@ -29,8 +26,7 @@ $btn-padding-y: 0.26rem;
 
 // Create your own map
 $custom-colors: (
-		"custom-color": $color-blue
-
+		"primary": $color-blue
 );
 
 // Merge the maps
@@ -41,3 +37,5 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 @import 'node_modules/sidebar-skeleton-compostrap/scss/utils/variables';
 @import 'node_modules/sidebar-skeleton-compostrap/scss/utils/functions';
 
+// bootstrap
+@import 'node_modules/bootstrap/scss/bootstrap';

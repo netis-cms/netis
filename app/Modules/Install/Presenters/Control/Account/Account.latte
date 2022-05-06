@@ -1,5 +1,5 @@
 {* Add administrator account *}
-<form n:name="account" class="ajax mt-5 row g-3">
+<form n:name="account" class="ajax mt-5 row g-3" data-naja-history="off">
 
 	{* form errors *}
 	<ul n:snippet="errors" n:if="$form->hasErrors()" class="errors">
@@ -28,7 +28,7 @@
 
 	{* send button *}
 	<div class="col-md-auto">
-		<input n:name="send" class="btn btn-custom-color text-white" data-btn-submit>
+		<input n:name="send" class="btn btn-primary text-white" data-btn-submit>
 	</div>
 
 </form>
