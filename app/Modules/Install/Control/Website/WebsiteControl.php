@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Install\Presenters\Control\Website;
+namespace App\Modules\Install\Control\Website;
 
-use App\Modules\Install\Services\Steps;
+use App\Modules\Install\Steps;
 use App\Services\Entity\SettingsEntity;
 use Dibi\Connection;
 use Dibi\Exception;

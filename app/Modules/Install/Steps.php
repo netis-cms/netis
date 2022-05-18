@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Install\Services;
+namespace App\Modules\Install;
 
 use Nette\Caching\Cache;
 use Throwable;

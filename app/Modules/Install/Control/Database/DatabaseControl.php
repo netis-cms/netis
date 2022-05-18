@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Install\Presenters\Control\Database;
+namespace App\Modules\Install\Control\Database;
 
-use App\Modules\Install\Services\Steps;
+use App\Modules\Install\Steps;
 use dibi;
 use Drago\Application\UI\Alert;
 use Drago\Application\UI\ExtraControl;

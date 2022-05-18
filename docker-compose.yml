@@ -12,13 +12,12 @@ services:
     volumes:
       - ./:/var/www/html/
     ports:
-      - 8008:80
-      - 443:443
+      - '8080:80'
 
 
   # database
   db:
-    image: library/mariadb:10.6.2
+    image: library/mariadb:10.7.3
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: always
     environment:
@@ -29,4 +28,4 @@ services:
     volumes:
       - ./docker/mysql/:/var/lib/mysql
     ports:
-      - 6033:3306
+      - '6033:3306'

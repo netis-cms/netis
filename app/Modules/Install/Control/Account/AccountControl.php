@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Install\Presenters\Control\Account;
+namespace App\Modules\Install\Control\Account;
 
-use App\Modules\Install\Services\Steps;
+use App\Modules\Install\Steps;
 use App\Services\Entity\UsersEntity;
 use Dibi\Connection;
 use Dibi\Exception;

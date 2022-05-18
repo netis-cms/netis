@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Install\Presenters\Control\Tables;
+namespace App\Modules\Install\Control\Tables;
 
-use App\Modules\Install\Services\Steps;
+use App\Modules\Install\Steps;
 use Dibi\Connection;
 use Drago\Application\UI\Alert;
 use Drago\Application\UI\ExtraControl;
@@ -50,7 +50,7 @@ final class TablesControl extends ExtraControl
 		try {
 
 			// Import SQL dump from file.
-			$this->db->loadFile(__DIR__ . '/../../../../../../assets/db.sql');
+			$this->db->loadFile(__DIR__ . '/../../db.sql');
 
 			// Save the installation step.
 			$this->steps->setStep(3);

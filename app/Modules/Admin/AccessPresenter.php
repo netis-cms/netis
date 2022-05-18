@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Admin\Presenters;
+namespace App\Modules\Admin;
 
 use App\Modules\DashboardPresenter;
 use Drago\Authorization\Control\Access\AccessControl;

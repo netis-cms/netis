@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Web\Presenters;
+namespace App\Modules\Web;
 
 use App\Modules\BasePresenter;
 

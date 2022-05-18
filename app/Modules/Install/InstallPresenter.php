@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Install\Presenters;
+namespace App\Modules\Install;
 
-use App\Modules\Install\Presenters\Control\Account\AccountControl;
-use App\Modules\Install\Presenters\Control\Database\DatabaseControl;
-use App\Modules\Install\Presenters\Control\Tables\TablesControl;
-use App\Modules\Install\Presenters\Control\Website\WebsiteControl;
-use App\Modules\Install\Services\Steps;
+use App\Modules\Install\Control\Account\AccountControl;
+use App\Modules\Install\Control\Database\DatabaseControl;
+use App\Modules\Install\Control\Tables\TablesControl;
+use App\Modules\Install\Control\Website\WebsiteControl;
 use Drago\Localization\Translator;
 use Drago\Localization\TranslatorAdapter;
 use Nette\Application\UI\Presenter;
@@ -48,7 +47,7 @@ final class InstallPresenter extends Presenter
 	public function getTranslator(): Translator
 	{
 		$translator = $this->translator;
-		$translator->setCustomTranslate(__DIR__ . '/../Locales/', $this->lang);
+		$translator->setCustomTranslate(__DIR__ . '/../locales/', $this->lang);
 		return $translator;
 	}
 

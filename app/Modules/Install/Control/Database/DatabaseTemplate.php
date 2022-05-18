@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Install\Presenters\Control\Database;
+namespace App\Modules\Install\Control\Database;
 
 use Drago\Application\UI\ExtraTemplate;
 use Nette\ComponentModel\IComponent;
