@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Modules\Admin;
 
 use App\Modules\BasePresenter;
-use Drago\User\Gravatar;
 use Exception;
 use Nette\Application\AbortException;
 use Nette\Application\UI\Form;
@@ -14,40 +13,19 @@ use Nette\Security\AuthenticationException;
 
 /**
  * Sing-in user.
+ * @property-read SignTemplate $template
  */
 final class SignPresenter extends BasePresenter
 {
-	public function __construct(
-		private Gravatar $gravatar,
-	) {
-		parent::__construct();
-	}
-
-
 	/**
 	 * @throws Exception
 	 */
 	protected function beforeRender(): void
 	{
 		parent::beforeRender();
-
-		$user = $this->user;
-		if ($user->isLoggedIn()) {
+		if ($this->user->isLoggedIn()) {
 			$this->redirect(':Admin:Admin:');
-		} else {
-			if ($user->getIdentity() !== null) {
-				$welcome = 'Welcome back!';
-				$email = $user->getIdentity()
-					->getData()['email'];
-			}
 		}
-
-		$gravatar = $this->gravatar;
-		$gravatar->setEmail($email ?? 'someone@somewhere.com');
-		$gravatar->setSize(100);
-
-		$this->template->welcome = $welcome ?? 'Welcome!';
-		$this->template->gravatar = $this->gravatar->getGravatar();
 	}
 
 
@@ -66,13 +44,13 @@ final class SignPresenter extends BasePresenter
 			->setHtmlAttribute('email')
 			->setHtmlAttribute('placeholder', 'Email address')
 			->setRequired()
-			->addRule(Form::EMAIL);
+			->addRule($form::EMAIL);
 
 		$form->addPassword('password', 'Password')
 			->setHtmlAttribute('placeholder', 'Your password')
 			->setRequired();
 
-		$form->addSubmit('send');
+		$form->addSubmit('send', 'Sign in');
 		$form->onSuccess[] = [$this, 'success'];
 		return $form;
 	}

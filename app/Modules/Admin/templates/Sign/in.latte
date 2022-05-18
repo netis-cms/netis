@@ -1,4 +1,3 @@
-
 {* subtitle sites *}
 {block subtitle}{_'Login to the system'}{/block}
 
@@ -6,7 +5,7 @@
 {block content}
 
 	{* sing in user *}
-	<form n:name="signIn">
+	<form n:name="signIn" class="row g-3">
 
 		{* form errors *}
 		<ul n:snippet="errors" n:if="$form->hasErrors()" class="form-errors">
@@ -14,17 +13,19 @@
 		</ul>
 
 		{* input elements *}
-		<div class="mb-1">
-			<label n:name="email" class="visually-hidden" />
+		<div class="col-md-12">
+			<label n:name="email" class="form-label" />
 			<input n:name="email" class="form-control">
 		</div>
 
-		<div class="mb-1">
-			<label n:name="password" class="visually-hidden" />
+		<div class="col-md-12">
+			<label n:name="password" class="form-label" />
 			<input n:name="password" class="form-control">
 		</div>
 
 		{* send button *}
-		<button n:name="send" class="btn btn-custom-color w-50 mt-2 text-white" data-btn-submit>{_'Sign in'}</button>
+		<div class="d-grid mt-3">
+			<input n:name="send" class="btn btn-primary text-white" data-btn-submit>
+		</div>
 	</form>
 {/block}

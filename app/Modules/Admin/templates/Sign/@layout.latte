@@ -9,20 +9,28 @@
 </head>
 
 <body>
-<div class="sign-in">
-	<div class="text-center mb-4">
-		<img src="{$gravatar}" alt="gravatar" class="sign-in-gravatar mb-3">
-		<h1 class="h3 mb-3 fw-normal">{_$welcome}</h1>
+<div class="sign-in bg-white shadow-sm rounded-3">
+	<div class="bg-light p-3 mb-4">
+		<div class="d-flex">
+			<div class="ps-1 pe-1 flex-grow-1 text-primary font-weight-bold">
+				{_'Login to the system'}
+			</div>
+			<div class="ps-1 pe-1">
+				<a n:href="this, 'lang' => 'cs'" n:class="'text-decoration-none', $presenter->linkCurrent ? 'current font-weight-bold'">cs</a>
+				<span class="small text-separate">&#124;</span>
+				<a n:href="this, 'lang' => 'en'" n:class="'text-decoration-none', $presenter->linkCurrent ? 'current font-weight-bold'">en</a>
+			</div>
+		</div>
 	</div>
-
-	{* include content block *}
-	{include content}
+	<div class="p-3">
+		{include content}
+	</div>
 </div>
 
 {* copyright *}
-<div class="fixed-bottom">
+<footer class="fixed-bottom">
 	<p class="text-muted text-center">&copy Netis</p>
-</div>
+</footer>
 
 <script src="{$basePath}/files/sign.js" defer></script>
 

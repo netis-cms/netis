@@ -13,17 +13,10 @@ body {
 
 .sign-in {
   width: 100%;
-  max-width: rem(350);
-  padding: rem(15);
+  max-width: rem(400);
   margin: auto;
 }
 
-.sign-in
-.sign-in-gravatar {
-  border-radius: 50%;
-}
-
-.sign-in
-.form-control {
-  padding: rem(10);
+.text-separate {
+  color: #ccc;
 }
