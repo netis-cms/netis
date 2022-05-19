@@ -14,7 +14,7 @@ application:
 
 	# application mapping
 	mapping:
-		*: [App, Modules\*, *Presenter]
+		*: ['App\Modules', '*', '*\*Presenter']
 
 
 # enabling system container for Tracy bar
@@ -26,7 +26,6 @@ di:
 extensions:
 	- Drago\Localization\DI\TranslatorExtension(translateDir: %appDir%/locales)
 	- Drago\Parameters\DI\ParametersExtension(appDir: %appDir%, wwwDir: %wwwDir%, tempDir: %tempDir%)
-	- Drago\User\DI\GravatarExtension(size: 80, defaultImage: 'mm', rating: 'g')
 	- Drago\Authorization\DI\AuthorizationExtension
 
 

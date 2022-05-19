@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Admin;
+namespace App\Modules\Backend\Admin;
 
 use Drago\Application\UI\ExtraTemplate;
 use Nette\ComponentModel\IComponent;

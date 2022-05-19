@@ -8,16 +8,21 @@ use App\Services\Repository\SettingsRepository;
 use Drago\Authorization\Authorization;
 use Drago\Localization\TranslatorAdapter;
 use Nette\Application\UI\Presenter;
-use Nette\DI\Attributes\Inject;
 
 
+/**
+ * @property-read BaseTemplate $template
+ */
 abstract class BasePresenter extends Presenter
 {
 	use TranslatorAdapter;
 	use Authorization;
 
-	#[Inject]
-	public SettingsRepository $settingsRepository;
+	public function __construct(
+		private SettingsRepository $settingsRepository
+	) {
+		parent::__construct();
+	}
 
 
 	protected function startup(): void
@@ -34,5 +39,11 @@ abstract class BasePresenter extends Presenter
 				$presenter->redirect(':Install:Install:');
 			}
 		};
+	}
+
+
+	protected function beforeRender(): void
+	{
+		$this->template->module = $this->getName() . ':' . $this->getView();
 	}
 }

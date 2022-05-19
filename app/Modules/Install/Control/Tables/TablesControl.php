@@ -50,7 +50,7 @@ final class TablesControl extends ExtraControl
 		try {
 
 			// Import SQL dump from file.
-			$this->db->loadFile(__DIR__ . '/../../db.sql');
+			$this->db->loadFile(__DIR__ . '/db.sql');
 
 			// Save the installation step.
 			$this->steps->setStep(3);

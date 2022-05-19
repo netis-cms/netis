@@ -13,3 +13,11 @@ services:
 
 	- App\Modules\Install\Steps(@install.cache)
 	- Nette\DI\Config\Loader
+
+
+# application settings
+application:
+
+	# application mapping
+	mapping:
+		Install: ['App\Modules', '*', '*\*Presenter']

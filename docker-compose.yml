@@ -7,7 +7,7 @@ services:
 
   # php server
   php:
-    build: .
+    build: docker
     restart: always
     volumes:
       - ./:/var/www/html/

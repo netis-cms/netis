@@ -1,6 +1,5 @@
 {
   "name": "project",
-  "version": "1.0.0",
   "dependencies": {
     "bootstrap": "^5.1.3",
     "dashboard-skeleton-compostrap": "^2.0.6",

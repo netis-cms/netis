@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Admin;
+namespace App\Modules\Backend\Admin;
 
 use App\Modules\BasePresenter;
 use Exception;
