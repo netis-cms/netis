@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Backend\Admin;
+namespace App\Modules\Backend\Sign;
 
 use App\Modules\BasePresenter;
 use Exception;
@@ -23,7 +23,7 @@ final class SignPresenter extends BasePresenter
 	protected function beforeRender(): void
 	{
 		parent::beforeRender();
-		if ($this->user->isLoggedIn()) {
+		if ($this->getUser()->isLoggedIn()) {
 			$this->redirect(':Admin:Admin:');
 		}
 	}
@@ -62,7 +62,7 @@ final class SignPresenter extends BasePresenter
 	public function success(Form $form, $values): void
 	{
 		try {
-			$this->user->login($values->email, $values->password);
+			$this->getUser()->login($values->email, $values->password);
 			$this->redirect(':Admin:Admin:');
 
 		} catch (AuthenticationException $e) {
@@ -88,7 +88,7 @@ final class SignPresenter extends BasePresenter
 	 */
 	public function actionOut(): void
 	{
-		$this->user->logout();
-		$this->redirect(':Admin:Sign:in');
+		$this->getUser()->logout();
+		$this->redirect(':Admin:templates:in');
 	}
 }

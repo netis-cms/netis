@@ -19,7 +19,7 @@ class DashboardPresenter extends BasePresenter
 	{
 		parent::startup();
 		if (!$this->user->isLoggedIn()) {
-			$this->redirect(':Admin:Sign:in');
+			$this->redirect(':Backend:templates:in');
 		}
 	}
 

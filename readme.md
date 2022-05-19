@@ -16,10 +16,20 @@ git clone https://github.com/netis-cms/netis.git
 
 Install composer
 ```
-composer install
+composer i
 ```
 
-Install npm
+## npm
 ```
-npm install
+npm i
+```
+
+## docker build
+```
+docker-compose build
+```
+
+## docker dev up
+```
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
 ```

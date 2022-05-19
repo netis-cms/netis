@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace App\Modules\Install;
 
-use Drago\Application\UI\ExtraTemplate;
+use App\Modules\BaseTemplate;
 
 
-class InstallTemplate extends ExtraTemplate
+class InstallTemplate extends BaseTemplate
 {
-	public string $lang;
 	public int $step;
 }

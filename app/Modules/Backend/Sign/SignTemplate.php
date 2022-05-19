@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Backend\Admin;
+namespace App\Modules\Backend\Sign;
 
 use Drago\Application\UI\ExtraTemplate;
 use Nette\ComponentModel\IComponent;
