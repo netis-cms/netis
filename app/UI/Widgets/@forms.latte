@@ -7,12 +7,16 @@
 
 {define form-errors}
 	{ifset $form}
-		{snippet errors}
-			<ul n:if="$form->hasErrors()" class="errors">
-				<li n:foreach="$form->errors as $error">{$error|translate}</li>
-			</ul>
-		{/snippet}
+		<ul n:if="$form->hasErrors()" class="errors">
+			<li n:foreach="$form->errors as $error">{$error|translate}</li>
+		</ul>
 	{/ifset}
+{/define}
+
+{define form-errors-redraw}
+	{snippet errors}
+		{include form-errors}
+	{/snippet}
 {/define}
 
 {define input-text, string $name, int $columns}

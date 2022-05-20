@@ -1,0 +1,44 @@
+<div class="table-responsive-sm">
+	<table class="table table-sm table-hover table-borderless">
+		<thead><tr>{block table-thead}{/block}</tr></thead>
+		<tbody>{block table-tbody}{/block}</tbody>
+	</table>
+</div>
+
+{define table-th, $name}
+	<th scope="col" class="text-uppercase small">
+		{$name}
+	</th>
+{/define}
+
+{define table-th-action}
+	{include table-th, 'Action'}
+{/define}
+
+{define table-badge, $type, $name}
+	<span class="badge bg-{$type} rounded-pill p-1 ps-3 pe-3">
+		{$name}
+	</span>
+{/define}
+
+{define table-link-edit, $id}
+	<a n:href="edit!, $id" class="ajax">
+		Edit
+	</a>
+{/define}
+
+{define table-link-delete, $id}
+	<a n:href="delete!, $id" class="ajax">
+		Delete
+	</a>
+{/define}
+
+{define table-confirm-text}
+	<p class="d-inline">Confirm</p>
+{/define}
+
+{define table-link-confirm, $confirm, $id, $name}
+	<a n:href="deleteConfirm!, $confirm, $id" class="ajax">
+		{$name}
+	</a>
+{/define}
