@@ -5,7 +5,7 @@
 	</table>
 </div>
 
-{define table-th, $name}
+{define table-th, string $name}
 	<th scope="col" class="text-uppercase small">
 		{$name}
 	</th>
@@ -15,30 +15,32 @@
 	{include table-th, 'Action'}
 {/define}
 
-{define table-badge, $type, $name}
+{define table-badge, string $type, string $name}
 	<span class="badge bg-{$type} rounded-pill p-1 ps-3 pe-3">
 		{$name}
 	</span>
 {/define}
 
-{define table-link-edit, $id}
-	<a n:href="edit!, $id" class="ajax">
-		Edit
+{define table-link-edit, int $id}
+	<a n:href="edit!, $id" class="ajax link-edit me-1 custom--edit" aria-label="{='Edit'}" data-cooltipz-dir="top">
+		<i class="fa-regular fa-pen-to-square"></i>
 	</a>
 {/define}
 
-{define table-link-delete, $id}
-	<a n:href="delete!, $id" class="ajax">
-		Delete
+{define table-link-delete, int $id}
+	<a n:href="delete!, $id" class="ajax link-delete  custom--delete" aria-label="{='Delete'}" data-cooltipz-dir="top">
+		<i class="fa-regular fa-trash-can"></i>
 	</a>
 {/define}
 
 {define table-confirm-text}
-	<p class="d-inline">Confirm</p>
+	<p class="d-inline text-secondary">
+		{='Confirm'}
+	</p>
 {/define}
 
-{define table-link-confirm, $confirm, $id, $name}
-	<a n:href="deleteConfirm!, $confirm, $id" class="ajax">
+{define table-link-confirm, int $confirm, int $id, string $name}
+	<a n:href="deleteConfirm!, $confirm, $id" class="ajax text-decoration-none">
 		{$name}
 	</a>
 {/define}
