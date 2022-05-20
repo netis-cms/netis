@@ -30,9 +30,9 @@
 
 				<!-- breadcrumb -->
 				<ul class="navbar-nav navbar-nav-breadcrumb">
-					<li class="nav-item"><a class="nav-link" n:href=":Admin:Admin:">{_'Dashboard'}</a></li>
-					<li n:if="$module !== 'Admin:Admin:default'" class="nav-item">
-						<a n:class="'nav-link', $module !== 'Admin:Admin:default' ? disabled" href="#">{include subtitle|stripHtml|firstUpper}</a>
+					<li class="nav-item"><a class="nav-link" n:href=":Backend:Admin:">{_'Dashboard'}</a></li>
+					<li n:if="$module !== 'Backend:Admin:default'" class="nav-item">
+						<a n:class="'nav-link', $module !== 'Backend:Admin:default' ? disabled" href="#">{include subtitle|stripHtml|firstUpper}</a>
 					</li>
 				</ul>
 			</div>
@@ -69,7 +69,7 @@
 
 									<!-- list items, second level -->
 									<ul class="list-unstyled list-hidden">
-										<li><a href="{link :Admin:Sign:out}" class="list-link">{_'Sign out'}</a></li>
+										<li><a href="{link :Backend:Sign:out}" class="list-link">{_'Sign out'}</a></li>
 									</ul>
 								</li>
 							</ul>
@@ -115,22 +115,22 @@
 							<!-- list items, first level -->
 							<ul class="list-unstyled">
 								<li>
-									<a n:href=":Admin:Admin:" n:class="'list-link', $presenter->isLinkCurrent(':Admin:Admin:default') ? link-current">
+									<a n:href=":Backend:Admin:" n:class="'list-link', $presenter->isLinkCurrent(':Backend:Admin:default') ? link-current">
 										<span class="list-icon"><i class="fas fa-mug-hot"></i></span>{_'Dashboard'}
 									</a>
 								</li>
 								<li>
-									<a href="#" n:class="'list-link link-arrow', $presenter->isLinkCurrent(':Admin:Access:*') ? link-current">
+									<a href="#" n:class="'list-link link-arrow', $presenter->isLinkCurrent(':Backend:Access:*') ? link-current">
 										<span class="list-icon"><i class="fas fa-cog"></i></span>{_'Access control'}
 									</a>
 
 									<!-- list items, second level -->
 									<ul class="list-unstyled list-hidden">
-										<li><a n:href=":Admin:Access:permissions" n:class="'list-link', $presenter->isLinkCurrent(':Admin:Access:permissions') ? link-current">{_'Permissions'}</a></li>
-										<li><a n:href=":Admin:Access:roles" n:class="'list-link', $presenter->isLinkCurrent(':Admin:Access:roles') ? link-current">{_'Roles'}</a></li>
-										<li><a n:href=":Admin:Access:resources" n:class="'list-link', $presenter->isLinkCurrent(':Admin:Access:resources') ? link-current">{_'Resources'}</a></li>
-										<li><a n:href=":Admin:Access:privileges" n:class="'list-link', $presenter->isLinkCurrent(':Admin:Access:privileges') ? link-current">{_'Privileges'}</a></li>
-										<li><a n:href=":Admin:Access:access" n:class="'list-link', $presenter->isLinkCurrent(':Admin:Access:access') ? link-current">{_'Users'}</a></li>
+										<li><a n:href=":Backend:Access:permissions" n:class="'list-link', $presenter->isLinkCurrent(':Backend:Access:permissions') ? link-current">{_'Permissions'}</a></li>
+										<li><a n:href=":Backend:Access:roles" n:class="'list-link', $presenter->isLinkCurrent(':Backend:Access:roles') ? link-current">{_'Roles'}</a></li>
+										<li><a n:href=":Backend:Access:resources" n:class="'list-link', $presenter->isLinkCurrent(':Backend:Access:resources') ? link-current">{_'Resources'}</a></li>
+										<li><a n:href=":Backend:Access:privileges" n:class="'list-link', $presenter->isLinkCurrent(':Backend:Access:privileges') ? link-current">{_'Privileges'}</a></li>
+										<li><a n:href=":Backend:Access:access" n:class="'list-link', $presenter->isLinkCurrent(':Backend:Access:access') ? link-current">{_'Users'}</a></li>
 									</ul>
 								</li>
 							</ul>

@@ -7,6 +7,6 @@ namespace App\Modules\Backend\Admin;
 use App\Modules\BaseTemplate;
 
 
-class AdminTemplate extends BaseTemplate
+final class AdminTemplate extends BaseTemplate
 {
 }

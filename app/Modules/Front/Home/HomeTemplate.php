@@ -7,6 +7,6 @@ namespace App\Modules\Front\Home;
 use App\Modules\BaseTemplate;
 
 
-class HomeTemplate extends BaseTemplate
+final class HomeTemplate extends BaseTemplate
 {
 }

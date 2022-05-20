@@ -3,7 +3,7 @@
 
 {* website content *}
 {block content}
-	{embed '../../../../../UI/Templates/@offcanvas.latte', offcanvasId: permissions}
+	{embed '../../../../UI/Templates/@offcanvas.latte', offcanvasId: permissions}
 		{block title}{_'Edit or add permissions'}{/block}
 		{block content}
 			{snippet permissions}
@@ -11,7 +11,7 @@
 			{/snippet}
 		{/block}
 	{/embed}
-	{embed '../../../../../UI/Templates/@content.latte'}
+	{embed '../../../../UI/Templates/@content.latte'}
 		{block content}
 			{snippet permissionsItems}
 				{control permissionsControl:items}

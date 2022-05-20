@@ -24,14 +24,8 @@ final class SignPresenter extends BasePresenter
 	{
 		parent::beforeRender();
 		if ($this->getUser()->isLoggedIn()) {
-			$this->redirect(':Admin:Admin:');
+			$this->redirect(':Backend:Admin:');
 		}
-	}
-
-
-	public function renderIn(): void
-	{
-		$this->template->form = $this['signIn'];
 	}
 
 
@@ -63,7 +57,7 @@ final class SignPresenter extends BasePresenter
 	{
 		try {
 			$this->getUser()->login($values->email, $values->password);
-			$this->redirect(':Admin:Admin:');
+			$this->redirect(':Backend:Admin:');
 
 		} catch (AuthenticationException $e) {
 			if ($e->getCode()) {
@@ -73,10 +67,6 @@ final class SignPresenter extends BasePresenter
 					default => 'Unknown status code.',
 				};
 				$form->addError($message);
-			}
-
-			if ($this->isAjax()) {
-				$this->redrawControl('errors');
 			}
 		}
 	}
@@ -89,6 +79,6 @@ final class SignPresenter extends BasePresenter
 	public function actionOut(): void
 	{
 		$this->getUser()->logout();
-		$this->redirect(':Admin:templates:in');
+		$this->redirect(':Backend:Sign:in');
 	}
 }

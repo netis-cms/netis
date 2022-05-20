@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Backend\Admin;
+namespace App\Modules\Backend\Access;
 
-use App\Modules\DashboardPresenter;
+use App\Modules\Backend\BackendPresenter;
 use Drago\Authorization\Control\Access\AccessControl;
 use Drago\Authorization\Control\Permissions\PermissionsControl;
 use Drago\Authorization\Control\Privileges\PrivilegesControl;
@@ -12,7 +12,7 @@ use Drago\Authorization\Control\Resources\ResourcesControl;
 use Drago\Authorization\Control\Roles\RolesControl;
 
 
-final class AccessPresenter extends DashboardPresenter
+final class AccessPresenter extends BackendPresenter
 {
 	protected function createComponentPermissionsControl(): PermissionsControl
 	{

@@ -1,4 +1,5 @@
 {templateType App\Modules\Backend\Sign\SignTemplate}
+{import '../lang.latte'}
 
 <!DOCTYPE html>
 <html lang="{$lang}">
@@ -18,9 +19,9 @@
 				{_'Login to the system'}
 			</div>
 			<div class="ps-1 pe-1">
-				<a n:href="this, 'lang' => 'cs'" n:class="'text-decoration-none', $presenter->linkCurrent ? 'current font-weight-bold'">cs</a>
+				{include language-link, 'cs', 'cs'}
 				<span class="small text-separate">&#124;</span>
-				<a n:href="this, 'lang' => 'en'" n:class="'text-decoration-none', $presenter->linkCurrent ? 'current font-weight-bold'">en</a>
+				{include language-link, 'en', 'en'}
 			</div>
 		</div>
 	</div>

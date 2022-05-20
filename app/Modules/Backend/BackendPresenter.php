@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Modules;
+namespace App\Modules\Backend;
 
+use App\Modules\BasePresenter;
 use Drago\Authorization\Control\AuthorizationControl;
 use Nette\Application\AbortException;
 
 
-class DashboardPresenter extends BasePresenter
+abstract class BackendPresenter extends BasePresenter
 {
 	use AuthorizationControl;
 
@@ -18,14 +19,14 @@ class DashboardPresenter extends BasePresenter
 	protected function startup(): void
 	{
 		parent::startup();
-		if (!$this->user->isLoggedIn()) {
-			$this->redirect(':Backend:templates:in');
+		if (!$this->getUser()->isLoggedIn()) {
+			$this->redirect(':Backend:Sign:in');
 		}
 	}
 
-
 	protected function beforeRender(): void
 	{
-		$this->template->module = $this->getName() . ':' . $this->getView();
+		parent::beforeRender();
+		$this->setLayout(__DIR__ . '/Admin/templates/@layout.latte');
 	}
 }

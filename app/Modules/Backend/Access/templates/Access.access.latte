@@ -3,7 +3,7 @@
 
 {* website content *}
 {block content}
-	{embed '../../../../../UI/Templates/@offcanvas.latte', offcanvasId: access}
+	{embed '../../../../UI/Templates/@offcanvas.latte', offcanvasId: access}
 		{block title}{_'Edit or add roles to users'}{/block}
 		{block content}
 			{snippet access}
@@ -11,7 +11,7 @@
 			{/snippet}
 		{/block}
 	{/embed}
-	{embed '../../../../../UI/Templates/@content.latte'}
+	{embed '../../../../UI/Templates/@content.latte'}
 		{block content}
 			{snippet accessItems}
 				{control accessControl:items}

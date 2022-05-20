@@ -1,0 +1,5 @@
+{define language-link, $lang, $name}
+	<a n:href="this, 'lang' => $lang" n:class="'text-decoration-none', isLinkCurrent() ? 'font-weight-bold'">
+		{$name}
+	</a>
+{/define}

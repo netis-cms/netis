@@ -3,7 +3,7 @@
 
 {* website content *}
 {block content}
-	{embed '../../../../../UI/Templates/@offcanvas.latte', offcanvasId: roles}
+	{embed '../../../../UI/Templates/@offcanvas.latte', offcanvasId: roles}
 		{block title}{_'Edit or add roles'}{/block}
 		{block content}
 			{snippet roles}
@@ -11,7 +11,7 @@
 			{/snippet}
 		{/block}
 	{/embed}
-	{embed '../../../../../UI/Templates/@content.latte'}
+	{embed '../../../../UI/Templates/@content.latte'}
 		{block content}
 			{snippet rolesItems}
 				{control rolesControl:items}
