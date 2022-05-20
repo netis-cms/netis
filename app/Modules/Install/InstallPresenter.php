@@ -24,10 +24,10 @@ final class InstallPresenter extends Presenter
 
 	public function __construct(
 		private Steps $steps,
-		private AccountControl $accountControl,
 		private DatabaseControl $databaseControl,
 		private TablesControl $tablesControl,
 		private WebsiteControl $websiteControl,
+		private AccountControl $accountControl,
 	) {
 		parent::__construct();
 	}
@@ -69,26 +69,34 @@ final class InstallPresenter extends Presenter
 	}
 
 
-	protected function createComponentAccount(): AccountControl
-	{
-		return $this->accountControl;
-	}
-
-
 	protected function createComponentDatabase(): DatabaseControl
 	{
-		return $this->databaseControl;
+		$control = $this->databaseControl;
+		$control->translator = $this->getTranslator();
+		return $control;
 	}
 
 
 	protected function createComponentTables(): TablesControl
 	{
-		return $this->tablesControl;
+		$control = $this->tablesControl;
+		$control->translator = $this->getTranslator();
+		return $control;
 	}
 
 
 	protected function createComponentWebsite(): WebsiteControl
 	{
-		return $this->websiteControl;
+		$control = $this->websiteControl;
+		$control->translator = $this->getTranslator();
+		return $control;
+	}
+
+
+	protected function createComponentAccount(): AccountControl
+	{
+		$control = $this->accountControl;
+		$control->translator = $this->getTranslator();
+		return $control;
 	}
 }

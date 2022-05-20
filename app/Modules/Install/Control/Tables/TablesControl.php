@@ -39,7 +39,7 @@ final class TablesControl extends ExtraControl
 	{
 		$form = new Form;
 		$form->setTranslator($this->translator);
-		$form->addSubmit('send', );
+		$form->addSubmit('send', 'Upload database');
 		$form->onSuccess[] = [$this, 'success'];
 		return $form;
 	}
@@ -61,7 +61,7 @@ final class TablesControl extends ExtraControl
 		} catch (Throwable $e) {
 			if ($e->getCode()) {
 				$message = match ($e->getCode()) {
-					1050 => 'Table already exists.',
+					1050 => 'Some table names already exist in the database.',
 					default => 'Unknown status code.',
 				};
 				$form->addError($message);

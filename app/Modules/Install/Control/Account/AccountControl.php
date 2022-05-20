@@ -45,10 +45,10 @@ final class AccountControl extends ExtraControl
 		$form = new Form;
 		$form->setTranslator($this->translator);
 
-		$form->addText('username', 'Full name')
+		$form->addText('username', 'Username')
 			->setRequired();
 
-		$form->addText('email', 'Email')
+		$form->addText('email', 'Email address')
 			->setDefaultValue('@')
 			->setHtmlType('email')
 			->setRequired()
@@ -62,7 +62,7 @@ final class AccountControl extends ExtraControl
 			->setRequired()
 			->addRule($form::EQUAL, 'Passwords do not match.', $form['password']);
 
-		$form->addSubmit('send');
+		$form->addSubmit('send', 'Register');
 		$form->onSuccess[] = [$this, 'success'];
 		return $form;
 	}
@@ -86,7 +86,7 @@ final class AccountControl extends ExtraControl
 		// Save the installation step.
 		$this->steps->setStep(5);
 		$this->getPresenter()->flashMessage(
-			'Administrator registration was successful.', Alert::SUCCESS
+			'Account administrator registration successful.', Alert::SUCCESS
 		);
 	}
 }

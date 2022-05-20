@@ -72,10 +72,10 @@ CREATE TABLE `resources` (
 
 -- ---- insert values to table:
 INSERT INTO `resources` (`id`, `name`) VALUES
-(1,	'Web:Web'),
-(2,	'Admin:Admin'),
-(3,	'Admin:Sign'),
-(4,	'Admin:Access');
+(1,	'Front:Web'),
+(2,	'Backend:Admin'),
+(3,	'Backend:Sign'),
+(4,	'Backend:Access');
 
 -- ---- create table:
 CREATE TABLE `roles` (
@@ -88,9 +88,9 @@ CREATE TABLE `roles` (
 
 -- ---- insert values to table:
 INSERT INTO `roles` (`id`, `name`, `parent`) VALUES
-(1,	'guest',	0),
-(2,	'member',	1),
-(3,	'admin',	2);
+(1,	'guest', 0),
+(2,	'member', 1),
+(3,	'admin', 2);
 
 -- ---- create table:
 CREATE TABLE `settings` (

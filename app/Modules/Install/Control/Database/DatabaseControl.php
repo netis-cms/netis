@@ -56,7 +56,7 @@ final class DatabaseControl extends ExtraControl
 		$form->addText('database', 'Database name')
 			->setRequired();
 
-		$form->addSubmit('send');
+		$form->addSubmit('send', 'Connection test');
 		$form->onSuccess[] = [$this, 'success'];
 		return $form;
 	}
@@ -96,12 +96,9 @@ final class DatabaseControl extends ExtraControl
 		} catch (Throwable $e) {
 			if ($e->getCode()) {
 				$message = match ($e->getCode()) {
-					0 => 'The server does not support the selected database type.',
-					1 => 'Database cannot be uploaded, table names conflict.',
 					1044 => 'Access denied, check database settings.',
 					1045 => 'Failed to verify database username or password.',
 					1049 => 'The database name does not exist.',
-					1050 => 'Table already exists.',
 					2002 => 'The database server did not respond.',
 					default => 'Unknown status code.',
 				};

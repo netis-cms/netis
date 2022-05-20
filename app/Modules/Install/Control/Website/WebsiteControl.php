@@ -9,8 +9,7 @@ use App\Services\Entity\SettingsEntity;
 use Dibi\Connection;
 use Dibi\Exception;
 use Drago\Application\UI\Alert;
-use Drago\Localization\Translator;
-use Nette\Application\UI\Control;
+use Drago\Application\UI\ExtraControl;
 use Nette\Application\UI\Form;
 use Nette\Utils\ArrayHash;
 
@@ -19,10 +18,9 @@ use Nette\Utils\ArrayHash;
  * WebsiteControl settings.
  * @property-read WebsiteTemplate $template
  */
-final class WebsiteControl extends Control
+final class WebsiteControl extends ExtraControl
 {
 	public function __construct(
-		private Translator $translator,
 		private Steps $steps,
 		private Connection $db,
 	) {
@@ -50,7 +48,7 @@ final class WebsiteControl extends Control
 		$form->addText('description', 'Site description')
 			->setRequired();
 
-		$form->addSubmit('send');
+		$form->addSubmit('send', 'Save data');
 		$form->onSuccess[] = [$this, 'success'];
 		return $form;
 	}
