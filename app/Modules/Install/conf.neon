@@ -1,0 +1,23 @@
+services:
+
+	router: {setup: {offsetSet(null, @router.install)}}
+	router.install: {factory: App\Modules\Install\Router::create, autowired: no}
+
+	# cache for install steps
+	install.cache: {class: Nette\Caching\Cache, arguments: [@Nette\Caching\IStorage, 'Install.CacheSteps'], autowired: no}
+
+	- App\Modules\Install\Control\Database\DatabaseControl
+	- App\Modules\Install\Control\Tables\TablesControl
+	- App\Modules\Install\Control\Website\WebsiteControl
+	- App\Modules\Install\Control\Account\AccountControl
+
+	- App\Modules\Install\Steps(@install.cache)
+	- Nette\DI\Config\Loader
+
+
+# application settings
+application:
+
+	# application mapping
+	mapping:
+		Install: ['App\Modules', '*', '*\*Presenter']
