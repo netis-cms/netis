@@ -1,0 +1,8 @@
+{embed '../../Widgets/@forms.latte', name: 'factory'}
+	{block form-content}
+		{include form-errors}
+		{include input-select, name: 'user_id', columns: 12}
+		{include input-select, name: 'role_id', columns: 12}
+		{include input-submit, name: 'send', columns: 12, buttonCanvas: true}
+	{/block}
+{/embed}

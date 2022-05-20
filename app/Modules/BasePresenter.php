@@ -8,6 +8,7 @@ use App\Services\Repository\SettingsRepository;
 use Drago\Authorization\Authorization;
 use Drago\Localization\TranslatorAdapter;
 use Nette\Application\UI\Presenter;
+use Nette\DI\Attributes\Inject;
 
 
 /**
@@ -18,11 +19,8 @@ abstract class BasePresenter extends Presenter
 	use TranslatorAdapter;
 	use Authorization;
 
-	public function __construct(
-		private SettingsRepository $settingsRepository
-	) {
-		parent::__construct();
-	}
+	#[Inject]
+	public SettingsRepository $settingsRepository;
 
 
 	protected function startup(): void

@@ -9,6 +9,9 @@ use Drago\Authorization\Control\AuthorizationControl;
 use Nette\Application\AbortException;
 
 
+/**
+ * @property-read BackendTemplate $template
+ */
 abstract class BackendPresenter extends BasePresenter
 {
 	use AuthorizationControl;
@@ -24,9 +27,11 @@ abstract class BackendPresenter extends BasePresenter
 		}
 	}
 
+
 	protected function beforeRender(): void
 	{
 		parent::beforeRender();
 		$this->setLayout(__DIR__ . '/Admin/templates/@layout.latte');
+		$this->template->widgetPath = __DIR__ . '/../../UI/Widgets/';
 	}
 }

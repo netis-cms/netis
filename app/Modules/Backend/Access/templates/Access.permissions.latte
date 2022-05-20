@@ -1,9 +1,11 @@
+{templateType App\Modules\Backend\Access\AccessTemplate}
+
 {* subtitle page *}
 {block subtitle}{_'Access settings'}{/block}
 
 {* website content *}
 {block content}
-	{embed '../../../../UI/Templates/@offcanvas.latte', offcanvasId: permissions}
+	{embed $widgetPath . '@offcanvas.latte', offcanvasId: permissions}
 		{block title}{_'Edit or add permissions'}{/block}
 		{block content}
 			{snippet permissions}
@@ -11,7 +13,7 @@
 			{/snippet}
 		{/block}
 	{/embed}
-	{embed '../../../../UI/Templates/@content.latte'}
+	{embed $widgetPath . '@content.latte'}
 		{block content}
 			{snippet permissionsItems}
 				{control permissionsControl:items}

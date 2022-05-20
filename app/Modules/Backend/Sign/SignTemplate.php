@@ -1,10 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Modules\Backend\Sign;
 
-use Drago\Application\UI\ExtraTemplate;
+use App\Modules\Backend\BackendTemplate;
 
 
-final class SignTemplate extends ExtraTemplate
+final class SignTemplate extends BackendTemplate
 {
 }

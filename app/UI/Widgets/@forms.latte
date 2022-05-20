@@ -1,0 +1,39 @@
+{varType string $class}
+{varType string $name}
+
+<form n:name="$name" n:class="'row g-3', isset($class) ? $class">
+	{block form-content}{/block}
+</form>
+
+{define form-errors}
+	{ifset $form}
+		{snippet errors}
+			<ul n:if="$form->hasErrors()" class="errors">
+				<li n:foreach="$form->errors as $error">{$error|translate}</li>
+			</ul>
+		{/snippet}
+	{/ifset}
+{/define}
+
+{define input-text, string $name, int $columns}
+	<div class="col-md-{$columns}">
+		<label n:name="$name" class="form-label" />
+		<input n:name="$name" class="form-control">
+	</div>
+{/define}
+
+{define input-select, string $name, int $columns}
+	<div class="col-md-{$columns}">
+		<label n:name="$name" class="form-label" />
+		<select n:name="$name" class="form-control"></select>
+	</div>
+{/define}
+
+{define input-submit, string $name, int $columns, bool $buttonCanvas = false}
+	<div class="col-md-{$columns}">
+		<input n:name="$name" class="btn btn-block btn-primary text-white me-1" data-btn-submit>
+		<button n:if="$buttonCanvas" type="button" class="btn btn-outline-danger" data-bs-dismiss="offcanvas">
+			{_'Cancel'}
+		</button>
+	</div>
+{/define}

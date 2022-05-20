@@ -1,9 +1,11 @@
+{templateType App\Modules\Backend\Access\AccessTemplate}
+
 {* subtitle page *}
 {block subtitle}{_'Dashboard'}{/block}
 
 {* website content *}
 {block content}
-	{embed '../../../../UI/Templates/@content.latte'}
+	{embed $widgetPath . '@content.latte'}
 		{block content}
 			<h5 class="border-bottom pb-2">Full content</h5>
 			<p>Here is content this website page.</p>

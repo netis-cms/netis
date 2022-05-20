@@ -1,9 +1,11 @@
+{templateType App\Modules\Backend\Access\AccessTemplate}
+
 {* subtitle page *}
 {block subtitle}{_'Roles settings'}{/block}
 
 {* website content *}
 {block content}
-	{embed '../../../../UI/Templates/@offcanvas.latte', offcanvasId: roles}
+	{embed $widgetPath . '@offcanvas.latte', offcanvasId: roles}
 		{block title}{_'Edit or add roles'}{/block}
 		{block content}
 			{snippet roles}
@@ -11,7 +13,7 @@
 			{/snippet}
 		{/block}
 	{/embed}
-	{embed '../../../../UI/Templates/@content.latte'}
+	{embed $widgetPath . '@content.latte'}
 		{block content}
 			{snippet rolesItems}
 				{control rolesControl:items}
