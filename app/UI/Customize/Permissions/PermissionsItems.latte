@@ -2,54 +2,38 @@
 {varType Drago\Authorization\Control\Permissions\PermissionsRolesViewEntity[] $roles}
 {varType Drago\Authorization\Control\Permissions\PermissionsViewEntity[] $permissions}
 
-<h5 class="border-bottom pb-2">
-	<a n:href="clickOpen!" class="btn btn-primary btn-sm me-2 ajax">
-		<i class="fa-solid fa-plus"></i>
-	</a>
-	{_'Permissions'}
-</h5>
-{foreach $roles as $role}
-	<p class="border-bottom pb-2 text-secondary">Role {$role->name}</p>
-	<div class="table-responsive-sm">
-		<table class="table table-sm table-hover table-borderless">
-			{first}
-			<thead>
-			<tr>
-				<th scope="col" class="text-uppercase small">{_'Resource'}</th>
-				<th scope="col" class="text-uppercase small">{_'Action / signal'}</th>
-				<th scope="col" class="text-uppercase small">{_'Permission'}</th>
-				<th scope="col" class="text-uppercase small">{_'Action'}</th>
-			</tr>
-			</thead>
-			{/first}
+{embed '../../Widgets/@heading.latte'}
+	{block title}{='Permissions'}{/block}
+{/embed}
 
-			<tbody>
+{foreach $roles as $role}
+	{embed '../../Widgets/@table.latte'}
+		{block table-thead}
+			{include table-th, 'Resource'}
+			{include table-th, 'Action / signal'}
+			{include table-th, 'Permission'}
+			{include table-th-action}
+		{/block}
+		{block table-tbody}
 			<tr n:foreach="$permissions as $permission" n:if="$role->name == $permission->role">
 				<td style="width: 25%">{$permission->resource}</td>
 				<td style="width: 25%">{$permission->privilege}</td>
 				<td style="width: 25%">
 					{if $permission->allowed === 1}
-						<span class="badge badge-light-primary rounded-pill p-1 ps-3 pe-3">{_'Allow'}</span>
-					{else}
-						<span class="badge badge-light-danger rounded-pill p-1 ps-3 pe-3">{_'Denny'}</span>
+						{include table-badge, type: 'primary', name: 'Allow'}{else}
+						{include table-badge, type: 'danger', name: 'Denny'}
 					{/if}
 				</td>
 				<td style="width: 25%">
-					<a n:href="edit!, $permission->id" class="ajax link-edit me-1 custom--edit" aria-label="{_'Edit'}" data-cooltipz-dir="top">
-						<i class="fa-regular fa-pen-to-square"></i>
-					</a>
-					{if $deleteId === $permission->id}
-						<p class="d-inline text-secondary">{_'Confirm'}</p>
-						<a n:href="deleteConfirm!, 0, $permission->id" class="ajax text-decoration-none">{_'No'}</a>
-						<a n:href="deleteConfirm!, 1, $permission->id" class="ajax text-decoration-none">{_'Yes'}</a>
-					{else}
-						<a n:href="delete!, $permission->id" class="ajax link-delete custom--delete" aria-label="{_'Delete'}" data-cooltipz-dir="top">
-							<i class="fa-regular fa-trash-can"></i>
-						</a>
+					{include table-link-edit, id: $permission->id}
+						{if $deleteId === $permission->id}
+						{include table-confirm-text}
+						{include table-link-confirm, confirm: 0, id: $permission->id, name: 'No'}
+						{include table-link-confirm, confirm: 1, id: $permission->id, name: 'Yes'}{else}
+						{include table-link-delete, id: $permission->id}
 					{/if}
 				</td>
 			</tr>
-			</tbody>
-		</table>
-	</div>
+		{/block}
+	{/embed}
 {/foreach}

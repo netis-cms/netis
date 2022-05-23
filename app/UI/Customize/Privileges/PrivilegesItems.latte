@@ -1,40 +1,27 @@
 {templateType Drago\Authorization\Control\Privileges\PrivilegesTemplate}
 {varType Drago\Authorization\Control\Privileges\PrivilegesEntity[] $privileges}
 
-<h5 class="border-bottom pb-2">
-	<a n:href="clickOpen!" class="btn btn-primary btn-sm me-2 ajax">
-		<i class="fa-solid fa-plus"></i>
-	</a>
-	{_'Privileges'}
-</h5>
-<div class="table-responsive-sm">
-	<table class="table table-sm table-hover table-borderless">
+{embed '../../Widgets/@heading.latte'}
+	{block title}{='Privileges'}{/block}
+{/embed}
 
-		<thead>
-		<tr>
-			<th scope="col" class="text-uppercase small">{_'Name'}</th>
-			<th scope="col" class="text-uppercase small">{_'Action'}</th>
-		</tr>
-		</thead>
-
-		<tbody>
+{embed '../../Widgets/@table.latte'}
+	{block table-thead}
+		{include table-th, 'Name'}
+		{include table-th-action}
+	{/block}
+	{block table-tbody}
 		<tr n:foreach="$privileges as $privilege">
 			<td style="width: 75%">{$privilege->name}</td>
 			<td style="width: 25%">
-				<a n:href="edit!, $privilege->id" class="ajax link-edit me-1 custom--edit" aria-label="{_'Edit'}" data-cooltipz-dir="top">
-					<i class="fa-regular fa-pen-to-square"></i>
-				</a>
-				{if $deleteId === $privilege->id}
-					<p class="d-inline text-secondary">{_'Confirm'}</p>
-					<a n:href="deleteConfirm!, 0, $privilege->id" class="ajax text-decoration-none">{_'No'}</a>
-					<a n:href="deleteConfirm!, 1, $privilege->id" class="ajax text-decoration-none">{_'Yes'}</a>
-				{else}
-					<a n:href="delete!, $privilege->id" class="ajax link-delete custom--delete" aria-label="{_'Delete'}" data-cooltipz-dir="top">
-						<i class="fa-regular fa-trash-can"></i>
-					</a>
+				{include table-link-edit, id: $privilege->id}
+					{if $deleteId === $privilege->id}
+					{include table-confirm-text}
+					{include table-link-confirm, confirm: 0, id: $privilege->id, name: 'No'}
+					{include table-link-confirm, confirm: 1, id: $privilege->id, name: 'Yes'}{else}
+					{include table-link-delete, id: $privilege->id}
 				{/if}
 			</td>
 		</tr>
-		</tbody>
-	</table>
-</div>
+	{/block}
+{/embed}

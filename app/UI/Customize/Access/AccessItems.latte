@@ -2,7 +2,7 @@
 {varType Drago\Authorization\Control\Access\UsersRolesViewEntity[] $usersRoles}
 
 {embed '../../Widgets/@heading.latte'}
-	{block title}List of assigned roles{/block}
+	{block title}{='List of assigned roles'}{/block}
 {/embed}
 
 {embed '../../Widgets/@table.latte'}
@@ -20,12 +20,12 @@
 				{/foreach}
 			</td>
 			<td style="width: 25%">
-				{include table-link-edit, $userRole->user_id}
+				{include table-link-edit, id: $userRole->user_id}
 					{if $deleteId === $userRole->user_id}
 					{include table-confirm-text}
-					{include table-link-confirm, 0, $userRole->user_id, 'No'}
-					{include table-link-confirm, 1, $userRole->user_id, 'Yes'}{else}
-					{include table-link-delete, $userRole->user_id}
+					{include table-link-confirm, confirm: 0, id: $userRole->user_id, name: 'No'}
+					{include table-link-confirm, confirm: 1, id: $userRole->user_id, name: 'Yes'}{else}
+					{include table-link-delete, id: $userRole->user_id}
 				{/if}
 			</td>
 		</tr>

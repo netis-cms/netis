@@ -1,18 +1,7 @@
-<form n:name="factory" class="row g-3 ajax">
-
-	{snippet errors}
-		<ul n:if="$form->hasErrors()" class="errors">
-			<li n:foreach="$form->errors as $error">{$error}</li>
-		</ul>
-	{/snippet}
-
-	<div class="col-md-12">
-		<label n:name="name" class="form-label" />
-		<input n:name="name" class="form-control">
-	</div>
-
-	<div class="col-md-12">
-		<input n:name="send" class="btn btn-primary" data-btn-submit>
-		<button type="button" class="btn btn-outline-danger" data-bs-dismiss="offcanvas">{_'Cancel'}</button>
-	</div>
-</form>
+{embed '../../Widgets/@forms.latte', name: 'factory'}
+	{block form-content}
+		{include form-errors-redraw}
+		{include input-text, name: 'name', columns: 12}
+		{include input-submit, name: 'send', columns: 12, buttonCanvas: true}
+	{/block}
+{/embed}
