@@ -3,29 +3,13 @@
 
 {* website content *}
 {block content}
-
-	{* sing in user *}
-	<form n:name="signIn" class="row g-3">
-
-		{* form errors *}
-		<ul n:if="$form->hasErrors()" class="form-errors">
-			<li n:foreach="$form->errors as $error">{$error|translate}</li>
-		</ul>
-
-		{* input elements *}
-		<div class="col-md-12">
-			<label n:name="email" class="form-label" />
-			<input n:name="email" class="form-control">
-		</div>
-
-		<div class="col-md-12">
-			<label n:name="password" class="form-label" />
-			<input n:name="password" class="form-control">
-		</div>
-
-		{* send button *}
+{embed '../../../../UI/Widgets/@forms.latte', name: 'signIn'}
+	{block form-content}
+		{include form-errors-redraw}
+		{include input-text, name: 'email', columns: 12}
+		{include input-text, name: 'password', columns: 12}
 		<div class="d-grid mt-3">
 			<input n:name="send" class="btn btn-primary text-white" data-btn-submit>
 		</div>
-	</form>
-{/block}
+	{/block}
+{/embed}
