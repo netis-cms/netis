@@ -1,34 +1,11 @@
 {* Add administrator account *}
-<form n:name="account" class="ajax mt-5 row g-3" data-naja-history="off">
-
-	{* form errors *}
-	<ul n:snippet="errors" n:if="$form->hasErrors()" class="errors">
-		<li n:foreach="$form->errors as $error">{_$error}</li>
-	</ul>
-
-	{* input group *}
-	<div class="col-md-6">
-		<label n:name="username" class="form-label" />
-		<input n:name="username" class="form-control">
-	</div>
-	<div class="col-md-6">
-		<label n:name="email" class="form-label" />
-		<input n:name="email" class="form-control">
-	</div>
-
-	{* input group *}
-	<div class="col-md-6">
-		<label n:name="password" class="form-label" />
-		<input n:name="password" class="form-control">
-	</div>
-	<div class="col-md-6">
-		<label n:name="verify" class="form-label" />
-		<input n:name="verify" class="form-control">
-	</div>
-
-	{* send button *}
-	<div class="col-md-auto">
-		<input n:name="send" class="btn btn-primary text-white" data-btn-submit>
-	</div>
-
-</form>
+{embed '../../../../UI/Widgets/@forms.latte', name: 'account', class: 'ajax mt-5'}
+	{block form-content}
+		{include form-errors-redraw}
+		{include input-text, name: 'username', columns: 6}
+		{include input-text, name: 'email', columns: 6}
+		{include input-text, name: 'password', columns: 6}
+		{include input-text, name: 'verify', columns: 6}
+		{include input-submit, name: 'send', columns: 12, buttonCanvas: false}
+	{/block}
+{/embed}

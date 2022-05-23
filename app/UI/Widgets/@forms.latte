@@ -1,14 +1,14 @@
 {varType string $class}
 {varType string $name}
 
-<form n:name="$name" n:class="'row g-3', isset($class) ? $class">
+<form n:name="$name" n:class="'row g-3', isset($class) ? $class" data-naja-history="off">
 	{block form-content}{/block}
 </form>
 
 {define form-errors}
 	{ifset $form}
 		<ul n:if="$form->hasErrors()" class="errors">
-			<li n:foreach="$form->errors as $error">{$error|translate}</li>
+			<li n:foreach="$form->errors as $error">{_$error}</li>
 		</ul>
 	{/ifset}
 {/define}
@@ -37,7 +37,7 @@
 	<div class="col-md-{$columns}">
 		<input n:name="$name" class="btn btn-block btn-primary text-white me-1" data-btn-submit>
 		<button n:if="$buttonCanvas" type="button" class="btn btn-outline-danger" data-bs-dismiss="offcanvas">
-			{='Cancel'}
+			{_'Cancel'}
 		</button>
 	</div>
 {/define}

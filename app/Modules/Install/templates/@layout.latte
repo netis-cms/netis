@@ -28,7 +28,7 @@
 
 	{* flash message *}
 	<div n:foreach="$flashes as $flash" class="alert alert-primary alert-dismissible fade show rounded-0 font-weight-bold" role="alert">
-		<div class="container">{$flash->message|translate}
+		<div class="container">{_$flash->message}
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	</div>
