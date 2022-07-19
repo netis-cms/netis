@@ -94,13 +94,13 @@
 								<!-- translate -->
 								<li>
 									<a href="#" n:class="'list-link link-arrow', $presenter->isLinkCurrent('this') ? link-current">
-										<span class="list-icon"><i class="fas fa-globe"></i></span>Translate
+										<span class="list-icon"><i class="fas fa-globe"></i></span>{_'Languages'}
 									</a>
 
 									<!-- list items, second level -->
 									<ul class="list-unstyled list-hidden">
-										<li><a n:href="this, 'lang' => 'cs'" n:class="list-link, $presenter->isLinkCurrent('this', ['lang' => 'cs']) ? link-current">Czech</a></li>
-										<li><a n:href="this, 'lang' => 'en'" n:class="list-link, $presenter->isLinkCurrent('this', ['lang' => 'en']) ? link-current">English</a></li>
+										<li><a n:href="this, 'lang' => 'cs'" n:class="list-link, $presenter->isLinkCurrent('this', ['lang' => 'cs']) ? link-current">{_'Czech'}</a></li>
+										<li><a n:href="this, 'lang' => 'en'" n:class="list-link, $presenter->isLinkCurrent('this', ['lang' => 'en']) ? link-current">{_'English'}</a></li>
 									</ul>
 								</li>
 							</ul>
@@ -150,7 +150,7 @@
 		<!-- content -->
 		<main role="main">
 			{snippet message}
-				<div n:foreach="$flashes as $flash" n:class="'alert alert-dismissible fade show border-0 rounded', 'alert-' . $flash->type" role="alert">{_$flash->message}
+				<div style="z-index: 1080" n:foreach="$flashes as $flash" n:class="'alert alert-dismissible fade show border-0 rounded', 'alert-' . $flash->type" role="alert">{_$flash->message}
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
 			{/snippet}
