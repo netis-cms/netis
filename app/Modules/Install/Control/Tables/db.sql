@@ -72,7 +72,7 @@ CREATE TABLE `resources` (
 
 -- ---- insert values to table:
 INSERT INTO `resources` (`id`, `name`) VALUES
-(1,	'Front:Web'),
+(1,	'Front:Home'),
 (2,	'Backend:Admin'),
 (3,	'Backend:Sign'),
 (4,	'Backend:Access');
