@@ -10,10 +10,12 @@
 	<p class="border-bottom pb-2 text-secondary">Role {$role->name}</p>
 	{embed '../../Widgets/@table.latte'}
 		{block table-thead}
-			{include table-th, 'Resource'}
-			{include table-th, 'Action / signal'}
-			{include table-th, 'Permission'}
-			{include table-th-action}
+			{if $iterator->first}
+				{include table-th, 'Resource'}
+				{include table-th, 'Action / signal'}
+				{include table-th, 'Permission'}
+				{include table-th-action}
+			{/if}
 		{/block}
 		{block table-tbody}
 			<tr n:foreach="$permissions as $permission" n:if="$role->name == $permission->role">
