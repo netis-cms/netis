@@ -5,7 +5,6 @@
 {block content}
 {embed '../../../../UI/Widgets/@forms.latte', name: 'signIn'}
 	{block form-content}
-		{include form-errors-redraw}
 		{include input-text, name: 'email', columns: 12}
 		{include input-text, name: 'password', columns: 12}
 		<div class="d-grid mt-3">
