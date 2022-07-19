@@ -3,10 +3,12 @@
 //
 
 .errors {
-  color: darken($color-error, 18);
+  background-color: darken($color-error, 14);
+  color: white;
   font-weight: 600;
-  list-style-position: inside;
-  padding: 0;
+  list-style: none;
+  padding: rem(4) rem(8);
+  border-radius: rem(3);
 }
 
 .errors-live {
