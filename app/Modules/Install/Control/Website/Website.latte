@@ -1,7 +1,6 @@
 {* website settings *}
 {embed '../../../../UI/Widgets/@forms.latte', name: 'website', class: 'ajax mt-5'}
 	{block form-content}
-		{include form-errors-redraw}
 		{include input-text, name: 'website', columns: 6}
 		{include input-text, name: 'description', columns: 6}
 		{include input-submit, name: 'send', columns: 12, buttonCanvas: false}

@@ -2,22 +2,11 @@
 {varType string $name}
 
 <form n:name="$name" n:class="'row g-3', isset($class) ? $class" data-naja-history="off">
+	<ul n:if="$form->hasErrors()" class="errors">
+		<li n:foreach="$form->errors as $error">{_$error}</li>
+	</ul>
 	{block form-content}{/block}
 </form>
-
-{define form-errors}
-	{ifset $form}
-		<ul n:if="$form->hasErrors()" class="errors">
-			<li n:foreach="$form->errors as $error">{_$error}</li>
-		</ul>
-	{/ifset}
-{/define}
-
-{define form-errors-redraw}
-	{snippet errors}
-		{include form-errors}
-	{/snippet}
-{/define}
 
 {define input-text, string $name, int $columns}
 	<div class="col-md-{$columns}">

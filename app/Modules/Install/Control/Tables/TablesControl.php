@@ -66,10 +66,6 @@ final class TablesControl extends ExtraControl
 				};
 				$form->addError($message);
 			}
-
-			if ($this->isAjax()) {
-				$this->redrawControl('errors');
-			}
 		}
 	}
 }

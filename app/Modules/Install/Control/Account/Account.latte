@@ -1,7 +1,6 @@
 {* Add administrator account *}
 {embed '../../../../UI/Widgets/@forms.latte', name: 'account', class: 'ajax mt-5'}
 	{block form-content}
-		{include form-errors-redraw}
 		{include input-text, name: 'username', columns: 6}
 		{include input-text, name: 'email', columns: 6}
 		{include input-text, name: 'password', columns: 6}

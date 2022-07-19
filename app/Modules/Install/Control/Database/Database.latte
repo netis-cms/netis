@@ -1,7 +1,6 @@
 {* database server settings *}
 {embed '../../../../UI/Widgets/@forms.latte', name: 'database', class: 'ajax mt-5'}
 	{block form-content}
-		{include form-errors-redraw}
 		{include input-text, name: 'host', columns: 6}
 		{include input-text, name: 'user', columns: 6}
 		{include input-text, name: 'database', columns: 6}
