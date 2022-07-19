@@ -3,10 +3,11 @@
 {varType Drago\Authorization\Control\Permissions\PermissionsViewEntity[] $permissions}
 
 {embed '../../Widgets/@heading.latte'}
-	{block title}{='Permissions'}{/block}
+	{block title}{_'Permissions'}{/block}
 {/embed}
 
 {foreach $roles as $role}
+	<p class="border-bottom pb-2 text-secondary">Role {$role->name}</p>
 	{embed '../../Widgets/@table.latte'}
 		{block table-thead}
 			{include table-th, 'Resource'}
