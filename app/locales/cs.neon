@@ -81,8 +81,6 @@
 'The role is not allowed to be updated.': 'Roli není povoleno aktualizovat.'
 'The role is not allowed to be deleted.': 'Roli nelze smazat.'
 'The role cannot be deleted because it is bound to another role.': 'Roli nelze odstranit, protože je svázána s jinou rolí.'
-'The role can not be deleted, you must first delete the records that are associated with it.':
-	'Roli nelze smazat, musíte nejprve smazat záznamy, které jsou s ní spojeny.'
 
 'This role already exists.': 'Tato role již existuje.'
 'Role deleted.': 'Role smazána.'
