@@ -99,13 +99,13 @@
 'Action or signal': 'Akce nebo signály'
 'Name action or signal': 'Název akce nebo signálu'
 'The privilege is not allowed to be updated.': 'Aktualizace oprávnění není povolena.'
-'Privilege deleted.': 'Položka vymazána.'
+'Privilege deleted.': 'Záznam vymazán.'
 'The privilege is not allowed to be deleted.': 'Položku nelze smazat.'
 'The privilege can not be deleted, you must first delete the records that are associated with it':
-	'Položku nelze smazat, musíte nejprve smazat záznamy, které jsou s ním spojeny'
+	'Záznam nelze smazat, musíte nejprve smazat záznamy, které jsou s ním spojeny'
 
-'Privilege updated.': 'Položka aktualizována.'
-'Privilege inserted': 'Položka vložená.'
+'Privilege updated.': 'Záznam aktualizován.'
+'Privilege inserted': 'Záznam vložen.'
 'Edit or add privileges': 'Upravit nebo přidat akce a signály'
 'Username': 'Uživatel'
 'List of assigned roles': 'Seznam přidělených rolí'
@@ -116,4 +116,4 @@
 'The user already has this role assigned.': 'Uživatel již má tuto roli přiřazenou.'
 'Select user': 'Volba uživatele'
 'The privilege can not be deleted, you must first delete the records that are associated with it.':
-	'Oprávnění nelze smazat, musíte nejprve smazat záznamy, které jsou s ním spojeny.'
+	'Záznam nelze smazat, musíte nejprve smazat záznamy, které jsou s ním spojeny.'
