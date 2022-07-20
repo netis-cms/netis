@@ -117,3 +117,5 @@
 'Roles have been updated.': 'Role byli aktualizovány.'
 'The user already has this role assigned.': 'Uživatel již má tuto roli přiřazenou.'
 'Select user': 'Volba uživatele'
+'The privilege can not be deleted, you must first delete the records that are associated with it.':
+	'Oprávnění nelze smazat, musíte nejprve smazat záznamy, které jsou s ním spojeny.'
