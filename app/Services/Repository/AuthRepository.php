@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services\Repository;
 
 use Dibi\Exception;
+use Drago\Attr\AttributeDetectionException;
 use Nette\Security\AuthenticationException;
 use Nette\Security\Authenticator;
 use Nette\Security\Passwords;
@@ -26,7 +27,7 @@ class AuthRepository implements Authenticator
 
 	/**
 	 * @throws AuthenticationException
-	 * @throws Exception
+	 * @throws Exception|AttributeDetectionException
 	 */
 	public function authenticate(string $email, string $password): SimpleIdentity
 	{

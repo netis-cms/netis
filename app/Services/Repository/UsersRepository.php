@@ -8,6 +8,7 @@ use App\Services\Entity\UsersEntity;
 use Dibi\Connection;
 use Dibi\Exception;
 use Dibi\Row;
+use Drago\Attr\AttributeDetectionException;
 use Drago\Attr\Table;
 use Drago\Database\Repository;
 use Nette\SmartObject;
@@ -28,6 +29,7 @@ class UsersRepository
 	/**
 	 * Find user by email.
 	 * @throws Exception
+	 * @throws AttributeDetectionException
 	 */
 	public function find(string $email): array|Row|UsersEntity|null
 	{
