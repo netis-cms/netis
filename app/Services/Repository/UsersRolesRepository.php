@@ -27,9 +27,9 @@ class UsersRolesRepository
 	/**
 	 * @throws AttributeDetectionException
 	 */
-	public function getUserRoles(int $userId): array
+	public function getUserRoles(int $userId): array|string
 	{
 		return $this->discover(UsersRolesViewEntity::USER_ID, $userId)
-			->fetchPairs(null, UsersRolesViewEntity::ROLE);
+			->fetchPairs(null, UsersRolesViewEntity::ROLE) ?: 'member';
 	}
 }
