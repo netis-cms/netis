@@ -13,7 +13,7 @@ RUN docker-php-ext-install mysqli
 RUN docker-php-ext-enable mysqli
 
 # php configuration
-COPY conf/php.ini /etc/php/8.0/apache2/php.ini/
+COPY conf/php.ini /usr/local/etc/php/conf.d
 COPY conf/000-default.conf /etc/apache2/sites-available/
 
 # the ports
