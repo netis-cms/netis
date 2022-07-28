@@ -15,14 +15,8 @@ Based on:
 
 ## Installation
 
-Git clone
 ```
-git clone https://github.com/netis-cms/netis.git
-```
-
-Install composer
-```
-composer i
+composer create-project netis-cms/netis
 ```
 
 ## npm
