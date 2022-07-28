@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{$basePath}/files/web.css">
 
-    <title>{include subtitle|stripHtml|firstUpper}{ifset $settings} &bullet; {$settings->website}{/ifset}</title>
+    <title>{include subtitle|stripHtml|firstUpper}{ifset $settings} &bullet; {$settings['website']}{/ifset}</title>
 </head>
 
 <body>
