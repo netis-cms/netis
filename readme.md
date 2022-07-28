@@ -1,5 +1,8 @@
 ## Netis, Little CMS
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://raw.githubusercontent.com/drago-ex/netis/master/license.md)
+[![Coding Style](https://github.com/netis-cms/netis/actions/workflows/coding-style.yml/badge.svg)](https://github.com/netis-cms/netis/actions/workflows/coding-style.yml)
+
 Based on:
 - [Nette Framework](https://github.com/nette/nette)
 - [Drago Extension Nette Framework](https://github.com/drago-ex)
