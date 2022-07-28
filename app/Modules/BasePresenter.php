@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace App\Modules;
 
 use App\Services\Repository\SettingsRepository;
+use Drago\Attr\AttributeDetectionException;
 use Drago\Authorization\Authorization;
 use Drago\Localization\TranslatorAdapter;
 use Nette\Application\UI\Presenter;
 use Nette\DI\Attributes\Inject;
+use Tracy\Debugger;
 
 
 /**
@@ -23,10 +25,13 @@ abstract class BasePresenter extends Presenter
 	public SettingsRepository $settingsRepository;
 
 
+	/**
+	 * @throws AttributeDetectionException
+	 */
 	protected function startup(): void
 	{
 		parent::startup();
-		$this->template->settings = (object) $this->settingsRepository->all()->fetchPairs();
+		$this->template->settings = $this->settingsRepository->getSettings();
 	}
 
 
