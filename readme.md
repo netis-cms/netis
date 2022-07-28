@@ -6,6 +6,12 @@ Little CMS.
 [![PHP version](https://badge.fury.io/ph/netis-cms%2Fnetis.svg)](https://badge.fury.io/ph/netis-cms%2Fnetis)
 [![Coding Style](https://github.com/netis-cms/netis/actions/workflows/coding-style.yml/badge.svg)](https://github.com/netis-cms/netis/actions/workflows/coding-style.yml)
 
+## Technology
+- PHP 8.0 or higher
+- composer
+- docker
+- node.js
+
 Based on:
 - [Nette Framework](https://github.com/nette/nette)
 - [Drago Extension Nette Framework](https://github.com/drago-ex)
