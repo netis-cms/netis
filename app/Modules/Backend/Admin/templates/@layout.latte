@@ -8,7 +8,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="{$basePath}/files/admin.css">
-	<title>{include subtitle|stripHtml|firstUpper}{ifset $settings} &bullet; {$settings->website}{/ifset}</title>
+	<title>{include subtitle|stripHtml|firstUpper}{ifset $settings} &bullet; {$settings['website']}{/ifset}</title>
 
 </head>
 
@@ -20,7 +20,7 @@
 
 			<!-- title -->
 			<a class="navbar-brand text-primary" href="#"><i class="fab fa-medapps px-1"></i>
-				<span class="text-bolder">{$settings->website}</span>
+				<span class="text-bolder">{$settings['website']}</span>
 			</a>
 
 			<!-- sidebar toggle -->
