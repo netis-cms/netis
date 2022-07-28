@@ -89,7 +89,8 @@ final class DatabaseControl extends ExtraControl
 				// Save the installation step.
 				$this->steps->setStep(2);
 				$this->getPresenter()->flashMessage(
-					'Database settings were successful.', Alert::SUCCESS
+					'Database settings were successful.',
+					Alert::SUCCESS,
 				);
 			}
 

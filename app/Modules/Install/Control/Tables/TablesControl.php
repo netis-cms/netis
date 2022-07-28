@@ -55,7 +55,8 @@ final class TablesControl extends ExtraControl
 			// Save the installation step.
 			$this->steps->setStep(3);
 			$this->getPresenter()->flashMessage(
-				'Database installation was successful.', Alert::SUCCESS
+				'Database installation was successful.',
+				Alert::SUCCESS,
 			);
 
 		} catch (Throwable $e) {

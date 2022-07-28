@@ -73,7 +73,8 @@ final class WebsiteControl extends ExtraControl
 		// Save the installation step.
 		$this->steps->setStep(4);
 		$this->getPresenter()->flashMessage(
-			'Site settings successful.', Alert::SUCCESS
+			'Site settings successful.',
+			Alert::SUCCESS,
 		);
 	}
 }

@@ -86,7 +86,8 @@ final class AccountControl extends ExtraControl
 		// Save the installation step.
 		$this->steps->setStep(5);
 		$this->getPresenter()->flashMessage(
-			'Account administrator registration successful.', Alert::SUCCESS
+			'Account administrator registration successful.',
+			Alert::SUCCESS,
 		);
 	}
 }
