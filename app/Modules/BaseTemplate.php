@@ -11,4 +11,5 @@ abstract class BaseTemplate extends ExtraTemplate
 {
 	public string $lang;
 	public string $module;
+	public array $settings;
 }
