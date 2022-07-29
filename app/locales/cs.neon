@@ -68,7 +68,7 @@
 'Select privilege': 'Vyberte signál nebo akci'
 'Select resource': 'Vyberte zdroj'
 'Select permission': 'Vyberte oprávnění'
-'Denny': 'Zakázat'
+'Deny': 'Zakázat'
 'Allow': 'Povolit'
 'Permission was updated.': 'Oprávnění bylo aktualizováno.'
 'Permission added.': 'Povolení přidáno.'
