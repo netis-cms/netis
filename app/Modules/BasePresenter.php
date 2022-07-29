@@ -46,6 +46,8 @@ abstract class BasePresenter extends Presenter
 
 	protected function beforeRender(): void
 	{
+		parent::beforeRender();
 		$this->template->module = $this->getName() . ':' . $this->getView();
+		$this->template->settings = $this->settingsRepository->getSettings();
 	}
 }
