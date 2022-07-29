@@ -24,16 +24,6 @@ abstract class BasePresenter extends Presenter
 	public SettingsRepository $settingsRepository;
 
 
-	/**
-	 * @throws AttributeDetectionException
-	 */
-	protected function startup(): void
-	{
-		parent::startup();
-		$this->template->settings = $this->settingsRepository->getSettings();
-	}
-
-
 	public function injectInstall(Presenter $presenter)
 	{
 		$presenter->onStartup[] = function () use ($presenter) {
@@ -44,6 +34,9 @@ abstract class BasePresenter extends Presenter
 	}
 
 
+	/**
+	 * @throws AttributeDetectionException
+	 */
 	protected function beforeRender(): void
 	{
 		parent::beforeRender();
