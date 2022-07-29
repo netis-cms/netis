@@ -5,6 +5,7 @@ Little CMS.
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://raw.githubusercontent.com/netis-cms/netis/master/license.md)
 [![PHP version](https://badge.fury.io/ph/netis-cms%2Fnetis.svg)](https://badge.fury.io/ph/netis-cms%2Fnetis)
 [![Coding Style](https://github.com/netis-cms/netis/actions/workflows/coding-style.yml/badge.svg)](https://github.com/netis-cms/netis/actions/workflows/coding-style.yml)
+[![CodeFactor](https://www.codefactor.io/repository/github/netis-cms/netis/badge)](https://www.codefactor.io/repository/github/netis-cms/netis)
 
 ## Technology
 - PHP 8.0 or higher
