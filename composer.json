@@ -21,7 +21,7 @@
 		"drago-ex/parameters": "^1.0",
 		"drago-ex/database": "^1.0",
 		"drago-ex/utils": "^1.0",
-		"drago-ex/authorization": "@dev"
+		"drago-ex/authorization": "^1.0"
 	},
 	"require-dev": {
 		"phpstan/phpstan-nette": "^0.12"
