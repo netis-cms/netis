@@ -118,10 +118,6 @@ CREATE TABLE `users_roles` (
     CONSTRAINT `users_roles_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ---- insert values to table:
-INSERT INTO `users_roles` (`role_id`, `user_id`) VALUES
-(3,	1);
-
 -- ---- create view:
 CREATE TABLE `users_roles_view` (
     `user_id` int(11) unsigned,
