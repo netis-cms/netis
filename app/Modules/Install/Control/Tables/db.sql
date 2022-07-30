@@ -60,10 +60,10 @@ CREATE TABLE `resources` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 INSERT INTO `resources` (`id`, `name`) VALUES
-(4,	'Backend:Access'),
+(1,	'Front:Home'),
 (2,	'Backend:Admin'),
 (3,	'Backend:Sign'),
-(1,	'Front:Home');
+(4,	'Backend:Access');
 
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
