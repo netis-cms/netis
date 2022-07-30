@@ -9,6 +9,7 @@ SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 -- ---- create table:
+DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE `permissions` (
     `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
     `role_id` int(11) unsigned NOT NULL,
@@ -33,6 +34,7 @@ INSERT INTO `permissions` (`id`, `role_id`, `resource_id`, `privilege_id`, `allo
 (4,	3,	2,	1,	1);
 
 -- ---- create view:
+DROP VIEW IF EXISTS `permissions_roles_view`;
 CREATE TABLE `permissions_roles_view` (
     `id` int(11) unsigned,
     `name` varchar(40),
@@ -40,6 +42,7 @@ CREATE TABLE `permissions_roles_view` (
 );
 
 -- ---- create view:
+DROP VIEW IF EXISTS `permissions_view`;
 CREATE TABLE `permissions_view` (
     `id` int(11) unsigned,
     `resource` varchar(40),
@@ -49,6 +52,7 @@ CREATE TABLE `permissions_view` (
 );
 
 -- ---- create table:
+DROP TABLE IF EXISTS `privileges`;
 CREATE TABLE `privileges` (
     `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
     `name` varchar(40) NOT NULL,
@@ -63,6 +67,7 @@ INSERT INTO `privileges` (`id`, `name`) VALUES
 (3,	'submit');
 
 -- ---- create table:
+DROP TABLE IF EXISTS `resources`;
 CREATE TABLE `resources` (
     `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
     `name` varchar(40) NOT NULL,
@@ -78,6 +83,7 @@ INSERT INTO `resources` (`id`, `name`) VALUES
 (4,	'Backend:Access');
 
 -- ---- create table:
+DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
     `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
     `name` varchar(40) NOT NULL,
@@ -93,12 +99,14 @@ INSERT INTO `roles` (`id`, `name`, `parent`) VALUES
 (3,	'admin', 2);
 
 -- ---- create table:
+DROP TABLE IF EXISTS `settings`;
 CREATE TABLE `settings` (
     `name` varchar(100) NOT NULL,
     `value` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ---- create table:
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
     `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
     `username` varchar(50) NOT NULL,
@@ -108,6 +116,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ---- create table:
+DROP TABLE IF EXISTS `users_roles`;
 CREATE TABLE `users_roles` (
     `role_id` int(11) unsigned NOT NULL,
     `user_id` int(11) unsigned NOT NULL,
@@ -119,6 +128,7 @@ CREATE TABLE `users_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ---- create view:
+DROP VIEW IF EXISTS `users_roles_view`;
 CREATE TABLE `users_roles_view` (
     `user_id` int(11) unsigned,
     `username` varchar(50),
