@@ -14,5 +14,8 @@ export default class SubmitButtonDisable {
 		naja.addEventListener('start', () => {
 			if (submitButton) submitButton.disabled = true;
 		});
+		naja.addEventListener('complete', () => {
+			if (submitButton) submitButton.disabled = false;
+		});
 	}
 }
