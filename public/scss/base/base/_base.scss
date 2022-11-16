@@ -21,11 +21,12 @@ $alert-padding-y: 0.56rem;
 
 @import 'node_modules/bootstrap/scss/variables';
 @import 'node_modules/bootstrap/scss/mixins';
+@import 'node_modules/bootstrap/scss/maps';
 @import 'node_modules/bootstrap/scss/root';
 
 // Create your own map
 $custom-colors: (
-		"primary": $color-blue
+        "primary": $color-blue
 );
 
 // Merge the maps
