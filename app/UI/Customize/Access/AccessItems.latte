@@ -5,29 +5,33 @@
 	{block title}{_'List of assigned roles'}{/block}
 {/embed}
 
-{embed '../../Widgets/@table.latte'}
-	{block table-thead}
-		{include table-th, 'Username'}
-		{include table-th, 'Roles'}
-		{include table-th-action}
-	{/block}
-	{block table-tbody}
-		<tr n:foreach="$usersRoles as $userRole">
-			<td style="width: 40%">{$userRole->username}</td>
-			<td style="width: 35%">
-				{foreach $userRole->role as $role}
-					{$role}{sep},{/sep}
-				{/foreach}
-			</td>
-			<td style="width: 25%">
-				{include table-link-edit, id: $userRole->user_id}
-					{if $deleteId === $userRole->user_id}
-					{include table-confirm-text}
-					{include table-link-confirm, confirm: 0, id: $userRole->user_id, name: 'No'}
-					{include table-link-confirm, confirm: 1, id: $userRole->user_id, name: 'Yes'}{else}
-					{include table-link-delete, id: $userRole->user_id}
-				{/if}
-			</td>
-		</tr>
-	{/block}
-{/embed}
+{if count($usersRoles) > 0}
+	{embed '../../Widgets/@table.latte'}
+		{block table-thead}
+			{include table-th, 'Username'}
+			{include table-th, 'Roles'}
+			{include table-th-action}
+		{/block}
+		{block table-tbody}
+			<tr n:foreach="$usersRoles as $userRole">
+				<td style="width: 40%">{$userRole->username}</td>
+				<td style="width: 35%">
+					{foreach $userRole->role as $role}
+						{$role}{sep},{/sep}
+					{/foreach}
+				</td>
+				<td style="width: 25%">
+					{include table-link-edit, id: $userRole->user_id}
+						{if $deleteId === $userRole->user_id}
+						{include table-confirm-text}
+						{include table-link-confirm, confirm: 0, id: $userRole->user_id, name: 'No'}
+						{include table-link-confirm, confirm: 1, id: $userRole->user_id, name: 'Yes'}{else}
+						{include table-link-delete, id: $userRole->user_id}
+					{/if}
+				</td>
+			</tr>
+		{/block}
+	{/embed}
+{else}
+	{_'No records found.'}
+{/if}
