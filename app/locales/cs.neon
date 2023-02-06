@@ -32,6 +32,7 @@
 
 # global
 'Unknown status code.': 'Neznámý stavový kód.'
+'No records found.': 'Záznamy nebyly nalezeny.'
 'Action': 'Akce'
 'Edit': 'Upravit'
 'Delete': 'Smazat'
