@@ -6,37 +6,41 @@
 	{block title}{_'Permissions'}{/block}
 {/embed}
 
-{foreach $roles as $role}
-	<p class="border-bottom pb-2 text-secondary">Role {$role->name}</p>
-	{embed '../../Widgets/@table.latte'}
-		{block table-thead}
-			{if $iterator->first}
-				{include table-th, 'Resource'}
-				{include table-th, 'Actions and signals'}
-				{include table-th, 'Permission'}
-				{include table-th-action}
-			{/if}
-		{/block}
-		{block table-tbody}
-			<tr n:foreach="$permissions as $permission" n:if="$role->name == $permission->role">
-				<td style="width: 25%">{$permission->resource}</td>
-				<td style="width: 25%">{$permission->privilege}</td>
-				<td style="width: 25%">
-					{if $permission->allowed === 1}
-						{include table-badge, type: 'primary', name: 'Allow'}{else}
-						{include table-badge, type: 'danger', name: 'Deny'}
-					{/if}
-				</td>
-				<td style="width: 25%">
-					{include table-link-edit, id: $permission->id}
-						{if $deleteId === $permission->id}
-						{include table-confirm-text}
-						{include table-link-confirm, confirm: 0, id: $permission->id, name: 'No'}
-						{include table-link-confirm, confirm: 1, id: $permission->id, name: 'Yes'}{else}
-						{include table-link-delete, id: $permission->id}
-					{/if}
-				</td>
-			</tr>
-		{/block}
-	{/embed}
-{/foreach}
+{if count($roles) > 0}
+	{foreach $roles as $role}
+		<p class="border-bottom pb-2 text-secondary">Role {$role->name}</p>
+		{embed '../../Widgets/@table.latte'}
+			{block table-thead}
+				{if $iterator->first}
+					{include table-th, 'Resource'}
+					{include table-th, 'Actions and signals'}
+					{include table-th, 'Permission'}
+					{include table-th-action}
+				{/if}
+			{/block}
+			{block table-tbody}
+				<tr n:foreach="$permissions as $permission" n:if="$role->name == $permission->role">
+					<td style="width: 25%">{$permission->resource}</td>
+					<td style="width: 25%">{$permission->privilege}</td>
+					<td style="width: 25%">
+						{if $permission->allowed === 1}
+							{include table-badge, type: 'primary', name: 'Allow'}{else}
+							{include table-badge, type: 'danger', name: 'Deny'}
+						{/if}
+					</td>
+					<td style="width: 25%">
+						{include table-link-edit, id: $permission->id}
+							{if $deleteId === $permission->id}
+							{include table-confirm-text}
+							{include table-link-confirm, confirm: 0, id: $permission->id, name: 'No'}
+							{include table-link-confirm, confirm: 1, id: $permission->id, name: 'Yes'}{else}
+							{include table-link-delete, id: $permission->id}
+						{/if}
+					</td>
+				</tr>
+			{/block}
+		{/embed}
+	{/foreach}
+{else}
+	{_'No records found.'}
+{/if}
