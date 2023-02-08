@@ -19,7 +19,7 @@
 		<div class="container-fluid">
 
 			<!-- title -->
-			<a class="navbar-brand text-primary" href="#"><i class="fab fa-medapps px-1"></i>
+			<a class="navbar-brand text-primary" href="#"><i class="fa-brands fa-medapps px-1"></i>
 				<span class="text-bolder">{$settings['website']}</span>
 			</a>
 
@@ -67,7 +67,7 @@
 							<ul class="list-unstyled">
 								<li>
 									<a href="#" class="list-link link-arrow">
-										<span class="list-icon"><i class="far fa-user"></i></span>{$user->identity->username}
+										<span class="list-icon"><i class="fa-regular fa-user bell"></i></span>{$user->identity->username}
 									</a>
 
 									<!-- list items, second level -->
@@ -94,7 +94,7 @@
 								<!-- translate -->
 								<li>
 									<a href="#" n:class="'list-link link-arrow', $presenter->isLinkCurrent('this') ? link-current">
-										<span class="list-icon"><i class="fas fa-globe"></i></span>{_'Languages'}
+										<span class="list-icon"><i class="fa-solid fa-globe bell"></i></span>{_'Languages'}
 									</a>
 
 									<!-- list items, second level -->
@@ -119,12 +119,12 @@
 							<ul class="list-unstyled">
 								<li>
 									<a n:href=":Backend:Admin:" n:class="'list-link', $presenter->isLinkCurrent(':Backend:Admin:default') ? link-current">
-										<span class="list-icon"><i class="fas fa-mug-hot"></i></span>{_'Dashboard'}
+										<span class="list-icon"><i class="fa-solid fa-mug-hot bell"></i></span>{_'Dashboard'}
 									</a>
 								</li>
 								<li>
 									<a href="#" n:class="'list-link link-arrow', $presenter->isLinkCurrent(':Backend:Access:*') ? link-current">
-										<span class="list-icon"><i class="fas fa-cog"></i></span>{_'Access control'}
+										<span class="list-icon"><i class="fa-solid fa-gear bell"></i></span>{_'Access control'}
 									</a>
 
 									<!-- list items, second level -->

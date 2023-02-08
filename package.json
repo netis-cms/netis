@@ -1,19 +1,19 @@
 {
   "name": "project",
   "dependencies": {
-    "bootstrap": "^5.2.2",
-    "dashboard-skeleton-compostrap": "^2.0.6",
+    "bootstrap": "^5.2.3",
+    "dashboard-skeleton-compostrap": "^2.0.7",
     "live-form-validation": "^1.10.0",
     "nette-forms": "^3.3.1",
     "perfect-scrollbar": "^1.5.5",
     "naja": "^2.5.0",
-    "cooltipz-css": "^2.1.1"
+    "cooltipz-css": "^2.2.0"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.8.0",
-    "concurrently": "^7.5.0",
-    "parcel": "^2.8.0",
-    "sass": "^1.56.1"
+    "@parcel/transformer-sass": "^2.8.3",
+    "concurrently": "^7.6.0",
+    "parcel": "^2.8.3",
+    "sass": "^1.58.0"
   },
   "scripts": {
     "docker:build": "concurrently -n=build -c=green \"docker-compose build\"",
