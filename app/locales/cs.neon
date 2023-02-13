@@ -107,6 +107,7 @@
 
 'Privilege updated.': 'Záznam aktualizován.'
 'Privilege inserted.': 'Záznam vložen.'
+'This privilege already exists.': 'Tato akce nebo singál již existuje.'
 'Edit or add privileges': 'Upravit nebo přidat akce a signály'
 'Username': 'Uživatel'
 'List of assigned roles': 'Seznam přidělených rolí'
