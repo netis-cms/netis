@@ -33,6 +33,7 @@ extensions:
 # automatic class registration
 search:
 	section:
-		in: %appDir%/Services/Repository
+		in: %appDir%
 		classes:
 			- *Repository
+			- *Control

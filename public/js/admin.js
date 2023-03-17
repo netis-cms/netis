@@ -6,7 +6,6 @@ import '../base';
 import 'sidebar-skeleton-compostrap';
 import 'sidebar-menu-compostrap';
 import PerfectScrollbar from 'perfect-scrollbar';
-import OffCanvas from '../offcanvas';
 
 new PerfectScrollbar('.scrollbar', {
 	wheelSpeed: 0.3
@@ -18,11 +17,10 @@ const alerts = [].slice.call(alertList).map(function (element) {
 	return new Bootstrap.Alert(element);
 });
 
-/* bootstrap offCanvas */
-Naja.registerExtension(new OffCanvas([
-	'permissions',
-	'privileges',
-	'resources',
-	'roles',
-	'access',
-]));
+Naja.uiHandler.addEventListener('interaction', (event) => {
+	if (event.detail.element.hasAttribute('data-confirm')
+		&& ! window.confirm(event.detail.element.getAttribute('data-confirm'))
+	) {
+		event.preventDefault();
+	}
+});

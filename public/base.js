@@ -1,8 +1,8 @@
 import Bootstrap from 'bootstrap/dist/js/bootstrap.bundle';
 import {LiveForm, Nette} from 'live-form-validation';
 import Naja from 'naja';
-import SubmitButtonDisable from './button';
-import SpinnerExtension from './spinner';
+import SubmitButtonDisable from './naja.button';
+import SpinnerExtension from './naja.spinner';
 
 window.Bootstrap = Bootstrap;
 window.LiveForm = LiveForm;

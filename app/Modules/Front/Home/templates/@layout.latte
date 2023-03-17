@@ -18,6 +18,9 @@
     {* content block *}
 	{include content|indent:1}
 
+	{* flash messages *}
+	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{_$flash->message}</div>
+
 	{* language switching *}
     <a n:href="this, 'lang' => 'cs'" n:class="$presenter->linkCurrent ? 'current'">Czech</a>
     <a n:href="this, 'lang' => 'en'" n:class="$presenter->linkCurrent ? 'current'">English</a>

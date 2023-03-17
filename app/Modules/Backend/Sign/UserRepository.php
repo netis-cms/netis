@@ -1,0 +1,121 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Modules\Backend\Sign;
+
+use Dibi\Connection;
+use Dibi\Exception;
+use Dibi\Row;
+use Drago\Attr\AttributeDetectionException;
+use Drago\Attr\Table;
+use Drago\Authorization\Control\Access\UsersRolesViewEntity;
+use Drago\Database\Repository;
+use Nette\Security\AuthenticationException;
+use Nette\Security\Authenticator;
+use Nette\Security\IdentityHandler;
+use Nette\Security\IIdentity;
+use Nette\Security\Passwords;
+use Nette\Security\SimpleIdentity;
+use Nette\SmartObject;
+
+
+#[Table(UsersEntity::TABLE, UsersEntity::PRIMARY)]
+class UserRepository implements Authenticator, IdentityHandler
+{
+	use SmartObject;
+	use Repository;
+
+	public function __construct(
+		private Passwords  $password,
+		private Connection $db,
+	) {
+	}
+
+
+	/**
+	 * @throws AuthenticationException
+	 * @throws Exception|AttributeDetectionException
+	 */
+	public function authenticate(string $user, string $password): SimpleIdentity
+	{
+		// Find user.
+		$user = $this->findUser($user);
+
+		// User not found.
+		if (!$user) {
+			throw new AuthenticationException('User not found.', self::IDENTITY_NOT_FOUND);
+
+			// Invalid password.
+		} elseif (!$this->password->verify($password, $user->password)) {
+			throw new AuthenticationException('The password is incorrect.', self::INVALID_CREDENTIAL);
+
+
+			// Re-hash password.
+		} elseif ($this->password->needsRehash($user->password)) {
+			$user->password = $this->password->hash($password);
+			$this->put($user->toArray());
+
+		}
+		$user->offsetUnset('password');
+		return new SimpleIdentity($user->id, $this->findUserRoles($user->id), $user);
+	}
+
+
+	public function sleepIdentity(Identity|IIdentity $identity): SimpleIdentity
+	{
+		return new SimpleIdentity($identity->token);
+	}
+
+
+	/**
+	 * @throws Exception
+	 * @throws AttributeDetectionException
+	 */
+	public function wakeupIdentity(IIdentity $identity): ?SimpleIdentity
+	{
+		$user = $this->findUserById($identity->getId());
+		if ($user === null) {
+			return null;
+		}
+
+		$role = $this->findUserRoles($user->id);
+		return new SimpleIdentity($user->id, $role, $user);
+	}
+
+
+	/**
+	 * Find user by email.
+	 * @throws Exception
+	 * @throws AttributeDetectionException
+	 */
+	public function findUser(string $user): array|Row|UsersEntity|null
+	{
+		return $this->discover(UsersEntity::EMAIL, $user)
+			->execute()->setRowClass(UsersEntity::class)
+			->fetch();
+	}
+
+
+	/**
+	 * @throws AttributeDetectionException
+	 * @throws Exception
+	 */
+	public function findUserById(string $id): array|Row|UsersEntity|null
+	{
+		return $this->discover(UsersEntity::TOKEN, $id)
+			->execute()->setRowClass(UsersEntity::class)
+			->fetch();
+	}
+
+
+	/**
+	 * Find user roles.
+	 */
+	public function findUserRoles(int $userId): array|string
+	{
+		return $this->db->select('*')->from(UsersRolesViewEntity::TABLE)
+			->where(UsersRolesViewEntity::USER_ID, '= ?', $userId)
+			->fetchPairs(null, UsersRolesViewEntity::ROLE) ?: 'member';
+	}
+}

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Entity;
+namespace App\Modules\Backend\Sign;
 
 use Drago;
 use Nette;
@@ -21,9 +21,11 @@ class UsersEntity extends Drago\Database\Entity
 	public const USERNAME = 'username';
 	public const EMAIL = 'email';
 	public const PASSWORD = 'password';
+	public const TOKEN = 'token';
 
 	public int $id;
 	public string $username;
 	public string $email;
 	public string $password;
+	public string $token;
 }

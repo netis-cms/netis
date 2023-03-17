@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Modules\Backend;
 
+use App\Modules\Backend\Sign\User;
 use App\Modules\BasePresenter;
 use Drago\Authorization\Control\AuthorizationControl;
 use Nette\Application\AbortException;
+use Nette\DI\Attributes\Inject;
+use Tracy\Debugger;
 
 
 /**
@@ -16,13 +19,17 @@ abstract class BackendPresenter extends BasePresenter
 {
 	use AuthorizationControl;
 
+	#[Inject]
+	public User $user;
+
+
 	/**
 	 * @throws AbortException
 	 */
 	protected function startup(): void
 	{
 		parent::startup();
-		if (!$this->getUser()->isLoggedIn()) {
+		if (!$this->user->isLoggedIn()) {
 			$this->redirect(':Backend:Sign:in');
 		}
 	}
