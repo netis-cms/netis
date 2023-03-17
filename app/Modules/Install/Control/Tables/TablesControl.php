@@ -8,13 +8,14 @@ use App\Modules\Install\Steps;
 use Dibi\Connection;
 use Drago\Application\UI\Alert;
 use Drago\Application\UI\ExtraControl;
+use Drago\Application\UI\ExtraTemplate;
 use Nette\Application\UI\Form;
 use Throwable;
 
 
 /**
  * Install database tables.
- * @property-read TablesTemplate $template
+ * @property-read ExtraTemplate $template
  */
 final class TablesControl extends ExtraControl
 {
@@ -30,7 +31,6 @@ final class TablesControl extends ExtraControl
 		$template = $this->template;
 		$template->setFile(__DIR__ . '/Tables.latte');
 		$template->setTranslator($this->translator);
-		$template->form = $this['tables'];
 		$template->render();
 	}
 

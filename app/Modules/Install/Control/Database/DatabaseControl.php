@@ -8,22 +8,24 @@ use App\Modules\Install\Steps;
 use dibi;
 use Drago\Application\UI\Alert;
 use Drago\Application\UI\ExtraControl;
+use Drago\Application\UI\ExtraTemplate;
 use Drago\Parameters\Parameters;
 use Drago\Utils\ExtraArrayHash;
 use Nette\Application\UI\Form;
-use Nette\DI\Config\Loader;
+use Nette\DI\Config\Adapters\NeonAdapter;
+use Nette\Utils\FileSystem;
 use Throwable;
 
 
 /**
  * Database server settings.
- * @property-read DatabaseTemplate $template
+ * @property-read ExtraTemplate $template
  */
 final class DatabaseControl extends ExtraControl
 {
 	public function __construct(
 		private Steps $steps,
-		private Loader $loader,
+		private NeonAdapter $neonAdapter,
 		private Parameters $dirs,
 	) {
 	}
@@ -34,7 +36,6 @@ final class DatabaseControl extends ExtraControl
 		$template = $this->template;
 		$template->setFile(__DIR__ . '/Database.latte');
 		$template->setTranslator($this->translator);
-		$template->form = $this['database'];
 		$template->render();
 	}
 
@@ -84,7 +85,8 @@ final class DatabaseControl extends ExtraControl
 				];
 
 				// Generate and save the configuration file.
-				$this->loader->save($arr, $this->dirs->getAppDir() . '/Services/db.neon');
+				$file = $this->neonAdapter->dump($arr);
+				FileSystem::write($this->dirs->getAppDir() . '/Services/db.neon', $file);
 
 				// Save the installation step.
 				$this->steps->setStep(2);

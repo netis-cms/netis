@@ -10,13 +10,14 @@ use Dibi\Connection;
 use Dibi\Exception;
 use Drago\Application\UI\Alert;
 use Drago\Application\UI\ExtraControl;
+use Drago\Application\UI\ExtraTemplate;
 use Nette\Application\UI\Form;
 use Nette\Utils\ArrayHash;
 
 
 /**
  * WebsiteControl settings.
- * @property-read WebsiteTemplate $template
+ * @property-read ExtraTemplate $template
  */
 final class WebsiteControl extends ExtraControl
 {
@@ -32,7 +33,6 @@ final class WebsiteControl extends ExtraControl
 		$template = $this->template;
 		$template->setFile(__DIR__ . '/Website.latte');
 		$template->setTranslator($this->translator);
-		$template->form = $this['website'];
 		$template->render();
 	}
 

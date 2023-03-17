@@ -12,7 +12,7 @@ services:
 	- App\Modules\Install\Control\Account\AccountControl
 
 	- App\Modules\Install\Steps(@install.cache)
-	- Nette\DI\Config\Loader
+	- Nette\DI\Config\Adapters\NeonAdapter
 
 
 # application settings

@@ -10,6 +10,7 @@ use Dibi\Connection;
 use Dibi\Exception;
 use Drago\Application\UI\Alert;
 use Drago\Application\UI\ExtraControl;
+use Drago\Application\UI\ExtraTemplate;
 use Drago\Authorization\Control\Access\UsersRolesEntity;
 use Drago\Utils\ExtraArrayHash;
 use Nette\Application\UI\Form;
@@ -18,7 +19,7 @@ use Nette\Security\Passwords;
 
 /**
  * Add administrator account.
- * @property-read AccountTemplate $template
+ * @property-read ExtraTemplate $template
  */
 final class AccountControl extends ExtraControl
 {
@@ -35,7 +36,6 @@ final class AccountControl extends ExtraControl
 		$template = $this->template;
 		$template->setFile(__DIR__ . '/Account.latte');
 		$template->setTranslator($this->translator);
-		$template->form = $this['account'];
 		$template->render();
 	}
 
@@ -52,15 +52,15 @@ final class AccountControl extends ExtraControl
 			->setDefaultValue('@')
 			->setHtmlType('email')
 			->setRequired()
-			->addRule($form::EMAIL);
+			->addRule($form::Email);
 
 		$form->addPassword('password', 'Password')
 			->setRequired()
-			->addRule($form::MIN_LENGTH, null, 6);
+			->addRule($form::MinLength, 'Password must be at least %d characters long.', 6);
 
 		$form->addPassword('verify', 'Password to check')
 			->setRequired()
-			->addRule($form::EQUAL, 'Passwords do not match.', $form['password']);
+			->addRule($form::Equal, 'Passwords do not match.', $form['password']);
 
 		$form->addSubmit('send', 'Register');
 		$form->onSuccess[] = [$this, 'success'];

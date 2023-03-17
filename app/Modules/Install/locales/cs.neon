@@ -66,6 +66,7 @@
 'Passwords do not match.': 'Hesla se neshodují.'
 'Register': 'Registrovat'
 'Account administrator registration successful.': 'Registrace správce účtu proběhla úspěšně.'
+'Password must be at least %d characters long.': 'Heslo musí mít alespoň %d znaků.'
 
 # general
 'Unknown status code.': 'Neznámý stavový kód.'

@@ -11,6 +11,7 @@ session:
 
 # application settings
 application:
+	errorPresenter: Error
 
 	# application mapping
 	mapping:
