@@ -15,6 +15,7 @@ use Drago\Authorization\Control\Access\UsersRolesEntity;
 use Drago\Utils\ExtraArrayHash;
 use Nette\Application\UI\Form;
 use Nette\Security\Passwords;
+use Nette\Utils\Random;
 
 
 /**
@@ -73,6 +74,7 @@ final class AccountControl extends ExtraControl
 	 */
 	public function success(Form $form, ExtraArrayHash $data): void
 	{
+		$data->offsetSet('token', Random::generate(60));
 		$data->password = $this->password->hash($data->password);
 		$data->offsetUnset('verify');
 
