@@ -20,7 +20,6 @@ use Nette\Security\IIdentity;
 use Nette\Security\Passwords;
 use Nette\Security\SimpleIdentity;
 use Nette\SmartObject;
-use Tracy\Debugger;
 
 
 #[Table(UsersEntity::TABLE, UsersEntity::PRIMARY)]
@@ -30,7 +29,7 @@ class UserRepository implements Authenticator, IdentityHandler
 	use Repository;
 
 	public function __construct(
-		private Passwords  $password,
+		private Passwords $password,
 		private Connection $db,
 		private PanelCookie $panelCookie,
 	) {
@@ -50,12 +49,12 @@ class UserRepository implements Authenticator, IdentityHandler
 		if (!$user) {
 			throw new AuthenticationException('User not found.', self::IDENTITY_NOT_FOUND);
 
-			// Invalid password.
+		// Invalid password.
 		} elseif (!$this->password->verify($password, $user->password)) {
 			throw new AuthenticationException('The password is incorrect.', self::INVALID_CREDENTIAL);
 
 
-			// Re-hash password.
+		// Re-hash password.
 		} elseif ($this->password->needsRehash($user->password)) {
 			$user->password = $this->password->hash($password);
 			$this->put($user->toArray());
