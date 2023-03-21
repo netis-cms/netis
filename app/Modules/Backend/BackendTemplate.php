@@ -11,5 +11,5 @@ use App\Modules\BaseTemplate;
 abstract class BackendTemplate extends BaseTemplate
 {
 	public string $widgetPath;
-	public User $userBackend;
+	public \Nette\Security\User|User $user;
 }

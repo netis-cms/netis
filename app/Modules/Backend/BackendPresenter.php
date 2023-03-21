@@ -9,7 +9,6 @@ use App\Modules\BasePresenter;
 use Drago\Authorization\Control\AuthorizationControl;
 use Nette\Application\AbortException;
 use Nette\DI\Attributes\Inject;
-use Tracy\Debugger;
 
 
 /**
@@ -40,5 +39,6 @@ abstract class BackendPresenter extends BasePresenter
 		parent::beforeRender();
 		$this->setLayout(__DIR__ . '/Admin/templates/@layout.latte');
 		$this->template->widgetPath = __DIR__ . '/../../UI/Widgets/';
+		$this->template->user = $this->user;
 	}
 }

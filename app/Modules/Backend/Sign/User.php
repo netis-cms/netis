@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Modules\Backend\Sign;
 
 
+use Tracy\Debugger;
+
 class User extends \Nette\Security\User
 {
 	/**
@@ -34,5 +36,18 @@ class User extends \Nette\Security\User
 			username: $this->getUserData('username'),
 			email: $this->getUserData('email'),
 		);
+	}
+
+
+	public function isAnyAllowed(string $resource, array $privileges): bool
+	{
+		foreach ($this->getRoles() as $role) {
+			foreach ($privileges as $privilege) {
+				if ($this->getAuthorizator()->isAllowed($role, $resource, $privilege)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }

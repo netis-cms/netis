@@ -9,7 +9,9 @@ use Dibi\Exception;
 use Dibi\Row;
 use Drago\Attr\AttributeDetectionException;
 use Drago\Attr\Table;
+use Drago\Authorization\Conf;
 use Drago\Authorization\Control\Access\UsersRolesViewEntity;
+use Drago\Authorization\Tracy\PanelCookie;
 use Drago\Database\Repository;
 use Nette\Security\AuthenticationException;
 use Nette\Security\Authenticator;
@@ -29,6 +31,7 @@ class UserRepository implements Authenticator, IdentityHandler
 	public function __construct(
 		private Passwords  $password,
 		private Connection $db,
+		private PanelCookie $panelCookie,
 	) {
 	}
 
@@ -80,6 +83,16 @@ class UserRepository implements Authenticator, IdentityHandler
 		}
 
 		$role = $this->findUserRoles($user->id);
+		if (in_array(Conf::ROLE_ADMIN, $role, true)) {
+			if (!$this->panelCookie->load()) {
+				$this->panelCookie->save($role);
+			}
+		}
+
+		if ($this->panelCookie->load()) {
+			$role = $this->panelCookie->load();
+		}
+
 		return new SimpleIdentity($user->id, $role, $user);
 	}
 
