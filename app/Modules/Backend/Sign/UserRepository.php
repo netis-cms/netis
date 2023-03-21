@@ -20,6 +20,7 @@ use Nette\Security\IIdentity;
 use Nette\Security\Passwords;
 use Nette\Security\SimpleIdentity;
 use Nette\SmartObject;
+use Tracy\Debugger;
 
 
 #[Table(UsersEntity::TABLE, UsersEntity::PRIMARY)]
