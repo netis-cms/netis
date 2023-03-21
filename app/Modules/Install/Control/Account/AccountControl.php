@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Modules\Install\Control\Account;
 
-use App\Modules\Install\Steps;
 use App\Modules\Backend\Sign\UsersEntity;
+use App\Modules\Install\Steps;
 use Dibi\Connection;
 use Dibi\Exception;
 use Drago\Application\UI\Alert;
