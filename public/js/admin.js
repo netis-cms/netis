@@ -20,11 +20,3 @@ const alertList = document.querySelectorAll('.alert');
 const alerts = [].slice.call(alertList).map(function (element) {
 	return new bootstrap.Alert(element);
 });
-
-naja.uiHandler.addEventListener('interaction', (event) => {
-	if (event.detail.element.hasAttribute('data-confirm')
-		&& ! window.confirm(event.detail.element.getAttribute('data-confirm'))
-	) {
-		event.preventDefault();
-	}
-});
