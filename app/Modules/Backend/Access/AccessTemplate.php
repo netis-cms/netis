@@ -10,5 +10,4 @@ use Nette\ComponentModel\IComponent;
 
 final class AccessTemplate extends BackendTemplate
 {
-	public IComponent $form;
 }
