@@ -76,7 +76,7 @@ final class SignPresenter extends BasePresenter
 	 * Logout user from application.
 	 * @throws AbortException
 	 */
-	public function actionOut(): void
+	public function actionUserOut(): void
 	{
 		$this->getUser()->logout();
 		$this->redirect(':Backend:Sign:in');

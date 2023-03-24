@@ -62,6 +62,7 @@
 
 # access
 'Edit or add permissions': 'Upravit nebo přidat oprávnění'
+'Authorization has been changed.': 'Autorizace byla změněna.'
 'Resource': 'Zdroj'
 'Actions and signals': 'Akce a signály'
 'Permission': 'Oprávnění'
