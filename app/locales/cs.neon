@@ -70,7 +70,9 @@
 'Select resource': 'Vyberte zdroj'
 'Select permission': 'Vyberte oprávnění'
 'Deny': 'Zakázat'
+'Denied': 'Zakázano'
 'Allow': 'Povolit'
+'Allowed': 'Povoleno'
 'Permission was updated.': 'Oprávnění bylo aktualizováno.'
 'Permission added.': 'Povolení přidáno.'
 'Permission removed.': 'Oprávnění odebráno.'
@@ -82,6 +84,7 @@
 'The role is not allowed to be updated.': 'Roli není povoleno aktualizovat.'
 'The role is not allowed to be deleted.': 'Roli nelze smazat.'
 'The role cannot be deleted because it is bound to another role.': 'Roli nelze odstranit, protože je svázána s jinou rolí.'
+'All': 'Vše'
 
 'This role already exists.': 'Tato role již existuje.'
 'Role deleted.': 'Role smazána.'

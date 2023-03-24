@@ -3,10 +3,10 @@
 
 {* website content *}
 {block content}
-{embed '../../../../UI/Widgets/@forms.latte', name: 'signIn'}
-	{block form-content}
-		{include input-text, name: 'email', columns: 12}
-		{include input-text, name: 'password', columns: 12}
+{embed '../../../../UI/Widgets/@form.latte', name: 'signIn'}
+	{block form}
+		{include input, name: 'email', columns: 12}
+		{include input, name: 'password', columns: 12}
 		<div class="d-grid mt-3">
 			<input n:name="send" class="btn btn-primary text-white" data-btn-submit>
 		</div>
