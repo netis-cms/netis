@@ -1,10 +1,10 @@
 {* database server settings *}
-{embed '../../../../UI/Widgets/@forms.latte', name: 'database', class: 'ajax mt-5'}
-	{block form-content}
-		{include input-text, name: 'host', columns: 6}
-		{include input-text, name: 'user', columns: 6}
-		{include input-text, name: 'database', columns: 6}
-		{include input-text, name: 'password', columns: 6}
-		{include input-submit, name: 'send', columns: 12, buttonCanvas: false}
+{embed '../../../../UI/Widgets/@form.latte', name: 'database', class: 'ajax mt-5'}
+	{block form}
+		{include input, name: 'host', columns: 6}
+		{include input, name: 'user', columns: 6}
+		{include input, name: 'database', columns: 6}
+		{include input, name: 'password', columns: 6}
+		{include submit, name: 'send', columns: 12, buttonCanvas: false}
 	{/block}
 {/embed}

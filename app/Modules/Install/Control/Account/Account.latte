@@ -1,10 +1,10 @@
 {* Add administrator account *}
-{embed '../../../../UI/Widgets/@forms.latte', name: 'account', class: 'ajax mt-5'}
-	{block form-content}
-		{include input-text, name: 'username', columns: 6}
-		{include input-text, name: 'email', columns: 6}
-		{include input-text, name: 'password', columns: 6}
-		{include input-text, name: 'verify', columns: 6}
-		{include input-submit, name: 'send', columns: 12, buttonCanvas: false}
+{embed '../../../../UI/Widgets/@form.latte', name: 'account', class: 'ajax mt-5'}
+	{block form}
+		{include input, name: 'username', columns: 6}
+		{include input, name: 'email', columns: 6}
+		{include input, name: 'password', columns: 6}
+		{include input, name: 'verify', columns: 6}
+		{include submit, name: 'send', columns: 12, buttonCanvas: false}
 	{/block}
 {/embed}

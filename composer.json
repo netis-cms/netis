@@ -21,8 +21,7 @@
 		"drago-ex/parameters": "^1.0",
 		"drago-ex/database": "^1.0",
 		"drago-ex/utils": "^1.0",
-	  	"drago-ex/authorization": "dev-master",
-	  	"ublaboo/datagrid": "dev-next"
+	  	"drago-ex/authorization": "dev-master"
 	},
 	"require-dev": {
 		"phpstan/phpstan-nette": "^0.12"

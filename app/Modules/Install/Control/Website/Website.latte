@@ -1,8 +1,8 @@
 {* website settings *}
-{embed '../../../../UI/Widgets/@forms.latte', name: 'website', class: 'ajax mt-5'}
-	{block form-content}
-		{include input-text, name: 'website', columns: 6}
-		{include input-text, name: 'description', columns: 6}
-		{include input-submit, name: 'send', columns: 12, buttonCanvas: false}
+{embed '../../../../UI/Widgets/@form.latte', name: 'website', class: 'ajax mt-5'}
+	{block form}
+		{include input, name: 'website', columns: 6}
+		{include input, name: 'description', columns: 6}
+		{include submit, name: 'send', columns: 12, buttonCanvas: false}
 	{/block}
 {/embed}
