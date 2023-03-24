@@ -1,0 +1,23 @@
+{templateType App\Authorization\Control\ComponentTemplate}
+{embed '../Widgets/@offcanvas.latte', offcanvasId: $uniqueComponentId}
+	{block title}{_'Edit or add permissions'}{/block}
+	{block content}
+		{snippet permissions}
+			{embed '../Widgets/@form.latte', name: 'factory', class: 'ajax'}
+				{block form}
+					{include select, name: 'role_id', columns: 6, class: 'select-tom'}
+					{include select, name: 'resource_id', columns: 6, class: 'select-tom'}
+					{include select, name: 'privilege_id', columns: 6, class: 'select-tom'}
+					{include select, name: 'allowed', columns: 6, class: 'select-tom'}
+					{include submit, name: 'send', columns: 12, buttonCanvas: true}
+				{/block}
+			{/embed}
+		{/snippet}
+	{/block}
+{/embed}
+
+{embed '../Widgets/@heading.latte'}
+	{block title}{_'Permissions'}{/block}
+{/embed}
+
+{control grid}

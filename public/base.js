@@ -1,17 +1,19 @@
-import Bootstrap from 'bootstrap/dist/js/bootstrap.bundle';
-import {LiveForm, Nette} from 'live-form-validation';
-import Naja from 'naja';
-import SubmitButtonDisable from './naja.button';
-import SpinnerExtension from './naja.spinner';
+import Bootstrap from "bootstrap/dist/js/bootstrap.bundle";
+import jQuery from "jquery"
+import naja from "naja";
+import {LiveForm, Nette} from "live-form-validation";
+import SubmitButtonDisable from "./naja.button";
+import SpinnerExtension from "./naja.spinner";
 
+window.jQuery = window.$ = jQuery;
 window.Bootstrap = Bootstrap;
 window.LiveForm = LiveForm;
 window.Nette = Nette;
-window.Naja = Naja;
+window.naja = naja;
 
 /* initialization naja */
 document.addEventListener('DOMContentLoaded',
-	Naja.initialize.bind(Naja)
+	naja.initialize.bind(naja)
 );
 
 /* initialization nette */
@@ -20,28 +22,17 @@ Nette.initOnLoad();
 /* live form validation */
 LiveForm.setOptions({
 	messageErrorClass: 'errors-live',
+	messageParentClass: 'form-error',
 	messageErrorPrefix: '',
 	wait: 500
 });
 
 /* submit button disable */
-Naja.registerExtension(
+naja.registerExtension(
 	new SubmitButtonDisable()
 );
 
 /* submit button disable */
-Naja.registerExtension(
+naja.registerExtension(
 	new SpinnerExtension()
 );
-
-/* standard button disable */
-const button = document.getElementById('btn-send');
-if (button) {
-	button.addEventListener('click', (e) => {
-		const url = e.target.getAttribute('data-url');
-		button.disabled = true;
-		Naja.makeRequest('GET', url, null, {
-			history: false,
-		}).then();
-	});
-}

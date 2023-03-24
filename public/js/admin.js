@@ -1,11 +1,15 @@
 /* sass */
-import '../styles/admin.scss';
+import "../styles/admin.scss";
 
 /* js */
-import '../base';
-import 'sidebar-skeleton-compostrap';
-import 'sidebar-menu-compostrap';
-import PerfectScrollbar from 'perfect-scrollbar';
+import "../base";
+import "sidebar-skeleton-compostrap";
+import "sidebar-menu-compostrap";
+import "../../vendor/ublaboo/datagrid/assets/datagrid";
+import "../../vendor/ublaboo/datagrid/assets/datagrid-instant-url-refresh";
+import "../naja.components";
+import "../naja.tom.select";
+import PerfectScrollbar from "perfect-scrollbar";
 
 new PerfectScrollbar('.scrollbar', {
 	wheelSpeed: 0.3
@@ -14,10 +18,10 @@ new PerfectScrollbar('.scrollbar', {
 /* bootstrap alert */
 const alertList = document.querySelectorAll('.alert');
 const alerts = [].slice.call(alertList).map(function (element) {
-	return new Bootstrap.Alert(element);
+	return new bootstrap.Alert(element);
 });
 
-Naja.uiHandler.addEventListener('interaction', (event) => {
+naja.uiHandler.addEventListener('interaction', (event) => {
 	if (event.detail.element.hasAttribute('data-confirm')
 		&& ! window.confirm(event.detail.element.getAttribute('data-confirm'))
 	) {

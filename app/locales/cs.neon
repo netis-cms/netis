@@ -119,3 +119,21 @@
 'Select user': 'Volba uživatele'
 'The privilege can not be deleted, you must first delete the records that are associated with it.':
 	'Záznam nelze smazat, musíte nejprve smazat záznamy, které jsou s ním spojeny.'
+
+
+# datagrid
+'ublaboo_datagrid.reset_filter': 'Reset'
+'ublaboo_datagrid.items': 'Položky'
+'ublaboo_datagrid.from': 'z'
+'ublaboo_datagrid.all': 'Vše'
+'ublaboo_datagrid.action': 'Akce'
+'ublaboo_datagrid.no_item_found': 'Data nebyla nalezena.'
+'ublaboo_datagrid.here': 'Reset'
+'ublaboo_datagrid.no_item_found_reset': 'Data nebyla nalezena, resetujte filtr.'
+'ublaboo_datagrid.next': 'Další'
+'ublaboo_datagrid.previous': 'Předchozí'
+'ublaboo_datagrid.show_filter': 'Zobrazit filtr'
+'ublaboo_datagrid.show_all_columns': 'Zobrazit vše'
+'ublaboo_datagrid.group_actions': 'Hromadná akce'
+'ublaboo_datagrid.choose': 'Zvolit akci'
+'ublaboo_datagrid.execute': 'Potvrdit akci'

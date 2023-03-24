@@ -5,19 +5,9 @@
 
 {* website content *}
 {block content}
-	{embed $widgetPath . '@offcanvas.latte', offcanvasId: privileges}
-		{block title}{_'Edit or add privileges'}{/block}
-		{block content}
-			{snippet privileges}
-				{control privilegesControl}
-			{/snippet}
-		{/block}
-	{/embed}
 	{embed $widgetPath . '@content.latte'}
 		{block content}
-			{snippet privilegesItems}
-				{control privilegesControl:items}
-			{/snippet}
+			{control privilegesControl}
 		{/block}
 	{/embed}
 {/block}

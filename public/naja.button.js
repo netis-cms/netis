@@ -1,5 +1,5 @@
 export default class SubmitButtonDisable {
-	initialize(Naja) {
+	initialize(naja) {
 		let submitButton;
 		const submitDisable = (doc) => {
 			const submit = doc.querySelectorAll('[data-btn-submit]');
@@ -10,11 +10,11 @@ export default class SubmitButtonDisable {
 			}
 		};
 		submitDisable(document);
-		Naja.snippetHandler.addEventListener('afterUpdate', (e) => submitDisable(e.detail.snippet));
-		Naja.addEventListener('start', () => {
+		naja.snippetHandler.addEventListener('afterUpdate', (e) => submitDisable(e.detail.snippet));
+		naja.addEventListener('start', () => {
 			if (submitButton) submitButton.disabled = true;
 		});
-		Naja.addEventListener('complete', () => {
+		naja.addEventListener('complete', () => {
 			if (submitButton) submitButton.disabled = false;
 		});
 	}

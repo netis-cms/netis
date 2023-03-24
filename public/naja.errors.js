@@ -1,6 +1,6 @@
 export default class ErrorsExtension {
-	initialize(Naja) {
-		Naja.addEventListener('error', (e) => {
+	initialize(naja) {
+		naja.addEventListener('error', (e) => {
 			let errorMessage = e.detail.error.message;
 			switch (e.detail.error.response.status) {
 				case 403: errorMessage = 'You do not have the necessary permissions to perform this action.'; break;

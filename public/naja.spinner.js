@@ -1,13 +1,13 @@
 let reqCnt = 0;
 export default class SpinnerExtension {
-	initialize(Naja) {
+	initialize(naja) {
 		const el = document.createElement('div');
 		el.classList.add('spinner');
-		Naja.addEventListener('start', () => {
+		naja.addEventListener('start', () => {
 			reqCnt++;
 			document.body.appendChild(el);
 		});
-		Naja.addEventListener('complete', () => {
+		naja.addEventListener('complete', () => {
 			if (--reqCnt === 0) {
 				document.body.appendChild(el).remove();
 			}

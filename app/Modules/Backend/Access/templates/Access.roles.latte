@@ -5,19 +5,9 @@
 
 {* website content *}
 {block content}
-	{embed $widgetPath . '@offcanvas.latte', offcanvasId: roles}
-		{block title}{_'Edit or add roles'}{/block}
-		{block content}
-			{snippet roles}
-				{control rolesControl}
-			{/snippet}
-		{/block}
-	{/embed}
 	{embed $widgetPath . '@content.latte'}
 		{block content}
-			{snippet rolesItems}
-				{control rolesControl:items}
-			{/snippet}
+			{control rolesControl}
 		{/block}
 	{/embed}
 {/block}

@@ -1,9 +1,0 @@
-{embed '../../Widgets/@forms.latte', name: 'factory', class: 'ajax'}
-	{block form-content}
-		{include input-select, name: 'role_id', columns: 6}
-		{include input-select, name: 'resource_id', columns: 6}
-		{include input-select, name: 'privilege_id', columns: 6}
-		{include input-select, name: 'allowed', columns: 6}
-		{include input-submit, name: 'send', columns: 12, buttonCanvas: true}
-	{/block}
-{/embed}

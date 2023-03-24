@@ -1,5 +1,5 @@
 /* sass */
-import '../styles/sign.scss';
+import "../styles/sign.scss";
 
 /* js */
-import '../base';
+import "../base";

@@ -1,5 +1,5 @@
 /* sass */
-import '../styles/web.scss';
+import "../styles/web.scss";
 
 /* js */
-import '../base';
+import "../base";

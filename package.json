@@ -8,7 +8,8 @@
     "perfect-scrollbar": "^1.5.5",
     "naja": "^2.5.0",
     "cooltipz-css": "^2.2.1",
-	"tom-select": "^2.2.2"
+	"tom-select": "^2.2.2",
+	"jquery": "^3.6.4"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.3",

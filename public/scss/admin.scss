@@ -58,3 +58,12 @@
   box-shadow: none !important;
   filter: none !important;
 }
+
+.datagrid {
+  padding: 0;
+
+  .row-grid-bottom {
+    border: none;
+    background: none;
+  }
+}
