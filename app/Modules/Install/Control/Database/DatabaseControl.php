@@ -85,8 +85,9 @@ final class DatabaseControl extends ExtraControl
 				];
 
 				// Generate and save the configuration file.
-				$file = $this->neonAdapter->dump($arr);
-				FileSystem::write($this->dirs->getAppDir() . '/Services/db.neon', $file);
+				$content = $this->neonAdapter->dump($arr);
+				$file = fopen($this->dirs->getAppDir() . '/Services/db.neon', 'w');
+				fwrite($file, $content);
 
 				// Save the installation step.
 				$this->steps->setStep(2);
