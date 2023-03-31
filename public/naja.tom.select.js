@@ -3,11 +3,11 @@ import TomSelect from "tom-select";
 
 function tomSelect(el) {
 	for(let e of el.querySelectorAll('.select-tom')) {
+		let isLocked = e.hasAttribute('data-locked');
 		e._tom = new TomSelect(e, {
-			plugins: ['remove_button'],
+			plugins: isLocked? []:['remove_button'],
 		});
-
-		if (e.hasAttribute('data-locked')) {
+		if (isLocked) {
 			e._tom.lock();
 		}
 	}
