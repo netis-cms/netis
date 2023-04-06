@@ -4,6 +4,8 @@ import naja from "naja";
 import {LiveForm, Nette} from "live-form-validation";
 import SubmitButtonDisable from "./naja.button";
 import SpinnerExtension from "./naja.spinner";
+import ConfirmExtension from "./naja.confirm";
+import ErrorsExtension from "./naja.errors";
 
 window.jQuery = window.$ = jQuery;
 window.Bootstrap = Bootstrap;
@@ -35,4 +37,14 @@ naja.registerExtension(
 /* submit button disable */
 naja.registerExtension(
 	new SpinnerExtension()
+);
+
+/* confirm dialog */
+naja.registerExtension(
+	new ConfirmExtension()
+);
+
+/* ajax error message */
+naja.registerExtension(
+	new ErrorsExtension()
 );

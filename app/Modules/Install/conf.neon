@@ -6,11 +6,6 @@ services:
 	# cache for install steps
 	install.cache: {class: Nette\Caching\Cache, arguments: [@Nette\Caching\IStorage, 'Install.CacheSteps'], autowired: no}
 
-	- App\Modules\Install\Control\Database\DatabaseControl
-	- App\Modules\Install\Control\Tables\TablesControl
-	- App\Modules\Install\Control\Website\WebsiteControl
-	- App\Modules\Install\Control\Account\AccountControl
-
 	- App\Modules\Install\Steps(@install.cache)
 	- Nette\DI\Config\Adapters\NeonAdapter
 

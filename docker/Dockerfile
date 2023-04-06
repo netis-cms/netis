@@ -6,7 +6,8 @@ MAINTAINER Zdeněk Papučík <zdenek.papucik@gmail.com>
 ARG DEBIAN_FRONTEND=noninteractive
 
 # run commands
-RUN apt update && apt upgrade -y && a2enmod ssl && a2enmod rewrite
+RUN apt update && apt upgrade -y && a2enmod rewrite
+# RUN a2enmod ssl
 
 # php extensions
 RUN docker-php-ext-install mysqli
