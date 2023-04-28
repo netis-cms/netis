@@ -24,7 +24,7 @@ abstract class BasePresenter extends Presenter
 	public SettingsRepository $settingsRepository;
 
 
-	public function injectInstall(Presenter $presenter)
+	public function injectInstall(Presenter $presenter): void
 	{
 		$presenter->onStartup[] = function () use ($presenter) {
 			if (is_dir(__DIR__ . '/Install')) {
