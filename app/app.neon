@@ -21,6 +21,9 @@ application:
 # enabling system container for Tracy bar
 di:
 	debugger: yes
+	export:
+		parameters: no
+		tags: no
 
 
 # application extensions
