@@ -18,7 +18,7 @@
     "concurrently": "^8.2.0",
     "parcel": "^2.9.3",
     "sass": "^1.64.2",
-	"ncp": "^2.0.0"
+    "ncp": "^2.0.0"
   },
   "scripts": {
     "docker:build": "concurrently -n=build -c=green \"docker-compose build\"",
