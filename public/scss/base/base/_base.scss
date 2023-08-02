@@ -3,7 +3,7 @@
 //
 
 // bootstrap
-@import 'node_modules/bootstrap/scss/functions';
+@import "bootstrap/scss/_functions";
 
 // colors
 $color-blue:  #2197f4;
@@ -19,10 +19,11 @@ $alert-border-width: 0;
 $alert-padding-x: 1rem;
 $alert-padding-y: 0.56rem;
 
-@import 'node_modules/bootstrap/scss/variables';
-@import 'node_modules/bootstrap/scss/mixins';
-@import 'node_modules/bootstrap/scss/maps';
-@import 'node_modules/bootstrap/scss/root';
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_variables-dark";
+@import "bootstrap/scss/_mixins";
+@import "bootstrap/scss/_maps";
+@import "bootstrap/scss/_root";
 
 // Create your own map
 $custom-colors: (
@@ -33,9 +34,9 @@ $custom-colors: (
 $theme-colors: map-merge($theme-colors, $custom-colors);
 
 // sidebar-menu
-@import 'node_modules/sidebar-menu-compostrap/scss/utils/variables';
-@import 'node_modules/sidebar-skeleton-compostrap/scss/utils/variables';
-@import 'node_modules/sidebar-skeleton-compostrap/scss/utils/functions';
+@import "sidebar-menu-compostrap/scss/utils/_variables";
+@import "sidebar-skeleton-compostrap/scss/utils/_variables";
+@import "sidebar-skeleton-compostrap/scss/utils/_functions";
 
 // bootstrap
-@import 'node_modules/bootstrap/scss/bootstrap';
+@import "bootstrap/scss/bootstrap";
