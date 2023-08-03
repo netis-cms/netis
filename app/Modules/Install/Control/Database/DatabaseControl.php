@@ -23,9 +23,9 @@ use Throwable;
 final class DatabaseControl extends ExtraControl
 {
 	public function __construct(
-		private Steps $steps,
-		private NeonAdapter $neonAdapter,
-		private Parameters $dirs,
+		private readonly Steps $steps,
+		private readonly NeonAdapter $neonAdapter,
+		private readonly Parameters $dirs,
 	) {
 	}
 

@@ -23,11 +23,11 @@ final class InstallPresenter extends Presenter
 	use TranslatorAdapter;
 
 	public function __construct(
-		private Steps $steps,
-		private DatabaseControl $databaseControl,
-		private TablesControl $tablesControl,
-		private WebsiteControl $websiteControl,
-		private AccountControl $accountControl,
+		private readonly Steps $steps,
+		private readonly DatabaseControl $databaseControl,
+		private readonly TablesControl $tablesControl,
+		private readonly WebsiteControl $websiteControl,
+		private readonly AccountControl $accountControl,
 	) {
 		parent::__construct();
 	}

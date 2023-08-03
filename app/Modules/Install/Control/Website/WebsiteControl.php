@@ -22,8 +22,8 @@ use Nette\Utils\ArrayHash;
 final class WebsiteControl extends ExtraControl
 {
 	public function __construct(
-		private Steps $steps,
-		private Connection $db,
+		private readonly Steps $steps,
+		private readonly Connection $db,
 	) {
 	}
 

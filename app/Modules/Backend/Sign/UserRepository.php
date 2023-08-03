@@ -29,9 +29,9 @@ class UserRepository implements Authenticator, IdentityHandler
 	use Repository;
 
 	public function __construct(
-		private Passwords $password,
-		private Connection $db,
-		private PanelCookie $panelCookie,
+		private readonly Passwords $password,
+		private readonly Connection $db,
+		private readonly PanelCookie $panelCookie,
 	) {
 	}
 

@@ -20,8 +20,8 @@ use Throwable;
 final class TablesControl extends ExtraControl
 {
 	public function __construct(
-		private Connection $db,
-		private Steps $steps,
+		private readonly Connection $db,
+		private readonly Steps $steps,
 	) {
 	}
 

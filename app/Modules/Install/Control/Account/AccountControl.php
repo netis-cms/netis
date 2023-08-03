@@ -25,9 +25,9 @@ use Nette\Utils\Random;
 final class AccountControl extends ExtraControl
 {
 	public function __construct(
-		private Connection $db,
-		private Steps $steps,
-		private Passwords $password,
+		private readonly Connection $db,
+		private readonly Steps $steps,
+		private readonly Passwords $password,
 	) {
 	}
 
