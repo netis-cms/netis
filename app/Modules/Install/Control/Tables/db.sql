@@ -22,7 +22,7 @@ CREATE TABLE `permissions` (
   CONSTRAINT `permissions_ibfk_1` FOREIGN KEY (`resource_id`) REFERENCES `resources` (`id`),
   CONSTRAINT `permissions_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),
   CONSTRAINT `permissions_ibfk_3` FOREIGN KEY (`privilege_id`) REFERENCES `privileges` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `permissions` (`id`, `role_id`, `resource_id`, `privilege_id`, `allowed`) VALUES
 (1,	1,	1,	1,	1),
@@ -44,7 +44,7 @@ CREATE TABLE `privileges` (
   `name` varchar(40) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `privileges` (`id`, `name`) VALUES
 (1,	'*all'),
@@ -57,7 +57,7 @@ CREATE TABLE `resources` (
   `name` varchar(40) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `resources` (`id`, `name`) VALUES
 (1,	'Front:Home'),
@@ -72,7 +72,7 @@ CREATE TABLE `roles` (
   `parent` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `roles` (`id`, `name`, `parent`) VALUES
 (1,	'guest',	0),
@@ -83,7 +83,7 @@ DROP TABLE IF EXISTS `settings`;
 CREATE TABLE `settings` (
   `name` varchar(100) NOT NULL,
   `value` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `users`;
@@ -94,7 +94,7 @@ CREATE TABLE `users` (
   `password` varchar(60) NOT NULL,
   `token` varchar(60) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `users_roles`;
@@ -106,7 +106,7 @@ CREATE TABLE `users_roles` (
   KEY `role` (`role_id`),
   CONSTRAINT `users_roles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `users_roles_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP VIEW IF EXISTS `users_roles_view`;
