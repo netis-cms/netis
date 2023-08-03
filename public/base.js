@@ -13,11 +13,6 @@ window.LiveForm = LiveForm;
 window.Nette = Nette;
 window.naja = naja;
 
-/* initialization naja */
-document.addEventListener('DOMContentLoaded',
-	naja.initialize.bind(naja)
-);
-
 /* initialization nette */
 Nette.initOnLoad();
 
