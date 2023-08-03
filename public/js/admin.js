@@ -7,7 +7,6 @@ import "sidebar-skeleton-compostrap";
 import "sidebar-menu-compostrap";
 import "../naja.components";
 import "../naja.tom.select";
-import naja from "naja";
 import Select from "tom-select";
 import PerfectScrollbar from "perfect-scrollbar";
 import {
