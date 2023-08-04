@@ -15,7 +15,6 @@ use Nette\Utils\ArrayHash;
 
 /**
  * WebsiteControl settings.
- * @property-read ExtraTemplate $template
  */
 final class WebsiteFactory
 {
