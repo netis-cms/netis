@@ -6,7 +6,6 @@ namespace App\Modules\Backend\Sign;
 
 use Dibi\Connection;
 use Dibi\Exception;
-use Dibi\Row;
 use Drago\Attr\AttributeDetectionException;
 use Drago\Attr\Table;
 use Drago\Authorization\Conf;
