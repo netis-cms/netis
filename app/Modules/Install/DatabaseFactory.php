@@ -16,7 +16,6 @@ use Throwable;
 
 /**
  * Database server settings.
- * @property-read ExtraTemplate $template
  */
 final class DatabaseFactory
 {
