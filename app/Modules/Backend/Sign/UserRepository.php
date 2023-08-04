@@ -29,8 +29,8 @@ class UserRepository implements Authenticator, IdentityHandler
 	use Repository;
 
 	public function __construct(
+        protected Connection $db,
 		private readonly Passwords $password,
-		private readonly Connection $db,
 		private readonly PanelCookie $panelCookie,
 	) {
 	}
@@ -102,7 +102,7 @@ class UserRepository implements Authenticator, IdentityHandler
 	 * @throws Exception
 	 * @throws AttributeDetectionException
 	 */
-	private function findUser(string $user): array|Row|UsersEntity|null
+	private function findUser(string $user): array|UsersEntity|null
 	{
 		return $this->discover(UsersEntity::EMAIL, $user)
 			->execute()->setRowClass(UsersEntity::class)
@@ -114,7 +114,7 @@ class UserRepository implements Authenticator, IdentityHandler
 	 * @throws AttributeDetectionException
 	 * @throws Exception
 	 */
-	private function findUserById(string $id): array|Row|UsersEntity|null
+	private function findUserById(string $id): array|UsersEntity|null
 	{
 		return $this->discover(UsersEntity::TOKEN, $id)
 			->execute()->setRowClass(UsersEntity::class)

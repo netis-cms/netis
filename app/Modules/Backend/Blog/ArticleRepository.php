@@ -15,7 +15,7 @@ class ArticleRepository
 	use Repository;
 
 	public function __construct(
-		private readonly Connection $db,
+		protected Connection $db,
 	) {
 	}
 }
