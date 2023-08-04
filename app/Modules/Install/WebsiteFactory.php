@@ -7,7 +7,6 @@ namespace App\Modules\Install;
 use App\Services\Entity\SettingsEntity;
 use Dibi\Connection;
 use Dibi\Exception;
-use Drago\Application\UI\ExtraTemplate;
 use Drago\Localization\Translator;
 use Nette\Application\UI\Form;
 use Nette\Utils\ArrayHash;
