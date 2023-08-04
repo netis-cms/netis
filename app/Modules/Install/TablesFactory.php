@@ -13,7 +13,6 @@ use Throwable;
 
 /**
  * Install database tables.
- * @property-read ExtraTemplate $template
  */
 final class TablesFactory
 {
