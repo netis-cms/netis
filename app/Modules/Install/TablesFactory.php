@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Modules\Install;
 
 use Dibi\Connection;
-use Drago\Application\UI\ExtraTemplate;
 use Drago\Localization\Translator;
 use Nette\Application\UI\Form;
 use Throwable;
