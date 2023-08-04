@@ -2,13 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Install\Control\Tables;
+namespace App\Modules\Install;
 
-use App\Modules\Install\Steps;
 use Dibi\Connection;
-use Drago\Application\UI\Alert;
-use Drago\Application\UI\ExtraControl;
 use Drago\Application\UI\ExtraTemplate;
+use Drago\Localization\Translator;
 use Nette\Application\UI\Form;
 use Throwable;
 
@@ -17,25 +15,17 @@ use Throwable;
  * Install database tables.
  * @property-read ExtraTemplate $template
  */
-final class TablesControl extends ExtraControl
+final class TablesFactory
 {
 	public function __construct(
 		private readonly Connection $db,
 		private readonly Steps $steps,
+		private readonly Translator $translator,
 	) {
 	}
 
 
-	public function render(): void
-	{
-		$template = $this->template;
-		$template->setFile(__DIR__ . '/Tables.latte');
-		$template->setTranslator($this->translator);
-		$template->render();
-	}
-
-
-	public function createComponentTables(): Form
+	public function create(): Form
 	{
 		$form = new Form;
 		$form->setTranslator($this->translator);
@@ -54,14 +44,10 @@ final class TablesControl extends ExtraControl
 
 			// Save the installation step.
 			$this->steps->setStep(3);
-			$this->getPresenter()->flashMessage(
-				'Database installation was successful.',
-				Alert::SUCCESS,
-			);
 
-		} catch (Throwable $e) {
-			if ($e->getCode()) {
-				$message = match ($e->getCode()) {
+		} catch (Throwable $t) {
+			if ($t->getCode()) {
+				$message = match ($t->getCode()) {
 					1050 => 'Some table names already exist in the database.',
 					default => 'Unknown status code.',
 				};

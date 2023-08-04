@@ -2,13 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Install\Control\Database;
+namespace App\Modules\Install;
 
-use App\Modules\Install\Steps;
 use dibi;
-use Drago\Application\UI\Alert;
-use Drago\Application\UI\ExtraControl;
 use Drago\Application\UI\ExtraTemplate;
+use Drago\Localization\Translator;
 use Drago\Parameters\Parameters;
 use Drago\Utils\ExtraArrayHash;
 use Nette\Application\UI\Form;
@@ -20,26 +18,18 @@ use Throwable;
  * Database server settings.
  * @property-read ExtraTemplate $template
  */
-final class DatabaseControl extends ExtraControl
+final class DatabaseFactory
 {
 	public function __construct(
 		private readonly Steps $steps,
 		private readonly NeonAdapter $neonAdapter,
 		private readonly Parameters $dirs,
+		private readonly Translator $translator,
 	) {
 	}
 
 
-	public function render(): void
-	{
-		$template = $this->template;
-		$template->setFile(__DIR__ . '/Database.latte');
-		$template->setTranslator($this->translator);
-		$template->render();
-	}
-
-
-	protected function createComponentDatabase(): Form
+	public function create(): Form
 	{
 		$form = new Form;
 		$form->setTranslator($this->translator);
@@ -90,15 +80,11 @@ final class DatabaseControl extends ExtraControl
 
 				// Save the installation step.
 				$this->steps->setStep(2);
-				$this->getPresenter()->flashMessage(
-					'Database settings were successful.',
-					Alert::SUCCESS,
-				);
 			}
 
-		} catch (Throwable $e) {
-			if ($e->getCode()) {
-				$message = match ($e->getCode()) {
+		} catch (Throwable $t) {
+			if ($t->getCode()) {
+				$message = match ($t->getCode()) {
 					1044 => 'Access denied, check database settings.',
 					1045 => 'Failed to verify database username or password.',
 					1049 => 'The database name does not exist.',

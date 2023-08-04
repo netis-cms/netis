@@ -2,16 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Install\Control\Account;
+namespace App\Modules\Install;
 
 use App\Modules\Backend\Sign\UsersEntity;
-use App\Modules\Install\Steps;
 use Dibi\Connection;
 use Dibi\Exception;
-use Drago\Application\UI\Alert;
-use Drago\Application\UI\ExtraControl;
 use Drago\Application\UI\ExtraTemplate;
 use Drago\Authorization\Control\Access\UsersRolesEntity;
+use Drago\Localization\Translator;
 use Drago\Utils\ExtraArrayHash;
 use Nette\Application\UI\Form;
 use Nette\Security\Passwords;
@@ -22,26 +20,18 @@ use Nette\Utils\Random;
  * Add administrator account.
  * @property-read ExtraTemplate $template
  */
-final class AccountControl extends ExtraControl
+final class AccountFactory
 {
 	public function __construct(
 		private readonly Connection $db,
 		private readonly Steps $steps,
 		private readonly Passwords $password,
+		private readonly Translator $translator,
 	) {
 	}
 
 
-	public function render(): void
-	{
-		$template = $this->template;
-		$template->setFile(__DIR__ . '/Account.latte');
-		$template->setTranslator($this->translator);
-		$template->render();
-	}
-
-
-	public function createComponentAccount(): Form
+	public function create(): Form
 	{
 		$form = new Form;
 		$form->setTranslator($this->translator);
@@ -87,9 +77,5 @@ final class AccountControl extends ExtraControl
 
 		// Save the installation step.
 		$this->steps->setStep(5);
-		$this->getPresenter()->flashMessage(
-			'Account administrator registration successful.',
-			Alert::SUCCESS,
-		);
 	}
 }

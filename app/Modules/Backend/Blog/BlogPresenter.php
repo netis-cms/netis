@@ -14,7 +14,7 @@ use Nette\Application\UI\Form;
 final class BlogPresenter extends BackendPresenter
 {
 	public function __construct(
-		private readonly ArticleComponent $articleComponent,
+		private readonly ArticleFactory $articleFactory,
 	) {
 		parent::__construct();
 	}
@@ -22,15 +22,11 @@ final class BlogPresenter extends BackendPresenter
 
 	protected function createComponentArticles(): Form
 	{
-		$articles = $this->articleComponent;
-		$articles->translator = $this->getTranslator();
-
-		$form = $articles->factory();
+		$form = $this->articleFactory->create();
 		$form->onSuccess[] = function () {
 			$this->flashMessage('send');
 			$this->redirect('this');
 		};
-
 		return $form;
 	}
 }

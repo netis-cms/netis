@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace App\Modules\Install;
 
-use App\Modules\Install\Control\Account\AccountControl;
-use App\Modules\Install\Control\Database\DatabaseControl;
-use App\Modules\Install\Control\Tables\TablesControl;
-use App\Modules\Install\Control\Website\WebsiteControl;
+use Drago\Application\UI\Alert;
 use Drago\Localization\Translator;
 use Drago\Localization\TranslatorAdapter;
+use Nette\Application\UI\Form;
 use Nette\Application\UI\Presenter;
 use Throwable;
 
@@ -24,10 +22,10 @@ final class InstallPresenter extends Presenter
 
 	public function __construct(
 		private readonly Steps $steps,
-		private readonly DatabaseControl $databaseControl,
-		private readonly TablesControl $tablesControl,
-		private readonly WebsiteControl $websiteControl,
-		private readonly AccountControl $accountControl,
+		private readonly DatabaseFactory $databaseFactory,
+		private readonly TablesFactory $tablesFactory,
+		private readonly WebsiteFactory $websiteFactory,
+		private readonly AccountFactory $accountFactory,
 	) {
 		parent::__construct();
 	}
@@ -69,34 +67,42 @@ final class InstallPresenter extends Presenter
 	}
 
 
-	protected function createComponentDatabase(): DatabaseControl
+	protected function createComponentDatabase(): Form
 	{
-		$control = $this->databaseControl;
-		$control->translator = $this->getTranslator();
-		return $control;
+		$form = $this->databaseFactory->create();
+		$form->onSuccess[] = function () {
+			$this->flashMessage('Database settings were successful.', Alert::SUCCESS);
+		};
+		return $form;
 	}
 
 
-	protected function createComponentTables(): TablesControl
+	protected function createComponentTables(): Form
 	{
-		$control = $this->tablesControl;
-		$control->translator = $this->getTranslator();
-		return $control;
+		$form = $this->tablesFactory->create();
+		$form->onSuccess[] = function () {
+			$this->flashMessage('Database installation was successful.', Alert::SUCCESS);
+		};
+		return $form;
 	}
 
 
-	protected function createComponentWebsite(): WebsiteControl
+	protected function createComponentWebsite(): Form
 	{
-		$control = $this->websiteControl;
-		$control->translator = $this->getTranslator();
-		return $control;
+		$form = $this->websiteFactory->create();
+		$form->onSuccess[] = function () {
+			$this->flashMessage('Site settings successful.', Alert::SUCCESS);
+		};
+		return $form;
 	}
 
 
-	protected function createComponentAccount(): AccountControl
+	protected function createComponentAccount(): Form
 	{
-		$control = $this->accountControl;
-		$control->translator = $this->getTranslator();
-		return $control;
+		$form = $this->accountFactory->create();
+		$form->onSuccess[] = function () {
+			$this->flashMessage('Account administrator registration successful.', Alert::SUCCESS);
+		};
+		return $form;
 	}
 }

@@ -5,84 +5,111 @@
 
 {* website content *}
 {block content}
-	{switch $step}
+{switch $step}
 
-		{* step before installing *}
-		{case 0}
+	{* step before installing *}
+	{case 0}
 
-		{* information before installation *}
-		<h1 class="display-4 mb-5">{_'Information before installing the system'}</h1>
-		<p>
-			{_'Welcome, please prepare your database server data before installing the system.'}
-			{_'However, if you do not have them for some reason, you may need to create the database manually through hosting administration.'}
-		</p>
-		<p>
-			<button class="btn btn-primary text-white" type="button" id="btn-send" data-url="{link run!}">
-				{_'Start with installation'}
-			</button>
-		</p>
+	{* information before installation *}
+	<h1 class="display-4 mb-5">{_'Information before installing the system'}</h1>
+	<p>
+		{_'Welcome, please prepare your database server data before installing the system.'}
+		{_'However, if you do not have them for some reason, you may need to create the database manually through hosting administration.'}
+	</p>
+	<p>
+		<button class="btn btn-primary text-white" type="button" id="btn-send" data-url="{link run!}">
+			{_'Start with installation'}
+		</button>
+	</p>
 
-		{* first step *}
-		{case 1}
+	{* first step *}
+	{case 1}
 
-		{* database server settings *}
-		<h1 class="display-4 mb-5">{_'Database settings'}</h1>
-		<p>{_'If there is a problem with database server authentication, please contact your web hosting vendor to verify the correctness of the data.'}</p>
-		{control database}
+	{* database server settings *}
+	<h1 class="display-4 mb-5">{_'Database settings'}</h1>
+	<p>{_'If there is a problem with database server authentication, please contact your web hosting vendor to verify the correctness of the data.'}</p>
+	{embed '../../../UI/Widgets/@form.latte', name: 'database', class: 'ajax mt-5'}
+		{block form}
+			{include input, name: 'host', columns: 6}
+			{include input, name: 'user', columns: 6}
+			{include input, name: 'database', columns: 6}
+			{include input, name: 'password', columns: 6}
+			{include submit, name: 'send', columns: 12, buttonCanvas: false}
+		{/block}
+	{/embed}
 
-		{* second step *}
-		{case 2}
+	{* second step *}
+	{case 2}
 
-		{* install database tables *}
-		<h1 class="display-4 mb-5">{_'Database installation'}</h1>
-		<p>
-			{_'Before installing the database, please verify that your database server has an empty database or uses other table prefixes.'}
-			{_'If the table names match your table in the database, you will not be able to upload the database.'}
-		</p>
-		{control tables}
+	{* install database tables *}
+	<h1 class="display-4 mb-5">{_'Database installation'}</h1>
+	<p>
+		{_'Before installing the database, please verify that your database server has an empty database or uses other table prefixes.'}
+		{_'If the table names match your table in the database, you will not be able to upload the database.'}
+	</p>
+	{embed '../../../UI/Widgets/@form.latte', name: 'tables', class: 'ajax'}
+		{block form}
+			{include submit, name: 'send', columns: 12, buttonCanvas: false}
+		{/block}
+	{/embed}
 
-		{* third step *}
-		{case 3}
+	{* third step *}
+	{case 3}
 
-		{* website settings *}
-		<h1 class="display-4 mb-5">{_'Site name and description'}</h1>
-		<p>{_'Please enter basic information for the website.'}</p>
-		{control website}
+	{* website settings *}
+	<h1 class="display-4 mb-5">{_'Site name and description'}</h1>
+	<p>{_'Please enter basic information for the website.'}</p>
+	{embed '../../../UI/Widgets/@form.latte', name: 'website', class: 'ajax mt-5'}
+		{block form}
+			{include input, name: 'website', columns: 6}
+			{include input, name: 'description', columns: 6}
+			{include submit, name: 'send', columns: 12, buttonCanvas: false}
+		{/block}
+	{/embed}
 
-		{* fourth step *}
-		{case 4}
+	{* fourth step *}
+	{case 4}
 
-		{* add administrator account *}
-		<h1 class="display-4 mb-5">{_'Registration'}</h1>
-		<p>{_'Administrator account registration.'}</p>
-		{control account}
+	{* add administrator account *}
+	<h1 class="display-4 mb-5">{_'Registration'}</h1>
+	<p>{_'Administrator account registration.'}</p>
+	{embed '../../../UI/Widgets/@form.latte', name: 'account', class: 'ajax mt-5'}
+		{block form}
+			{include input, name: 'username', columns: 6}
+			{include input, name: 'email', columns: 6}
+			{include input, name: 'password', columns: 6}
+			{include input, name: 'verify', columns: 6}
+			{include submit, name: 'send', columns: 12, buttonCanvas: false}
+		{/block}
+	{/embed}
 
-		{* nstallation completion step *}
-		{case 5}
+	{* nstallation completion step *}
+	{case 5}
 
-		{* complete the installation *}
-		<h1 class="display-4 mb-5">{_'Installation is complete'}</h1>
-		<p>
-			{_'The installation of the system is almost over, now it is necessary to remove the installation packages in order for the system to boot properly.'}
-			{_'Please follow the instructions below.'}
-		</p>
+	{* complete the installation *}
+	<h1 class="display-4 mb-5">{_'Installation is complete'}</h1>
+	<p>
+		{_'The installation of the system is almost over, now it is necessary to remove the installation packages in order for the system to boot properly.'}
+		{_'Please follow the instructions below.'}
+	</p>
 
-		{* info for delete files *}
-		<p class="font-weight-bold">{_'Delete the following files:'}</p>
-		<ul class="list-group mb-3">
-			<li class="list-group-item d-flex justify-content-between align-items-start text-danger">
-				<div class="ms-2 me-auto">/app/Modules/Install</div>
-				<span class="badge bg-danger rounded-pill">1</span>
-			</li>
-			<li class="list-group-item list-group-item d-flex justify-content-between align-items-start text-danger">
-				<div class="ms-2 me-auto">/var/cache</div>
-				<span class="badge bg-danger rounded-pill">2</span>
-			</li>
-		</ul>
+	{* info for delete files *}
+	<p class="font-weight-bold">{_'Delete the following files:'}</p>
+	<ul class="list-group mb-3">
+		<li class="list-group-item d-flex justify-content-between align-items-start text-danger">
+			<div class="ms-2 me-auto">/app/Modules/Install</div>
+			<span class="badge bg-danger rounded-pill">1</span>
+		</li>
+		<li class="list-group-item list-group-item d-flex justify-content-between align-items-start text-danger">
+			<div class="ms-2 me-auto">/var/cache</div>
+			<span class="badge bg-danger rounded-pill">2</span>
+		</li>
+	</ul>
 
-		{* go to administration *}
-		<p>
-			<a n:href=":Backend:Admin:" class="btn btn-primary text-white">{_'Entering administration'}</a>
-		</p>
-	{/switch}
-{/block}
+	{* go to administration *}
+	<p>
+		<a n:href=":Backend:Admin:" class="btn btn-primary text-white">
+			{_'Entering administration'}
+		</a>
+	</p>
+{/switch}

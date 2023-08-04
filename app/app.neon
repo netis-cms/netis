@@ -39,4 +39,4 @@ search:
 		in: %appDir%
 		classes:
 			- *Repository
-			- *Control
+			- *Factory

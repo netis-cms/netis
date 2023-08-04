@@ -17,7 +17,7 @@ class Steps
 
 
 	public function __construct(
-		private Cache $cache,
+		private readonly Cache $cache,
 	) {
 	}
 

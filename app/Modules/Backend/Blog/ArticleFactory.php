@@ -6,27 +6,25 @@ namespace App\Modules\Backend\Blog;
 
 use App\Modules\Backend\Sign\User;
 use DateTimeImmutable;
+use Drago\Localization\Translator;
 use Nette\Application\UI\Form;
-use Nette\Localization\Translator;
 use Nette\SmartObject;
 use Throwable;
 
 
-class ArticleComponent
+class ArticleFactory
 {
 	use SmartObject;
-
-	public ?Translator $translator;
-
 
 	public function __construct(
 		private readonly ArticleRepository $articleRepository,
 		public readonly User $user,
+		public readonly Translator $translator,
 	) {
 	}
 
 
-	public function factory(): Form
+	public function create(): Form
 	{
 		$form = new Form();
 		$form->setTranslator($this->translator);
