@@ -19,7 +19,7 @@ class SettingsRepository
 	use Repository;
 
 	public function __construct(
-		protected Connection $db,
+		private readonly Connection $db,
 	) {
 	}
 

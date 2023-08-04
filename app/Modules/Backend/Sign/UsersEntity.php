@@ -8,13 +8,13 @@ declare(strict_types=1);
 
 namespace App\Modules\Backend\Sign;
 
-use Drago;
-use Nette;
+use Drago\Database\Entity;
+use Nette\SmartObject;
 
 
-class UsersEntity extends Drago\Database\Entity
+class UsersEntity extends Entity
 {
-	use Nette\SmartObject;
+	use SmartObject;
 
 	public const TABLE = 'users';
 	public const PRIMARY = 'id';

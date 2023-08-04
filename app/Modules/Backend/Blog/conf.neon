@@ -1,0 +1,4 @@
+services:
+
+	- App\Modules\Backend\Blog\ArticleComponent
+	- App\Modules\Backend\Blog\ArticleRepository

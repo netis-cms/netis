@@ -5,10 +5,9 @@
 
 {* website content *}
 {block content}
-	{embed $widgetPath . '@content.latte'}
-		{block content}
-			<h5 class="border-bottom pb-2">{_'Dashboard'}</h5>
-			<p>Here is content this website page.</p>
-		{/block}
-	{/embed}
-{/block}
+{embed $widgetPath . '@content.latte'}
+	{block content}
+		<h5 class="border-bottom pb-2">{_'Dashboard'}</h5>
+		<p>Here is content this website page.</p>
+	{/block}
+{/embed}

@@ -102,7 +102,7 @@ class UserRepository implements Authenticator, IdentityHandler
 	 * @throws Exception
 	 * @throws AttributeDetectionException
 	 */
-	public function findUser(string $user): array|Row|UsersEntity|null
+	private function findUser(string $user): array|Row|UsersEntity|null
 	{
 		return $this->discover(UsersEntity::EMAIL, $user)
 			->execute()->setRowClass(UsersEntity::class)
@@ -114,7 +114,7 @@ class UserRepository implements Authenticator, IdentityHandler
 	 * @throws AttributeDetectionException
 	 * @throws Exception
 	 */
-	public function findUserById(string $id): array|Row|UsersEntity|null
+	private function findUserById(string $id): array|Row|UsersEntity|null
 	{
 		return $this->discover(UsersEntity::TOKEN, $id)
 			->execute()->setRowClass(UsersEntity::class)
@@ -125,10 +125,10 @@ class UserRepository implements Authenticator, IdentityHandler
 	/**
 	 * Find user roles.
 	 */
-	public function findUserRoles(int $userId): array|string
+	private function findUserRoles(int $userId): array|string
 	{
 		return $this->db->select('*')->from(UsersRolesViewEntity::TABLE)
 			->where(UsersRolesViewEntity::USER_ID, '= ?', $userId)
-			->fetchPairs(null, UsersRolesViewEntity::ROLE) ?: 'member';
+			->fetchPairs(null, UsersRolesViewEntity::ROLE) ?: Conf::ROLE_MEMBER;
 	}
 }

@@ -34,13 +34,13 @@ final class SignPresenter extends BasePresenter
 		$form = new Form;
 		$form->setTranslator($this->getTranslator());
 
-		$form->addText('email', 'Email')
+		$form->addText(UsersEntity::EMAIL, 'Email')
 			->setHtmlAttribute('email')
 			->setHtmlAttribute('placeholder', 'Email address')
 			->setRequired()
 			->addRule($form::EMAIL);
 
-		$form->addPassword('password', 'Password')
+		$form->addPassword(UsersEntity::PASSWORD, 'Password')
 			->setHtmlAttribute('placeholder', 'Your password')
 			->setRequired();
 
@@ -53,10 +53,10 @@ final class SignPresenter extends BasePresenter
 	/**
 	 * @throws AbortException
 	 */
-	public function success(Form $form, $values): void
+	public function success(Form $form, UsersEntity $data): void
 	{
 		try {
-			$this->getUser()->login($values->email, $values->password);
+			$this->getUser()->login($data->email, $data->password);
 			$this->redirect(':Backend:Admin:');
 
 		} catch (AuthenticationException $e) {
