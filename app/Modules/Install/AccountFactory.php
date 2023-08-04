@@ -18,7 +18,6 @@ use Nette\Utils\Random;
 
 /**
  * Add administrator account.
- * @property-read ExtraTemplate $template
  */
 final class AccountFactory
 {
