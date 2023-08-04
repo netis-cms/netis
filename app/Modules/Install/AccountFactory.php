@@ -7,7 +7,6 @@ namespace App\Modules\Install;
 use App\Modules\Backend\Sign\UsersEntity;
 use Dibi\Connection;
 use Dibi\Exception;
-use Drago\Application\UI\ExtraTemplate;
 use Drago\Authorization\Control\Access\UsersRolesEntity;
 use Drago\Localization\Translator;
 use Drago\Utils\ExtraArrayHash;
