@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Modules\Install;
 
 use dibi;
-use Drago\Application\UI\ExtraTemplate;
 use Drago\Localization\Translator;
 use Drago\Parameters\Parameters;
 use Drago\Utils\ExtraArrayHash;
