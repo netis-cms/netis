@@ -9,13 +9,14 @@ use Drago\Attr\Table;
 use Drago\Database\Repository;
 
 
-#[Table(ArticleEntity::TABLE, ArticleEntity::PRIMARY)]
-class ArticleRepository
+#[Table(CommentsEntity::TABLE, CommentsEntity::PRIMARY)]
+class CommentsRepository
 {
 	use Repository;
 
+
 	public function __construct(
-		protected Connection $db,
+		protected Connection $db
 	) {
 	}
 }

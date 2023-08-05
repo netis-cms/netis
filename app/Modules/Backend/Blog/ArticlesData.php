@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Modules\Backend\Blog;
 
 use DateTimeImmutable;
-use Drago\Database\Entity;
+use Drago\Utils\ExtraArrayHash;
 use Nette\SmartObject;
 
 
-class ArticleEntity extends Entity
+class ArticlesData extends ExtraArrayHash
 {
 	use SmartObject;
 

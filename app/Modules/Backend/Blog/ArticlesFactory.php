@@ -12,14 +12,14 @@ use Nette\SmartObject;
 use Throwable;
 
 
-class ArticleFactory
+class ArticlesFactory
 {
 	use SmartObject;
 
 	public function __construct(
-		private readonly ArticleRepository $articleRepository,
-		private readonly User $user,
-		private readonly Translator $translator,
+		private readonly ArticlesRepository $articleRepository,
+		private readonly User               $user,
+		private readonly Translator         $translator,
 	) {
 	}
 
@@ -29,10 +29,10 @@ class ArticleFactory
 		$form = new Form();
 		$form->setTranslator($this->translator);
 
-		$form->addText(ArticleData::TITLE, 'Title')
+		$form->addText(ArticlesData::TITLE, 'Title')
 			->setRequired();
 
-		$form->addTextArea(ArticleData::CONTENT, 'Content')
+		$form->addTextArea(ArticlesData::CONTENT, 'Content')
 			->setRequired();
 
 		$form->addSubmit('send', 'Send');
@@ -42,7 +42,7 @@ class ArticleFactory
 	}
 
 
-	public function success(Form $form, ArticleData $data): void
+	public function success(Form $form, ArticlesData $data): void
 	{
 		try {
 			$data->category_id = 1;
