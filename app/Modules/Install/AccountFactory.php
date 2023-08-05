@@ -34,22 +34,22 @@ final class AccountFactory
 		$form = new Form;
 		$form->setTranslator($this->translator);
 
-		$form->addText('username', 'Username')
+		$form->addText(AccountData::USERNAME, 'Username')
 			->setRequired();
 
-		$form->addText('email', 'Email address')
+		$form->addText(AccountData::EMAIL, 'Email address')
 			->setDefaultValue('@')
 			->setHtmlType('email')
-			->setRequired()
-			->addRule($form::Email);
+			->addRule($form::Email)
+			->setRequired();
 
-		$form->addPassword('password', 'Password')
-			->setRequired()
-			->addRule($form::MinLength, 'Password must be at least %d characters long.', 6);
+		$form->addPassword(AccountData::PASSWORD, 'Password')
+			->addRule($form::MinLength, 'Password must be at least %d characters long.', 6)
+			->setRequired();
 
-		$form->addPassword('verify', 'Password to check')
-			->setRequired()
-			->addRule($form::Equal, 'Passwords do not match.', $form['password']);
+		$form->addPassword(AccountData::VERIFY, 'Password to check')
+			->addRule($form::Equal, 'Passwords do not match.', $form['password'])
+			->setRequired();
 
 		$form->addSubmit('send', 'Register');
 		$form->onSuccess[] = [$this, 'success'];
@@ -60,10 +60,10 @@ final class AccountFactory
 	/**
 	 * @throws Exception
 	 */
-	public function success(Form $form, ExtraArrayHash $data): void
+	public function success(Form $form, AccountData $data): void
 	{
-		$data->offsetSet('token', Random::generate(60));
 		$data->password = $this->password->hash($data->password);
+		$data->offsetSet('token', Random::generate(60));
 		$data->offsetUnset('verify');
 
 		// Insert records into the database.

@@ -18,8 +18,8 @@ class ArticleFactory
 
 	public function __construct(
 		private readonly ArticleRepository $articleRepository,
-		public readonly User $user,
-		public readonly Translator $translator,
+		private readonly User $user,
+		private readonly Translator $translator,
 	) {
 	}
 
@@ -29,10 +29,10 @@ class ArticleFactory
 		$form = new Form();
 		$form->setTranslator($this->translator);
 
-		$form->addText(ArticleEntity::TITLE, 'Title')
+		$form->addText(ArticleData::TITLE, 'Title')
 			->setRequired();
 
-		$form->addTextArea(ArticleEntity::CONTENT, 'Content')
+		$form->addTextArea(ArticleData::CONTENT, 'Content')
 			->setRequired();
 
 		$form->addSubmit('send', 'Send');
@@ -42,7 +42,7 @@ class ArticleFactory
 	}
 
 
-	public function success(Form $form, ArticleEntity $data): void
+	public function success(Form $form, ArticleData $data): void
 	{
 		try {
 			$data->category_id = 1;

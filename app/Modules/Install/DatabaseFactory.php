@@ -32,16 +32,16 @@ final class DatabaseFactory
 		$form = new Form;
 		$form->setTranslator($this->translator);
 
-		$form->addText('host', 'Database server')
+		$form->addText(DatabaseData::HOST, 'Database server')
 			->setRequired();
 
-		$form->addText('user', 'Username')
+		$form->addText(DatabaseData::USER, 'Username')
 			->setRequired();
 
-		$form->addText('password', 'Password')
+		$form->addText(DatabaseData::PASSWORD, 'Password')
 			->setRequired();
 
-		$form->addText('database', 'Database name')
+		$form->addText(DatabaseData::DATABASE, 'Database name')
 			->setRequired();
 
 		$form->addSubmit('send', 'Connection test');
@@ -50,7 +50,7 @@ final class DatabaseFactory
 	}
 
 
-	public function success(Form $form, ExtraArrayHash $data): void
+	public function success(Form $form, DatabaseData $data): void
 	{
 		try {
 
