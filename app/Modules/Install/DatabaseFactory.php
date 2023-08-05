@@ -7,7 +7,6 @@ namespace App\Modules\Install;
 use dibi;
 use Drago\Localization\Translator;
 use Drago\Parameters\Parameters;
-use Drago\Utils\ExtraArrayHash;
 use Nette\Application\UI\Form;
 use Nette\DI\Config\Adapters\NeonAdapter;
 use Throwable;

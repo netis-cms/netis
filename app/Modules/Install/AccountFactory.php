@@ -9,7 +9,6 @@ use Dibi\Connection;
 use Dibi\Exception;
 use Drago\Authorization\Control\Access\UsersRolesEntity;
 use Drago\Localization\Translator;
-use Drago\Utils\ExtraArrayHash;
 use Nette\Application\UI\Form;
 use Nette\Security\Passwords;
 use Nette\Utils\Random;

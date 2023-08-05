@@ -9,7 +9,6 @@ use Dibi\Connection;
 use Dibi\Exception;
 use Drago\Localization\Translator;
 use Nette\Application\UI\Form;
-use Nette\Utils\ArrayHash;
 
 
 /**
