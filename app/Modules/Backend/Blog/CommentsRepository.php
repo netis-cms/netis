@@ -14,7 +14,6 @@ class CommentsRepository
 {
 	use Repository;
 
-
 	public function __construct(
 		protected Connection $db
 	) {

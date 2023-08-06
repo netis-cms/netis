@@ -18,8 +18,8 @@ class ArticlesFactory
 
 	public function __construct(
 		private readonly ArticlesRepository $articleRepository,
-		private readonly User               $user,
-		private readonly Translator         $translator,
+		private readonly User $user,
+		private readonly Translator $translator,
 	) {
 	}
 
