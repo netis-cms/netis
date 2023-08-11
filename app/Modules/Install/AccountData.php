@@ -21,4 +21,5 @@ class AccountData extends ExtraArrayHash
 	public string $email;
 	public string $password;
 	public string $verify;
+	public string $token;
 }

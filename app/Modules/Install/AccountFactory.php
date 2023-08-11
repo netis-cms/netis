@@ -62,7 +62,7 @@ final class AccountFactory
 	public function success(Form $form, AccountData $data): void
 	{
 		$data->password = $this->password->hash($data->password);
-		$data->offsetSet('token', Random::generate(60));
+		$data->token = Random::generate(60);
 		$data->offsetUnset('verify');
 
 		// Insert records into the database.

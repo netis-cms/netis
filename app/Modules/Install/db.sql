@@ -64,7 +64,7 @@ INSERT INTO `resources` (`id`, `name`) VALUES
 (2,	'Backend:Admin'),
 (3,	'Backend:Sign'),
 (4,	'Backend:Access'),
-(4,	'Backend:Blog');
+(5,	'Backend:Blog');
 
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
@@ -154,7 +154,6 @@ CREATE TABLE `comments` (
 
 DROP VIEW IF EXISTS `users_roles_view`;
 CREATE TABLE `users_roles_view` (`user_id` int(11) unsigned, `username` varchar(50), `role` varchar(40));
-
 
 DROP TABLE IF EXISTS `permissions_roles_view`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `permissions_roles_view` AS select `roles`.`id` AS `id`,`roles`.`name` AS `name`,`roles`.`parent` AS `parent` from `roles` where `roles`.`id` in (select distinct `permissions`.`role_id` from `permissions` where `roles`.`name` <> 'admin');
