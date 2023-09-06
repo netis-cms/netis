@@ -141,3 +141,5 @@
 'contributte_datagrid.group_actions': 'Hromadná akce'
 'contributte_datagrid.choose': 'Zvolit akci'
 'contributte_datagrid.execute': 'Potvrdit akci'
+'contributte_datagrid.per_page_submit': 'Změnit'
+'contributte_datagrid.hide_column': 'Skrýt sloupec'

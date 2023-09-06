@@ -6,11 +6,13 @@ namespace App\Modules\Backend\Access;
 
 
 use App\Modules\Backend\BackendPresenter;
+use Contributte\Datagrid\Datagrid;
 use Drago\Authorization\Control\Access\AccessControl;
 use Drago\Authorization\Control\Permissions\PermissionsControl;
 use Drago\Authorization\Control\Privileges\PrivilegesControl;
 use Drago\Authorization\Control\Resources\ResourcesControl;
 use Drago\Authorization\Control\Roles\RolesControl;
+use Nette\Neon\Exception;
 
 
 /**
@@ -18,6 +20,9 @@ use Drago\Authorization\Control\Roles\RolesControl;
  */
 final class AccessPresenter extends BackendPresenter
 {
+	/**
+	 * @throws Exception
+	 */
 	protected function createComponentPermissionsControl(): PermissionsControl
 	{
 		$control = $this->permissionsControl;
@@ -28,6 +33,9 @@ final class AccessPresenter extends BackendPresenter
 	}
 
 
+	/**
+	 * @throws Exception
+	 */
 	protected function createComponentRolesControl(): RolesControl
 	{
 		$control = $this->rolesControl;
@@ -38,6 +46,9 @@ final class AccessPresenter extends BackendPresenter
 	}
 
 
+	/**
+	 * @throws Exception
+	 */
 	protected function createComponentResourcesControl(): ResourcesControl
 	{
 		$control = $this->resourcesControl;
@@ -48,6 +59,9 @@ final class AccessPresenter extends BackendPresenter
 	}
 
 
+	/**
+	 * @throws Exception
+	 */
 	protected function createComponentPrivilegesControl(): PrivilegesControl
 	{
 		$control = $this->privilegesControl;
@@ -58,6 +72,9 @@ final class AccessPresenter extends BackendPresenter
 	}
 
 
+	/**
+	 * @throws Exception
+	 */
 	protected function createComponentAccessControl(): AccessControl
 	{
 		$control = $this->accessControl;

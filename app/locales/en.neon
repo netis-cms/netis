@@ -14,3 +14,5 @@
 'contributte_datagrid.group_actions': 'Mass action'
 'contributte_datagrid.choose': 'Choose an action'
 'contributte_datagrid.execute': 'Confirm action'
+'contributte_datagrid.per_page_submit': 'Change'
+'contributte_datagrid.hide_column': 'Hide column'
