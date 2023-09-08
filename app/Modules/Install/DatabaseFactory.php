@@ -31,16 +31,16 @@ final class DatabaseFactory
 		$form = new Form;
 		$form->setTranslator($this->translator);
 
-		$form->addText(DatabaseData::host, 'Database server')
+		$form->addText(DatabaseData::Host, 'Database server')
 			->setRequired();
 
-		$form->addText(DatabaseData::user, 'Username')
+		$form->addText(DatabaseData::User, 'Username')
 			->setRequired();
 
-		$form->addText(DatabaseData::password, 'Password')
+		$form->addText(DatabaseData::Password, 'Password')
 			->setRequired();
 
-		$form->addText(DatabaseData::database, 'Database name')
+		$form->addText(DatabaseData::Database, 'Database name')
 			->setRequired();
 
 		$form->addSubmit('send', 'Connection test');

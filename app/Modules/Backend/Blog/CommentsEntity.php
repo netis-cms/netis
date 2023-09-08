@@ -12,6 +12,6 @@ class CommentsEntity extends Entity
 {
 	use SmartObject;
 
-	public const table = 'comments';
-	public const id = 'id';
+	public const Table = 'comments';
+	public const Id = 'id';
 }

@@ -13,7 +13,7 @@ use Throwable;
  */
 class Steps
 {
-	private const cacheKey = 'Install step';
+	private const CacheKey = 'Install step';
 
 
 	public function __construct(
@@ -27,7 +27,7 @@ class Steps
 	 */
 	public function setStep(int $step): void
 	{
-		$this->cache->save(self::cacheKey, $step);
+		$this->cache->save(self::CacheKey, $step);
 	}
 
 
@@ -38,6 +38,6 @@ class Steps
 	public function getStep(): mixed
 	{
 		return $this->cache
-			->load(self::cacheKey);
+			->load(self::CacheKey);
 	}
 }

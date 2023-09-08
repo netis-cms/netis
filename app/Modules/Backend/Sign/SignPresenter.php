@@ -37,13 +37,13 @@ final class SignPresenter extends BasePresenter
 		$form = new Form;
 		$form->setTranslator($this->getTranslator());
 
-		$form->addText(SignData::email, 'Email')
+		$form->addText(SignData::Email, 'Email')
 			->setHtmlAttribute('email')
 			->setHtmlAttribute('placeholder', 'Email address')
 			->addRule($form::EMAIL)
 			->setRequired();
 
-		$form->addPassword(SignData::password, 'Password')
+		$form->addPassword(SignData::Password, 'Password')
 			->setHtmlAttribute('placeholder', 'Your password')
 			->setRequired();
 

@@ -12,10 +12,10 @@ class DatabaseData extends ExtraArrayHash
 {
 	use SmartObject;
 
-	public const host = 'host';
-	public const user = 'user';
-	public const password = 'password';
-	public const database = 'database';
+	public const Host = 'host';
+	public const User = 'user';
+	public const Password = 'password';
+	public const Database = 'database';
 
 	public string $host;
 	public string $user;

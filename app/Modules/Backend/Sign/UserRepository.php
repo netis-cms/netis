@@ -21,7 +21,7 @@ use Nette\Security\SimpleIdentity;
 use Nette\SmartObject;
 
 
-#[Table(UsersEntity::table, UsersEntity::id)]
+#[Table(UsersEntity::Table, UsersEntity::Id)]
 class UserRepository implements Authenticator, IdentityHandler
 {
 	use SmartObject;
@@ -103,7 +103,7 @@ class UserRepository implements Authenticator, IdentityHandler
 	 */
 	private function findUser(string $user): array|UsersEntity|null
 	{
-		return $this->discover(UsersEntity::email, $user)
+		return $this->discover(UsersEntity::Email, $user)
 			->execute()->setRowClass(UsersEntity::class)
 			->fetch();
 	}
@@ -115,7 +115,7 @@ class UserRepository implements Authenticator, IdentityHandler
 	 */
 	private function findUserById(string $id): array|UsersEntity|null
 	{
-		return $this->discover(UsersEntity::token, $id)
+		return $this->discover(UsersEntity::Token, $id)
 			->execute()->setRowClass(UsersEntity::class)
 			->fetch();
 	}

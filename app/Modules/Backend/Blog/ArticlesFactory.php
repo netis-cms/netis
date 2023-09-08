@@ -30,7 +30,7 @@ class ArticlesFactory
 		$form = new Form();
 		$form->setTranslator($this->translator);
 
-		$form->addText(ArticlesEntity::title, 'Title')
+		$form->addText(ArticlesEntity::Title, 'Title')
 			->setRequired();
 
 		$form->addTextArea(ArticlesEntity::content, 'Content')

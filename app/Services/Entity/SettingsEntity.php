@@ -16,9 +16,9 @@ class SettingsEntity extends Entity
 {
 	use SmartObject;
 
-	public const table = 'settings';
-	public const name = 'name';
-	public const value = 'value';
+	public const Table = 'settings';
+	public const Name = 'name';
+	public const Value = 'value';
 
 	public string $name;
 	public string $value;

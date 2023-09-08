@@ -13,11 +13,11 @@ class ArticlesEntity extends Entity
 	use SmartObject;
 	use ArticlesMapper;
 
-	public const table = 'articles';
-	public const id = 'id';
-	public const title = 'title';
+	public const Table = 'articles';
+	public const Id = 'id';
+	public const Title = 'title';
 	public const content = 'content';
-	public const categoryId = 'category_id';
-	public const authorId = 'author_id';
-	public const createdAt = 'created_at';
+	public const CategoryId = 'category_id';
+	public const AuthorId = 'author_id';
+	public const CreatedAt = 'created_at';
 }
