@@ -53,7 +53,7 @@ final class WebsiteFactory
 
 		// Insert records into the database.
 		foreach ($settings as $rows) {
-			$this->db->insert(SettingsEntity::TABLE, $rows)
+			$this->db->insert(SettingsEntity::table, $rows)
 				->execute();
 		}
 
