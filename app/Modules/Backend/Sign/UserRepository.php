@@ -82,7 +82,7 @@ class UserRepository implements Authenticator, IdentityHandler
 		}
 
 		$role = $this->findUserRoles($user->id);
-		if (in_array(Conf::roleAdmin, $role, true)) {
+		if (in_array(Conf::RoleAdmin, $role, true)) {
 			if (!$this->panelCookie->load()) {
 				$this->panelCookie->save($role);
 			}
@@ -126,8 +126,8 @@ class UserRepository implements Authenticator, IdentityHandler
 	 */
 	private function findUserRoles(int $userId): array|string
 	{
-		return $this->db->select('*')->from(AccessRolesViewEntity::table)
-			->where(AccessRolesViewEntity::userId, '= ?', $userId)
-			->fetchPairs(null, AccessRolesViewEntity::role) ?: Conf::roleMember;
+		return $this->db->select('*')->from(AccessRolesViewEntity::Table)
+			->where(AccessRolesViewEntity::UserId, '= ?', $userId)
+			->fetchPairs(null, AccessRolesViewEntity::Role) ?: Conf::RoleMember;
 	}
 }

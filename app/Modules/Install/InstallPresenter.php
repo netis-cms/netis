@@ -71,7 +71,7 @@ final class InstallPresenter extends Presenter
 	{
 		$form = $this->databaseFactory->create();
 		$form->onSuccess[] = function () {
-			$this->flashMessage('Database settings were successful.', Alert::SUCCESS);
+			$this->flashMessage('Database settings were successful.', Alert::Success);
 		};
 		return $form;
 	}
@@ -81,7 +81,7 @@ final class InstallPresenter extends Presenter
 	{
 		$form = $this->tablesFactory->create();
 		$form->onSuccess[] = function () {
-			$this->flashMessage('Database installation was successful.', Alert::SUCCESS);
+			$this->flashMessage('Database installation was successful.', Alert::Success);
 		};
 		return $form;
 	}
@@ -91,7 +91,7 @@ final class InstallPresenter extends Presenter
 	{
 		$form = $this->websiteFactory->create();
 		$form->onSuccess[] = function () {
-			$this->flashMessage('Site settings successful.', Alert::SUCCESS);
+			$this->flashMessage('Site settings successful.', Alert::Success);
 		};
 		return $form;
 	}
@@ -101,7 +101,7 @@ final class InstallPresenter extends Presenter
 	{
 		$form = $this->accountFactory->create();
 		$form->onSuccess[] = function () {
-			$this->flashMessage('Account administrator registration successful.', Alert::SUCCESS);
+			$this->flashMessage('Account administrator registration successful.', Alert::Success);
 		};
 		return $form;
 	}

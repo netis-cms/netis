@@ -67,9 +67,9 @@ final class AccountFactory
 
 		// Insert records into the database.
 		$this->db->insert(UsersEntity::Table, $data->toArray())->execute();
-		$this->db->insert(AccessRolesEntity::table, [
-			AccessRolesEntity::userId => 1,
-			AccessRolesEntity::roleId => 3,
+		$this->db->insert(AccessRolesEntity::Table, [
+			AccessRolesEntity::UserId => 1,
+			AccessRolesEntity::RoleId => 3,
 		])->execute();
 
 		// Save the installation step.

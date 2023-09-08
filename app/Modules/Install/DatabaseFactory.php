@@ -72,7 +72,7 @@ final class DatabaseFactory
 
 				// Generate and save the configuration file.
 				$content = $this->neonAdapter->dump($arr);
-				$file = fopen($this->dirs->getAppDir() . '/Services/db.neon', 'w');
+				$file = fopen($this->dirs->appDir . '/Services/db.neon', 'w');
 				fwrite($file, $content);
 
 				// Save the installation step.
