@@ -8,7 +8,6 @@ use Dibi\Connection;
 use Drago\Localization\Translator;
 use Nette\Application\UI\Form;
 use Throwable;
-use Tracy\Debugger;
 
 
 /**
