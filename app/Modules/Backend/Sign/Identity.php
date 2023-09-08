@@ -6,7 +6,7 @@ namespace App\Modules\Backend\Sign;
 
 
 /**
- * @property string $token
+ * @property-read string $token
  */
 interface Identity
 {

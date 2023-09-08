@@ -20,6 +20,8 @@ abstract class BasePresenter extends Presenter
 	use TranslatorAdapter;
 	use Authorization;
 
+	protected string $loginLink = ':Backend:Sign:';
+
 	#[Inject]
 	public SettingsRepository $settingsRepository;
 

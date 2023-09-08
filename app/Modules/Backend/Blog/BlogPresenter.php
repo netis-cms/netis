@@ -26,7 +26,7 @@ final class BlogPresenter extends BackendPresenter
 		$form = $this->articlesFactory->create();
 		$form->onSuccess[] = function () {
 			$this->flashMessage('send');
-			$this->redirect('this');
+			//$this->redirect('this');
 		};
 		return $form;
 	}

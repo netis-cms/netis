@@ -136,6 +136,17 @@
 										<li><a n:href=":Backend:Access:access" n:class="'list-link', $presenter->isLinkCurrent(':Backend:Access:access') ? link-current">{_'Users'}</a></li>
 									</ul>
 								</li>
+
+								<li n:if="$user->isAnyAllowed('Backend:Blog', ['default'])">
+									<a href="#" n:class="'list-link link-arrow', $presenter->isLinkCurrent(':Backend:Blog:*') ? link-current">
+										<span class="list-icon"><i class="fa-solid fa-blog bell"></i></span>{_'Blog'}
+									</a>
+
+									<!-- list items, second level -->
+									<ul class="list-unstyled list-hidden">
+										<li><a n:href=":Backend:Blog:default" n:class="'list-link', $presenter->isLinkCurrent(':Backend:Blog:default') ? link-current">{_'Blog'}</a></li>
+									</ul>
+								</li>
 							</ul>
 						</li>
 					</ul>

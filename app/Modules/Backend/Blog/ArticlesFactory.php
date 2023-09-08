@@ -10,6 +10,8 @@ use Drago\Localization\Translator;
 use Nette\Application\UI\Form;
 use Nette\SmartObject;
 use Throwable;
+use Tracy\Debugger;
+use App\Modules\Backend\Blog\ArticlesEntity as InputName;
 
 
 class ArticlesFactory
@@ -29,10 +31,10 @@ class ArticlesFactory
 		$form = new Form();
 		$form->setTranslator($this->translator);
 
-		$form->addText(ArticlesData::TITLE, 'Title')
+		$form->addText(InputName::Title, 'Title')
 			->setRequired();
 
-		$form->addTextArea(ArticlesData::CONTENT, 'Content')
+		$form->addTextArea(InputName::Content, 'Content')
 			->setRequired();
 
 		$form->addSubmit('send', 'Send');
@@ -42,13 +44,14 @@ class ArticlesFactory
 	}
 
 
-	public function success(Form $form, ArticlesData $data): void
+	public function success(Form $form, ArticlesForm $data): void
 	{
 		try {
 			$data->category_id = 1;
 			$data->created_at = new DateTimeImmutable();
 			$data->author_id = $this->user->getId();
-			$this->articleRepository->put($data->toArray());
+			//$this->articleRepository->put($data->toArray());
+			Debugger::barDump($data);
 
 		} catch (Throwable $t) {
 			if ($t->getCode()) {

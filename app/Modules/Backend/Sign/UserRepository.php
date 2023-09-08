@@ -9,7 +9,7 @@ use Dibi\Exception;
 use Drago\Attr\AttributeDetectionException;
 use Drago\Attr\Table;
 use Drago\Authorization\Conf;
-use Drago\Authorization\Control\Access\UsersRolesViewEntity;
+use Drago\Authorization\Control\Access\AccessRolesViewEntity;
 use Drago\Authorization\Tracy\PanelCookie;
 use Drago\Database\Repository;
 use Nette\Security\AuthenticationException;
@@ -21,7 +21,7 @@ use Nette\Security\SimpleIdentity;
 use Nette\SmartObject;
 
 
-#[Table(UsersEntity::TABLE, UsersEntity::PRIMARY)]
+#[Table(UsersEntity::table, UsersEntity::id)]
 class UserRepository implements Authenticator, IdentityHandler
 {
 	use SmartObject;
@@ -82,7 +82,7 @@ class UserRepository implements Authenticator, IdentityHandler
 		}
 
 		$role = $this->findUserRoles($user->id);
-		if (in_array(Conf::ROLE_ADMIN, $role, true)) {
+		if (in_array(Conf::roleAdmin, $role, true)) {
 			if (!$this->panelCookie->load()) {
 				$this->panelCookie->save($role);
 			}
@@ -103,7 +103,7 @@ class UserRepository implements Authenticator, IdentityHandler
 	 */
 	private function findUser(string $user): array|UsersEntity|null
 	{
-		return $this->discover(UsersEntity::EMAIL, $user)
+		return $this->discover(UsersEntity::email, $user)
 			->execute()->setRowClass(UsersEntity::class)
 			->fetch();
 	}
@@ -115,7 +115,7 @@ class UserRepository implements Authenticator, IdentityHandler
 	 */
 	private function findUserById(string $id): array|UsersEntity|null
 	{
-		return $this->discover(UsersEntity::TOKEN, $id)
+		return $this->discover(UsersEntity::token, $id)
 			->execute()->setRowClass(UsersEntity::class)
 			->fetch();
 	}
@@ -126,8 +126,8 @@ class UserRepository implements Authenticator, IdentityHandler
 	 */
 	private function findUserRoles(int $userId): array|string
 	{
-		return $this->db->select('*')->from(UsersRolesViewEntity::TABLE)
-			->where(UsersRolesViewEntity::USER_ID, '= ?', $userId)
-			->fetchPairs(null, UsersRolesViewEntity::ROLE) ?: Conf::ROLE_MEMBER;
+		return $this->db->select('*')->from(AccessRolesViewEntity::table)
+			->where(AccessRolesViewEntity::userId, '= ?', $userId)
+			->fetchPairs(null, AccessRolesViewEntity::role) ?: Conf::roleMember;
 	}
 }

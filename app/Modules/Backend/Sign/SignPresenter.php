@@ -29,18 +29,21 @@ final class SignPresenter extends BasePresenter
 	}
 
 
+	/**
+	 * @throws \Nette\Neon\Exception
+	 */
 	protected function createComponentSignIn(): Form
 	{
 		$form = new Form;
 		$form->setTranslator($this->getTranslator());
 
-		$form->addText(SignData::EMAIL, 'Email')
+		$form->addText(SignData::email, 'Email')
 			->setHtmlAttribute('email')
 			->setHtmlAttribute('placeholder', 'Email address')
 			->addRule($form::EMAIL)
 			->setRequired();
 
-		$form->addPassword(SignData::PASSWORD, 'Password')
+		$form->addPassword(SignData::password, 'Password')
 			->setHtmlAttribute('placeholder', 'Your password')
 			->setRequired();
 

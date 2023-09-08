@@ -12,7 +12,7 @@ use Drago\Database\Repository;
 use Nette\SmartObject;
 
 
-#[Table(SettingsEntity::TABLE)]
+#[Table(SettingsEntity::table)]
 class SettingsRepository
 {
 	use SmartObject;
@@ -30,6 +30,6 @@ class SettingsRepository
 	public function getSettings(): array
 	{
 		return $this->all()
-			->fetchPairs(SettingsEntity::NAME, SettingsEntity::VALUE);
+			->fetchPairs(SettingsEntity::name, SettingsEntity::value);
 	}
 }

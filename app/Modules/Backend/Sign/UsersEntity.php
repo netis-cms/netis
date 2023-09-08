@@ -16,12 +16,12 @@ class UsersEntity extends Entity
 {
 	use SmartObject;
 
-	public const TABLE = 'users';
-	public const PRIMARY = 'id';
-	public const USERNAME = 'username';
-	public const EMAIL = 'email';
-	public const PASSWORD = 'password';
-	public const TOKEN = 'token';
+	public const table = 'users';
+	public const id = 'id';
+	public const username = 'username';
+	public const email = 'email';
+	public const password = 'password';
+	public const token = 'token';
 
 	public int $id;
 	public string $username;

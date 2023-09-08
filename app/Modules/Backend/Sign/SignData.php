@@ -12,8 +12,8 @@ class SignData extends ExtraArrayHash
 {
 	use SmartObject;
 
-	public const EMAIL = 'email';
-	public const PASSWORD = 'password';
+	public const email = 'email';
+	public const password = 'password';
 
 	public string $email;
 	public string $password;
