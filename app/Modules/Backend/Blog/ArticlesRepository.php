@@ -9,7 +9,7 @@ use Drago\Attr\Table;
 use Drago\Database\Repository;
 
 
-#[Table(ArticlesEntity::TABLE, ArticlesEntity::PRIMARY)]
+#[Table(ArticlesEntity::table, ArticlesEntity::id)]
 class ArticlesRepository
 {
 	use Repository;

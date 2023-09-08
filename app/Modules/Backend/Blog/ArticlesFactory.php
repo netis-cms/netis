@@ -11,7 +11,6 @@ use Nette\Application\UI\Form;
 use Nette\SmartObject;
 use Throwable;
 use Tracy\Debugger;
-use App\Modules\Backend\Blog\ArticlesEntity as InputName;
 
 
 class ArticlesFactory
@@ -31,10 +30,10 @@ class ArticlesFactory
 		$form = new Form();
 		$form->setTranslator($this->translator);
 
-		$form->addText(InputName::Title, 'Title')
+		$form->addText(ArticlesEntity::title, 'Title')
 			->setRequired();
 
-		$form->addTextArea(InputName::Content, 'Content')
+		$form->addTextArea(ArticlesEntity::content, 'Content')
 			->setRequired();
 
 		$form->addSubmit('send', 'Send');
@@ -44,7 +43,7 @@ class ArticlesFactory
 	}
 
 
-	public function success(Form $form, ArticlesForm $data): void
+	public function success(Form $form, ArticlesData $data): void
 	{
 		try {
 			$data->category_id = 1;

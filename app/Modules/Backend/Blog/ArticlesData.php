@@ -8,7 +8,7 @@ use Drago\Utils\ExtraArrayHash;
 use Nette\SmartObject;
 
 
-class ArticlesForm extends ExtraArrayHash
+class ArticlesData extends ExtraArrayHash
 {
 	use SmartObject;
 	use ArticlesMapper;

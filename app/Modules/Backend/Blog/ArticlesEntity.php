@@ -10,14 +10,14 @@ use Nette\SmartObject;
 
 class ArticlesEntity extends Entity
 {
-	public const Table = 'articles';
-	public const Primary = 'id';
-	public const Title = 'title';
-	public const Content = 'content';
-	public const CategoryId = 'category_id';
-	public const AuthorId = 'author_id';
-	public const CreatedAt = 'created_at';
-
 	use SmartObject;
 	use ArticlesMapper;
+
+	public const table = 'articles';
+	public const id = 'id';
+	public const title = 'title';
+	public const content = 'content';
+	public const categoryId = 'category_id';
+	public const authorId = 'author_id';
+	public const createdAt = 'created_at';
 }
