@@ -12,10 +12,10 @@ class AccountData extends ExtraArrayHash
 {
 	use SmartObject;
 
-	public const USERNAME = 'username';
-	public const EMAIL = 'email';
-	public const PASSWORD = 'password';
-	public const VERIFY = 'verify';
+	public const username = 'username';
+	public const email = 'email';
+	public const password = 'password';
+	public const verify = 'verify';
 
 	public string $username;
 	public string $email;

@@ -46,7 +46,6 @@ final class TablesFactory
 
 		} catch (Throwable $t) {
 			if ($t->getCode()) {
-				Debugger::barDump($t);
 				$message = match ($t->getCode()) {
 					1050 => 'Some table names already exist in the database.',
 					default => 'Unknown status code.',

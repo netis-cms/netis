@@ -12,8 +12,8 @@ class WebsiteData extends ExtraArrayHash
 {
 	use SmartObject;
 
-	public const WEBSITE = 'website';
-	public const DESCRIPTION = 'description';
+	public const website = 'website';
+	public const description = 'description';
 
 	public string $website;
 	public string $description;

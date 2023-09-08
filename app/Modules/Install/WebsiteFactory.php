@@ -29,10 +29,10 @@ final class WebsiteFactory
 		$form = new Form;
 		$form->setTranslator($this->translator);
 
-		$form->addText(WebsiteData::WEBSITE, 'Site name')
+		$form->addText(WebsiteData::website, 'Site name')
 			->setRequired();
 
-		$form->addText(WebsiteData::DESCRIPTION, 'Site description')
+		$form->addText(WebsiteData::description, 'Site description')
 			->setRequired();
 
 		$form->addSubmit('send', 'Save data');
@@ -47,8 +47,8 @@ final class WebsiteFactory
 	public function success(Form $form, WebsiteData $data): void
 	{
 		$settings = [
-			['name' => WebsiteData::WEBSITE, 'value' => $data->website],
-			['name' => WebsiteData::DESCRIPTION, 'value' => $data->description],
+			['name' => WebsiteData::website, 'value' => $data->website],
+			['name' => WebsiteData::description, 'value' => $data->description],
 		];
 
 		// Insert records into the database.

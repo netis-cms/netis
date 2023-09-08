@@ -7,7 +7,7 @@ namespace App\Modules\Install;
 use App\Modules\Backend\Sign\UsersEntity;
 use Dibi\Connection;
 use Dibi\Exception;
-use Drago\Authorization\Control\Access\UsersRolesEntity;
+use Drago\Authorization\Control\Access\AccessRolesEntity;
 use Drago\Localization\Translator;
 use Nette\Application\UI\Form;
 use Nette\Security\Passwords;
@@ -33,20 +33,20 @@ final class AccountFactory
 		$form = new Form;
 		$form->setTranslator($this->translator);
 
-		$form->addText(AccountData::USERNAME, 'Username')
+		$form->addText(AccountData::username, 'Username')
 			->setRequired();
 
-		$form->addText(AccountData::EMAIL, 'Email address')
+		$form->addText(AccountData::email, 'Email address')
 			->setDefaultValue('@')
 			->setHtmlType('email')
 			->addRule($form::Email)
 			->setRequired();
 
-		$form->addPassword(AccountData::PASSWORD, 'Password')
+		$form->addPassword(AccountData::password, 'Password')
 			->addRule($form::MinLength, 'Password must be at least %d characters long.', 6)
 			->setRequired();
 
-		$form->addPassword(AccountData::VERIFY, 'Password to check')
+		$form->addPassword(AccountData::verify, 'Password to check')
 			->addRule($form::Equal, 'Passwords do not match.', $form['password'])
 			->setRequired();
 
@@ -66,10 +66,10 @@ final class AccountFactory
 		$data->offsetUnset('verify');
 
 		// Insert records into the database.
-		$this->db->insert(UsersEntity::TABLE, $data->toArray())->execute();
-		$this->db->insert(UsersRolesEntity::TABLE, [
-			UsersRolesEntity::USER_ID => 1,
-			UsersRolesEntity::ROLE_ID => 3,
+		$this->db->insert(UsersEntity::table, $data->toArray())->execute();
+		$this->db->insert(AccessRolesEntity::table, [
+			AccessRolesEntity::userId => 1,
+			AccessRolesEntity::roleId => 3,
 		])->execute();
 
 		// Save the installation step.

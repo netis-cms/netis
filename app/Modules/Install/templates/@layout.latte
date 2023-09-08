@@ -1,5 +1,4 @@
 {templateType App\Modules\Install\InstallTemplate}
-{varType Drago\Application\UI\Flashes[] $flashes}
 
 <!DOCTYPE html>
 <html lang="{$lang}">
@@ -35,12 +34,12 @@
 
 	{* steps icons *}
 	{switch $step}
-		{case 0}{var $ico = 'fa-question'}
-		{case 1}{var $ico = 'fa-server'}
-		{case 2}{var $ico = 'fa-database'}
-		{case 3}{var $ico = 'fa-globe'}
-		{case 4}{var $ico = 'fa-user-plus'}
-		{case 5}{var $ico = 'fa-check'}
+		{case 0}{var string $ico = 'fa-question'}
+		{case 1}{var string $ico = 'fa-server'}
+		{case 2}{var string $ico = 'fa-database'}
+		{case 3}{var string $ico = 'fa-globe'}
+		{case 4}{var string $ico = 'fa-user-plus'}
+		{case 5}{var string $ico = 'fa-check'}
 	{/switch}
 
 	{* content *}
