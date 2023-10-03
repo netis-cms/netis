@@ -1,21 +1,21 @@
 @import "base/base/base";
 
 body {
-  margin-top: rem(45);
+  margin-top: toRem(45);
 }
 
 .steps-ico {
   display: none;
   color: $color-blue;
   background-color: $color-light;
-  width: rem(285);
-  height: rem(285);
+  width: toRem(285);
+  height: toRem(285);
   text-align: center;
   position: relative;
-  margin-left: rem(50);
-  padding-top: rem(38);
+  margin-left: toRem(50);
+  padding-top: toRem(38);
   border-radius: 50%;
-  font-size: rem(130);
+  font-size: toRem(130);
   @include media-breakpoint-up(md) {
     display: block;
   }
@@ -29,21 +29,21 @@ body {
   top: 20%;
   width: 0;
   height: 0;
-  border: rem(120) solid transparent;
+  border: toRem(120) solid transparent;
   border-right-color: $color-light;
   border-left: 0;
   border-bottom: 0;
   margin-top: 0;
-  margin-left: - rem(60);
+  margin-left: - toRem(60);
 }
 
 .header {
-  height: rem(45);
+  height: toRem(45);
 }
 
 .main {
-  padding: rem(35) rem(70) 0;
+  padding: toRem(35) toRem(70) 0;
   @include media-breakpoint-up(md) {
-    padding-top: rem(95);
+    padding-top: toRem(95);
   }
 }
