@@ -26,6 +26,17 @@ di:
 		tags: no
 
 
+# base services
+services:
+	texy: Texy\Texy
+
+
+# latte settings
+latte:
+	extensions:
+		- Texy\Bridges\Latte\TexyExtension(@texy)
+
+
 # application extensions
 extensions:
 	- Drago\Localization\DI\TranslatorExtension(translateDir: %appDir%/locales)

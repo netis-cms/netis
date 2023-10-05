@@ -21,7 +21,8 @@
 		"drago-ex/parameters": "dev-master",
 		"drago-ex/database": "dev-master",
 		"drago-ex/utils": "^1.0",
-		"drago-ex/authorization": "dev-master"
+		"drago-ex/authorization": "dev-master",
+	  	"texy/texy": "^3.1"
 	},
 	"require-dev": {
 		"phpstan/phpstan-nette": "^1.2.9"
