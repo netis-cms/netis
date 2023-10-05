@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Modules;
 
-use App\Services\Repository\SettingsRepository;
+use App\Services\SettingsRepository;
 use Drago\Attr\AttributeDetectionException;
 use Drago\Authorization\Authorization;
 use Drago\Localization\TranslatorAdapter;

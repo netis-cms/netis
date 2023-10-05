@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Entity;
+namespace App\Services;
 
 use Drago\Database\Entity;
 use Nette\SmartObject;

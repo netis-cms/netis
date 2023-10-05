@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Repository;
+namespace App\Services;
 
-use App\Services\Entity\SettingsEntity;
 use Dibi\Connection;
 use Drago\Attr\AttributeDetectionException;
 use Drago\Attr\Table;

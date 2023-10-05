@@ -2,7 +2,7 @@
 {varType Drago\Application\UI\Flashes[] $flashes}
 
 <!DOCTYPE html>
-<html>
+<html lang="{$lang}">
 
 <head>
 	<meta charset="UTF-8">
@@ -67,7 +67,7 @@
 							<ul class="list-unstyled">
 								<li>
 									<a href="#" class="list-link link-arrow">
-										<span class="list-icon"><i class="fa-regular fa-user bell"></i></span>{$user->identity->username}
+										<span class="list-icon"><i class="fa-regular fa-user bell"></i></span>{$user->getUserIdentity()->username}
 									</a>
 
 									<!-- list items, second level -->

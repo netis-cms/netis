@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Modules\Install;
 
-use App\Services\Entity\SettingsEntity;
+use App\Services\SettingsEntity;
 use Dibi\Connection;
 use Dibi\Exception;
 use Drago\Localization\Translator;
