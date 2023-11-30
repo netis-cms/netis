@@ -28,7 +28,7 @@ abstract class BackendPresenter extends BasePresenter
 	protected function startup(): void
 	{
 		parent::startup();
-		if (!$this->getUser()->isLoggedIn()) {
+		if (!$this->user->isLoggedIn()) {
 			$this->redirect(':Backend:Sign:in');
 		}
 	}
