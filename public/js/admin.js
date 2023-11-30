@@ -12,8 +12,7 @@ import PerfectScrollbar from "perfect-scrollbar";
 import {
 	AutosubmitPlugin,
 	CheckboxPlugin,
-	ConfirmPlugin,
-	createDatagrids,
+	Datagrid,
 	InlinePlugin,
 	ItemDetailPlugin,
 	NetteFormsPlugin,
@@ -21,9 +20,25 @@ import {
 	SortableJS,
 	SortablePlugin,
 	TomSelect
-} from "../datagrid";
-import {TreeViewPlugin} from "../datagrid/plugins/features/treeView";
-import {NajaAjax} from "../datagrid/ajax";
+} from './js/DataGrid/';
+import {TreeViewPlugin} from './js/DataGrid/plugins/features/treeView';
+import { NajaAjax } from './js/DataGrid/ajax';
+
+const dgSelector = "div[data-datagrid-name]";
+const dgNaja = new NajaAjax(naja);
+const dgAutoSubmitPlugin = new AutosubmitPlugin();
+const dgOptions = {
+	plugins: [
+		dgAutoSubmitPlugin,
+		new CheckboxPlugin(),
+		new InlinePlugin(),
+		new ItemDetailPlugin(),
+		new NetteFormsPlugin(Nette),
+		new SortablePlugin(new SortableJS()),
+		new SelectpickerPlugin(new TomSelect(Select, {plugins: ['remove_button']})),
+		new TreeViewPlugin(),
+	],
+};
 
 /* bootstrap alert */
 const alertList = document.querySelectorAll('.alert');
@@ -36,25 +51,24 @@ new PerfectScrollbar('.scrollbar', {
 	wheelSpeed: 0.3
 });
 
-/* datagrid */
-function datagridInit(){
-	createDatagrids(new NajaAjax(naja), {
-		datagrid: {
-			plugins: [
-				new AutosubmitPlugin(),
-				new CheckboxPlugin(),
-				new ConfirmPlugin(),
-				new InlinePlugin(),
-				new ItemDetailPlugin(),
-				new NetteFormsPlugin(Nette),
-				new SortablePlugin(new SortableJS()),
-				new SelectpickerPlugin(new TomSelect(Select)),
-				new TreeViewPlugin(),
-			],
-		},
-	});
-}
 
+/**
+ * @param el {HTMLElement}
+ */
+function datagridInit(el = document.body){
+	let parentDg = el.closest(dgSelector);
+	if (parentDg) {
+		dgAutoSubmitPlugin.onDatagridInit(parentDg._datagrid);
+	}
+
+	let grids = el.querySelectorAll(dgSelector);
+	for(let grid of grids) {
+		if (grid._datagrid) {
+			continue;
+		}
+		grid._datagrid = new Datagrid(grid, dgNaja, dgOptions);
+	}
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 	naja.formsHandler.netteForms = Nette;
@@ -62,4 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	datagridInit();
 });
 
-naja.snippetHandler.addEventListener('afterUpdate', datagridInit);
+naja.snippetHandler.addEventListener('afterUpdate', e => {
+	datagridInit(e.detail.snippet);
+});
