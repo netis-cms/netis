@@ -20,9 +20,9 @@ import {
 	SortableJS,
 	SortablePlugin,
 	TomSelect
-} from './js/DataGrid/';
-import {TreeViewPlugin} from './js/DataGrid/plugins/features/treeView';
-import { NajaAjax } from './js/DataGrid/ajax';
+} from '../datagrid';
+import {TreeViewPlugin} from '../DataGrid/plugins/features/treeView';
+import { NajaAjax } from '../DataGrid/ajax';
 
 const dgSelector = "div[data-datagrid-name]";
 const dgNaja = new NajaAjax(naja);
