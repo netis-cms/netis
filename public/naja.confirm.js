@@ -5,6 +5,10 @@ export default class ConfirmExtension {
 			if (el.hasAttribute('data-confirm')
 				&& ! window.confirm(el.getAttribute('data-confirm'))) {
 				e.preventDefault();
+
+			} else if (el.hasAttribute('data-datagrid-confirm')
+				&& ! window.confirm(el.getAttribute('data-datagrid-confirm'))) {
+				e.preventDefault();
 			}
 		});
 	}
