@@ -14,7 +14,7 @@
 		"nette/robot-loader": "^3.4",
 		"nette/security": "^3.1",
 		"latte/latte": "^3.0",
-		"tracy/tracy": "^2.9",
+		"tracy/tracy": "^2.10",
 		"drago-ex/bootstrap": "^1.0",
 		"drago-ex/translator": "^1.0",
 		"drago-ex/application": "dev-master",
