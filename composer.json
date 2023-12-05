@@ -33,7 +33,5 @@
 	},
 	"scripts": {
 		"phpstan": "phpstan analyse --level 5 --configuration phpstan.neon app"
-	},
-	"minimum-stability": "dev",
-	"prefer-stable" : true
+	}
 }
