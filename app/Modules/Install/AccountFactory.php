@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Modules\Install;
 
 use App\Modules\Backend\Sign\UsersEntity;
+use App\Modules\BaseFactory;
 use Dibi\Connection;
 use Dibi\Exception;
 use Drago\Authorization\Control\Access\AccessRolesEntity;
-use Drago\Localization\Translator;
 use Nette\Application\UI\Form;
 use Nette\Security\Passwords;
 use Nette\Utils\Random;
@@ -23,16 +23,14 @@ final class AccountFactory
 		private readonly Connection $db,
 		private readonly Steps $steps,
 		private readonly Passwords $password,
-		private readonly Translator $translator,
+		private readonly BaseFactory $baseFactory,
 	) {
 	}
 
 
 	public function create(): Form
 	{
-		$form = new Form;
-		$form->setTranslator($this->translator);
-
+		$form = $this->baseFactory->create();
 		$form->addText(AccountData::Username, 'Username')
 			->setRequired();
 

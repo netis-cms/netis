@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Modules\Backend\Sign;
 
+use App\Modules\BaseFactory;
 use App\Modules\BasePresenter;
 use Exception;
 use Nette\Application\AbortException;
@@ -13,10 +14,16 @@ use Nette\Security\AuthenticationException;
 
 /**
  * Sing-in user.
- * @property-read SignTemplate $template
+ * @property SignTemplate $template
  */
 final class SignPresenter extends BasePresenter
 {
+	public function __construct(
+		private readonly BaseFactory $baseFactory,
+	) {
+		parent::__construct();
+	}
+
 	/**
 	 * @throws Exception
 	 */
@@ -29,14 +36,9 @@ final class SignPresenter extends BasePresenter
 	}
 
 
-	/**
-	 * @throws \Nette\Neon\Exception
-	 */
 	protected function createComponentSignIn(): Form
 	{
-		$form = new Form;
-		$form->setTranslator($this->getTranslator());
-
+		$form = $this->baseFactory->create();
 		$form->addText(SignData::Email, 'Email')
 			->setHtmlAttribute('email')
 			->setHtmlAttribute('placeholder', 'Email address')

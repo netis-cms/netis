@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Modules\Install;
 
+use App\Modules\BaseFactory;
 use Dibi\Connection;
-use Drago\Localization\Translator;
 use Nette\Application\UI\Form;
 use Throwable;
 
@@ -18,15 +18,14 @@ final class TablesFactory
 	public function __construct(
 		private readonly Connection $db,
 		private readonly Steps $steps,
-		private readonly Translator $translator,
+		private readonly BaseFactory $baseFactory,
 	) {
 	}
 
 
 	public function create(): Form
 	{
-		$form = new Form;
-		$form->setTranslator($this->translator);
+		$form = $this->baseFactory->create();
 		$form->addSubmit('send', 'Upload database');
 		$form->onSuccess[] = [$this, 'success'];
 		return $form;

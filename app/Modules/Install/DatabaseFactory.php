@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Modules\Install;
 
+use App\Modules\BaseFactory;
 use dibi;
-use Drago\Localization\Translator;
 use Drago\Parameters\Parameters;
 use Nette\Application\UI\Form;
 use Nette\DI\Config\Adapters\NeonAdapter;
@@ -21,16 +21,14 @@ final class DatabaseFactory
 		private readonly Steps $steps,
 		private readonly NeonAdapter $neonAdapter,
 		private readonly Parameters $dirs,
-		private readonly Translator $translator,
+		private readonly BaseFactory $baseFactory,
 	) {
 	}
 
 
 	public function create(): Form
 	{
-		$form = new Form;
-		$form->setTranslator($this->translator);
-
+		$form = $this->baseFactory->create();
 		$form->addText(DatabaseData::Host, 'Database server')
 			->setRequired();
 

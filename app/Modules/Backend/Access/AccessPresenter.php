@@ -15,7 +15,7 @@ use Nette\Neon\Exception;
 
 
 /**
- * @property-read AccessTemplate $template
+ * @property AccessTemplate $template
  */
 final class AccessPresenter extends BackendPresenter
 {

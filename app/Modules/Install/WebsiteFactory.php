@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Modules\Install;
 
+use App\Modules\BaseFactory;
 use App\Services\SettingsEntity;
 use Dibi\Connection;
 use Dibi\Exception;
-use Drago\Localization\Translator;
 use Nette\Application\UI\Form;
 
 
@@ -19,16 +19,14 @@ final class WebsiteFactory
 	public function __construct(
 		private readonly Steps $steps,
 		private readonly Connection $db,
-		private readonly Translator $translator,
+		private readonly BaseFactory $baseFactory,
 	) {
 	}
 
 
 	public function create(): Form
 	{
-		$form = new Form;
-		$form->setTranslator($this->translator);
-
+		$form = $this->baseFactory->create();
 		$form->addText(WebsiteData::Website, 'Site name')
 			->setRequired();
 

@@ -8,7 +8,7 @@ use App\Modules\Backend\BackendPresenter;
 
 
 /**
- * @property-read AdminTemplate $template
+ * @property AdminTemplate $template
  */
 final class AdminPresenter extends BackendPresenter
 {

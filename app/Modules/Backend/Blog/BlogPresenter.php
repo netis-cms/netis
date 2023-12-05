@@ -9,7 +9,7 @@ use Nette\Application\UI\Form;
 
 
 /**
- * @property-read BlogTemplate $template
+ * @property BlogTemplate $template
  */
 final class BlogPresenter extends BackendPresenter
 {

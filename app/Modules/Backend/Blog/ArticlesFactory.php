@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Modules\Backend\Blog;
 
 use App\Modules\Backend\Sign\User;
+use App\Modules\BaseFactory;
 use DateTimeImmutable;
-use Drago\Localization\Translator;
 use Nette\Application\UI\Form;
 use Throwable;
 use Tracy\Debugger;
@@ -17,16 +17,14 @@ class ArticlesFactory
 	public function __construct(
 		//private readonly ArticlesRepository $articleRepository,
 		private readonly User $user,
-		private readonly Translator $translator,
+		private readonly BaseFactory $baseFactory,
 	) {
 	}
 
 
 	public function create(): Form
 	{
-		$form = new Form();
-		$form->setTranslator($this->translator);
-
+		$form = $this->baseFactory->create();
 		$form->addText(ArticlesEntity::Title, 'Title')
 			->setRequired();
 

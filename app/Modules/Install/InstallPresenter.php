@@ -14,7 +14,7 @@ use Throwable;
 
 /**
  * Installation and configuration application.
- * @property-read InstallTemplate $template
+ * @property InstallTemplate $template
  */
 final class InstallPresenter extends Presenter
 {

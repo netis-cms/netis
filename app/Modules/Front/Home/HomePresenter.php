@@ -8,7 +8,7 @@ use App\Modules\BasePresenter;
 
 
 /**
- * @property-read HomeTemplate $template
+ * @property HomeTemplate $template
  */
 final class HomePresenter extends BasePresenter
 {

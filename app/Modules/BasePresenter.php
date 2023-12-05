@@ -13,7 +13,7 @@ use Nette\DI\Attributes\Inject;
 
 
 /**
- * @property-read BaseTemplate $template
+ * @property BaseTemplate $template
  */
 abstract class BasePresenter extends Presenter
 {
