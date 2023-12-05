@@ -9,13 +9,10 @@ declare(strict_types=1);
 namespace App\Services;
 
 use Drago\Database\Entity;
-use Nette\SmartObject;
 
 
 class SettingsEntity extends Entity
 {
-	use SmartObject;
-
 	public const Table = 'settings';
 	public const Name = 'name';
 	public const Value = 'value';

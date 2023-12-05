@@ -18,13 +18,11 @@ use Nette\Security\IdentityHandler;
 use Nette\Security\IIdentity;
 use Nette\Security\Passwords;
 use Nette\Security\SimpleIdentity;
-use Nette\SmartObject;
 
 
 #[Table(UsersEntity::Table, UsersEntity::Id)]
 class UserRepository implements Authenticator, IdentityHandler
 {
-	use SmartObject;
 	use Repository;
 
 	public function __construct(

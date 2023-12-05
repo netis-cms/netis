@@ -9,13 +9,10 @@ declare(strict_types=1);
 namespace App\Modules\Backend\Sign;
 
 use Drago\Database\Entity;
-use Nette\SmartObject;
 
 
 class UsersEntity extends Entity
 {
-	use SmartObject;
-
 	public const Table = 'users';
 	public const Id = 'id';
 	public const Username = 'username';

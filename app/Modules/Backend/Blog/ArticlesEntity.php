@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace App\Modules\Backend\Blog;
 
 use Drago\Database\Entity;
-use Nette\SmartObject;
 
 
 class ArticlesEntity extends Entity
 {
-	use SmartObject;
 	use ArticlesMapper;
 
 	public const Table = 'articles';

@@ -8,13 +8,11 @@ use Dibi\Connection;
 use Drago\Attr\AttributeDetectionException;
 use Drago\Attr\Table;
 use Drago\Database\Repository;
-use Nette\SmartObject;
 
 
 #[Table(SettingsEntity::Table)]
 class SettingsRepository
 {
-	use SmartObject;
 	use Repository;
 
 	public function __construct(

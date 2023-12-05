@@ -8,17 +8,14 @@ use App\Modules\Backend\Sign\User;
 use DateTimeImmutable;
 use Drago\Localization\Translator;
 use Nette\Application\UI\Form;
-use Nette\SmartObject;
 use Throwable;
 use Tracy\Debugger;
 
 
 class ArticlesFactory
 {
-	use SmartObject;
-
 	public function __construct(
-		private readonly ArticlesRepository $articleRepository,
+		//private readonly ArticlesRepository $articleRepository,
 		private readonly User $user,
 		private readonly Translator $translator,
 	) {
