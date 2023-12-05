@@ -24,6 +24,7 @@ final class SignPresenter extends BasePresenter
 		parent::__construct();
 	}
 
+
 	/**
 	 * @throws Exception
 	 */
