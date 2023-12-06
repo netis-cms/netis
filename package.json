@@ -10,7 +10,8 @@
     "cooltipz-css": "^2.2.2",
     "tom-select": "^2.2.2",
     "sortablejs": "^1.15.0",
-    "vanillajs-datepicker": "^1.3.3"
+    "vanillajs-datepicker": "^1.3.3",
+    "simplemde": "^1.11.2"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.9.3",
