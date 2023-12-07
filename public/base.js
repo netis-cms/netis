@@ -18,10 +18,9 @@ Nette.initOnLoad();
 
 const EasyMDE = new EasyMDE({
 	element: document.querySelector('.my-text-area'),
-	blockStyles: {
-		bold: "**",
-		italic: "*",
-	},
+	placeholder: "Type here...",
+	spellChecker: false,
+	showIcons: ["code", "table"],
 });
 
 /* live form validation */
