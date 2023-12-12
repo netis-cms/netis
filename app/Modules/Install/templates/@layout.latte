@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>{include subtitle|stripHtml|firstUpper}</title>
+	<title>{ifset title}{include title|stripHtml|firstUpper}{/ifset}</title>
 	<link rel="stylesheet" href="{$basePath}/files/install.css">
 </head>
 
@@ -28,7 +28,7 @@
 
 	{* flash message *}
 	<div n:foreach="$flashes as $flash" class="alert alert-primary alert-dismissible fade show rounded-0 font-weight-bold" role="alert">
-		<div class="container">{_$flash->message}
+		<div class="container">{$flash->message|translate}
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	</div>
