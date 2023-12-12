@@ -8,7 +8,10 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="{$basePath}/files/sign.css">
-	<title>{include subtitle|stripHtml|firstUpper}{ifset $settings} &bullet; {$settings['website']}{/ifset}</title>
+	<title>
+		{ifset title}{include title|stripHtml|firstUpper} &bull; {/ifset}
+		{ifset $settings}{$settings['website']}{/ifset}
+	</title>
 </head>
 
 <body>

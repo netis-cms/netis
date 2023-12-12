@@ -8,7 +8,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="{$basePath}/files/admin.css">
-	<title>{include subtitle|stripHtml|firstUpper}{ifset $settings} &bullet; {$settings['website']}{/ifset}</title>
+	<title>
+		{ifset title}{include title|stripHtml|firstUpper} &bull; {/ifset}
+		{ifset $settings}{$settings['website']}{/ifset}
+	</title>
 
 </head>
 
@@ -35,7 +38,9 @@
 				<ul class="navbar-nav navbar-nav-breadcrumb">
 					<li class="nav-item"><a class="nav-link" n:href=":Backend:Admin:">{_'Dashboard'}</a></li>
 					<li n:if="$module !== 'Backend:Admin:default'" class="nav-item">
-						<a n:class="'nav-link', $module !== 'Backend:Admin:default' ? disabled" href="#">{include subtitle|stripHtml|firstUpper}</a>
+						<a n:class="'nav-link', $module !== 'Backend:Admin:default' ? disabled" href="#">
+							{ifset title}{include title|stripHtml|firstUpper}{/ifset}
+						</a>
 					</li>
 				</ul>
 			</div>
@@ -161,7 +166,7 @@
 		<!-- content -->
 		<main role="main">
 			{snippet message}
-				<div style="z-index: 1030" n:foreach="$flashes as $flash" n:class="'alert alert-dismissible fade show border-0 rounded', 'alert-' . $flash->type" role="alert">{_$flash->message}
+				<div style="z-index: 1030" n:foreach="$flashes as $flash" n:class="'alert alert-dismissible fade show border-0 rounded', 'alert-' . $flash->type" role="alert">{$flash->message|translate}
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
 			{/snippet}

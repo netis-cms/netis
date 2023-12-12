@@ -1,7 +1,3 @@
-{* subtitle page *}
-{block subtitle}{_'Page subtitle'}{/block}
-
-{* website content *}
 {block content}
-	<h1>{_'Hello, world!'}</h1>
+	<h1 n:block="title">{_'Hello, world!'}</h1>
 {/block}

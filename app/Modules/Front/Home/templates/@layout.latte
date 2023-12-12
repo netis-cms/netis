@@ -9,7 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{$basePath}/files/web.css">
 
-    <title>{include subtitle|stripHtml|firstUpper}{ifset $settings} &bullet; {$settings['website']}{/ifset}</title>
+    <title>
+        {ifset title}{include title|stripHtml|firstUpper} &bull; {/ifset}
+        {ifset $settings}{$settings['website']}{/ifset}
+    </title>
 </head>
 
 <body>
@@ -19,7 +22,7 @@
 	{include content|indent:1}
 
 	{* flash messages *}
-	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{_$flash->message}</div>
+	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message|translate}</div>
 
 	{* language switching *}
     <a n:href="this, 'lang' => 'cs'" n:class="$presenter->linkCurrent ? 'current'">Czech</a>
