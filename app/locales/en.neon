@@ -1,18 +1,20 @@
 # datagrid
-"contributte_datagrid.reset_filter": "Reset"
-"contributte_datagrid.items": "Položky"
-"contributte_datagrid.from": "of"
-"contributte_datagrid.all": "All"
-"contributte_datagrid.action": "Action"
-"contributte_datagrid.no_item_found": "Data not found."
-"contributte_datagrid.here": "Reset"
-"contributte_datagrid.no_item_found_reset": "Data not found, reset the filter."
-"contributte_datagrid.next": "Next"
-"contributte_datagrid.previous": "Previous"
-"contributte_datagrid.show_filter": "Show filter"
-"contributte_datagrid.show_all_columns": "Show all"
-"contributte_datagrid.group_actions": "Mass action"
-"contributte_datagrid.choose": "Choose an action"
-"contributte_datagrid.execute": "Confirm action"
-"contributte_datagrid.per_page_submit": "Change"
-"contributte_datagrid.hide_column": "Hide column"
+'contributte_datagrid.reset_filter': 'Reset'
+'contributte_datagrid.items': 'Items'
+'contributte_datagrid.from': 'of'
+'contributte_datagrid.all': 'All'
+'contributte_datagrid.action': 'Action'
+'contributte_datagrid.no_item_found': 'Data not found.'
+'contributte_datagrid.here': 'Reset'
+'contributte_datagrid.no_item_found_reset': 'Data not found, reset the filter.'
+'contributte_datagrid.next': 'Next'
+'contributte_datagrid.previous': 'Previous'
+'contributte_datagrid.show_filter': 'Show filter'
+'contributte_datagrid.show_all_columns': 'Show all'
+'contributte_datagrid.group_actions': 'Mass action'
+'contributte_datagrid.choose': 'Choose an action'
+'contributte_datagrid.execute': 'Confirm action'
+'contributte_datagrid.per_page_submit': 'Change'
+'contributte_datagrid.hide_column': 'Hide column'
+'contributte_datagrid.show_default_columns': 'Show default columns'
+'contributte_datagrid.filter_submit_button': 'Search'

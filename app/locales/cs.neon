@@ -126,20 +126,22 @@
 
 
 # datagrid
-"contributte_datagrid.reset_filter": "Reset"
-"contributte_datagrid.items": "Položky"
-"contributte_datagrid.from": "z"
-"contributte_datagrid.all": "Vše"
-"contributte_datagrid.action": "Akce"
-"contributte_datagrid.no_item_found": "Data nebyla nalezena."
-"contributte_datagrid.here": "Reset"
-"contributte_datagrid.no_item_found_reset": "Data nebyla nalezena, resetujte filtr."
-"contributte_datagrid.next": "Další"
-"contributte_datagrid.previous": "Předchozí"
-"contributte_datagrid.show_filter": "Zobrazit filtr"
-"contributte_datagrid.show_all_columns": "Zobrazit vše"
-"contributte_datagrid.group_actions": "Hromadná akce"
-"contributte_datagrid.choose": "Zvolit akci"
-"contributte_datagrid.execute": "Potvrdit akci"
-"contributte_datagrid.per_page_submit": "Změnit"
-"contributte_datagrid.hide_column": "Skrýt sloupec"
+'contributte_datagrid.reset_filter': 'Reset'
+'contributte_datagrid.items': 'Položky'
+'contributte_datagrid.from': 'z'
+'contributte_datagrid.all': 'Vše'
+'contributte_datagrid.action': 'Akce'
+'contributte_datagrid.no_item_found': 'Data nebyla nalezena.'
+'contributte_datagrid.here': 'Reset'
+'contributte_datagrid.no_item_found_reset': 'Data nebyla nalezena, resetujte filtr.'
+'contributte_datagrid.next': 'Další'
+'contributte_datagrid.previous': 'Předchozí'
+'contributte_datagrid.show_filter': 'Zobrazit filtr'
+'contributte_datagrid.show_all_columns': 'Zobrazit vše'
+'contributte_datagrid.group_actions': 'Hromadná akce'
+'contributte_datagrid.choose': 'Zvolit akci'
+'contributte_datagrid.execute': 'Potvrdit akci'
+'contributte_datagrid.per_page_submit': 'Změnit'
+'contributte_datagrid.hide_column': 'Skrýt sloupec'
+'contributte_datagrid.show_default_columns': 'zobrazit výchozí sloupce'
+'contributte_datagrid.filter_submit_button': 'Hledat'
