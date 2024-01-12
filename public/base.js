@@ -5,18 +5,17 @@ import SubmitButtonDisable from "./naja.button";
 import SpinnerExtension from "./naja.spinner";
 import ConfirmExtension from "./naja.confirm";
 import ErrorsExtension from "./naja.errors";
-import * as EasyMDE from 'simplemde/dist/simplemde.min';
+import EasyMde from "simplemde/dist/simplemde.min";
 
 window.Bootstrap = Bootstrap;
 window.LiveForm = LiveForm;
 window.Nette = Nette;
 window.naja = naja;
-window.EasyMDE = EasyMDE;
 
 /* initialization nette */
 Nette.initOnLoad();
 
-const EasyMDE = new EasyMDE({
+const easyMde = new EasyMde({
 	element: document.querySelector('.my-text-area'),
 	placeholder: "Type here...",
 	spellChecker: false,

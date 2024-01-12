@@ -10,7 +10,7 @@
 	{embed '../../../../UI/Widgets/@form.latte', name: 'articles'}
 		{block form}
 			{include input, name: 'title', columns: 12}
-			{include textarea, name: 'content', columns: 12}
+			{include textarea, name: 'content', columns: 12, class: 'my-text-area'}
 			<div class="d-grid mt-3">
 				<input n:name="send" class="btn btn-primary text-white" data-btn-submit>
 			</div>

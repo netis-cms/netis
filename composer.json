@@ -1,37 +1,38 @@
 {
-	"name": "netis-cms/netis",
-	"type": "project",
-	"description": "Basis for new projects on Drago Extension",
-	"license": ["MIT"],
-	"authors": [
-		{
-			"name": "Zdeněk Papučík",
-			"homepage": "https://github.com/accgit"
-		}
-	],
-	"require": {
-		"php": ">=8.1 <8.4",
-		"nette/robot-loader": "^4.0",
-		"nette/security": "^3.1",
-		"latte/latte": "^3.0",
-		"tracy/tracy": "^2.10",
-		"drago-ex/bootstrap": "dev-master",
-		"drago-ex/translator": "dev-master",
-		"drago-ex/application": "dev-master",
-		"drago-ex/parameters": "dev-master",
-		"drago-ex/database": "dev-master",
-		"drago-ex/utils": "dev-master",
-		"drago-ex/authorization": "dev-master",
-		"texy/texy": "^3.1"
-	},
-	"minimum-stability": "dev",
-	"require-dev": {
-		"phpstan/phpstan-nette": "^1.2.9"
-	},
-	"autoload": {
-		"psr-4": {"App\\": "app"}
-	},
-	"scripts": {
-		"phpstan": "phpstan analyse --level 5 --configuration phpstan.neon app"
+  "name": "netis-cms/netis",
+  "type": "project",
+  "description": "Little cms",
+  "license": ["MIT"],
+  "authors": [
+	{
+	  "name": "Zdeněk Papučík",
+	  "homepage": "https://github.com/accgit"
 	}
+  ],
+  "require": {
+	"php": ">=8.1 <8.4",
+	"nette/robot-loader": "^4.0",
+	"nette/security": "^3.1",
+	"latte/latte": "^3.0",
+	"tracy/tracy": "^2.10",
+	"drago-ex/bootstrap": "^1.0",
+	"drago-ex/translator": "^1.0",
+	"drago-ex/application": "^1.0",
+	"drago-ex/parameters": "^1.0",
+	"drago-ex/database": "^1.0",
+	"drago-ex/utils": "^1.0",
+	"drago-ex/authorization": "dev-master",
+	"ublaboo/datagrid": "dev-next",
+	"texy/texy": "^3.1"
+  },
+  "minimum-stability": "stable",
+  "require-dev": {
+	"phpstan/phpstan-nette": "^1.2.9"
+  },
+  "autoload": {
+	"psr-4": {"App\\": "app"}
+  },
+  "scripts": {
+	"phpstan": "phpstan analyse --level 5 --configuration phpstan.neon app"
+  }
 }
