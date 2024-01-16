@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Modules\Install;
 
 use App\Modules\Backend\Sign\AccountData;
+use App\Modules\Backend\Sign\AccountForm;
 use App\Modules\Backend\Sign\UsersEntity;
 use Dibi\Connection;
 use Dibi\Exception;

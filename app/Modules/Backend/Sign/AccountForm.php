@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Install;
+namespace App\Modules\Backend\Sign;
 
-use App\Modules\Backend\Sign\AccountData;
 use App\Modules\BaseFactory;
 use Nette\Application\UI\Form;
 

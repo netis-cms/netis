@@ -2,4 +2,6 @@ services:
 
 	router: {setup: {offsetSet(null, @router.backend)}}
 	router.backend: {factory: App\Modules\Backend\Router::create, autowired: no}
+
 	user: App\Modules\Backend\Sign\User
+	- App\Modules\Backend\Sign\AccountForm
