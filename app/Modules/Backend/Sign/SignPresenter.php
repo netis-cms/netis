@@ -84,7 +84,7 @@ final class SignPresenter extends BasePresenter
 	{
 		$form = $this->accountFactory->create();
 		$form->onSuccess[] = function () {
-			$this->flashMessage('Registration was successful.', Alert::Success);
+			$this->flashMessage('Registration was successful.', Alert::Info);
 			$this->redirect('in');
 		};
 		return $form;

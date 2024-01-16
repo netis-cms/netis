@@ -1,0 +1,58 @@
+//
+// flash messages
+//
+
+.hide-me {
+  animation: cssAnimation 0s ease-in 5s forwards;
+  animation-fill-mode: forwards;
+}
+
+@keyframes cssAnimation {
+  to {
+    width: 0;
+    height: 0;
+    overflow:hidden;
+  }
+}
+
+@-webkit-keyframes cssAnimation {
+  to {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes rest
+{
+  0%   {
+    top: 0;
+  }
+
+  100% {
+    top: toRem(-125);
+  }
+}
+
+@-webkit-keyframes rest
+{
+  0%   {
+    top: 0;
+  }
+
+  100% {
+    top: toRem(-125);
+  }
+}
+
+.rest-number span {
+  display: block;
+  line-height: toRem(25);
+  position: relative;
+  animation: rest 5s linear;
+}
+
+.rest-number {
+  height: toRem(25);
+  overflow: hidden
+}

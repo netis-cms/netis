@@ -1,4 +1,5 @@
 {templateType App\Modules\Backend\Sign\SignTemplate}
+{varType Drago\Application\UI\Flashes[] $flashes}
 {import '@lang.latte'}
 
 <!DOCTYPE html>
@@ -15,6 +16,26 @@
 </head>
 
 <body>
+<div class="hide-me fixed-bottom" style="z-index: 1040">
+	<div n:foreach="$flashes as $flash" n:class="'p-3 text-white', 'bg-' . $flash->type">
+		<div class="clearfix">
+			<div class="float-start fw-bolder" style="font-size: 1.2em;">
+				{$flash->message|translate::}
+			</div>
+			<div class="float-end">
+				<div class="rest-number">
+					<span>5</span>
+					<span>4</span>
+					<span>3</span>
+					<span>2</span>
+					<span>1</span>
+					<span>0</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="sign-in mt-5 bg-white shadow-sm rounded-3">
 	<div class="bg-light p-3 mb-2">
 		<div class="d-flex">
