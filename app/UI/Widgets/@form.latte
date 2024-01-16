@@ -8,14 +8,14 @@
 	{block form}{/block}
 </form>
 
-{define input, string $name, int $columns, string $class}
+{define input, string $name, int $columns = 12, string $class}
 	<div class="col-md-{$columns}">
 		<label n:name="$name" class="form-label" />
 		<input n:name="$name" n:class="'form-control', isset($class) ? $class">
 	</div>
 {/define}
 
-{define select, string $name, int $columns, string $class}
+{define select, string $name, int $columns = 12, string $class}
 	<div class="col-md-{$columns} form-error">
 		<label n:name="$name" class="form-label" />
 		<div>
@@ -24,18 +24,16 @@
 	</div>
 {/define}
 
-{define textarea, string $name, int $columns, int $rows = 3, string $class}
+{define textarea, string $name, int $columns = 12, int $rows = 3, string $class}
 	<div class="col-md-{$columns}">
 		<label n:name="$name" class="form-label" />
 		<textarea n:name="$name" n:class="'form-control', isset($class) ? $class" rows="{$rows}"></textarea>
 	</div>
 {/define}
 
-{define submit, string $name, int $columns, bool $buttonCanvas = false}
-	<div class="col-md-{$columns}">
-		<input n:name="$name" class="btn btn-block btn-primary text-white" data-btn-submit>
-		<button n:if="$buttonCanvas" type="button" class="btn btn-outline-danger ms-1" data-bs-dismiss="offcanvas">
+{define submit, string $name, bool $buttonCanvas = false}
+	<input n:name="$name" class="btn btn-primary text-white" data-btn-submit>
+	<button n:if="$buttonCanvas" type="button" class="btn btn-outline-danger ms-1" data-bs-dismiss="offcanvas">
 			{_'Cancel'}
-		</button>
-	</div>
+	</button>
 {/define}
