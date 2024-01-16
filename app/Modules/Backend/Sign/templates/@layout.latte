@@ -20,7 +20,7 @@
 	<div n:foreach="$flashes as $flash" n:class="'p-3 text-white', 'bg-' . $flash->type">
 		<div class="clearfix">
 			<div class="float-start fw-bolder" style="font-size: 1.2em;">
-				{$flash->message|translate::}
+				{$flash->message|translate}
 			</div>
 			<div class="float-end">
 				<div class="rest-number">
