@@ -21,10 +21,10 @@
 <div class="hide-me fixed-bottom" style="z-index: 1040">
 	<div n:foreach="$flashes as $flash" n:class="'p-3 text-white', 'bg-' . $flash->type">
 		<div class="row">
-			<div class="col-md-10 fw-bolder" style="font-size: 1.2em;">
+			<div class="col-md-10 fw-bolder text-center" style="font-size: 1.2em;">
 				{$flash->message|translate}
 			</div>
-			<div class="col-md-2 text-end rest-number">
+			<div class="col-md-2 rest-number text-end">
 				<span>5</span>
 				<span>4</span>
 				<span>3</span>
