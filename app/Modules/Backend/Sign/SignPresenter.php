@@ -6,6 +6,7 @@ namespace App\Modules\Backend\Sign;
 
 use App\Modules\BaseFactory;
 use App\Modules\BasePresenter;
+use Drago\Application\UI\Alert;
 use Exception;
 use Nette\Application\AbortException;
 use Nette\Application\UI\Form;
@@ -20,6 +21,7 @@ final class SignPresenter extends BasePresenter
 {
 	public function __construct(
 		private readonly BaseFactory $baseFactory,
+		private readonly AccountFactory $accountFactory,
 	) {
 		parent::__construct();
 	}
@@ -75,6 +77,17 @@ final class SignPresenter extends BasePresenter
 				$form->addError($message);
 			}
 		}
+	}
+
+
+	protected function createComponentRegister(): Form
+	{
+		$form = $this->accountFactory->create();
+		$form->onSuccess[] = function () {
+			$this->flashMessage('Registration was successful.', Alert::Success);
+			$this->redirect('in');
+		};
+		return $form;
 	}
 
 

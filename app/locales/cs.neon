@@ -30,6 +30,8 @@
 "User not found.": "Uživatel nenalezen."
 "The password is incorrect.": "Heslo je nesprávné."
 "To register": "Registrovat se"
+"Registration was successful.": "Registrace proběhla úspěšně."
+"New account registration": "Registrace nového účtu"
 
 # global
 "Unknown status code.": "Neznámý stavový kód."

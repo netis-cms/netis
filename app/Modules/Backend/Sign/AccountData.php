@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Install;
+namespace App\Modules\Backend\Sign;
 
 use Drago\Utils\ExtraArrayHash;
 

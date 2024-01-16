@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Install;
+namespace App\Modules\Backend\Sign;
 
-use App\Modules\Backend\Sign\UsersEntity;
 use App\Modules\BaseFactory;
 use Dibi\Connection;
 use Dibi\Exception;
@@ -21,7 +20,6 @@ final class AccountFactory
 {
 	public function __construct(
 		private readonly Connection $db,
-		private readonly Steps $steps,
 		private readonly Passwords $password,
 		private readonly BaseFactory $baseFactory,
 	) {
@@ -61,16 +59,13 @@ final class AccountFactory
 	{
 		$data->password = $this->password->hash($data->password);
 		$data->token = Random::generate(60);
-		$data->offsetUnset('verify');
+		$data->offsetUnset(AccountData::Verify);
 
 		// Insert records into the database.
 		$this->db->insert(UsersEntity::Table, $data->toArray())->execute();
 		$this->db->insert(AccessRolesEntity::Table, [
-			AccessRolesEntity::UserId => 1,
-			AccessRolesEntity::RoleId => 3,
+			AccessRolesEntity::UserId => $this->db->getInsertId(),
+			AccessRolesEntity::RoleId => 2,
 		])->execute();
-
-		// Save the installation step.
-		$this->steps->setStep(5);
 	}
 }
