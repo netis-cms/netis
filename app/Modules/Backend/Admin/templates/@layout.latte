@@ -1,5 +1,6 @@
 {templateType App\Modules\Backend\Admin\AdminTemplate}
 {varType Drago\Application\UI\Flashes[] $flashes}
+{varType App\Services\Settings $settings}
 
 <!DOCTYPE html>
 <html lang="{$lang}">
@@ -10,7 +11,7 @@
 	<link rel="stylesheet" href="{$basePath}/files/admin.css">
 	<title>
 		{ifset title}{include title|stripHtml|firstUpper} &bull; {/ifset}
-		{ifset $settings}{$settings['website']}{/ifset}
+		{ifset $settings}{$settings->website}{/ifset}
 	</title>
 
 </head>
@@ -23,7 +24,7 @@
 
 			<!-- title -->
 			<a class="navbar-brand text-primary" href="#"><i class="fa-brands fa-medapps px-1"></i>
-				<span class="fw-semibold">{$settings['website']}</span>
+				<span class="fw-semibold">{$settings->website}</span>
 			</a>
 
 			<!-- sidebar toggle -->

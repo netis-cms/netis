@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Modules;
 
+use App\Services\Settings;
 use App\Services\SettingsRepository;
 use Drago\Attr\AttributeDetectionException;
 use Drago\Authorization\Authorization;
@@ -43,6 +44,12 @@ abstract class BasePresenter extends Presenter
 	{
 		parent::beforeRender();
 		$this->template->module = $this->getName() . ':' . $this->getView();
-		$this->template->settings = $this->settingsRepository->getSettings();
+		$settings = $this->settingsRepository->getSettings();
+		$settingsData = new Settings(
+			website: $settings['website'],
+			description: $settings['description'],
+		);
+
+		$this->template->settings = $settingsData;
 	}
 }
