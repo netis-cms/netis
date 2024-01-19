@@ -34,7 +34,9 @@
 			{include input, name: 'user', columns: 6}
 			{include input, name: 'database', columns: 6}
 			{include input, name: 'password', columns: 6}
-			{include submit, name: 'send'}
+			<div class="d-block">
+				{include submit, name: 'send'}
+			</div>
 		{/block}
 	{/embed}
 
@@ -49,7 +51,9 @@
 	</p>
 	{embed '../../../UI/Widgets/@form.latte', name: 'tables', class: 'ajax'}
 		{block form}
+		<div class="d-block">
 			{include submit, name: 'send'}
+		</div>
 		{/block}
 	{/embed}
 
@@ -63,7 +67,9 @@
 		{block form}
 			{include input, name: 'website', columns: 6}
 			{include input, name: 'description', columns: 6}
-			{include submit, name: 'send'}
+			<div class="d-block">
+				{include submit, name: 'send'}
+			</div>
 		{/block}
 	{/embed}
 
@@ -79,7 +85,9 @@
 			{include input, name: 'email', columns: 6}
 			{include input, name: 'password', columns: 6}
 			{include input, name: 'verify', columns: 6}
-			{include submit, name: 'send'}
+			<div class="d-block">
+				{include submit, name: 'send'}
+			</div>
 		{/block}
 	{/embed}
 
