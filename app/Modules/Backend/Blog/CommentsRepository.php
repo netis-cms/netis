@@ -9,7 +9,7 @@ use Drago\Attr\Table;
 use Drago\Database\Repository;
 
 
-#[Table(CommentsEntity::Table, CommentsEntity::Id)]
+#[Table(CommentsEntity::Table, CommentsEntity::PrimaryKey)]
 class CommentsRepository
 {
 	use Repository;

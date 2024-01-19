@@ -14,8 +14,8 @@ use Drago\Database\Entity;
 class SettingsEntity extends Entity
 {
 	public const Table = 'settings';
-	public const Name = 'name';
-	public const Value = 'value';
+	public const ColumnName = 'name';
+	public const ColumnValue = 'value';
 
 	public string $name;
 	public string $value;

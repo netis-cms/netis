@@ -19,16 +19,16 @@ class AccountForm
 	public function create(): Form
 	{
 		$form = $this->baseFactory->create();
-		$form->addText(AccountData::Username, 'Username')
+		$form->addText(AccountData::ColumnUsername, 'Username')
 			->setRequired();
 
-		$form->addText(AccountData::Email, 'Email address')
+		$form->addText(AccountData::ColumnEmail, 'Email address')
 			->setDefaultValue('@')
 			->setHtmlType('email')
 			->addRule($form::Email)
 			->setRequired();
 
-		$form->addPassword(AccountData::Password, 'Password')
+		$form->addPassword(AccountData::ColumnPassword, 'Password')
 			->addRule($form::MinLength, 'Password must be at least %d characters long.', 6)
 			->setRequired();
 

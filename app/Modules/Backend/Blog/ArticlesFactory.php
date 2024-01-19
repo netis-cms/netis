@@ -25,10 +25,10 @@ class ArticlesFactory
 	public function create(): Form
 	{
 		$form = $this->baseFactory->create();
-		$form->addText(ArticlesEntity::Title, 'Title')
+		$form->addText(ArticlesEntity::ColumnTitle, 'Title')
 			->setRequired();
 
-		$form->addTextArea(ArticlesEntity::content, 'Content')
+		$form->addTextArea(ArticlesEntity::ColumnContent, 'Content')
 			->setRequired();
 
 		$form->addSubmit('send', 'Send');

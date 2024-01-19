@@ -14,11 +14,11 @@ use Drago\Database\Entity;
 class UsersEntity extends Entity
 {
 	public const Table = 'users';
-	public const Id = 'id';
-	public const Username = 'username';
-	public const Email = 'email';
-	public const Password = 'password';
-	public const Token = 'token';
+	public const PrimaryKey = 'id';
+	public const ColumnUsername = 'username';
+	public const ColumnEmail = 'email';
+	public const ColumnPassword = 'password';
+	public const ColumnToken = 'token';
 
 	public int $id;
 	public string $username;

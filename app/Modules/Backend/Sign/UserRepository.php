@@ -20,7 +20,7 @@ use Nette\Security\Passwords;
 use Nette\Security\SimpleIdentity;
 
 
-#[Table(UsersEntity::Table, UsersEntity::Id)]
+#[Table(UsersEntity::Table, UsersEntity::PrimaryKey)]
 class UserRepository implements Authenticator, IdentityHandler
 {
 	use Repository;
@@ -101,7 +101,7 @@ class UserRepository implements Authenticator, IdentityHandler
 	 */
 	private function findUser(string $user): array|UsersEntity|null
 	{
-		return $this->discover(UsersEntity::Email, $user)
+		return $this->discover(UsersEntity::ColumnEmail, $user)
 			->execute()->setRowClass(UsersEntity::class)
 			->fetch();
 	}
@@ -113,7 +113,7 @@ class UserRepository implements Authenticator, IdentityHandler
 	 */
 	private function findUserById(string $id): array|UsersEntity|null
 	{
-		return $this->discover(UsersEntity::Token, $id)
+		return $this->discover(UsersEntity::ColumnToken, $id)
 			->execute()->setRowClass(UsersEntity::class)
 			->fetch();
 	}

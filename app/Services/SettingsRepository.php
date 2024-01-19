@@ -27,6 +27,6 @@ class SettingsRepository
 	public function getSettings(): array
 	{
 		return $this->all()
-			->fetchPairs(SettingsEntity::Name, SettingsEntity::Value);
+			->fetchPairs(SettingsEntity::ColumnName, SettingsEntity::ColumnValue);
 	}
 }

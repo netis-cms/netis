@@ -10,5 +10,5 @@ use Drago\Database\Entity;
 class CommentsEntity extends Entity
 {
 	public const Table = 'comments';
-	public const Id = 'id';
+	public const PrimaryKey = 'id';
 }

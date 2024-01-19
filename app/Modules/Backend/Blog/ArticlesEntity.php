@@ -12,10 +12,10 @@ class ArticlesEntity extends Entity
 	use ArticlesMapper;
 
 	public const Table = 'articles';
-	public const Id = 'id';
-	public const Title = 'title';
-	public const content = 'content';
-	public const CategoryId = 'category_id';
-	public const AuthorId = 'author_id';
-	public const CreatedAt = 'created_at';
+	public const PrimaryKey = 'id';
+	public const ColumnTitle = 'title';
+	public const ColumnContent = 'content';
+	public const ColumnCategoryId = 'category_id';
+	public const ColumnAuthorId = 'author_id';
+	public const ColumnCreatedAt = 'created_at';
 }

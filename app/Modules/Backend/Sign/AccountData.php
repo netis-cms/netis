@@ -9,9 +9,9 @@ use Drago\Utils\ExtraArrayHash;
 
 class AccountData extends ExtraArrayHash
 {
-	public const Username = 'username';
-	public const Email = 'email';
-	public const Password = 'password';
+	public const ColumnUsername = 'username';
+	public const ColumnEmail = 'email';
+	public const ColumnPassword = 'password';
 	public const Verify = 'verify';
 
 	public string $username;
