@@ -11,6 +11,5 @@ class Settings
 		public string $website,
 		public string $description,
 	) {
-
 	}
 }
