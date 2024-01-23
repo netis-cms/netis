@@ -8,6 +8,7 @@ use App\Modules\BaseFactory;
 use App\Modules\BasePresenter;
 use Drago\Application\UI\Alert;
 use Exception;
+use JetBrains\PhpStorm\NoReturn;
 use Nette\Application\AbortException;
 use Nette\Application\UI\Form;
 use Nette\Security\AuthenticationException;
@@ -95,7 +96,7 @@ final class SignPresenter extends BasePresenter
 	 * Logout user from application.
 	 * @throws AbortException
 	 */
-	public function actionUserOut(): void
+	#[NoReturn] public function actionUserOut(): void
 	{
 		$this->getUser()->logout();
 		$this->redirect(':Backend:Sign:in');
