@@ -14,10 +14,6 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           fetch-depth: 0
-          hp-version: ${{ matrix.php }}
-          extensions: ${{ env.php-extensions }}
-          tools: ${{ env.php-tools }}
-          coverage: none
 
       - run: composer install --no-progress --prefer-dist
       - name: 'Qodana Scan'
