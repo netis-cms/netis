@@ -80,7 +80,7 @@ final class SignPresenter extends BasePresenter
 	}
 
 
-	protected function createComponentRegister(): Form
+	protected function createComponentUp(): Form
 	{
 		$form = $this->accountFactory->create();
 		$form->onSuccess[] = function () {
