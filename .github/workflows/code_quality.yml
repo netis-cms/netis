@@ -11,8 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: shivammathur/setup-php@v2
         with:
           fetch-depth: 0
+          php-version: 8.1
+          coverage: none
+
+      - run: composer create-project nette/code-checker temp/code-checker ^3 --no-progress
       - name: 'Qodana Scan'
         uses: JetBrains/qodana-action@v2023.3
         env:
