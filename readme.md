@@ -19,6 +19,7 @@ Based on:
 - [dibi - smart database abstraction layer](https://github.com/dg/dibi)
 - [Bootstrap](https://github.com/twbs/bootstrap)
 - [Compostrap](https://github.com/compostrap)
+- [![Qodana](https://github.com/netis-cms/netis/actions/workflows/code_quality.yml/badge.svg)](https://github.com/netis-cms/netis/actions/workflows/code_quality.yml)
 
 ## Installation
 
