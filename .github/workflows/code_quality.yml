@@ -13,7 +13,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: shivammathur/setup-php@v2
         with:
-          fetch-depth: 0
           php-version: ${{ matrix.php }}
           extensions: ${{ env.php-extensions }}
           tools: ${{ env.php-tools }}
