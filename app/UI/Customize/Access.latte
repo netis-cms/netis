@@ -7,7 +7,9 @@
 				{block form}
 					{include select, name: 'user_id', columns: 12, class: 'select-tom'}
 					{include select, name: 'role_id', columns: 12, class: 'select-tom'}
-					{include submit, name: 'send', columns: 12, buttonCanvas: true}
+					<div class="d-block">
+						{include submit, name: 'send', buttonCanvas: true}
+					</div>
 				{/block}
 			{/embed}
 		{/snippet}

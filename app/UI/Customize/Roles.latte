@@ -7,7 +7,9 @@
 				{block form}
 					{include input, name: 'name', columns: 6}
 					{include select, name: 'parent', columns: 6, class: 'select-tom'}
-					{include submit, name: 'send', columns: 12, buttonCanvas: true}
+					<div class="d-block">
+						{include submit, name: 'send', buttonCanvas: true}
+					</div>
 				{/block}
 			{/embed}
 		{/snippet}

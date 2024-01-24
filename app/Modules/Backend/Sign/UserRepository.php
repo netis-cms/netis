@@ -101,7 +101,7 @@ class UserRepository implements Authenticator, IdentityHandler
 	 */
 	private function findUser(string $user): array|UsersEntity|null
 	{
-		return $this->discover(UsersEntity::ColumnEmail, $user)
+		return $this->query(UsersEntity::ColumnEmail, $user)
 			->execute()->setRowClass(UsersEntity::class)
 			->fetch();
 	}
@@ -113,7 +113,7 @@ class UserRepository implements Authenticator, IdentityHandler
 	 */
 	private function findUserById(string $id): array|UsersEntity|null
 	{
-		return $this->discover(UsersEntity::ColumnToken, $id)
+		return $this->query(UsersEntity::ColumnToken, $id)
 			->execute()->setRowClass(UsersEntity::class)
 			->fetch();
 	}
@@ -125,7 +125,7 @@ class UserRepository implements Authenticator, IdentityHandler
 	private function findUserRoles(int $userId): array|string
 	{
 		return $this->db->select('*')->from(AccessRolesViewEntity::Table)
-			->where(AccessRolesViewEntity::UserId, '= ?', $userId)
-			->fetchPairs(null, AccessRolesViewEntity::Role) ?: Conf::RoleMember;
+			->where(AccessRolesViewEntity::ColumnUserId, '= ?', $userId)
+			->fetchPairs(null, AccessRolesViewEntity::ColumnRole) ?: Conf::RoleMember;
 	}
 }

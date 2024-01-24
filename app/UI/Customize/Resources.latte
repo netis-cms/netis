@@ -6,7 +6,9 @@
 			{embed '../Widgets/@form.latte', name: 'factory', class: 'ajax'}
 				{block form}
 					{include input, name: 'name', columns: 12}
-					{include submit, name: 'send', columns: 12, buttonCanvas: true}
+					<div class="d-block">
+						{include submit, name: 'send', buttonCanvas: true}
+					</div>
 				{/block}
 			{/embed}
 		{/snippet}
