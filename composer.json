@@ -19,9 +19,9 @@
 		"drago-ex/translator": "^1.0",
 		"drago-ex/application": "^1.0",
 		"drago-ex/parameters": "^1.0",
-		"drago-ex/database": "^1.0",
+		"drago-ex/database": "^1.2",
 		"drago-ex/utils": "^1.0",
-		"drago-ex/authorization": "dev-master",
+		"drago-ex/authorization": "dev-next",
 		"ublaboo/datagrid": "dev-next",
 		"texy/texy": "^3.1"
 	},
