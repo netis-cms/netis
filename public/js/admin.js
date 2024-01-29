@@ -21,8 +21,8 @@ import {
 	SortablePlugin,
 	TomSelect
 } from '../datagrid';
-import {TreeViewPlugin} from '../DataGrid/plugins/features/treeView';
-import { NajaAjax } from '../DataGrid/ajax';
+import {TreeViewPlugin} from '../datagrid/plugins/features/treeView';
+import { NajaAjax } from '../datagrid/ajax';
 
 const dgSelector = "div[data-datagrid-name]";
 const dgNaja = new NajaAjax(naja);
