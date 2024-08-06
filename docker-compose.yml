@@ -1,6 +1,3 @@
-# docker version
-version: '3.7'
-
 # docker service
 services:
 
@@ -12,12 +9,12 @@ services:
     volumes:
       - ./:/var/www/html/
     ports:
-      - '8085:80'
+      - '8090:80'
 
 
   # database
   db:
-    image: library/mariadb:10.11
+    image: library/mariadb:latest
     command: --character-set-server=utf8 --collation-server=utf8_unicode_ci
     restart: always
     environment:

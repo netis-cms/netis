@@ -1,10 +1,1 @@
-# Disable directory listing for security reasons
-<IfModule mod_autoindex.c>
-	Options -Indexes
-</IfModule>
-
-# Disable listing files
-<Files ~ "\.(neon|latte|log|html)$">
-	order allow,deny
-	deny from all
-</Files>
+Require all denied
