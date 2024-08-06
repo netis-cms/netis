@@ -21,6 +21,7 @@ class UserSingUpFactory
 	public ?int $roleId = null;
 	public ?int $userId = null;
 
+
 	public function __construct(
 		private readonly Connection $db,
 		private readonly Passwords $password,
