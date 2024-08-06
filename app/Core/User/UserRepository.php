@@ -44,11 +44,11 @@ class UserRepository implements Authenticator, IdentityHandler
 
 		// User not found.
 		if (!$user) {
-			throw new AuthenticationException('User not found.', self::IDENTITY_NOT_FOUND);
+			throw new AuthenticationException('User not found.', self::IdentityNotFound);
 
 		// Invalid password.
 		} elseif (!$this->password->verify($password, $user->password)) {
-			throw new AuthenticationException('The password is incorrect.', self::INVALID_CREDENTIAL);
+			throw new AuthenticationException('The password is incorrect.', self::InvalidCredential);
 
 
 		// Re-hash password.
