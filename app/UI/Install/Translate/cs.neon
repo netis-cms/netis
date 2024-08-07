@@ -67,6 +67,8 @@
 "Register": "Registrovat"
 "Account administrator registration successful.": "Registrace správce účtu proběhla úspěšně."
 "Password must be at least %d characters long.": "Heslo musí mít alespoň %d znaků."
+"Your password": "Vaše heslo"
+"Full name": "Celé jméno"
 
 # general
 "Unknown status code.": "Neznámý stavový kód."

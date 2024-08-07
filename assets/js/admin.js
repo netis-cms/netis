@@ -1,11 +1,25 @@
 import "../base";
 import "../naja.components";
 import "../naja.tom.select";
+import PerfectScrollbar from "perfect-scrollbar";
 import "sidebar-skeleton-compostrap";
 import "sidebar-menu-compostrap";
 import { Nette } from "live-form-validation";
 import naja from "naja";
 import Select from "tom-select";
+import { NajaAjax } from "../../vendor/ublaboo/datagrid/assets/ajax";
+import { Alert, Dropdown } from "bootstrap";
+
+/* scrollbar */
+new PerfectScrollbar('.scrollbar', {
+	wheelSpeed: 0.3
+});
+
+const alertList = document.querySelectorAll('.alert');
+const alerts = [].slice.call(alertList).map(function (element) {
+	return new Alert(element);
+});
+
 import {
 	AutosubmitPlugin,
 	CheckboxPlugin,
@@ -24,8 +38,6 @@ import {
 	TreeViewPlugin,
 	VanillaDatepicker
 } from "../../vendor/ublaboo/datagrid/assets"
-import { NajaAjax } from "../../vendor/ublaboo/datagrid/assets/ajax";
-import { Dropdown } from "bootstrap";
 
 // Styles
 import '../styles/admin.scss';

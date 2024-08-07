@@ -8,7 +8,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>{ifset title}{include title|stripHtml|firstUpper}{/ifset}</title>
-	<link rel="stylesheet" href="{$basePath}/files/install.css">
+	<link rel="stylesheet" href="{$basePath}/dist/install.css">
 </head>
 
 <body>
@@ -63,7 +63,7 @@
 	<p class="text-center text-muted">&copy {=date('Y')} Netis</p>
 </footer>
 
-<script src="{$basePath}/files/install.js" defer></script>
+<script type="module" src="{$basePath}/dist/install.js" defer></script>
 
 </body>
 </html>

@@ -1,12 +1,13 @@
 /* css */
-@import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";
-@import "../../node_modules/perfect-scrollbar/css/perfect-scrollbar.css";
-@import "../../node_modules/sidebar-skeleton-compostrap/dist/css/sidebar.css";
-@import "../../node_modules/sidebar-menu-compostrap/dist/css/sidebar.menu.css";
-@import "../../node_modules/dashboard-skeleton-compostrap/dist/css/dashboard.css";
-@import "../../node_modules/cooltipz-css/cooltipz.css";
-@import "../../node_modules/tom-select/dist/css/tom-select.bootstrap5.min.css";
-@import "../../node_modules/@contributte/datagrid/assets/css/datagrid-full.css";
+@import "@fortawesome/fontawesome-free/css/all.css";
+@import "perfect-scrollbar/css/perfect-scrollbar.css";
+@import "sidebar-skeleton-compostrap/dist/css/sidebar.css";
+@import "sidebar-menu-compostrap/dist/css/sidebar.menu.css";
+@import "dashboard-skeleton-compostrap/dist/css/dashboard.css";
+@import "cooltipz-css/cooltipz.css";
+@import "tom-select/dist/css/tom-select.bootstrap5.min.css";
+@import "@contributte/datagrid/assets/css/datagrid.css";
+@import '../../node_modules/vanillajs-datepicker/dist/css/datepicker-bs5.css';
 
 /* sass */
 @import "../scss/base/base";
