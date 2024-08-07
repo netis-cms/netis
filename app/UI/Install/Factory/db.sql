@@ -63,7 +63,7 @@ INSERT INTO `resources` (`id`, `name`) VALUES
 (1,	'Front:Home'),
 (2,	'Backend:Admin'),
 (3,	'Backend:Sign'),
-(4,	'Backend:Access'),
+(4,	'Backend:Permissions'),
 (5,	'Backend:Blog');
 
 DROP TABLE IF EXISTS `roles`;
