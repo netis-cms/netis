@@ -1,0 +1,15 @@
+{* subtitle sites *}
+{block title}{_'Login to the system'}{/block}
+
+{* website content *}
+{block content}
+{embed ../../../Core/Widget/@form.latte, name: 'signIn'}
+	{block form}
+		{include input, name: 'email'}
+		{include input, name: 'password'}
+		<div class="d-grid gap-1">
+			{include submit, name: 'send'}
+			<a n:href="up" class="btn btn-link text-end">{_'Sign up'}</a>
+		</div>
+	{/block}
+{/embed}

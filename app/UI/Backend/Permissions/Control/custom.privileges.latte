@@ -1,0 +1,22 @@
+{templateType App\Authorization\Control\ComponentTemplate}
+{embed ../../../../Core/Widget/@offcanvas.latte, offcanvasId: $uniqueComponentId}
+	{block title}{_'Edit or add privileges'}{/block}
+	{block content}
+		{snippet privileges}
+			{embed ../../../../Core/Widget/@form.latte, name: 'factory', class: 'ajax'}
+				{block form}
+					{include input, name: 'name', columns: 12}
+					<div class="d-block">
+						{include submit, name: 'send', buttonCanvas: true}
+					</div>
+				{/block}
+			{/embed}
+		{/snippet}
+	{/block}
+{/embed}
+
+{embed ../../../../Core/Widget/@heading.latte}
+	{block title}{_'Privileges'}{/block}
+{/embed}
+
+{control grid}

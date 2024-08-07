@@ -1,16 +1,17 @@
 import naja from "naja";
+import {Modal, Offcanvas} from "bootstrap";
 
 function initBsComponents(el) {
 	for (let modal of el.querySelectorAll('.modal')) {
 		if (!modal._bsModal) {
-			modal._bsModal = new Bootstrap.Modal(modal, {
+			modal._bsModal = new Modal(modal, {
 				keyboard: false
 			});
 		}
 	}
 	for (let offCanvas of el.querySelectorAll('.offcanvas')) {
 		if (!offCanvas._bsOffcanvas) {
-			offCanvas._bsOffcanvas = new Bootstrap.Offcanvas(offCanvas);
+			offCanvas._bsOffcanvas = new Offcanvas(offCanvas);
 		}
 	}
 }

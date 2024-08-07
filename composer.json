@@ -22,7 +22,7 @@
 		"drago-ex/database": "^1.2",
 		"drago-ex/utils": "^1.0",
 		"drago-ex/authorization": "dev-next",
-		"ublaboo/datagrid": "dev-next",
+		"ublaboo/datagrid": "dev-master",
 		"texy/texy": "^3.1"
 	},
 	"minimum-stability": "stable",

@@ -41,7 +41,7 @@ latte:
 
 # application extensions
 extensions:
-	- Drago\Localization\DI\TranslatorExtension(translateDir: %appDir%/locales)
+	- Drago\Localization\DI\TranslatorExtension(translateDir: %appDir%/Translate)
 	- Drago\Parameters\DI\ParametersExtension(appDir: %appDir%, wwwDir: %wwwDir%, tempDir: %tempDir%)
 	- Drago\Authorization\DI\AuthorizationExtension
 

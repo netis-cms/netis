@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\UI\Backend\Admin;
 
-use App\UI\Template;
+use App\UI\Backend\BackendTemplate;
 
 
-class AdminTemplate extends Template
+class AdminTemplate extends BackendTemplate
 {
 }

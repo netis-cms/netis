@@ -34,19 +34,23 @@ class UserSingUpFactory
 	{
 		$form = $this->factory->create();
 		$form->addText(UserData::ColumnUsername, 'Username')
+			->setHtmlAttribute('placeholder', 'Full name')
 			->setRequired();
 
 		$form->addText(UserData::ColumnEmail, 'Email address')
+			->setHtmlAttribute('placeholder', 'Email address')
 			->setDefaultValue('@')
 			->setHtmlType('email')
 			->addRule($form::Email)
 			->setRequired();
 
 		$form->addPassword(UserData::ColumnPassword, 'Password')
+			->setHtmlAttribute('placeholder', 'Your password')
 			->addRule($form::MinLength, 'Password must be at least %d characters long.', 6)
 			->setRequired();
 
 		$form->addPassword(UserData::Verify, 'Password to check')
+			->setHtmlAttribute('placeholder', 'Your password')
 			->addRule($form::Equal, 'Passwords do not match.', $form['password'])
 			->setRequired();
 

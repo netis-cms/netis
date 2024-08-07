@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace App\UI;
 
+use App\Core\Settings\Settings;
+use App\Core\Settings\SettingsRepository;
+use Drago\Attr\AttributeDetectionException;
+use Drago\Authorization\Authorization;
 use Drago\Localization\TranslatorAdapter;
+use Nette\DI\Attributes\Inject;
 
 
 /**
@@ -13,4 +18,26 @@ use Drago\Localization\TranslatorAdapter;
 abstract class Presenter extends \Nette\Application\UI\Presenter
 {
 	use TranslatorAdapter;
+	use Authorization;
+
+	public string $loginLink = 'Sign:in';
+
+	#[Inject]
+	public SettingsRepository $settingsRepository;
+
+
+	/**
+	 * @throws AttributeDetectionException
+	 */
+	protected function beforeRender(): void
+	{
+		parent::beforeRender();
+		$settings = $this->settingsRepository->getSettings();
+		$settingsData = new Settings(
+			website: $settings['website'],
+			description: $settings['description'],
+		);
+
+		$this->template->settings = $settingsData;
+	}
 }

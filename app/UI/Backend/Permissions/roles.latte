@@ -1,0 +1,13 @@
+{templateType App\Modules\Backend\Access\AccessTemplate}
+
+{* subtitle page *}
+{block title}{_'Roles'}{/block}
+
+{* website content *}
+{block content}
+	{embed ../../../Core/Widget/@content.latte}
+		{block content}
+			{control rolesControl}
+		{/block}
+	{/embed}
+{/block}

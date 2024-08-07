@@ -1,5 +1,15 @@
 "Hello, world!": "Ahoj, světě!"
 
+# global
+"Unknown status code.": "Neznámý stavový kód."
+"Back": "Zpět"
+"Dashboard": "Administrace"
+"Translate": "Překlad"
+"User": "Uživatel"
+"Add": "Přidat"
+"Send": "Odeslat"
+"Cancel": "Zrušit"
+
 # default form messages
 "Please enter %s.": "Zadejte %s."
 "This value should not be %s.": "Tato hodnota by neměla být %s."
@@ -22,3 +32,106 @@
 "Please select a valid option.": "Vyberte prosím platnou možnost."
 "An error occurred during file upload.": "Při nahrávání souboru došlo k chybě."
 "Your session has expired. Please return to the home page and try again.": "Vaše relace vypršela. Vraťte se na domovskou stránku a zkuste to znovu."
+
+# sign in/up
+"Login to the system": "Přihlaste se do systému"
+"Email address": "Emailová adresa"
+"Password": "Heslo"
+"Your password": "Vaše heslo"
+"Sign in": "Přihlásit se"
+"User not found.": "Uživatel nenalezen."
+"The password is incorrect.": "Heslo je nesprávné."
+"Sign up": "Registrovat se"
+"Registration was successful.": "Registrace proběhla úspěšně."
+"New user registration": "Registrace nového uživatele"
+"Username": "Uživatel"
+"Full name": "Celé jméno"
+"Password to check": "Heslo pro kontrolu"
+"Passwords do not match.": "Hesla se neshodují."
+"Account administrator registration successful.": "Registrace správce účtu proběhla úspěšně."
+"Password must be at least %d characters long.": "Heslo musí mít alespoň %d znaků."
+"Sign out": "Odhlásit se"
+
+# permissions
+"Edit or add permissions": "Upravit nebo přidat oprávnění"
+"Authorization has been changed.": "Autorizace byla změněna."
+"Resource": "Zdroj"
+"Actions and signals": "Akce a signály"
+"Permission": "Oprávnění"
+"Select roles": "Vyberte roli"
+"Select privilege": "Vyberte signál nebo akci"
+"Select resource": "Vyberte zdroj"
+"Select permission": "Vyberte oprávnění"
+"Deny": "Zakázat"
+"Denied": "Zakázano"
+"Allow": "Povolit"
+"Allowed": "Povoleno"
+"Permission was updated.": "Oprávnění bylo aktualizováno."
+"Permission added.": "Povolení přidáno."
+"Permission removed.": "Oprávnění odebráno."
+"This permission is already granted.": "Toto oprávnění je již uděleno."
+"Edit or add roles": "Upravit nebo přidat role"
+"Parent": "Rodič"
+"Role name": "Název role"
+"Select parent": "Vyberte rodiče"
+"The role is not allowed to be updated.": "Roli není povoleno aktualizovat."
+"The role is not allowed to be deleted.": "Roli nelze smazat."
+"The role cannot be deleted because it is bound to another role.": "Roli nelze odstranit, protože je svázána s jinou rolí."
+"All": "Vše"
+
+"This role already exists.": "Tato role již existuje."
+"Role deleted.": "Role smazána."
+"Role updated.": "Role aktualizována."
+"The role was inserted.": "Role byla vložena."
+"Edit or add resources": "Upravte nebo přidejte zdroje"
+"Source": "Zdroj"
+"Source name": "Název zdroje"
+"Resource deleted.": "Zdroj smazán."
+"The resource can not be deleted, you must first delete the records that are associated with it.":
+	"Zdroj nelze odstranit, musíte nejprve odstranit záznamy, které jsou s ním spojeny."
+
+"Resource updated.": "Zdroj aktualizován."
+"Resource inserted.": "Zdroj vložen."
+"This resource already exists.": "Tento zdroj již existuje."
+"Action or signal": "Akce nebo signály"
+"Name action or signal": "Název akce nebo signálu"
+"The privilege is not allowed to be updated.": "Aktualizace oprávnění není povolena."
+"Privilege deleted.": "Záznam vymazán."
+"The privilege is not allowed to be deleted.": "Položku nelze smazat."
+"The privilege can not be deleted, you must first delete the records that are associated with it":
+	"Záznam nelze smazat, musíte nejprve smazat záznamy, které jsou s ním spojeny"
+
+"Privilege updated.": "Záznam aktualizován."
+"Privilege inserted.": "Záznam vložen."
+"This privilege already exists.": "Tato akce nebo singál již existuje."
+"Edit or add privileges": "Upravit nebo přidat akce a signály"
+"List of assigned roles": "Seznam přidělených rolí"
+"Edit or add roles to users": "Upravit nebo přidat role uživatelům"
+"Role removed.": "Role odebrána."
+"Role assigned.": "Role přidělena."
+"Roles have been updated.": "Role byli aktualizovány."
+"The user already has this role assigned.": "Uživatel již má tuto roli přiřazenou."
+"Select user": "Volba uživatele"
+"The privilege can not be deleted, you must first delete the records that are associated with it.":
+	"Záznam nelze smazat, musíte nejprve smazat záznamy, které jsou s ním spojeny."
+
+# datagrid
+'contributte_datagrid.reset_filter': 'Reset'
+'contributte_datagrid.items': 'Položky'
+'contributte_datagrid.from': 'z'
+'contributte_datagrid.all': 'Vše'
+'contributte_datagrid.action': 'Akce'
+'contributte_datagrid.no_item_found': 'Data nebyla nalezena.'
+'contributte_datagrid.here': 'Reset'
+'contributte_datagrid.no_item_found_reset': 'Data nebyla nalezena, resetujte filtr.'
+'contributte_datagrid.next': 'Další'
+'contributte_datagrid.previous': 'Předchozí'
+'contributte_datagrid.show_filter': 'Zobrazit filtr'
+'contributte_datagrid.show_all_columns': 'Zobrazit vše'
+'contributte_datagrid.group_actions': 'Hromadná akce'
+'contributte_datagrid.choose': 'Zvolit akci'
+'contributte_datagrid.execute': 'Potvrdit akci'
+'contributte_datagrid.per_page_submit': 'Změnit'
+'contributte_datagrid.hide_column': 'Skrýt sloupec'
+'contributte_datagrid.show_default_columns': 'zobrazit výchozí sloupce'
+'contributte_datagrid.filter_submit_button': 'Hledat'
