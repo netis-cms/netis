@@ -28,11 +28,11 @@ abstract class Presenter extends \Nette\Application\UI\Presenter
 
 	public function injectInstall(Presenter $presenter): void
 	{
-		$presenter->onStartup[] = function () use ($presenter) {
-			if (is_dir(__DIR__ . '/Install')) {
+		if (is_dir(__DIR__ . '/Install')) {
+			$presenter->onStartup[] = function () use ($presenter) {
 				$presenter->redirect(':Install:Install:');
-			}
-		};
+			};
+		}
 	}
 
 
