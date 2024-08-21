@@ -4,29 +4,20 @@ declare(strict_types=1);
 
 namespace App\Core\Settings;
 
-use Dibi\Connection;
 use Drago\Attr\AttributeDetectionException;
-use Drago\Attr\Table;
-use Drago\Database\Repository;
+use Drago\Attr\From;
+use Drago\Database\Database;
 
 
-#[Table(SettingsEntity::Table)]
-class SettingsRepository
+#[From(SettingsEntity::Table)]
+class SettingsRepository extends Database
 {
-	use Repository;
-
-	public function __construct(
-		protected Connection $db,
-	) {
-	}
-
-
 	/**
 	 * @throws AttributeDetectionException
 	 */
 	public function getSettings(): array
 	{
-		return $this->query()
+		return $this->read()
 			->fetchPairs(SettingsEntity::ColumnName, SettingsEntity::ColumnValue);
 	}
 }

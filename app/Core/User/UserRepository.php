@@ -7,11 +7,11 @@ namespace App\Core\User;
 use Dibi\Connection;
 use Dibi\Exception;
 use Drago\Attr\AttributeDetectionException;
-use Drago\Attr\Table;
+use Drago\Attr\From;
 use Drago\Authorization\Conf;
 use Drago\Authorization\Control\Access\AccessRolesViewEntity;
 use Drago\Authorization\Tracy\PanelCookie;
-use Drago\Database\Repository;
+use Drago\Database\Database;
 use Nette\Security\AuthenticationException;
 use Nette\Security\Authenticator;
 use Nette\Security\IdentityHandler;
@@ -20,16 +20,15 @@ use Nette\Security\Passwords;
 use Nette\Security\SimpleIdentity;
 
 
-#[Table(UsersEntity::Table, UsersEntity::PrimaryKey)]
-class UserRepository implements Authenticator, IdentityHandler
+#[From(UsersEntity::Table, UsersEntity::PrimaryKey, class: UsersEntity::class)]
+class UserRepository extends Database implements Authenticator, IdentityHandler
 {
-	use Repository;
-
 	public function __construct(
 		protected Connection $db,
 		private readonly Passwords $password,
 		private readonly PanelCookie $panelCookie,
 	) {
+		parent::__construct($db);
 	}
 
 
@@ -54,7 +53,7 @@ class UserRepository implements Authenticator, IdentityHandler
 		// Re-hash password.
 		} elseif ($this->password->needsRehash($user->password)) {
 			$user->password = $this->password->hash($password);
-			$this->put($user->toArray());
+			$this->save($user->toArray());
 
 		}
 		$user->offsetUnset('password');
@@ -101,9 +100,8 @@ class UserRepository implements Authenticator, IdentityHandler
 	 */
 	private function findUser(string $user): array|UsersEntity|null
 	{
-		return $this->query(UsersEntity::ColumnEmail, $user)
-			->execute()->setRowClass(UsersEntity::class)
-			->fetch();
+		return $this->find(UsersEntity::ColumnEmail, $user)
+			->record();
 	}
 
 
@@ -113,9 +111,8 @@ class UserRepository implements Authenticator, IdentityHandler
 	 */
 	private function findUserById(string $id): array|UsersEntity|null
 	{
-		return $this->query(UsersEntity::ColumnToken, $id)
-			->execute()->setRowClass(UsersEntity::class)
-			->fetch();
+		return $this->find(UsersEntity::ColumnToken, $id)
+			->record();
 	}
 
 
@@ -124,7 +121,8 @@ class UserRepository implements Authenticator, IdentityHandler
 	 */
 	private function findUserRoles(int $userId): array|string
 	{
-		return $this->db->select('*')->from(AccessRolesViewEntity::Table)
+		return $this->getConnection()
+			->select('*')->from(AccessRolesViewEntity::Table)
 			->where(AccessRolesViewEntity::ColumnUserId, '= ?', $userId)
 			->fetchPairs(null, AccessRolesViewEntity::ColumnRole) ?: Conf::RoleMember;
 	}
