@@ -61,7 +61,7 @@ class UserRepository extends Database implements Authenticator, IdentityHandler
 	}
 
 
-	public function sleepIdentity(Identity|IIdentity $identity): SimpleIdentity
+	public function sleepIdentity(UserToken|IIdentity $identity): SimpleIdentity
 	{
 		return new SimpleIdentity($identity->token);
 	}

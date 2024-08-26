@@ -8,6 +8,6 @@ namespace App\Core\User;
 /**
  * @property-read string $token
  */
-interface Identity
+interface UserToken
 {
 }
