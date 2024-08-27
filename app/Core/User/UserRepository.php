@@ -7,7 +7,7 @@ namespace App\Core\User;
 use Dibi\Connection;
 use Dibi\Exception;
 use Drago\Attr\AttributeDetectionException;
-use Drago\Attr\From;
+use Drago\Attr\Table;
 use Drago\Authorization\Conf;
 use Drago\Authorization\Control\Access\AccessRolesViewEntity;
 use Drago\Authorization\Tracy\PanelCookie;
@@ -20,15 +20,16 @@ use Nette\Security\Passwords;
 use Nette\Security\SimpleIdentity;
 
 
-#[From(UsersEntity::Table, UsersEntity::PrimaryKey, class: UsersEntity::class)]
-class UserRepository extends Database implements Authenticator, IdentityHandler
+#[Table(UsersEntity::Table, UsersEntity::PrimaryKey, class: UsersEntity::class)]
+class UserRepository implements Authenticator, IdentityHandler
 {
+	use Database;
+
 	public function __construct(
-		protected Connection $db,
+		protected Connection $connection,
 		private readonly Passwords $password,
 		private readonly PanelCookie $panelCookie,
 	) {
-		parent::__construct($db);
 	}
 
 

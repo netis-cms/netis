@@ -4,14 +4,23 @@ declare(strict_types=1);
 
 namespace App\Core\Settings;
 
+use Dibi\Connection;
 use Drago\Attr\AttributeDetectionException;
-use Drago\Attr\From;
+use Drago\Attr\Table;
 use Drago\Database\Database;
 
 
-#[From(SettingsEntity::Table)]
-class SettingsRepository extends Database
+#[Table(SettingsEntity::Table)]
+class SettingsRepository
 {
+	use Database;
+
+	public function __construct(
+		protected Connection $connection,
+	) {
+	}
+
+
 	/**
 	 * @throws AttributeDetectionException
 	 */
