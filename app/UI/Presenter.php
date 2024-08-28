@@ -26,7 +26,7 @@ abstract class Presenter extends \Nette\Application\UI\Presenter
 	public SettingsRepository $settingsRepository;
 
 
-	public function injectInstall(Presenter $presenter): void
+	public function injectInstall(self $presenter): void
 	{
 		if (is_dir(__DIR__ . '/Install')) {
 			$presenter->onStartup[] = function () use ($presenter) {
