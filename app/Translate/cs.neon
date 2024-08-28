@@ -53,6 +53,7 @@
 "Sign out": "Odhlásit se"
 
 # permissions
+"Are you sure you want to delete the selected item?": "Opravdu chcete smazat vybranou položku?"
 "Edit or add permissions": "Upravit nebo přidat oprávnění"
 "Authorization has been changed.": "Autorizace byla změněna."
 "Resource": "Zdroj"
