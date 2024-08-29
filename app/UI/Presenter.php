@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace App\UI;
 
-use App\Core\Settings\Settings;
-use App\Core\Settings\SettingsRepository;
-use Drago\Attr\AttributeDetectionException;
+use App\Core\Settings\SettingsRequire;
 use Drago\Authorization\Authorization;
 use Drago\Localization\TranslatorAdapter;
-use Nette\DI\Attributes\Inject;
 
 
 /**
@@ -19,11 +16,9 @@ abstract class Presenter extends \Nette\Application\UI\Presenter
 {
 	use TranslatorAdapter;
 	use Authorization;
+	use SettingsRequire;
 
-	public string $loginLink = 'Sign:in';
-
-	#[Inject]
-	public SettingsRepository $settingsRepository;
+	public string $loginLink = ':Backend:Sign:in';
 
 
 	public function injectInstall(self $presenter): void
@@ -33,21 +28,5 @@ abstract class Presenter extends \Nette\Application\UI\Presenter
 				$presenter->redirect(':Install:Install:');
 			};
 		}
-	}
-
-
-	/**
-	 * @throws AttributeDetectionException
-	 */
-	protected function beforeRender(): void
-	{
-		parent::beforeRender();
-		$settings = $this->settingsRepository->getSettings();
-		$settingsData = new Settings(
-			website: $settings['website'],
-			description: $settings['description'],
-		);
-
-		$this->template->settings = $settingsData;
 	}
 }

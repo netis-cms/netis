@@ -5,14 +5,16 @@ declare(strict_types=1);
 namespace App\UI\Backend\Sign;
 
 use App\Core\Factory;
+use App\Core\Settings\SettingsRequire;
 use App\Core\User\UserSingUpFactory;
-use App\UI\Presenter;
 use Drago\Application\UI\Alert;
+use Drago\Localization\TranslatorAdapter;
 use Exception;
 use JetBrains\PhpStorm\NoReturn;
 use Nette\Application\AbortException;
 use Nette\Application\Attributes\Persistent;
 use Nette\Application\UI\Form;
+use Nette\Application\UI\Presenter;
 use Nette\Security\AuthenticationException;
 
 
@@ -22,6 +24,9 @@ use Nette\Security\AuthenticationException;
  */
 final class SignPresenter extends Presenter
 {
+	use TranslatorAdapter;
+	use SettingsRequire;
+
 	#[Persistent]
 	public string $backlink = '';
 
