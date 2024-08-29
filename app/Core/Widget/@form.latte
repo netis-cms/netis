@@ -34,10 +34,10 @@
 
 {define submit, string $name, bool $buttonCanvas = false, bool $buttonModal = false}
 	<input n:name="$name" class="btn btn-primary text-white" data-btn-submit>
-	<button n:if="$buttonCanvas" type="button" class="btn btn-outline-danger ms-1" data-bs-dismiss="offcanvas">
+	<button n:if="$buttonCanvas" type="button" class="btn btn-outline-secondary ms-1" data-bs-dismiss="offcanvas">
 			{_'Cancel'}
 	</button>
-	<button n:if="$buttonModal" type="button" class="btn btn-outline-danger ms-1" data-bs-dismiss="modal">
+	<button n:if="$buttonModal" type="button" class="btn btn-outline-secondary ms-1" data-bs-dismiss="modal">
 		{_'Close'}
 	</button>
 {/define}

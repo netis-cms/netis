@@ -15,6 +15,22 @@
 	{/block}
 {/embed}
 
+{embed ../../../../Core/Widget/@modal.latte, modalId: $uniqueComponentModal}
+	{block title}{_'Delete item'}{/block}
+	{block content}<p n:snippet="title"><em>{_'Do you really want to delete the item: '}{$deleteItems}?</em></p>{/block}
+	{block factory}
+		{snippet delete}
+			{embed ../../../../Core/Widget/@form.latte, name: 'delete', class: 'ajax'}
+				{block form}
+					<div class="d-block">
+						{include submit, name: 'confirm', buttonModal: true}
+					</div>
+				{/block}
+			{/embed}
+		{/snippet}
+	{/block}
+{/embed}
+
 {embed ../../../../Core/Widget/@heading.latte}
 	{block title}{_'Privileges'}{/block}
 {/embed}
