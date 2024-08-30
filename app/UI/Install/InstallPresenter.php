@@ -11,7 +11,6 @@ use App\UI\Install\Factory\WebsiteFactory;
 use Drago\Application\UI\Alert;
 use Drago\Localization\Translator;
 use Drago\Localization\TranslatorAdapter;
-use Nette\Application\Attributes\Requires;
 use Nette\Application\UI\Form;
 use Nette\Application\UI\Presenter;
 use Throwable;
@@ -55,7 +54,6 @@ final class InstallPresenter extends Presenter
 	}
 
 
-	#[Requires(ajax: true)]
 	public function renderDefault(): void
 	{
 		$this->redrawControl('install');
