@@ -47,7 +47,7 @@ CREATE TABLE `privileges` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `privileges` (`id`, `name`) VALUES
-(1,	'*all'),
+(1,	'*'),
 (2,	'default'),
 (3,	'submit');
 
