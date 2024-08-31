@@ -12,7 +12,7 @@ use Nette\Application\Attributes\Requires;
  * Handles 4xx HTTP error responses.
  * @property Error4xxTemplate $template
  */
-#[Requires(methods: '*')]
+#[Requires(methods: '*', forward: true)]
 final class Error4xxPresenter extends Nette\Application\UI\Presenter
 {
 	public function renderDefault(Nette\Application\BadRequestException $exception): void
