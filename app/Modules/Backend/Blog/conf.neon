@@ -1,5 +1,0 @@
-services:
-
-	- App\Modules\Backend\Blog\ArticlesFactory
-	- App\Modules\Backend\Blog\ArticlesRepository
-	- App\Modules\Backend\Blog\CommentsFactory

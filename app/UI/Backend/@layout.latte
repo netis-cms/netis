@@ -1,0 +1,180 @@
+{templateType App\UI\Backend\Admin\AdminTemplate}
+{varType Drago\Application\UI\Flashes[] $flashes}
+{varType App\Core\Settings\Settings $settings}
+
+<!DOCTYPE html>
+<html lang="{$lang}">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="{$basePath}/dist/admin.css">
+	<title>
+		{ifset title}{include title|stripHtml|firstUpper} &bull; {/ifset}
+		{ifset $settings}{$settings->website}{/ifset}
+	</title>
+
+</head>
+
+<body class="bg-light" n:if="$user->isLoggedIn()">
+
+<header>
+	<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+		<div class="container-fluid">
+
+			<!-- title -->
+			<a class="navbar-brand text-primary" href="#"><i class="fa-brands fa-medapps px-1"></i>
+				<span class="fw-semibold">{$settings->website}</span>
+			</a>
+
+			<!-- sidebar toggle -->
+			<button class="navbar-toggler btn btn-link border-0" type="button" id="sidebar" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<!-- navbar navigation -->
+			<div class="collapse navbar-collapse">
+
+				<!-- breadcrumb -->
+				<ul class="navbar-nav navbar-nav-breadcrumb">
+					<li class="nav-item"><a class="nav-link" n:href=":Backend:Admin:">{_'Dashboard'}</a></li>
+					<li n:if="!$presenter->isLinkCurrent(':Backend:Admin:default')" class="nav-item">
+						<a n:class="'nav-link', !$presenter->isLinkCurrent(':Backend:Admin:default') ? disabled" href="#">
+							{ifset title}{include title|stripHtml|firstUpper}{/ifset}
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>
+
+<div class="d-flex wrapper wrapper-navbar-used wrapper-navbar-fixed">
+	<nav role="navigation" class="sidebar sidebar-bg-white sidebar-rounded-top-right shadow-sm" id="navigation">
+
+		<!-- sidebar -->
+		<div class="sidebar-menu">
+
+			<!-- menu fixed -->
+			<div class="sidebar-menu-fixed">
+
+				<!-- menu scrollbar -->
+				<div class="scrollbar scrollbar-use-navbar scrollbar-bg-white">
+
+					<!-- menu -->
+					<ul class="list list-unstyled list-bg-white mb-0">
+
+						<li class="list-item">
+
+							<!-- list title -->
+							<p class="list-title text-uppercase">{_'User'}</p>
+
+							<!-- list items, first level -->
+							<ul class="list-unstyled">
+								<li>
+									<a href="#" class="list-link link-arrow">
+										<span class="list-icon"><i class="fa-regular fa-user bell"></i></span>
+										{$user->getUserIdentity()->username}
+									</a>
+
+									<!-- list items, second level -->
+									<ul class="list-unstyled list-hidden">
+										<li><a href="{link :Backend:Sign:userOut}" class="list-link">{_'Sign out'}</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+
+					<!-- menu -->
+					<ul class="list list-unstyled list-bg-white list-icon-blue mb-0">
+
+						<!-- multi-level dropdown menu -->
+						<li class="list-item">
+
+							<!-- list title -->
+							<p class="list-title text-uppercase">{_'Translate'}</p>
+
+							<!-- list items -->
+							<ul class="list-unstyled">
+
+								<!-- translate -->
+								<li>
+									<a href="#" n:class="'list-link link-arrow', $presenter->isLinkCurrent('this') ? link-current">
+										<span class="list-icon"><i class="fa-solid fa-globe bell"></i></span>{_'Translate'}
+									</a>
+
+									<!-- list items, second level -->
+									<ul class="list-unstyled list-hidden">
+										<li><a n:href="this, 'lang' => 'cs'" n:class="list-link, $presenter->isLinkCurrent('this', ['lang' => 'cs']) ? link-current">{_'Czech'}</a></li>
+										<li><a n:href="this, 'lang' => 'en'" n:class="list-link, $presenter->isLinkCurrent('this', ['lang' => 'en']) ? link-current">{_'English'}</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+
+					<!-- system -->
+					<ul class="list list-unstyled list-bg-white list-icon-blue mb-0">
+
+						<li class="list-item">
+
+							<!-- list title -->
+							<p class="list-title text-uppercase">{_'System'}</p>
+
+							<!-- list items, first level -->
+							<ul class="list-unstyled">
+								<li>
+									<a n:href=":Backend:Admin:" n:class="'list-link', $presenter->isLinkCurrent(':Backend:Admin:default') ? link-current">
+										<span class="list-icon"><i class="fa-solid fa-mug-hot bell"></i></span>{_'Dashboard'}
+									</a>
+								</li>
+								<li n:if="$user->isAnyAllowed('Backend:Permissions', ['permissions', 'roles', 'resources', 'privileges', 'access'])">
+									<a href="#" n:class="'list-link link-arrow', $presenter->isLinkCurrent(':Backend:Permissions:*') ? link-current">
+										<span class="list-icon"><i class="fa-solid fa-gear bell"></i></span>{_'Access control'}
+									</a>
+
+									<!-- list items, second level -->
+									<ul class="list-unstyled list-hidden">
+										<li><a n:href=":Backend:Permissions:permissions" n:class="'list-link', $presenter->isLinkCurrent(':Backend:Permissions:permissions') ? link-current">{_'Permissions'}</a></li>
+										<li><a n:href=":Backend:Permissions:roles" n:class="'list-link', $presenter->isLinkCurrent(':Backend:Permissions:roles') ? link-current">{_'Roles'}</a></li>
+										<li><a n:href=":Backend:Permissions:resources" n:class="'list-link', $presenter->isLinkCurrent(':Backend:Permissions:resources') ? link-current">{_'Resources'}</a></li>
+										<li><a n:href=":Backend:Permissions:privileges" n:class="'list-link', $presenter->isLinkCurrent(':Backend:Permissions:privileges') ? link-current">{_'Privileges'}</a></li>
+										<li><a n:href=":Backend:Permissions:access" n:class="'list-link', $presenter->isLinkCurrent(':Backend:Permissions:access') ? link-current">{_'Access'}</a></li>
+									</ul>
+								</li>
+
+							</ul>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+
+		<!-- content -->
+		<main role="main">
+			{snippet message}
+				<div style="z-index: 1030" n:foreach="$flashes as $flash" n:class="'alert alert-dismissible fade show border-0 rounded', 'alert-' . $flash->type" role="alert">{$flash->message|translate}
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			{/snippet}
+
+			{* page content *}
+			{include content}
+		</main>
+
+		<!-- license rights, do not delete this piece of code -->
+		<footer class="text-end mt-3 mb-3">
+			<p class="text-silver">&copy Netis</p>
+		</footer>
+	</div>
+</div>
+
+<script type="module" src="{$basePath}/dist/admin.js"></script>
+
+</body>
+</html>

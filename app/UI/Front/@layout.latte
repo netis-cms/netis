@@ -1,0 +1,29 @@
+{templateType App\UI\Front\Home\HomeTemplate}
+{varType Drago\Application\UI\Flashes[] $flashes}
+
+<!doctype html>
+<html lang="{$lang}">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.css">
+
+	<title>{ifset title}{include title|stripHtml|firstUpper} &bull;{/ifset} Frontend</title>
+</head>
+
+<body>
+
+{* flash message *}
+<div n:foreach="$flashes as $flash" n:class="'flash', $flash->type">{$flash->message|translate}</div>
+
+{* content block *}
+{include content}
+
+{* language switching *}
+{import ../../Translate/lang.switch.latte}
+{include LangSwitch, lang: 'cs', name: 'Czech'}<span>&#124;</span>
+{include LangSwitch, lang: 'en', name: 'English'}
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+{templateType App\UI\Backend\Sign\SignTemplate}
+{varType Drago\Application\UI\Flashes[] $flashes}
+{varType App\Core\Settings\Settings $settings}
+
+<!DOCTYPE html>
+<html lang="{$lang}">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="{$basePath}/dist/sign.css">
+	<title>
+		{ifset title}{include title|stripHtml|firstUpper} &bull; {/ifset}
+		{ifset $settings}{$settings->website}{/ifset}
+	</title>
+</head>
+
+<body>
+
+{* flash message *}
+<div class="hide-me fixed-bottom" style="z-index: 1040">
+	<div n:foreach="$flashes as $flash" n:class="'p-3 text-white', 'bg-' . $flash->type">
+		<div class="row">
+			<div class="col-md-10 fw-bolder text-center" style="font-size: 1.2em;">
+				{$flash->message|translate}
+			</div>
+			<div class="col-md-2 rest-number text-end">
+				<span>5</span>
+				<span>4</span>
+				<span>3</span>
+				<span>2</span>
+				<span>1</span>
+				<span>0</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+{* content *}
+<div class="sign-in mt-5 bg-white shadow-sm rounded-3">
+	<div class="bg-light p-3 mb-2">
+		<div class="d-flex">
+			<div class="ps-1 pe-1 flex-grow-1 text-primary font-weight-bold">
+				{include title}
+			</div>
+			<div class="ps-1 pe-1">
+				{import ../../../Translate/lang.switch.latte}
+				{include LangSwitch, lang: 'cs', name: 'Czech'}
+				<span class="small text-separate">&#124;</span>
+				{include LangSwitch, lang: 'en', name: 'English'}
+			</div>
+		</div>
+	</div>
+	<div class="p-3">
+		{include content}
+	</div>
+</div>
+
+{* copyright info *}
+<footer class="fixed-bottom bg-white pt-3 pb-1 text-muted">
+	<p class="text-center font-weight-bold">&copy {=date('Y')} Netis</p>
+</footer>
+
+<script type="module" src="{$basePath}/dist/sign.js" defer></script>
+
+</body>
+</html>

@@ -1,33 +1,35 @@
 {
   "name": "project",
   "dependencies": {
-    "bootstrap": "^5.3.2",
+    "bootstrap": "^5.3.3",
     "dashboard-skeleton-compostrap": "^2.0.8",
-    "live-form-validation": "^1.10.0",
-    "nette-forms": "^3.3.5",
+    "live-form-validation": "^1.10.1",
+    "nette-forms": "^3.4.1",
     "perfect-scrollbar": "^1.5.5",
-    "naja": "^2.6.1",
+    "naja": "^3.2.0",
     "cooltipz-css": "^2.3.0",
     "tom-select": "^2.3.1",
-    "sortablejs": "^1.15.1",
+    "sortablejs": "^1.15.2",
     "vanillajs-datepicker": "^1.3.4",
-    "simplemde": "^1.11.2"
+    "@contributte/datagrid": "git+ssh://git@github.com:contributte/datagrid.git#master",
+    "@fortawesome/fontawesome-free": "^6.6.0"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.11.0",
+    "@types/bootstrap": "^5.2.10",
+    "@types/sortablejs": "^1.15.8",
+    "@types/vanillajs-datepicker": "^1.3.5",
+    "autoprefixer": "^10.4.20",
+    "typescript": "^5.5.4",
     "concurrently": "^8.2.2",
-    "parcel": "^2.11.0",
-    "sass": "^1.69.7",
-    "ncp": "^2.0.0"
+    "sass": "^1.77.8",
+    "vite": "^5.3.5"
   },
   "scripts": {
     "docker:build": "concurrently -n=build -c=green \"docker-compose build\"",
     "docker:dev": "concurrently -n=dev -c=blue \"docker-compose -f docker-compose.yml -f docker-compose.dev.yml up\"",
     "docker:pro": "concurrently -n=pro -c=blue \"docker-compose up --no-deps php\"",
     "docker:off": "docker-compose down",
-    "preparcel-watch": "ncp vendor/ublaboo/datagrid/assets/ public/datagrid/",
-    "parcel-watch": "parcel watch public/js/*.js --public-url ./ --dist-dir www/files",
-    "preparcel-build": "ncp vendor/ublaboo/datagrid/assets/ public/datagrid/",
-    "parcel-build": "parcel build public/js/*.js --public-url ./ --dist-dir www/files"
+    "watch": "vite build --watch --mode=development",
+    "build": "vite build --mode=production"
   }
 }

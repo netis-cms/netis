@@ -11,11 +11,13 @@ session:
 
 # application settings
 application:
-	errorPresenter: Error
+	errorPresenter:
+		4xx: Error:Error4xx
+		5xx: Error:Error5xx
 
 	# application mapping
 	mapping:
-		*: ['App\Modules', '*', '*\*Presenter']
+		*: ['App\UI', '*', '*\*Presenter']
 
 
 # enabling system container for Tracy bar
@@ -26,20 +28,20 @@ di:
 		tags: no
 
 
-# base services
+# application services
 services:
-	texy: Texy\Texy
+	user: App\Core\User\User
 
 
-# latte settings
+# strict parser mode
 latte:
-	extensions:
-		- Texy\Bridges\Latte\TexyExtension(@texy)
+	strictTypes: yes
+	strictParsing: yes
 
 
 # application extensions
 extensions:
-	- Drago\Localization\DI\TranslatorExtension(translateDir: %appDir%/locales)
+	- Drago\Localization\DI\TranslatorExtension(translateDir: %appDir%/Translate)
 	- Drago\Parameters\DI\ParametersExtension(appDir: %appDir%, wwwDir: %wwwDir%, tempDir: %tempDir%)
 	- Drago\Authorization\DI\AuthorizationExtension
 

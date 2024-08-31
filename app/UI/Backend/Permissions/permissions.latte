@@ -1,0 +1,13 @@
+{templateType App\UI\Backend\Permissions\PermissionsTemplate}
+
+{* subtitle page *}
+{block title}{_'Permissions'}{/block}
+
+{* website content *}
+{block content}
+	{embed ../../../Core/Widget/@content.latte}
+		{block content}
+			{control permissionsControl}
+		{/block}
+	{/embed}
+{/block}

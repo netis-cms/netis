@@ -19,10 +19,10 @@
 		"drago-ex/translator": "^1.0",
 		"drago-ex/application": "^1.0",
 		"drago-ex/parameters": "^1.0",
-		"drago-ex/database": "^1.2",
+		"drago-ex/database": "dev-dev",
 		"drago-ex/utils": "^1.0",
-		"drago-ex/authorization": "dev-next",
-		"ublaboo/datagrid": "dev-next",
+		"drago-ex/authorization": "dev-master",
+		"ublaboo/datagrid": "dev-master",
 		"texy/texy": "^3.1"
 	},
 	"minimum-stability": "stable",

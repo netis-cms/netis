@@ -1,0 +1,13 @@
+{templateType App\UI\Backend\Admin\AdminTemplate}
+
+{* subtitle page *}
+{block title}{_'Dashboard'}{/block}
+
+{* website content *}
+{block content}
+{embed ../../../Core/Widget/@content.latte}
+	{block content}
+		<h5 class="border-bottom pb-2">{_'Dashboard'}</h5>
+		<p>Here is content this website page.</p>
+	{/block}
+{/embed}

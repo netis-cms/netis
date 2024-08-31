@@ -1,0 +1,39 @@
+{templateType App\Authorization\Control\ComponentTemplate}
+{embed ../../../../Core/Widget/@offcanvas.latte, offcanvasId: $uniqueComponentOffcanvas}
+	{block title}{_'Edit or add roles'}{/block}
+	{block content}
+		{snippet roles}
+			{embed ../../../../Core/Widget/@form.latte, name: 'factory', class: 'ajax'}
+				{block form}
+					{include input, name: 'name', columns: 6}
+					{include select, name: 'parent', columns: 6, class: 'select-tom'}
+					<div class="d-block">
+						{include submit, name: 'send', buttonCanvas: true}
+					</div>
+				{/block}
+			{/embed}
+		{/snippet}
+	{/block}
+{/embed}
+
+{embed ../../../../Core/Widget/@modal.latte, modalId: $uniqueComponentModal}
+	{block title}{_'Delete item'}{/block}
+	{block content}<p n:snippet="title"><em>{_'Do you really want to delete the item: '}{$deleteItems}?</em></p>{/block}
+	{block factory}
+		{snippet delete}
+			{embed ../../../../Core/Widget/@form.latte, name: 'delete', class: 'ajax'}
+				{block form}
+					<div class="d-block">
+						{include submit, name: 'confirm', buttonModal: true}
+					</div>
+				{/block}
+			{/embed}
+		{/snippet}
+	{/block}
+{/embed}
+
+{embed ../../../../Core/Widget/@heading.latte}
+	{block title}{_'Roles'}{/block}
+{/embed}
+
+{control grid}

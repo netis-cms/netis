@@ -1,0 +1,14 @@
+/* css */
+@import "@fortawesome/fontawesome-free/css/all.css";
+@import "perfect-scrollbar/css/perfect-scrollbar.css";
+@import "sidebar-skeleton-compostrap/dist/css/sidebar.css";
+@import "sidebar-menu-compostrap/dist/css/sidebar.menu.css";
+@import "dashboard-skeleton-compostrap/dist/css/dashboard.css";
+@import "cooltipz-css/cooltipz.css";
+@import "tom-select/dist/css/tom-select.bootstrap5.min.css";
+@import "@contributte/datagrid/assets/css/datagrid.css";
+@import '../../node_modules/vanillajs-datepicker/dist/css/datepicker-bs5.css';
+
+/* sass */
+@import "../scss/base/base";
+@import "../scss/admin";

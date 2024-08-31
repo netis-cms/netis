@@ -1,4 +1,6 @@
 # Apache configuration file (see https://httpd.apache.org/docs/current/mod/quickreference.html)
+
+# Allow access to all resources by default
 Require all granted
 
 # Disable directory listing for security reasons
@@ -6,30 +8,31 @@ Require all granted
 	Options -Indexes
 </IfModule>
 
-# Enable cool URLs
+# Enable pretty URLs (removing the need for "index.php" in the URL)
 <IfModule mod_rewrite.c>
 	RewriteEngine On
 
 	# Uncomment the next line if you want to set the base URL for rewrites
 	# RewriteBase /
 
-	# Force usage of HTTPS
+	# Force usage of HTTPS (secure connection). Uncomment if you have SSL setup.
 	# RewriteCond %{HTTPS} !on
 	# RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
-	# Prevents files starting with dot to be viewed by browser
-	RewriteCond %{REQUEST_FILENAME} -f
-	RewriteRule /\.|^\.(?!well-known/) - [F]
+	# Permit requests to the '.well-known' directory (used for SSL verification and more)
+	RewriteRule ^\.well-known/.* - [L]
 
-	# Front controller pattern
+	# Return 404 for missing files with specific extensions (images, scripts, styles, archives)
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule \.(pdf|js|mjs|ico|gif|jpg|jpeg|png|webp|avif|svg|css|rar|zip|7z|tar\.gz|map|eot|ttf|otf|woff|woff2)$ - [L]
+
+	# Front controller pattern - all requests are routed through index.php
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteRule !\.(pdf|js|mjs|ico|gif|jpg|jpeg|png|webp|svg|css|rar|zip|7z|tar\.gz|map|eot|ttf|otf|woff|woff2)$ index.php [L]
+	RewriteRule . index.php [L]
 </IfModule>
 
-# Enable gzip compression for faster load times
+# Enable gzip compression for text files
 <IfModule mod_deflate.c>
-	<IfModule mod_filter.c>
-		AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json application/xml image/svg+xml
-	</IfModule>
+	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json application/xml application/rss+xml image/svg+xml
 </IfModule>
