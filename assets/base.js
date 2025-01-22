@@ -5,37 +5,28 @@ import SpinnerExtension from "./naja.spinner";
 import ConfirmExtension from "./naja.confirm";
 import ErrorsExtension from "./naja.errors";
 
-window.LiveForm = LiveForm;
-window.Nette = Nette;
-window.naja = naja;
-
-/* initialization nette */
+// Inicializace Nette
 Nette.initOnLoad();
 
-/* live form validation */
+// Nastavení pro LiveForm
 LiveForm.setOptions({
-	messageErrorClass: 'errors-live',
-	messageParentClass: 'form-error',
-	messageErrorPrefix: '',
-	wait: 500
+  messageErrorClass: 'errors-live',
+  messageParentClass: 'form-error',
+  messageErrorPrefix: '',
+  wait: 500
 });
 
-/* submit button disable */
-naja.registerExtension(
-	new SubmitButtonDisable()
-);
+// Funkce pro registraci všech rozšíření
+function registerExtensions() {
+  const extensions = [
+    new SubmitButtonDisable(),
+    new SpinnerExtension(),
+    new ConfirmExtension(),
+    new ErrorsExtension()
+  ];
 
-/* submit button disable */
-naja.registerExtension(
-	new SpinnerExtension()
-);
+  extensions.forEach(extension => naja.registerExtension(extension));
+}
 
-/* confirm dialog */
-naja.registerExtension(
-	new ConfirmExtension()
-);
-
-/* ajax error message */
-naja.registerExtension(
-	new ErrorsExtension()
-);
+// Registrace rozšíření
+registerExtensions();
