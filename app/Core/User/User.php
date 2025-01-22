@@ -10,7 +10,7 @@ class User extends \Nette\Security\User
 	/**
 	 * @throws UserIdentityException
 	 */
-	public function getUserData(string $name = null): mixed
+	public function getUserData(?string $name = null): mixed
 	{
 		$data = $this->getIdentity()->getData();
 		if ($name) {
