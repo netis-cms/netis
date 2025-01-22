@@ -7,7 +7,7 @@ function tomSelect(el) {
 		e._tom = new TomSelect(e, {
 			plugins: isLocked ? [] : ['remove_button'],
 		});
-		
+
 		if (isLocked) {
 			e._tom.lock();
 		}
