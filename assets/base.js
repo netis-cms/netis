@@ -10,22 +10,22 @@ Nette.initOnLoad();
 
 // Nastavení pro LiveForm
 LiveForm.setOptions({
-  messageErrorClass: 'errors-live',
-  messageParentClass: 'form-error',
-  messageErrorPrefix: '',
-  wait: 500
+	messageErrorClass: 'errors-live',
+	messageParentClass: 'form-error',
+	messageErrorPrefix: '',
+	wait: 500
 });
 
 // Funkce pro registraci všech rozšíření
 function registerExtensions() {
-  const extensions = [
-    new SubmitButtonDisable(),
-    new SpinnerExtension(),
-    new ConfirmExtension(),
-    new ErrorsExtension()
-  ];
+	const extensions = [
+		new SubmitButtonDisable(),
+		new SpinnerExtension(),
+		new ConfirmExtension(),
+		new ErrorsExtension()
+	];
 
-  extensions.forEach(extension => naja.registerExtension(extension));
+	extensions.forEach(extension => naja.registerExtension(extension));
 }
 
 // Registrace rozšíření
