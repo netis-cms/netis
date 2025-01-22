@@ -14,7 +14,7 @@ use Throwable;
 
 
 /**
- * Database server settings.
+ * Database server settings configuration and handling.
  */
 final class DatabaseFactory
 {
@@ -27,9 +27,16 @@ final class DatabaseFactory
 	}
 
 
+	/**
+	 * Creates the form for database connection settings.
+	 *
+	 * @return Form The database configuration form.
+	 */
 	public function create(): Form
 	{
 		$form = $this->factory->create();
+
+		// Add form fields for database settings
 		$form->addText(DatabaseData::Host, 'Database server')
 			->setRequired();
 
@@ -42,23 +49,36 @@ final class DatabaseFactory
 		$form->addText(DatabaseData::Database, 'Database name')
 			->setRequired();
 
+		// Submit button
 		$form->addSubmit('send', 'Connection test');
+
+		// Success handler for the form
 		$form->onSuccess[] = [$this, 'success'];
+
 		return $form;
 	}
 
 
+	/**
+	 * Handles the success of the database form submission.
+	 *
+	 * This method tries to establish a database connection and generate a neon configuration file.
+	 *
+	 * @param Form $form The form object.
+	 * @param DatabaseData $data The database data submitted by the user.
+	 * @return void
+	 */
 	public function success(Form $form, DatabaseData $data): void
 	{
 		try {
-
-			// Check database connection.
+			// Check if the database connection is successful
 			if (dibi::connect($data->toArray())->isConnected()) {
 
-				// Parameters for generate config neon file.
-				$arr = ['extensions' => [
-					'dibi' => 'Dibi\Bridges\Nette\DibiExtension22',
-				],
+				// Prepare parameters for generating the neon config file
+				$arr = [
+					'extensions' => [
+						'dibi' => 'Dibi\Bridges\Nette\DibiExtension22',
+					],
 					'dibi' => [
 						'host' => $data->host,
 						'username' => $data->user,
@@ -69,16 +89,17 @@ final class DatabaseFactory
 					],
 				];
 
-				// Generate and save the configuration file.
+				// Generate and save the neon configuration file
 				$content = $this->neonAdapter->dump($arr);
 				$file = fopen($this->dirs->appDir . '/Core/db.neon', 'w');
 				fwrite($file, $content);
 
-				// Save the installation step.
+				// Save the installation step to move to the next stage
 				$this->steps->setStep(2);
 			}
 
 		} catch (Throwable $t) {
+			// Handle database connection errors
 			if ($t->getCode()) {
 				$message = match ($t->getCode()) {
 					1044 => 'Access denied, check database settings.',

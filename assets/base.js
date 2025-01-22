@@ -1,32 +1,41 @@
+/* Imports */
 import naja from "naja";
-import { LiveForm, Nette } from "live-form-validation";
+import { LiveForm, Nette } from "live-form-validation"; // Ensure correct import for LiveForm
 import SubmitButtonDisable from "./naja.button";
 import SpinnerExtension from "./naja.spinner";
 import ConfirmExtension from "./naja.confirm";
 import ErrorsExtension from "./naja.errors";
 
-// Inicializace Nette
+window.LiveForm = LiveForm;
+window.Nette = Nette;
+window.naja = naja;
+
+/* Initialize Nette (handles AJAX and form submission) */
 Nette.initOnLoad();
 
-// Nastavení pro LiveForm
+/* Set options for LiveForm (error handling, form error styling, etc.) */
 LiveForm.setOptions({
-	messageErrorClass: 'errors-live',
-	messageParentClass: 'form-error',
-	messageErrorPrefix: '',
-	wait: 500
+	messageErrorClass: 'errors-live',	// Class for error messages
+	messageParentClass: 'form-error',	// Parent class for error messages
+	messageErrorPrefix: '',			// Prefix for error messages
+	wait: 500							// Wait time before form submission
 });
 
-// Funkce pro registraci všech rozšíření
+/* Function to register all extensions */
 function registerExtensions() {
 	const extensions = [
-		new SubmitButtonDisable(),
-		new SpinnerExtension(),
-		new ConfirmExtension(),
-		new ErrorsExtension()
+		new SubmitButtonDisable(),		// Disables the submit button during requests
+		new SpinnerExtension(),			// Shows a spinner during AJAX requests
+		new ConfirmExtension(),			// Shows a confirmation dialog before executing actions
+		new ErrorsExtension()			// Displays error messages when errors occur
 	];
 
+	// Register each extension with Naja
 	extensions.forEach(extension => naja.registerExtension(extension));
 }
 
-// Registrace rozšíření
+/* Register the extensions to Naja */
 registerExtensions();
+
+/* Initialize Naja */
+document.addEventListener('DOMContentLoaded', () => naja.initialize());

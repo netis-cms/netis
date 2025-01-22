@@ -11,18 +11,31 @@ namespace App\Core\User;
 use Drago\Database\Entity;
 
 
+/**
+ * Class representing the user entity in the database.
+ * Stores information about the user account, including username, email, password, and token.
+ */
 class UsersEntity extends Entity
 {
-	public const Table = 'users';
-	public const PrimaryKey = 'id';
-	public const ColumnUsername = 'username';
-	public const ColumnEmail = 'email';
-	public const ColumnPassword = 'password';
-	public const ColumnToken = 'token';
+	public const Table = 'users';            // Database table name
+	public const PrimaryKey = 'id';          // Primary key of the table
+	public const ColumnUsername = 'username'; // Column for the username
+	public const ColumnEmail = 'email';      // Column for the email
+	public const ColumnPassword = 'password'; // Column for the password
+	public const ColumnToken = 'token';      // Column for the token
 
+	/** @var int User ID */
 	public int $id;
+
+	/** @var string Username */
 	public string $username;
+
+	/** @var string User's email address */
 	public string $email;
+
+	/** @var string User's password */
 	public string $password;
+
+	/** @var string Authentication token for the user */
 	public string $token;
 }

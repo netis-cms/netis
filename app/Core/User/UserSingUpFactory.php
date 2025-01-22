@@ -16,12 +16,26 @@ use Nette\Utils\Random;
 use Nette\Utils\Validators;
 
 
+/**
+ * Class for handling user registration.
+ * Creates and processes the registration form, inserting user data into the database.
+ */
 class UserSingUpFactory
 {
+	/** @var int|null User's role ID */
 	public ?int $roleId = null;
+
+	/** @var int|null User's ID (if already exists) */
 	public ?int $userId = null;
 
 
+	/**
+	 * Constructor for the class.
+	 *
+	 * @param Connection $db     Database connection.
+	 * @param Passwords $password Password hashing service.
+	 * @param Factory $factory   Form factory instance.
+	 */
 	public function __construct(
 		private readonly Connection $db,
 		private readonly Passwords $password,
@@ -30,9 +44,15 @@ class UserSingUpFactory
 	}
 
 
+	/**
+	 * Creates the user registration form.
+	 *
+	 * @return Form Registration form.
+	 */
 	public function create(): Form
 	{
 		$form = $this->factory->create();
+
 		$form->addText(UserData::ColumnUsername, 'Username')
 			->setHtmlAttribute('placeholder', 'Full name')
 			->setRequired();
@@ -61,21 +81,32 @@ class UserSingUpFactory
 
 
 	/**
+	 * Handles the successful submission of the form.
+	 * Hashes the password, generates a token, and inserts the user into the database.
+	 *
+	 * @param Form $form Submitted form.
+	 * @param UserData $data User data from the form.
+	 *
 	 * @throws Exception
 	 * @throws UserDuplicateEmailException
 	 * @throws AssertionException
 	 */
 	public function success(Form $form, UserData $data): void
 	{
+		// Hash the password
 		$data->password = $this->password->hash($data->password);
+
+		// Generate a token
 		$data->token = Random::generate(60);
+
+		// Remove the password confirmation field
 		$data->offsetUnset(UserData::Verify);
 
-		// Validate the email format.
+		// Validate the email format
 		Validators::assert($data->email, 'email');
 
 		try {
-			// Insert records into the database.
+			// Insert the user data into the database
 			$this->db->insert(UsersEntity::Table, $data->toArray())->execute();
 			$this->db->insert(AccessRolesEntity::Table, [
 				AccessRolesEntity::ColumnUserId => $this->userId ?? $this->db->getInsertId(),
@@ -83,6 +114,7 @@ class UserSingUpFactory
 			])->execute();
 
 		} catch (UniqueConstraintViolationException $e) {
+			// If a unique constraint violation occurs (duplicate email), throw an exception
 			throw new UserDuplicateEmailException();
 		}
 	}

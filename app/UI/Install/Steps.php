@@ -7,7 +7,6 @@ namespace App\UI\Install;
 use Nette\Caching\Cache;
 use Throwable;
 
-
 /**
  * Saving installation steps into cache.
  */
@@ -15,29 +14,40 @@ class Steps
 {
 	private const CacheKey = 'Install step';
 
-
 	public function __construct(
 		private readonly Cache $cache,
-	) {
-	}
-
+	) {}
 
 	/**
-	 * Save the installation step.
+	 * Save the current installation step to cache.
+	 *
+	 * @param int $step The current installation step.
+	 * @return void
 	 */
 	public function setStep(int $step): void
 	{
-		$this->cache->save(self::CacheKey, $step);
+		try {
+			$this->cache->save(self::CacheKey, $step);
+		} catch (Throwable $e) {
+			// Handle the cache error (e.g. log it)
+			throw new \RuntimeException('Error saving installation step to cache.', 0, $e);
+		}
 	}
 
 
 	/**
-	 * We will get the current installation step.
+	 * Get the current installation step from cache.
+	 *
+	 * @return int|null Returns the installation step, or null if not set.
 	 * @throws Throwable
 	 */
-	public function getStep(): mixed
+	public function getStep(): ?int
 	{
-		return $this->cache
-			->load(self::CacheKey);
+		try {
+			return $this->cache->load(self::CacheKey);
+		} catch (Throwable $e) {
+			// Handle the cache error (e.g. log it)
+			throw new \RuntimeException('Error loading installation step from cache.', 0, $e);
+		}
 	}
 }

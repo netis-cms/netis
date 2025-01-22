@@ -6,7 +6,10 @@ namespace App\Core\User;
 
 
 /**
- * @property-read string $token
+ * Interface for user token.
+ * Defines the $token property that contains the user's token.
+ *
+ * @property-read string $token User's token.
  */
 interface UserToken
 {

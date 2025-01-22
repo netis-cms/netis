@@ -13,50 +13,72 @@ use Nette\Application\UI\Form;
 
 
 /**
- * WebsiteControl settings.
+ * Factory for website settings during installation.
+ * This factory handles the creation of the website settings form
+ * and saves the submitted data to the database.
  */
 final class WebsiteFactory
 {
+	private readonly Steps $steps;
+	private readonly Connection $db;
+	private readonly Factory $factory;
+
 	public function __construct(
-		private readonly Steps $steps,
-		private readonly Connection $db,
-		private readonly Factory $factory,
+		Steps $steps,
+		Connection $db,
+		Factory $factory
 	) {
+		$this->steps = $steps;
+		$this->db = $db;
+		$this->factory = $factory;
 	}
 
 
+	/**
+	 * Creates the website settings form.
+	 * This form allows users to input the site name and description.
+	 */
 	public function create(): Form
 	{
 		$form = $this->factory->create();
+
+		// Add form fields for site name and description
 		$form->addText(WebsiteData::Website, 'Site name')
 			->setRequired();
 
 		$form->addText(WebsiteData::Description, 'Site description')
 			->setRequired();
 
+		// Add submit button
 		$form->addSubmit('send', 'Save data');
+
+		// On success, call the success method
 		$form->onSuccess[] = [$this, 'success'];
+
 		return $form;
 	}
 
 
 	/**
-	 * @throws Exception
+	 * Handles the successful submission of the website settings form.
+	 * Saves the submitted website name and description to the database.
+	 * @throws Exception If database operation fails.
 	 */
 	public function success(Form $form, WebsiteData $data): void
 	{
+		// Prepare settings data for insertion into the database
 		$settings = [
 			['name' => WebsiteData::Website, 'value' => $data->website],
 			['name' => WebsiteData::Description, 'value' => $data->description],
 		];
 
-		// Insert records into the database.
+		// Insert each setting into the database
 		foreach ($settings as $rows) {
 			$this->db->insert(SettingsEntity::Table, $rows)
 				->execute();
 		}
 
-		// Save the installation step.
+		// Update the installation step to step 4
 		$this->steps->setStep(4);
 	}
 }

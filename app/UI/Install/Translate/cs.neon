@@ -28,12 +28,12 @@
 "Please enter basic information for the website.": "Zadejte prosím základní informace webových stránek."
 "Sign up": "Registrace"
 "Administrator account registration.": "Registrace účtu správce."
-"Installation is complete": "Instalace je dokončená"
+"Installation is complete": "Instalace je dokončena"
 "The installation of the system is almost over, now it is necessary to remove the installation packages in order for the system to boot properly.":
-	"Instalace systému je téměř u konce, nyní je nutné odstranit instalační balíčky, aby systém správně naběhnul."
+	"Instalace systému je téměř u konce, nyní je nutné odstranit instalační balíčky, aby systém správně nabootoval."
 
 "Please follow the instructions below.": "Prosím postupujte dle níže uvedených pokynů."
-"Delete the following files:": "Odstrantě následující soubory:"
+"Delete the following files:": "Odstraňte následující soubory:"
 "Entering administration": "Vstup do administrace"
 
 # component database
@@ -50,7 +50,7 @@
 
 # component tables
 "Upload database": "Nahrát databázi"
-"Database installation was successful.": "Instalace databáze proběhla úspěšně."
+"Database installation was successful.": "Instalace databáze probíhla úspěšně."
 "Some table names already exist in the database.": "Některé názvy tabulek již v databázi existují."
 
 # component website
@@ -65,7 +65,7 @@
 "Password to check": "Heslo pro kontrolu"
 "Passwords do not match.": "Hesla se neshodují."
 "Register": "Registrovat"
-"Account administrator registration successful.": "Registrace správce účtu proběhla úspěšně."
+"Account administrator registration successful.": "Registrace správce účtu probíhla úspěšně."
 "Password must be at least %d characters long.": "Heslo musí mít alespoň %d znaků."
 "Your password": "Vaše heslo"
 "Full name": "Celé jméno"

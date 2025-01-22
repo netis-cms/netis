@@ -12,6 +12,12 @@ final class Router
 {
 	use StaticClass;
 
+
+	/**
+	 * Create and return the application's routing configuration.
+	 *
+	 * @return RouteList The list of routes.
+	 */
 	public static function create(): RouteList
 	{
 		$router = new RouteList;

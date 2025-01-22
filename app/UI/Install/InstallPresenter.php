@@ -13,6 +13,7 @@ use Drago\Localization\Translator;
 use Drago\Localization\TranslatorAdapter;
 use Nette\Application\UI\Form;
 use Nette\Application\UI\Presenter;
+use Nette\Neon\Exception;
 use Throwable;
 
 
@@ -36,6 +37,7 @@ final class InstallPresenter extends Presenter
 
 
 	/**
+	 * Prepare the installation step before rendering.
 	 * @throws Throwable
 	 */
 	protected function beforeRender(): void
@@ -46,6 +48,10 @@ final class InstallPresenter extends Presenter
 	}
 
 
+	/**
+	 * Get the translator instance for language support.
+	 * @throws Exception
+	 */
 	public function getTranslator(): Translator
 	{
 		$translator = $this->translator;
@@ -54,6 +60,9 @@ final class InstallPresenter extends Presenter
 	}
 
 
+	/**
+	 * Render default installation page.
+	 */
 	public function renderDefault(): void
 	{
 		$this->redrawControl('install');
@@ -61,7 +70,8 @@ final class InstallPresenter extends Presenter
 
 
 	/**
-	 * Run install application.
+	 * Handle the installation process start.
+	 * Run the installation and set the first step.
 	 */
 	public function handleRun(): void
 	{
@@ -69,6 +79,9 @@ final class InstallPresenter extends Presenter
 	}
 
 
+	/**
+	 * Create and return the database configuration form.
+	 */
 	protected function createComponentDatabase(): Form
 	{
 		$form = $this->databaseFactory->create();
@@ -79,6 +92,9 @@ final class InstallPresenter extends Presenter
 	}
 
 
+	/**
+	 * Create and return the table configuration form.
+	 */
 	protected function createComponentTables(): Form
 	{
 		$form = $this->tablesFactory->create();
@@ -89,6 +105,9 @@ final class InstallPresenter extends Presenter
 	}
 
 
+	/**
+	 * Create and return the website configuration form.
+	 */
 	protected function createComponentWebsite(): Form
 	{
 		$form = $this->websiteFactory->create();
@@ -99,6 +118,9 @@ final class InstallPresenter extends Presenter
 	}
 
 
+	/**
+	 * Create and return the account creation form for the administrator.
+	 */
 	protected function createComponentAccount(): Form
 	{
 		$form = $this->userSingUpFactory;

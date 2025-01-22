@@ -1,4 +1,4 @@
-/* Importy */
+/* Imports */
 import "../base";
 import "../naja.components";
 import "../naja.tom.select";
@@ -11,10 +11,10 @@ import Select from "tom-select";
 import { NajaAjax } from "../../vendor/ublaboo/datagrid/assets/ajax";
 import { Alert, Dropdown } from "bootstrap";
 
-/* Stylování */
+/* Styling */
 import '../styles/admin.scss';
 
-/* Pluginy pro datagrid */
+/* Datagrid Plugins */
 import {
 	AutosubmitPlugin,
 	CheckboxPlugin,
@@ -34,45 +34,45 @@ import {
 	VanillaDatepicker
 } from "../../vendor/ublaboo/datagrid/assets"
 
-/* Inicializace komponent po načtení DOM */
+/* Initialize components after DOM is loaded */
 document.addEventListener("DOMContentLoaded", () => {
-	// Inicializace PerfectScrollbar
+	// Initialize PerfectScrollbar
 	initScrollbar('.scrollbar');
 
-	// Inicializace alertů (Bootstrap)
+	// Initialize alerts (Bootstrap)
 	initAlerts('.alert');
 
-	// Inicializace dropdownů
+	// Initialize dropdowns
 	initDropdowns('.dropdown');
 
-	// Inicializace Naja (AJAX)
+	// Initialize Naja (AJAX)
 	naja.formsHandler.netteForms = Nette;
 	naja.initialize();
 
-	// Inicializace datagrid
+	// Initialize datagrid
 	initDatagrid();
 });
 
-/* Funkce pro inicializaci PerfectScrollbar */
+/* Function to initialize PerfectScrollbar */
 function initScrollbar(selector) {
 	new PerfectScrollbar(selector, { wheelSpeed: 0.3 });
 }
 
-/* Funkce pro inicializaci alertů */
+/* Function to initialize alerts */
 function initAlerts(selector) {
 	document.querySelectorAll(selector).forEach((element) => {
 		new Alert(element);
 	});
 }
 
-/* Funkce pro inicializaci dropdownů */
+/* Function to initialize dropdowns */
 function initDropdowns(selector) {
 	document.querySelectorAll(selector).forEach((el) => {
 		new Dropdown(el);
 	});
 }
 
-/* Funkce pro inicializaci datagrid */
+/* Function to initialize datagrid */
 function initDatagrid() {
 	createDatagrids(new NajaAjax(naja), {
 		datagrid: {
