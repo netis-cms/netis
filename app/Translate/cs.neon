@@ -42,7 +42,7 @@
 "User not found.": "Uživatel nenalezen."
 "The password is incorrect.": "Heslo je nesprávné."
 "Sign up": "Registrovat se"
-"Registration was successful.": "Registrace proběhla úspěšně."
+"Registration was successful.": "Registrace byla úspěšná."
 "New user registration": "Registrace nového uživatele"
 "Username": "Uživatel"
 "Full name": "Celé jméno"
@@ -97,8 +97,8 @@
 "Action or signal": "Akce nebo signály"
 "Name action or signal": "Název akce nebo signálu"
 "The privilege is not allowed to be updated.": "Aktualizace oprávnění není povolena."
-"Privilege deleted.": "Záznam vymazán."
-"The privilege is not allowed to be deleted.": "Položku nelze smazat."
+"Privilege deleted.": "Záznam byl vymazán."
+"The privilege is not allowed to be deleted.": "Položku nelze odstranit."
 "The privilege can not be deleted, you must first delete the records that are associated with it":
 	"Záznam nelze smazat, musíte nejprve smazat záznamy, které jsou s ním spojeny"
 
@@ -110,29 +110,29 @@
 "Edit or add roles to users": "Upravit nebo přidat role uživatelům"
 "Role removed.": "Role odebrána."
 "Role assigned.": "Role přidělena."
-"Roles have been updated.": "Role byli aktualizovány."
+"Roles have been updated.": "Role byly aktualizovány."
 "The user already has this role assigned.": "Uživatel již má tuto roli přiřazenou."
 "Select user": "Volba uživatele"
 "The privilege can not be deleted, you must first delete the records that are associated with it.":
-	"Záznam nelze smazat, musíte nejprve smazat záznamy, které jsou s ním spojeny."
+	"Záznam nelze smazat, musíte nejprve odstranit záznamy, které jsou s ním spojeny."
 
 # datagrid
-'contributte_datagrid.reset_filter': 'Reset'
-'contributte_datagrid.items': 'Položky'
-'contributte_datagrid.from': 'z'
-'contributte_datagrid.all': 'Vše'
-'contributte_datagrid.action': 'Akce'
-'contributte_datagrid.no_item_found': 'Data nebyla nalezena.'
-'contributte_datagrid.here': 'Reset'
-'contributte_datagrid.no_item_found_reset': 'Data nebyla nalezena, resetujte filtr.'
-'contributte_datagrid.next': 'Další'
-'contributte_datagrid.previous': 'Předchozí'
-'contributte_datagrid.show_filter': 'Zobrazit filtr'
-'contributte_datagrid.show_all_columns': 'Zobrazit vše'
-'contributte_datagrid.group_actions': 'Hromadná akce'
-'contributte_datagrid.choose': 'Zvolit akci'
-'contributte_datagrid.execute': 'Potvrdit akci'
-'contributte_datagrid.per_page_submit': 'Změnit'
-'contributte_datagrid.hide_column': 'Skrýt sloupec'
-'contributte_datagrid.show_default_columns': 'zobrazit výchozí sloupce'
-'contributte_datagrid.filter_submit_button': 'Hledat'
+"contributte_datagrid.reset_filter": "Reset"
+"contributte_datagrid.items": "Položky"
+"contributte_datagrid.from": "z"
+"contributte_datagrid.all": "Vše"
+"contributte_datagrid.action": "Akce"
+"contributte_datagrid.no_item_found": "Data nebyla nalezena."
+"contributte_datagrid.here": "Reset"
+"contributte_datagrid.no_item_found_reset": "Data nebyla nalezena, resetujte filtr."
+"contributte_datagrid.next": "Další"
+"contributte_datagrid.previous": "Předchozí"
+"contributte_datagrid.show_filter": "Zobrazit filtr"
+"contributte_datagrid.show_all_columns": "Zobrazit vše"
+"contributte_datagrid.group_actions": "Hromadná akce"
+"contributte_datagrid.choose": "Zvolit akci"
+"contributte_datagrid.execute": "Potvrdit akci"
+"contributte_datagrid.per_page_submit": "Změnit"
+"contributte_datagrid.hide_column": "Skrýt sloupec"
+"contributte_datagrid.show_default_columns": "zobrazit výchozí sloupce"
+"contributte_datagrid.filter_submit_button": "Hledat"
