@@ -1,13 +1,11 @@
 export default class ConfirmExtension {
 	initialize(naja) {
 		naja.uiHandler.addEventListener('interaction', (e) => {
-			let el = e.detail.element;
-			if (el.hasAttribute('data-confirm')
-				&& ! window.confirm(el.getAttribute('data-confirm'))) {
-				e.preventDefault();
-
-			} else if (el.hasAttribute('data-datagrid-confirm')
-				&& ! window.confirm(el.getAttribute('data-datagrid-confirm'))) {
+			const el = e.detail.element;
+			const confirmMessage = el.getAttribute('data-confirm') || el.getAttribute('data-datagrid-confirm');
+			
+			// Pokud má element nějaký confirm atribut a uživatel nepotvrdí
+			if (confirmMessage && !window.confirm(confirmMessage)) {
 				e.preventDefault();
 			}
 		});
