@@ -1,21 +1,31 @@
 export default class SubmitButtonDisable {
 	initialize(naja) {
-		let submitButton;
-		const submitDisable = (doc) => {
-			const submit = doc.querySelectorAll('[data-btn-submit]');
+		let submitButton = null;
+
+		// Funkce pro nastavení submitButton podle kliknutého tlačítka
+		const setSubmitButton = (doc) => {
+			const submit = doc.querySelector('[data-btn-submit]:not([disabled])'); // Jen aktivní tlačítka
 			if (submit) {
-				submit.forEach(function (button) {
-					button.addEventListener('click', () => submitButton = button);
-				});
+				submitButton = submit;
 			}
 		};
-		submitDisable(document);
-		naja.snippetHandler.addEventListener('afterUpdate', (e) => submitDisable(e.detail.snippet));
+
+		// Inicializujeme pro původní dokument a po každé aktualizaci snippetů
+		setSubmitButton(document);
+		naja.snippetHandler.addEventListener('afterUpdate', (e) => setSubmitButton(e.detail.snippet));
+
+		// Před odesláním deaktivujeme tlačítko
 		naja.addEventListener('start', () => {
-			if (submitButton) submitButton.disabled = true;
+			if (submitButton) {
+				submitButton.disabled = true;
+			}
 		});
+
+		// Po dokončení povolíme tlačítko
 		naja.addEventListener('complete', () => {
-			if (submitButton) submitButton.disabled = false;
+			if (submitButton) {
+				submitButton.disabled = false;
+			}
 		});
 	}
 }
