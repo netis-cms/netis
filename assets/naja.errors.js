@@ -1,24 +1,28 @@
 export default class ErrorsExtension {
 	initialize(naja) {
+		const errorMessages = {
+			403: 'You do not have the necessary permissions to perform this action.',
+			404: 'Page not found.',
+		};
+
 		naja.addEventListener('error', (e) => {
-			let errorMessage = e.detail.error.message;
-			switch (e.detail.error.response.status) {
-				case 403: errorMessage = 'You do not have the necessary permissions to perform this action.'; break;
-				case 404: errorMessage = 'Page not found.'; break;
-			}
-			let snippet = document.getElementById('snippet--message');
-			let div = document.createElement('div');
-			let button = document.createElement('button');
-			for (let child of snippet.children) {
-				snippet.removeChild(child);
-			}
+			const error = e.detail.error;
+			const errorMessage = errorMessages[error.response.status] || error.message;
+
+			// Najdeme a vyprázdníme snippet
+			const snippet = document.getElementById('snippet--message');
+			snippet.innerHTML = '';
+
+			// Vytvoření nových elementů
+			const div = document.createElement('div');
+			const button = document.createElement('button');
 
 			div.className = 'alert alert-dismissible fade show border-0 rounded alert-danger';
 			div.style.zIndex = '1030';
 			div.textContent = errorMessage;
 			snippet.append(div);
 
-			button.className = 'btn-close'
+			button.className = 'btn-close';
 			button.setAttribute('data-bs-dismiss', 'alert');
 			div.append(button);
 		});
