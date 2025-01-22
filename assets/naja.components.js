@@ -1,56 +1,51 @@
 import naja from "naja";
-import {Modal, Offcanvas} from "bootstrap";
+import { Modal, Offcanvas } from "bootstrap";
 
+// Funkce pro inicializaci Bootstrap komponent
 function initBsComponents(el) {
-	for (let modal of el.querySelectorAll('.modal')) {
-		if (!modal._bsModal) {
-			modal._bsModal = new Modal(modal, {
-				keyboard: false
-			});
-		}
-	}
-	for (let offCanvas of el.querySelectorAll('.offcanvas')) {
-		if (!offCanvas._bsOffcanvas) {
-			offCanvas._bsOffcanvas = new Offcanvas(offCanvas);
-		}
-	}
+  // Funkce pro inicializaci jednotlivých komponent
+  function initComponent(component, ComponentClass) {
+    el.querySelectorAll(component).forEach((el) => {
+      if (!el._bsInstance) {
+        el._bsInstance = new ComponentClass(el, { keyboard: false });
+      }
+    });
+  }
+
+  // Inicializace modálů a offcanvas
+  initComponent('.modal', Modal);
+  initComponent('.offcanvas', Offcanvas);
 }
 
 document.addEventListener('DOMContentLoaded', () => initBsComponents(document));
+
+// Po každé aktualizaci snippetů
 naja.snippetHandler.addEventListener('afterUpdate', (e) => {
-	initBsComponents(e.detail.snippet);
+  initBsComponents(e.detail.snippet);
 });
 
+// Po dokončení požadavku (např. po úspěšném odeslání formuláře)
 naja.addEventListener('complete', (e) => {
-	if (typeof e.detail.payload !== 'undefined') {
-		let payload = e.detail.payload
-		let doc = document;
+  if (e.detail.payload) {
+    const doc = document;
+    const { modal, offcanvas, close } = e.detail.payload;
 
-		if (payload.modal) {
-			let modal = doc.querySelector('#' + payload.modal);
-			if (!modal.classList.contains('modal')) {
-				modal = modal.querySelector('.modal');
-			}
+    // Zobrazíme modal, pokud je uveden v payload
+    if (modal) {
+      const targetModal = doc.querySelector(`#${modal}`) || doc.querySelector(`#${modal} .modal`);
+      targetModal?._bsModal?.show();
+    }
 
-			if (modal?._bsModal) {
-				modal._bsModal.show();
-			}
-		}
+    // Zobrazíme offcanvas, pokud je uveden v payload
+    if (offcanvas) {
+      const targetOffcanvas = doc.querySelector(`#${offcanvas}`) || doc.querySelector(`#${offcanvas} .offcanvas`);
+      targetOffcanvas?._bsOffcanvas?.show();
+    }
 
-		if (payload.offcanvas) {
-			let offCanvas = doc.querySelector('#' +  payload.offcanvas);
-			if (!offCanvas.classList.contains('offcanvas')) {
-				offCanvas = offCanvas.querySelector('.offcanvas');
-			}
-
-			if (offCanvas?._bsOffcanvas) {
-				offCanvas._bsOffcanvas.show();
-			}
-		}
-
-		if (payload.close){
-			doc.querySelector('.offcanvas.show')?._bsOffcanvas?.hide();
-			doc.querySelector('.modal.show')?._bsModal?.hide();
-		}
-	}
+    // Zavřeme otevřený modal nebo offcanvas
+    if (close) {
+      doc.querySelector('.offcanvas.show')?._bsOffcanvas?.hide();
+      doc.querySelector('.modal.show')?._bsModal?.hide();
+    }
+  }
 });
