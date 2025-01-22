@@ -1,3 +1,4 @@
+/* Importy */
 import "../base";
 import "../naja.components";
 import "../naja.tom.select";
@@ -10,16 +11,10 @@ import Select from "tom-select";
 import { NajaAjax } from "../../vendor/ublaboo/datagrid/assets/ajax";
 import { Alert, Dropdown } from "bootstrap";
 
-/* scrollbar */
-new PerfectScrollbar('.scrollbar', {
-	wheelSpeed: 0.3
-});
+/* Stylování */
+import '../styles/admin.scss';
 
-const alertList = document.querySelectorAll('.alert');
-const alerts = [].slice.call(alertList).map(function (element) {
-	return new Alert(element);
-});
-
+/* Pluginy pro datagrid */
 import {
 	AutosubmitPlugin,
 	CheckboxPlugin,
@@ -39,20 +34,46 @@ import {
 	VanillaDatepicker
 } from "../../vendor/ublaboo/datagrid/assets"
 
-// Styles
-import '../styles/admin.scss';
-
-// Datagrid + UI
+/* Inicializace komponent po načtení DOM */
 document.addEventListener("DOMContentLoaded", () => {
-	// Initialize dropdowns
-	Array.from(document.querySelectorAll('.dropdown'))
-		.forEach(el => new Dropdown(el))
+	// Inicializace PerfectScrollbar
+	initScrollbar('.scrollbar');
 
-	// Initialize Naja (nette ajax)
+	// Inicializace alertů (Bootstrap)
+	initAlerts('.alert');
+
+	// Inicializace dropdownů
+	initDropdowns('.dropdown');
+
+	// Inicializace Naja (AJAX)
 	naja.formsHandler.netteForms = Nette;
 	naja.initialize();
 
-	// Initialize datagrid
+	// Inicializace datagrid
+	initDatagrid();
+});
+
+/* Funkce pro inicializaci PerfectScrollbar */
+function initScrollbar(selector) {
+	new PerfectScrollbar(selector, { wheelSpeed: 0.3 });
+}
+
+/* Funkce pro inicializaci alertů */
+function initAlerts(selector) {
+	document.querySelectorAll(selector).forEach((element) => {
+		new Alert(element);
+	});
+}
+
+/* Funkce pro inicializaci dropdownů */
+function initDropdowns(selector) {
+	document.querySelectorAll(selector).forEach((el) => {
+		new Dropdown(el);
+	});
+}
+
+/* Funkce pro inicializaci datagrid */
+function initDatagrid() {
 	createDatagrids(new NajaAjax(naja), {
 		datagrid: {
 			plugins: [
@@ -70,4 +91,4 @@ document.addEventListener("DOMContentLoaded", () => {
 			],
 		},
 	});
-});
+}
