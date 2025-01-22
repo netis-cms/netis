@@ -1,4 +1,5 @@
 let reqCnt = 0;
+
 export default class SpinnerExtension {
 	initialize(naja) {
 		const el = document.createElement('div');
