@@ -1,12 +1,11 @@
-{templateType App\Modules\Backend\Access\AccessTemplate}
-
 {* subtitle page *}
 {block title}{_'Users'}{/block}
 
 {* website content *}
 {block content}
-{embed ../../../Core/Widget/@content.latte}
-	{block content}
-		{control accessControl}
-	{/block}
-{/embed}
+	{embed ../../../Core/Widget/@content.latte}
+		{block content}
+			{control accessControl}
+		{/block}
+	{/embed}
+{/block}

@@ -15,8 +15,11 @@ final class Router
 	public static function create(): RouteList
 	{
 		$router = new RouteList;
+
+		// Adding the route to handle languages
 		$router->withModule('Front')
-			->addRoute('[<lang=cs cs|en>/]<presenter>/<action>', 'Home:default');
+			// Define the lang as an optional parameter with default value
+			->addRoute('[<lang=cs|en>]/<presenter>/<action>', 'Home:default');
 
 		return $router;
 	}

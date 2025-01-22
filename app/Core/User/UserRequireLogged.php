@@ -13,9 +13,6 @@ trait UserRequireLogged
 	 * Function that ensures the user is logged in.
 	 * If the user is not logged in, they will be redirected to the login page.
 	 * If the user was logged out due to inactivity, a message will be displayed.
-	 *
-	 * @param Presenter $presenter The application presenter that will contain the redirection action.
-	 * @param User $user The user whose login status will be checked.
 	 */
 	public function injectRequireLoggedUser(Presenter $presenter, User $user): void
 	{

@@ -19,7 +19,7 @@ use Nette\Security\AuthenticationException;
 
 
 /**
- * Sing-in user.
+ * Sign-in user.
  * @property SignTemplate $template
  */
 final class SignPresenter extends Presenter
@@ -29,7 +29,6 @@ final class SignPresenter extends Presenter
 
 	#[Persistent]
 	public string $backlink = '';
-
 
 	public function __construct(
 		private readonly Factory $factory,
@@ -51,18 +50,21 @@ final class SignPresenter extends Presenter
 	}
 
 
+	/**
+	 * Create the sign-in form.
+	 */
 	protected function createComponentSignIn(): Form
 	{
 		$form = $this->factory->create();
 		$form->addText(SignData::Email, 'Email')
 			->setHtmlAttribute('email')
 			->setHtmlAttribute('placeholder', 'Email address')
-			->addRule($form::Email)
-			->setRequired();
+			->addRule($form::Email, 'Please enter a valid email address.')
+			->setRequired('Please enter your email address.');
 
 		$form->addPassword(SignData::Password, 'Password')
 			->setHtmlAttribute('placeholder', 'Your password')
-			->setRequired();
+			->setRequired('Please enter your password.');
 
 		$form->addSubmit('send', 'Sign in');
 		$form->onSuccess[] = [$this, 'success'];
@@ -71,6 +73,7 @@ final class SignPresenter extends Presenter
 
 
 	/**
+	 * Handle form submission success.
 	 * @throws AbortException
 	 */
 	public function success(Form $form, SignData $data): void
@@ -81,18 +84,19 @@ final class SignPresenter extends Presenter
 			$this->redirect(':Backend:Admin:');
 
 		} catch (AuthenticationException $e) {
-			if ($e->getCode()) {
-				$message = match ($e->getCode()) {
-					1 => 'User not found.',
-					2 => 'The password is incorrect.',
-					default => 'Unknown status code.',
-				};
-				$form->addError($message);
-			}
+			$message = match ($e->getCode()) {
+				1 => 'User not found.',
+				2 => 'The password is incorrect.',
+				default => 'Unknown error occurred.',
+			};
+			$form->addError($message);
 		}
 	}
 
 
+	/**
+	 * Create the sign-up form.
+	 */
 	protected function createComponentSignUp(): Form
 	{
 		$form = $this->userSingUpFactory->create();

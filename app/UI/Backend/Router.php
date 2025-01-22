@@ -12,11 +12,16 @@ final class Router
 {
 	use StaticClass;
 
+	/**
+	 * Creates and configures the routing for the backend module.
+	 */
 	public static function create(): RouteList
 	{
 		$router = new RouteList;
+
+		// Define the routes for the Backend module
 		$router->withModule('Backend')
-			->addRoute('[<lang=cs cs|en>/]admin/<presenter>/<action>', 'Admin:default');
+			->addRoute('[<lang=cs|en>/]admin/<presenter>/<action>', 'Admin:default');
 
 		return $router;
 	}

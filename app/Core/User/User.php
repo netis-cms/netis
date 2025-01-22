@@ -14,8 +14,6 @@ class User extends NetteUser
 	 * If a name is specified, returns only the corresponding value.
 	 *
 	 * @throws UserIdentityException If the requested data is unavailable.
-	 * @param string|null $name The key in the identity data.
-	 * @return mixed Returns the value or the entire identity data.
 	 */
 	public function getUserData(?string $name = null): mixed
 	{
@@ -33,7 +31,6 @@ class User extends NetteUser
 	 * Retrieves the UserIdentity object.
 	 *
 	 * @throws UserIdentityException If the identity data is incorrect.
-	 * @return UserIdentity
 	 */
 	public function getUserIdentity(): UserIdentity
 	{
@@ -50,10 +47,6 @@ class User extends NetteUser
 
 	/**
 	 * Checks if the user has permission for any of the required privileges.
-	 *
-	 * @param string $resource The resource name (e.g., 'page', 'resource').
-	 * @param array $privileges The list of privileges.
-	 * @return bool True if at least one permission is valid.
 	 */
 	public function isAnyAllowed(string $resource, array $privileges): bool
 	{

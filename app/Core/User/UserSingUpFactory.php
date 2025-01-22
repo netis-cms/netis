@@ -22,20 +22,13 @@ use Nette\Utils\Validators;
  */
 class UserSingUpFactory
 {
-	/** @var int|null User's role ID */
+	/** User's role ID */
 	public ?int $roleId = null;
 
-	/** @var int|null User's ID (if already exists) */
+	/** User's ID (if already exists) */
 	public ?int $userId = null;
 
 
-	/**
-	 * Constructor for the class.
-	 *
-	 * @param Connection $db     Database connection.
-	 * @param Passwords $password Password hashing service.
-	 * @param Factory $factory   Form factory instance.
-	 */
 	public function __construct(
 		private readonly Connection $db,
 		private readonly Passwords $password,
@@ -46,8 +39,6 @@ class UserSingUpFactory
 
 	/**
 	 * Creates the user registration form.
-	 *
-	 * @return Form Registration form.
 	 */
 	public function create(): Form
 	{
@@ -83,9 +74,6 @@ class UserSingUpFactory
 	/**
 	 * Handles the successful submission of the form.
 	 * Hashes the password, generates a token, and inserts the user into the database.
-	 *
-	 * @param Form $form Submitted form.
-	 * @param UserData $data User data from the form.
 	 *
 	 * @throws Exception
 	 * @throws UserDuplicateEmailException

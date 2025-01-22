@@ -7,7 +7,8 @@
 				{block form}
 					{include input, name: 'name', columns: 12}
 					<div class="d-block">
-						{include submit, name: 'send', buttonCanvas: true}
+						{include submit, name: 'send'}
+						{include buttonDismiss, offCanvas: true}
 					</div>
 				{/block}
 			{/embed}
@@ -23,7 +24,8 @@
 			{embed ../../../../Core/Widget/@form.latte, name: 'delete', class: 'ajax'}
 				{block form}
 					<div class="d-block">
-						{include submit, name: 'confirm', buttonModal: true}
+						{include submit, name: 'confirm'}
+						{include buttonDismiss, modal: true}
 					</div>
 				{/block}
 			{/embed}

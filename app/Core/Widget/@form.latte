@@ -1,43 +1,51 @@
-{varType string $class}
+{var string $class = ''}
 {varType string $name}
 {varType Nette\Application\UI\Form $form}
 
-<form n:name="$name" n:class="'row g-3', isset($class) ? $class" data-naja-history="off">
+<form n:name="$name" n:class="'row g-3', $class" data-naja-history="off">
 	<ul n:if="$form->hasErrors()" class="errors">
 		<li n:foreach="$form->errors as $error">{_$error}</li>
 	</ul>
+
 	{block form}{/block}
 </form>
 
-{define input, string $name, int $columns = 12, string $class}
+
+{define input, string $name, int $columns = 12, string $class = ''}
 	<div class="col-md-{$columns}">
 		<label n:name="$name" class="form-label" />
-		<input n:name="$name" n:class="'form-control', isset($class) ? $class">
+		<input n:name="$name" n:class="'form-control', $class" />
 	</div>
 {/define}
 
-{define select, string $name, int $columns = 12, string $class}
+
+{define select, string $name, int $columns = 12, string $class = ''}
 	<div class="col-md-{$columns} form-error">
 		<label n:name="$name" class="form-label" />
 		<div>
-			<select n:name="$name" n:class="'form-control', isset($class) ? $class"></select>
+			<select n:name="$name" n:class="'form-control', $class"></select>
 		</div>
 	</div>
 {/define}
 
-{define textarea, string $name, int $columns = 12, int $rows = 3, string $class}
+
+{define textarea, string $name, int $columns = 12, int $rows = 3, string $class = ''}
 	<div class="col-md-{$columns}">
 		<label n:name="$name" class="form-label" />
-		<textarea n:name="$name" n:class="'form-control', isset($class) ? $class" rows="{$rows}"></textarea>
+		<textarea n:name="$name" n:class="'form-control', $class" rows="{$rows}"></textarea>
 	</div>
 {/define}
 
-{define submit, string $name, bool $buttonCanvas = false, bool $buttonModal = false}
-	<input n:name="$name" class="btn btn-primary text-white" data-btn-submit>
-	<button n:if="$buttonCanvas" type="button" class="btn btn-outline-secondary ms-1" data-bs-dismiss="offcanvas">
-			{_'Cancel'}
-	</button>
-	<button n:if="$buttonModal" type="button" class="btn btn-outline-secondary ms-1" data-bs-dismiss="modal">
-		{_'Close'}
+
+{define submit, string $name}
+	<input n:name="$name" class="btn btn-primary text-white" data-btn-submit />
+{/define}
+
+
+{define buttonDismiss, bool $offCanvas = false, bool $modal = false}
+	<button n:if="($offCanvas or $modal)"
+			type="button" class="btn btn-outline-secondary ms-1"
+			data-bs-dismiss="{$offCanvas ? 'offcanvas' : ($modal ? 'modal' : '')}">
+		{_(($offCanvas) ? 'Cancel' : (($modal) ? 'Close' : ''))}
 	</button>
 {/define}

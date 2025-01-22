@@ -5,12 +5,14 @@
 		{snippet permissions}
 			{embed ../../../../Core/Widget/@form.latte, name: 'factory', class: 'ajax'}
 				{block form}
-					{include select, name: 'role_id', columns: 6, class: 'select-tom'}
-					{include select, name: 'resource_id', columns: 6, class: 'select-tom'}
-					{include select, name: 'privilege_id', columns: 6, class: 'select-tom'}
-					{include select, name: 'allowed', columns: 6, class: 'select-tom'}
+					{var string $selectTom = 'select-tom'}
+					{include select, name: 'role_id', columns: 6, class: $selectTom}
+					{include select, name: 'resource_id', columns: 6, class: $selectTom}
+					{include select, name: 'privilege_id', columns: 6, class: $selectTom}
+					{include select, name: 'allowed', columns: 6, class: $selectTom}
 					<div class="d-block">
-						{include submit, name: 'send', buttonCanvas: true}
+						{include submit, name: 'send'}
+						{include buttonDismiss, offCanvas: true}
 					</div>
 				{/block}
 			{/embed}
@@ -26,7 +28,8 @@
 			{embed ../../../../Core/Widget/@form.latte, name: 'delete', class: 'ajax'}
 				{block form}
 					<div class="d-block">
-						{include submit, name: 'confirm', buttonModal: true}
+						{include submit, name: 'confirm'}
+						{include buttonDismiss, modal: true}
 					</div>
 				{/block}
 			{/embed}

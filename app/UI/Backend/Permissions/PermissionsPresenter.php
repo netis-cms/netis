@@ -22,15 +22,30 @@ final class PermissionsPresenter extends BackendPresenter
 	use AuthorizationControl;
 
 	/**
+	 * Generic method to create components with similar structure.
+	 *
+	 * @throws Exception
+	 */
+	private function createAuthorizationControl(string $controlName, string $templateControl): object
+	{
+		// Get the correct control based on the control name.
+		$control = $this->{$controlName};
+
+		// Set common properties for the controls.
+		$control->templateControl = __DIR__ . '/Control/' . $templateControl;
+		$control->templateGrid = __DIR__ . '/../../../Core/Widget/@grid.latte';
+		$control->translator = $this->getTranslator();
+
+		return $control;
+	}
+
+
+	/**
 	 * @throws Exception
 	 */
 	protected function createComponentPermissionsControl(): PermissionsControl
 	{
-		$control = $this->permissionsControl;
-		$control->templateControl = __DIR__ . '/Control/control.permissions.latte';
-		$control->templateGrid = __DIR__ . '/../../../Core/Widget/@grid.latte';
-		$control->translator = $this->getTranslator();
-		return $control;
+		return $this->createAuthorizationControl('permissionsControl', 'custom.permissions.latte');
 	}
 
 
@@ -39,11 +54,7 @@ final class PermissionsPresenter extends BackendPresenter
 	 */
 	protected function createComponentRolesControl(): RolesControl
 	{
-		$control = $this->rolesControl;
-		$control->templateControl = __DIR__ . '/Control/custom.roles.latte';
-		$control->templateGrid = __DIR__ . '/../../../Core/Widget/@grid.latte';
-		$control->translator = $this->getTranslator();
-		return $control;
+		return $this->createAuthorizationControl('rolesControl', 'custom.roles.latte');
 	}
 
 
@@ -52,11 +63,7 @@ final class PermissionsPresenter extends BackendPresenter
 	 */
 	protected function createComponentResourcesControl(): ResourcesControl
 	{
-		$control = $this->resourcesControl;
-		$control->translator = $this->getTranslator();
-		$control->templateControl = __DIR__ . '/Control/custom.resources.latte';
-		$control->templateGrid = __DIR__ . '/../../../Core/Widget/@grid.latte';
-		return $control;
+		return $this->createAuthorizationControl('resourcesControl', 'custom.resources.latte');
 	}
 
 
@@ -65,11 +72,7 @@ final class PermissionsPresenter extends BackendPresenter
 	 */
 	protected function createComponentPrivilegesControl(): PrivilegesControl
 	{
-		$control = $this->privilegesControl;
-		$control->templateControl = __DIR__ . '/Control/custom.privileges.latte';
-		$control->templateGrid = __DIR__ . '/../../../Core/Widget/@grid.latte';
-		$control->translator = $this->getTranslator();
-		return $control;
+		return $this->createAuthorizationControl('privilegesControl', 'custom.privileges.latte');
 	}
 
 
@@ -78,10 +81,6 @@ final class PermissionsPresenter extends BackendPresenter
 	 */
 	protected function createComponentAccessControl(): AccessControl
 	{
-		$control = $this->accessControl;
-		$control->templateControl = __DIR__ . '/Control/custom.access.latte';
-		$control->templateGrid = __DIR__ . '/../../../Core/Widget/@grid.latte';
-		$control->translator = $this->getTranslator();
-		return $control;
+		return $this->createAuthorizationControl('accessControl', 'custom.access.latte');
 	}
 }

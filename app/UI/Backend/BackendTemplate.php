@@ -5,10 +5,19 @@ declare(strict_types=1);
 namespace App\UI\Backend;
 
 use App\UI\Template;
-use Nette\Security\User;
+use Nette\Security\User as NetteUser;
+use App\Core\User\User as AppUser;
 
 
+/**
+ * Abstract class for backend templates.
+ * This class provides access to the logged-in user, either from Nette Security or custom User class.
+ */
 abstract class BackendTemplate extends Template
 {
-	public User|\App\Core\User\User $user;
+	/**
+	 * The logged-in user.
+	 * This can be either the Nette User or a custom User class from App\Core\User.
+	 */
+	public NetteUser|AppUser $user;
 }

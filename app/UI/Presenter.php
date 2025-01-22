@@ -21,11 +21,16 @@ abstract class Presenter extends \Nette\Application\UI\Presenter
 	public string $loginLink = ':Backend:Sign:in';
 
 
-	public function injectInstall(self $presenter): void
+	/**
+	 * Check if installation is required and redirect if necessary.
+	 */
+	public function injectInstall(): void
 	{
+		// Check if the Install directory exists, meaning installation has not been completed.
 		if (is_dir(__DIR__ . '/Install')) {
-			$presenter->onStartup[] = function () use ($presenter) {
-				$presenter->redirect(':Install:Install:');
+			// Setup redirect to the install page on application startup.
+			$this->onStartup[] = function () {
+				$this->redirect(':Install:Install:');
 			};
 		}
 	}

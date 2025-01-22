@@ -68,9 +68,6 @@ class UserRepository implements Authenticator, IdentityHandler
 
 	/**
 	 * Saves the user's identity for later use (e.g., for the token).
-	 *
-	 * @param UserToken|IIdentity $identity The user's identity or token.
-	 * @return SimpleIdentity A new identity for the saved token.
 	 */
 	public function sleepIdentity(UserToken|IIdentity $identity): SimpleIdentity
 	{
@@ -83,7 +80,6 @@ class UserRepository implements Authenticator, IdentityHandler
 	 *
 	 * @throws Exception If there is an error while finding the user.
 	 * @throws AttributeDetectionException If there is an error while finding attributes.
-	 * @return SimpleIdentity|null Returns a new identity or null if the user is not found.
 	 */
 	public function wakeupIdentity(IIdentity $identity): ?SimpleIdentity
 	{
@@ -100,12 +96,8 @@ class UserRepository implements Authenticator, IdentityHandler
 		if (in_array(Conf::RoleAdmin, $role, true)) {
 			if (!$this->panelCookie->load()) {
 				$this->panelCookie->save($role);
+				$role = $this->panelCookie->load();
 			}
-		}
-
-		// If a panel cookie is saved, use it for the role.
-		if ($this->panelCookie->load()) {
-			$role = $this->panelCookie->load();
 		}
 
 		return new SimpleIdentity($user->id, $role, $user);
@@ -117,7 +109,6 @@ class UserRepository implements Authenticator, IdentityHandler
 	 *
 	 * @throws Exception If there is an error while finding the user.
 	 * @throws AttributeDetectionException If there is an error while finding attributes.
-	 * @return array|UsersEntity|null Returns the user's data or null if not found.
 	 */
 	private function findUser(string $user): array|UsersEntity|null
 	{
@@ -131,7 +122,6 @@ class UserRepository implements Authenticator, IdentityHandler
 	 *
 	 * @throws AttributeDetectionException If there is an error while finding attributes.
 	 * @throws Exception If there is an error while finding the user.
-	 * @return array|UsersEntity|null Returns the user's data or null if not found.
 	 */
 	private function findUserById(string $id): array|UsersEntity|null
 	{
@@ -142,9 +132,6 @@ class UserRepository implements Authenticator, IdentityHandler
 
 	/**
 	 * Finds the roles of a user.
-	 *
-	 * @param int $userId The user's ID.
-	 * @return array|string Returns the list of user roles or a default role.
 	 */
 	private function findUserRoles(int $userId): array|string
 	{
