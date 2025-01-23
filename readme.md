@@ -6,7 +6,7 @@ Little CMS.
 [![PHP version](https://badge.fury.io/ph/netis-cms%2Fnetis.svg)](https://badge.fury.io/ph/netis-cms%2Fnetis)
 [![Coding Style](https://github.com/netis-cms/netis/actions/workflows/coding-style.yml/badge.svg)](https://github.com/netis-cms/netis/actions/workflows/coding-style.yml)
 [![CodeFactor](https://www.codefactor.io/repository/github/netis-cms/netis/badge)](https://www.codefactor.io/repository/github/netis-cms/netis)
-[![Qodana](https://github.com/netis-cms/netis/actions/workflows/code_quality.yml/badge.svg)](https://github.com/netis-cms/netis/actions/workflows/code_quality.yml)
+[![Qodana](https://github.com/netis-cms/netis/actions/workflows/qodana_code_quality.yml/badge.svg)](https://github.com/netis-cms/netis/actions/workflows/qodana_code_quality.yml)
 
 ## Technology
 - PHP 8.1 or higher
