@@ -1,6 +1,6 @@
 /* Imports */
 import naja from "naja";
-import { LiveForm, Nette } from "live-form-validation"; // Ensure correct import for LiveForm
+import { LiveForm, Nette } from "live-form-validation";
 import SubmitButtonDisable from "./naja.button";
 import SpinnerExtension from "./naja.spinner";
 import ConfirmExtension from "./naja.confirm";
