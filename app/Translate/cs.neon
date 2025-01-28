@@ -49,6 +49,8 @@
 "Account administrator registration successful.": "Registrace správce účtu proběhla úspěšně."
 "Password must be at least %d characters long.": "Heslo musí mít alespoň %d znaků."
 "Sign out": "Odhlásit se"
+"Please enter your email address.": "Zadejte prosím svou e-mailovou adresu."
+"Please enter your password.": "Zadejte prosím své heslo."
 
 # permissions
 "Are you sure you want to delete the selected item?": "Opravdu chcete smazat vybranou položku?"

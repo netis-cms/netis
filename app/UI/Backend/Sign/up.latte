@@ -5,12 +5,12 @@
 {block content}
 	{embed ../../../Core/Widget/@form.latte, name: 'signUp'}
 		{block form}
-			{include input, name: 'username'}
-			{include input, name: 'email'}
-			{include input, name: 'password'}
-			{include input, name: 'verify'}
+			{include input, type: text, name: 'username'}
+			{include input, type: text, name: 'email'}
+			{include input, type: text, name: 'password'}
+			{include input, type: text, name: 'verify'}
 			<div class="d-grid gap-1">
-				{include submit, name: 'send'}
+				{include input, type: submit, name: 'send'}
 				<a n:href="in" class="btn btn-link text-start">{_'Back'}</a>
 			</div>
 		{/block}

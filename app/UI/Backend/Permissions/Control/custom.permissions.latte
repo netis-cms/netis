@@ -6,13 +6,13 @@
 			{embed ../../../../Core/Widget/@form.latte, name: 'factory', class: 'ajax'}
 				{block form}
 					{var string $selectTom = 'select-tom'}
-					{include select, name: 'role_id', columns: 6, class: $selectTom}
-					{include select, name: 'resource_id', columns: 6, class: $selectTom}
-					{include select, name: 'privilege_id', columns: 6, class: $selectTom}
-					{include select, name: 'allowed', columns: 6, class: $selectTom}
+					{include selectTom, name: 'role_id', columns: 6, class: $selectTom}
+					{include selectTom, name: 'resource_id', columns: 6, class: $selectTom}
+					{include selectTom, name: 'privilege_id', columns: 6, class: $selectTom}
+					{include selectTom, name: 'allowed', columns: 6, class: $selectTom}
 					<div class="d-block">
 						{include submit, name: 'send'}
-						{include buttonDismiss, offCanvas: true}
+						{include buttonDismiss, buttonCanvas: true}
 					</div>
 				{/block}
 			{/embed}
@@ -29,7 +29,7 @@
 				{block form}
 					<div class="d-block">
 						{include submit, name: 'confirm'}
-						{include buttonDismiss, modal: true}
+						{include buttonDismiss, buttonModal: true}
 					</div>
 				{/block}
 			{/embed}

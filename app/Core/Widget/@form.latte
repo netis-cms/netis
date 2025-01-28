@@ -19,7 +19,28 @@
 			{case 'text'}<input n:name="$name" n:class="'form-control', $class">
 			{case 'select'}<select n:name="$name" n:class="'form-select', $class"></select>
 			{case 'textarea'}<textarea n:name="$name" n:class="'form-control', $class" rows="{$rows}"></textarea>
-			{case 'submit'}<input n:name="$name" n:class="'btn btn-primary text-white', $class" data-btn-submit>
 		{/switch}
 	</div>
+{/define}
+
+{define selectTom, string $name, int $columns = 12, string $class}
+	<div class="col-md-{$columns} form-error">
+		<label n:name="$name" class="form-label" />
+		<div>
+			<select n:name="$name" n:class="'form-control', $class"></select>
+		</div>
+	</div>
+{/define}
+
+{define submit, string $name, string $class}
+	<input n:name="$name" n:class="'btn btn-primary text-white', $class" data-btn-submit>
+{/define}
+
+{define buttonDismiss, bool $buttonCanvas = false, bool $buttonModal = false}
+	<button n:if="$buttonCanvas" type="button" class="btn btn-outline-secondary ms-1" data-bs-dismiss="offcanvas">
+		{_'Cancel'}
+	</button>
+	<button n:if="$buttonModal" type="button" class="btn btn-outline-secondary ms-1" data-bs-dismiss="modal">
+		{_'Close'}
+	</button>
 {/define}
