@@ -16,23 +16,20 @@ use Nette\DI\Attributes\Inject;
  */
 abstract class BackendPresenter extends Presenter
 {
-	// Trait to enforce user is logged in
 	use UserRequireLogged;
 
-	// Inject the User object to access current user data
 	#[Inject]
 	public User $user;
 
 
 	/**
 	 * Runs before rendering the page.
-	 * Sets the current user to the template.
 	 */
 	protected function beforeRender(): void
 	{
 		parent::beforeRender();
 
 		// Ensure the user is set and accessible in the template
-		$this->template->user = $this->user ?? null; // Safe access to user object
+		$this->template->user = $this->user ?? null;
 	}
 }
