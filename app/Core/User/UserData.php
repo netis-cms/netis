@@ -14,10 +14,10 @@ use Drago\Utils\ExtraArrayHash;
 class UserData extends ExtraArrayHash
 {
 	// Constants for database column names
-	public const ColumnUsername = 'username';
-	public const ColumnEmail = 'email';
-	public const ColumnPassword = 'password';
-	public const Verify = 'verify';
+	public const string ColumnUsername = 'username';
+	public const string ColumnEmail = 'email';
+	public const string ColumnPassword = 'password';
+	public const string Verify = 'verify';
 
 	/** @var string User's username */
 	public string $username;

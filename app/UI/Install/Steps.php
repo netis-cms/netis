@@ -7,16 +7,20 @@ namespace App\UI\Install;
 use Nette\Caching\Cache;
 use Throwable;
 
+
 /**
  * Saving installation steps into cache.
  */
 class Steps
 {
-	private const CacheKey = 'Install step';
+	private const string CacheKey = 'Install step';
+
 
 	public function __construct(
 		private readonly Cache $cache,
-	) {}
+	) {
+	}
+
 
 	/**
 	 * Save the current installation step to cache.

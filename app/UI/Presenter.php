@@ -10,7 +10,10 @@ use Drago\Localization\TranslatorAdapter;
 
 
 /**
- * @property Template $template
+ * Base presenter class for handling common functionality in the application.
+ * It includes localization functionality through the TranslatorAdapter trait.
+ *
+ * @property-read Template $template The template used by the presenter
  */
 abstract class Presenter extends \Nette\Application\UI\Presenter
 {

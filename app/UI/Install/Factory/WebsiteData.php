@@ -14,16 +14,12 @@ use Drago\Utils\ExtraArrayHash;
 class WebsiteData extends ExtraArrayHash
 {
 	// Constants for keys used in the website data array
-	public const Website = 'website';
-	public const Description = 'description';
+	public const string Website = 'website';
+	public const string Description = 'description';
 
-	/**
-	 * @var string The website URL.
-	 */
+	/** @var string The website URL. */
 	public string $website;
 
-	/**
-	 * @var string The website description.
-	 */
+	/** @var string The website description. */
 	public string $description;
 }

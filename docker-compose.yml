@@ -9,7 +9,7 @@ services:
     volumes:
       - ./:/var/www/html/
     ports:
-      - '8010:80'
+      - '9010:80'
 
 
   # database
@@ -25,4 +25,4 @@ services:
     volumes:
       - ./docker/mysql/:/var/lib/mysql
     ports:
-      - '6093:3306'
+      - '7093:3306'

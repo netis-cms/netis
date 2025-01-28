@@ -14,12 +14,12 @@ use Throwable;
 /**
  * Install database tables by loading an SQL dump file.
  */
-final class TablesFactory
+final readonly class TablesFactory
 {
 	public function __construct(
-		private readonly Connection $db,
-		private readonly Steps $steps,
-		private readonly Factory $factory,
+		private Connection $db,
+		private Steps $steps,
+		private Factory $factory,
 	) {
 	}
 

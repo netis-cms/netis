@@ -23,6 +23,7 @@ abstract class BackendPresenter extends Presenter
 	#[Inject]
 	public User $user;
 
+
 	/**
 	 * Runs before rendering the page.
 	 * Sets the current user to the template.

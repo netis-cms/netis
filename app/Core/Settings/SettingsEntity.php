@@ -22,17 +22,17 @@ class SettingsEntity extends Entity
 	/**
 	 * The name of the table in the database.
 	 */
-	public const Table = 'settings';
+	public const string Table = 'settings';
 
 	/**
 	 * The name of the column for the setting name.
 	 */
-	public const ColumnName = 'name';
+	public const string ColumnName = 'name';
 
 	/**
 	 * The name of the column for the setting value.
 	 */
-	public const ColumnValue = 'value';
+	public const string ColumnValue = 'value';
 
 	/**
 	 * The name of the setting.

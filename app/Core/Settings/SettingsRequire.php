@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Core\Settings;
 
-use Exception;
 use Nette\Application\UI\Presenter;
 use Nette\DI\Attributes\Inject;
 use RuntimeException;
@@ -20,6 +19,7 @@ trait SettingsRequire
 {
 	#[Inject]
 	public SettingsRepository $settingsRepository;
+
 
 	/**
 	 * This method fetches settings from the repository and assigns them to
@@ -46,7 +46,7 @@ trait SettingsRequire
 				// Assign settings to the template
 				$presenter->template->settings = $settingsRecords;
 
-			} catch (Exception $e) {
+			} catch (\Throwable $e) {
 				// Handle errors, log them, or assign empty/default settings as needed
 				// For now, let's just log the error
 				Debugger::log($e, ILogger::EXCEPTION);

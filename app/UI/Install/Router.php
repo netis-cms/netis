@@ -12,7 +12,6 @@ final class Router
 {
 	use StaticClass;
 
-
 	/**
 	 * Create and return the application's routing configuration.
 	 *

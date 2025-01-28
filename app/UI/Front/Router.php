@@ -8,18 +8,26 @@ use Nette\Application\Routers\RouteList;
 use Nette\StaticClass;
 
 
+/**
+ * Router for the Front module.
+ * This class defines the routing for the front-end part of the application.
+ */
 final class Router
 {
 	use StaticClass;
 
+	/**
+	 * Creates and configures the route list for the front-end module.
+	 *
+	 * @return RouteList The configured route list.
+	 */
 	public static function create(): RouteList
 	{
 		$router = new RouteList;
-
-		// Adding the route to handle languages
+		// Define the route pattern with optional language parameter.
+		// The default route points to the Home presenter and its default action.
 		$router->withModule('Front')
-			// Define the lang as an optional parameter with default value
-			->addRoute('[<lang=cs|en>]/<presenter>/<action>', 'Home:default');
+			->addRoute('[<lang=cs cs|en>/]<presenter>/<action>', 'Home:default');
 
 		return $router;
 	}

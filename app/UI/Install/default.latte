@@ -32,12 +32,12 @@
 	<p>{_'If there is a problem with database server authentication, please contact your web hosting vendor to verify the correctness of the data.'}</p>
 	{embed '../../../app/Core/Widget/@form.latte', name: 'database', class: 'ajax mt-5'}
 		{block form}
-			{include input, name: 'host', columns: 6}
-			{include input, name: 'user', columns: 6}
-			{include input, name: 'database', columns: 6}
-			{include input, name: 'password', columns: 6}
+			{include input, type: text, name: 'host', columns: 6}
+			{include input, type: text, name: 'user', columns: 6}
+			{include input, type: text, name: 'database', columns: 6}
+			{include input, type: text, name: 'password', columns: 6}
 			<div class="d-block">
-				{include submit, name: 'send'}
+				{include input, type: submit, name: 'send'}
 			</div>
 		{/block}
 	{/embed}
@@ -54,7 +54,7 @@
 	{embed '../../../app/Core/Widget/@form.latte', name: 'tables', class: 'ajax'}
 		{block form}
 		<div class="d-block">
-			{include submit, name: 'send'}
+			{include input, type: submit, name: 'send'}
 		</div>
 		{/block}
 	{/embed}
@@ -67,10 +67,10 @@
 	<p>{_'Please enter basic information for the website.'}</p>
 	{embed '../../../app/Core/Widget/@form.latte', name: 'website', class: 'ajax mt-5'}
 		{block form}
-			{include input, name: 'website', columns: 6}
-			{include input, name: 'description', columns: 6}
+			{include input, type: text, name: 'website', columns: 6}
+			{include input, type: text, name: 'description', columns: 6}
 			<div class="d-block">
-				{include submit, name: 'send'}
+				{include input, type: submit, name: 'send'}
 			</div>
 		{/block}
 	{/embed}
@@ -83,12 +83,12 @@
 	<p>{_'Administrator account registration.'}</p>
 	{embed '../../../app/Core/Widget/@form.latte', name: 'account', class: 'ajax mt-5'}
 		{block form}
-			{include input, name: 'username', columns: 6}
-			{include input, name: 'email', columns: 6}
-			{include input, name: 'password', columns: 6}
-			{include input, name: 'verify', columns: 6}
+			{include input, type: text, name: 'username', columns: 6}
+			{include input, type: text, name: 'email', columns: 6}
+			{include input, type: text, name: 'password', columns: 6}
+			{include input, type: text, name: 'verify', columns: 6}
 			<div class="d-block">
-				{include submit, name: 'send'}
+				{include input, type: submit, name: 'send'}
 			</div>
 		{/block}
 	{/embed}

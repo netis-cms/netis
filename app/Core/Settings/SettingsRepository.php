@@ -7,7 +7,6 @@ namespace App\Core\Settings;
 use Dibi\Connection;
 use Drago\Attr\Table;
 use Drago\Database\Database;
-use Exception;
 use RuntimeException;
 
 
@@ -34,7 +33,7 @@ class SettingsRepository
 			// Fetch settings from the database using the read method, and map them as key-value pairs.
 			return $this->read('*')->fetchPairs(SettingsEntity::ColumnName, SettingsEntity::ColumnValue);
 
-		} catch (Exception $e) {
+		} catch (\Throwable $e) {
 			// Handle potential errors (e.g., database connection or query failure).
 			// Log the error or handle it as needed.
 			// For example: throw a custom exception or return an empty array.

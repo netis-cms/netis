@@ -21,7 +21,7 @@ final class Router
 
 		// Define the routes for the Backend module
 		$router->withModule('Backend')
-			->addRoute('[<lang=cs|en>/]admin/<presenter>/<action>', 'Admin:default');
+			->addRoute('[<lang=cs cs|en>/]admin/<presenter>/<action>', 'Admin:default');
 
 		return $router;
 	}

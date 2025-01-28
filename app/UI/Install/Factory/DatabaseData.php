@@ -13,10 +13,10 @@ use Drago\Utils\ExtraArrayHash;
 class DatabaseData extends ExtraArrayHash
 {
 	// Constants for database configuration keys
-	public const Host = 'host';
-	public const User = 'user';
-	public const Password = 'password';
-	public const Database = 'database';
+	public const string Host = 'host';
+	public const string User = 'user';
+	public const string Password = 'password';
+	public const string Database = 'database';
 
 	/** @var string $host Database host address */
 	public string $host;

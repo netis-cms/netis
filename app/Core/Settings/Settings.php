@@ -23,7 +23,7 @@ class Settings
 
 	public function __construct(
 		string $website,
-		string $description
+		string $description,
 	) {
 		$this->website = $website;
 		$this->description = $description;

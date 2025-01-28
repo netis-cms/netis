@@ -8,8 +8,11 @@ use App\UI\Presenter;
 
 
 /**
- * @property HomeTemplate $template
+ * HomePresenter handles the logic for the home page in the front-end module.
+ *
+ * @property-read HomeTemplate $template Template for rendering the home page.
  */
 final class HomePresenter extends Presenter
 {
+	// The class doesn't have additional logic yet, it extends the base Presenter class.
 }

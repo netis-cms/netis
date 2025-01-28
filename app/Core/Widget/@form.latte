@@ -1,51 +1,25 @@
-{var string $class = ''}
+{varType string $class}
 {varType string $name}
 {varType Nette\Application\UI\Form $form}
 
-<form n:name="$name" n:class="'row g-3', $class" data-naja-history="off">
-	<ul n:if="$form->hasErrors()" class="errors">
-		<li n:foreach="$form->errors as $error">{_$error}</li>
+<form n:name="$name" n:class="'row g-3', $class ?? null" data-naja-history="off">
+	<ul class="errors" n:ifcontent>
+		<li n:foreach="$form->getOwnErrors() as $error">{_$error}</li>
 	</ul>
 
+	{* Block for form rendering *}
 	{block form}{/block}
 </form>
 
-
-{define input, string $name, int $columns = 12, string $class = ''}
+{* General form field definition (input, select, textarea, submit) using switch *}
+{define input, string $type, string $name, int $columns = 12, string $class, int $rows = 3}
 	<div class="col-md-{$columns}">
-		<label n:name="$name" class="form-label" />
-		<input n:name="$name" n:class="'form-control', $class" />
+		{label $name, class: 'form-label' /}
+		{switch $type}
+			{case 'text'}<input n:name="$name" n:class="'form-control', $class">
+			{case 'select'}<select n:name="$name" n:class="'form-select', $class"></select>
+			{case 'textarea'}<textarea n:name="$name" n:class="'form-control', $class" rows="{$rows}"></textarea>
+			{case 'submit'}<input n:name="$name" n:class="'btn btn-primary text-white', $class" data-btn-submit>
+		{/switch}
 	</div>
-{/define}
-
-
-{define select, string $name, int $columns = 12, string $class = ''}
-	<div class="col-md-{$columns} form-error">
-		<label n:name="$name" class="form-label" />
-		<div>
-			<select n:name="$name" n:class="'form-control', $class"></select>
-		</div>
-	</div>
-{/define}
-
-
-{define textarea, string $name, int $columns = 12, int $rows = 3, string $class = ''}
-	<div class="col-md-{$columns}">
-		<label n:name="$name" class="form-label" />
-		<textarea n:name="$name" n:class="'form-control', $class" rows="{$rows}"></textarea>
-	</div>
-{/define}
-
-
-{define submit, string $name}
-	<input n:name="$name" class="btn btn-primary text-white" data-btn-submit />
-{/define}
-
-
-{define buttonDismiss, bool $offCanvas = false, bool $modal = false}
-	<button n:if="($offCanvas or $modal)"
-			type="button" class="btn btn-outline-secondary ms-1"
-			data-bs-dismiss="{$offCanvas ? 'offcanvas' : ($modal ? 'modal' : '')}">
-		{_(($offCanvas) ? 'Cancel' : (($modal) ? 'Close' : ''))}
-	</button>
 {/define}

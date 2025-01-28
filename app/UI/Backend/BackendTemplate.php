@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\UI\Backend;
 
+use App\Core\User\User as AppUser;
 use App\UI\Template;
 use Nette\Security\User as NetteUser;
-use App\Core\User\User as AppUser;
 
 
 /**

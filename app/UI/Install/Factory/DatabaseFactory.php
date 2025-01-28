@@ -16,13 +16,13 @@ use Throwable;
 /**
  * Database server settings configuration and handling.
  */
-final class DatabaseFactory
+final readonly class DatabaseFactory
 {
 	public function __construct(
-		private readonly Steps $steps,
-		private readonly NeonAdapter $neonAdapter,
-		private readonly Parameters $dirs,
-		private readonly Factory $factory,
+		private Steps $steps,
+		private NeonAdapter $neonAdapter,
+		private Parameters $dirs,
+		private Factory $factory,
 	) {
 	}
 

@@ -17,12 +17,12 @@ use Drago\Database\Entity;
  */
 class UsersEntity extends Entity
 {
-	public const Table = 'users';            // Database table name
-	public const PrimaryKey = 'id';          // Primary key of the table
-	public const ColumnUsername = 'username'; // Column for the username
-	public const ColumnEmail = 'email';      // Column for the email
-	public const ColumnPassword = 'password'; // Column for the password
-	public const ColumnToken = 'token';      // Column for the token
+	public const string Table = 'users';
+	public const string PrimaryKey = 'id';
+	public const string ColumnUsername = 'username';
+	public const string ColumnEmail = 'email';
+	public const string ColumnPassword = 'password';
+	public const string ColumnToken = 'token';
 
 	/** @var int User ID */
 	public int $id;

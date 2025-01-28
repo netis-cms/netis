@@ -17,16 +17,17 @@ use Nette\Application\UI\Form;
  * This factory handles the creation of the website settings form
  * and saves the submitted data to the database.
  */
-final class WebsiteFactory
+final readonly class WebsiteFactory
 {
-	private readonly Steps $steps;
-	private readonly Connection $db;
-	private readonly Factory $factory;
+	private Steps $steps;
+	private Connection $db;
+	private Factory $factory;
+
 
 	public function __construct(
 		Steps $steps,
 		Connection $db,
-		Factory $factory
+		Factory $factory,
 	) {
 		$this->steps = $steps;
 		$this->db = $db;
