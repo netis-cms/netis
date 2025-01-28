@@ -27,14 +27,14 @@ export default class ErrorsExtension {
 
 			// Set classes and styles for the alert box.
 			div.className = 'alert alert-dismissible fade show border-0 rounded alert-danger';
-			div.style.zIndex = '1030'; // Ensure the alert is visible on top.
+			div.style.zIndex = '1030';
 			div.textContent = errorMessage; // Display the error message.
 			snippet.append(div);
 
 			// Create a button to close the alert.
 			button.className = 'btn-close';
 			button.setAttribute('data-bs-dismiss', 'alert');
-			div.append(button); // Append the close button to the alert box.
+			div.append(button);
 		});
 	}
 }

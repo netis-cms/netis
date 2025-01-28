@@ -14,7 +14,7 @@ document.querySelectorAll('.alert').forEach((element) => {
 const button = document.getElementById('btn-send');
 if (button) {
 	button.addEventListener('click', (e) => {
-		const url = e.target.dataset.url; // Use dataset for better readability
+		const url = e.target.dataset.url;
 		button.disabled = true;
 
 		// Send GET request using Naja
@@ -22,7 +22,7 @@ if (button) {
 			// If additional processing is needed after the request, we can add it here.
 		}).catch(() => {
 			// Optional: handle errors if needed.
-			button.disabled = false; // Re-enable the button in case of error
+			button.disabled = false;
 		});
 	});
 }

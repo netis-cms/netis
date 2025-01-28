@@ -8,13 +8,13 @@ export default class ConfirmExtension {
 	initialize(naja) {
 		// Listen for 'interaction' events triggered by UI actions.
 		naja.uiHandler.addEventListener('interaction', (e) => {
-			const el = e.detail.element; // The element that triggered the interaction.
+			const el = e.detail.element;
 			// Retrieve the confirmation message from either 'data-confirm' or 'data-datagrid-confirm' attributes.
 			const confirmMessage = el.getAttribute('data-confirm') || el.getAttribute('data-datagrid-confirm');
 
 			// If the element has a confirmation attribute and the user does not confirm, prevent the default action.
 			if (confirmMessage && !window.confirm(confirmMessage)) {
-				e.preventDefault(); // Prevent the default behavior if user cancels the action.
+				e.preventDefault();
 			}
 		});
 	}

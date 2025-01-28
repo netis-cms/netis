@@ -10,7 +10,7 @@ export default class SpinnerExtension {
 		// Create a spinner element and add a class for styling.
 		const el = document.createElement('div');
 		el.classList.add('spinner');
-		document.body.appendChild(el); // Append the spinner to the DOM just once.
+		document.body.appendChild(el);
 
 		// Initially hide the spinner until it's needed.
 		el.style.display = 'none';
@@ -18,7 +18,7 @@ export default class SpinnerExtension {
 		// Show the spinner when a request starts (first request).
 		naja.addEventListener('start', () => {
 			if (reqCnt === 0) {
-				el.style.display = 'block'; // Show the spinner during the first request.
+				el.style.display = 'block';
 			}
 			reqCnt++;
 		});
@@ -26,7 +26,7 @@ export default class SpinnerExtension {
 		// Hide the spinner after the last request completes.
 		naja.addEventListener('complete', () => {
 			if (--reqCnt === 0) {
-				el.style.display = 'none'; // Hide the spinner after the last request completes.
+				el.style.display = 'none';
 			}
 		});
 	}
