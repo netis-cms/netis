@@ -6,7 +6,7 @@ Little CMS.
 [![Coding Style](https://github.com/netis-cms/netis/actions/workflows/coding-style.yml/badge.svg)](https://github.com/netis-cms/netis/actions/workflows/coding-style.yml)
 [![CodeFactor](https://www.codefactor.io/repository/github/netis-cms/netis/badge)](https://www.codefactor.io/repository/github/netis-cms/netis)
 ## Technology
-- PHP 8.1 or higher
+- PHP 8.3 or higher
 - composer
 - docker
 - node.js
