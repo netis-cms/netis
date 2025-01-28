@@ -7,6 +7,16 @@
 "Add": "Přidat"
 "Send": "Odeslat"
 "Cancel": "Zrušit"
+"Edit": "Upravit"
+"Delete": "Vymazat"
+
+# sidebar menu
+"Access management": "Správa přístupů"
+"Permissions": "Oprávnění"
+"Roles": "Role"
+"Resources": "Zdroje"
+"Privileges": "Akce"
+"Access": "Přístupy"
 
 # default form messages
 "Please enter %s.": "Zadejte %s."
@@ -79,6 +89,12 @@
 "The role is not allowed to be deleted.": "Roli nelze smazat."
 "The role cannot be deleted because it is bound to another role.": "Roli nelze odstranit, protože je svázána s jinou rolí."
 "All": "Vše"
+"Users": "Uživatel"
+"Name": "Název"
+"Delete item": "Smazat položku"
+"Are you sure you want to delete the item: ": "Opravdu chcete smazat položku: "
+"Confirm": "Potvrdit"
+"Close": "Zavřít"
 
 "This role already exists.": "Tato role již existuje."
 "Role deleted.": "Role smazána."
