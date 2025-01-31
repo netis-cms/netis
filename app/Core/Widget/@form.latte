@@ -1,6 +1,6 @@
 {varType string $class}
 {varType string $name}
-{varType Nette\Application\UI\Form $form}
+{varType Nette\Forms\Form $form}
 
 <form n:name="$name" n:class="'row g-3', $class ?? null" data-naja-history="off">
 	<ul class="errors" n:ifcontent>
@@ -11,36 +11,60 @@
 	{block form}{/block}
 </form>
 
-{* General form field definition (input, select, textarea, submit) using switch *}
 {define input, string $type, string $name, int $columns = 12, string $class, int $rows = 3}
 	<div class="col-md-{$columns}">
-		{label $name, class: 'form-label' /}
-		{switch $type}
-			{case 'text'}<input n:name="$name" n:class="'form-control', $class">
-			{case 'select'}<select n:name="$name" n:class="'form-select', $class"></select>
-			{case 'textarea'}<textarea n:name="$name" n:class="'form-control', $class" rows="{$rows}"></textarea>
-		{/switch}
+		{label $name, class => "form-label" /}
+		{do $inputClass = "form-control"}
+			{if $type in [text, datetime, file]}
+				{input $name, class => $class
+					? "$inputClass $class"
+					: "$inputClass"}
+
+			{elseif $type === 'select'}
+				{do $inputClass = "form-select"}
+				{input $name, class => $class
+					? "$inputClass $class"
+					: "$inputClass"}
+
+			{elseif $type === 'textarea'}
+				{input $name, rows => $rows, class => $class
+				? "$inputClass $class"
+				: "$inputClass"}
+			{/if}
 	</div>
 {/define}
 
 {define selectTom, string $name, int $columns = 12, string $class}
 	<div class="col-md-{$columns} form-error">
-		<label n:name="$name" class="form-label" />
-		<div>
-			<select n:name="$name" n:class="'form-control', $class"></select>
+		{label $name, class => "form-label" /}
+		<div class="m-0">
+			{do $inputClass = "form-select"}
+			{input $name, class => $class
+			? "$inputClass $class"
+			: "$inputClass"}
 		</div>
 	</div>
 {/define}
 
 {define submit, string $name, string $class}
-	<input n:name="$name" n:class="'btn btn-primary text-white', $class" data-btn-submit>
+	{do $inputClass = "btn btn-primary text-white"}
+	{input $name, data-btn-submit => true, class => $class
+		? "$inputClass $class"
+		: "$inputClass"}
 {/define}
 
 {define buttonDismiss, bool $buttonCanvas = false, bool $buttonModal = false}
-	<button n:if="$buttonCanvas" type="button" class="btn btn-outline-secondary ms-1" data-bs-dismiss="offcanvas">
+	{do $class = "btn btn-outline-secondary ms-1"}
+	<button n:if="$buttonCanvas"
+			type="button"
+			class="{$class}"
+			data-bs-dismiss="offcanvas">
 		{_'Cancel'}
 	</button>
-	<button n:if="$buttonModal" type="button" class="btn btn-outline-secondary ms-1" data-bs-dismiss="modal">
+	<button n:if="$buttonModal"
+			type="button"
+			class="{$class}"
+			data-bs-dismiss="modal">
 		{_'Close'}
 	</button>
 {/define}
