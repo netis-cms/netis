@@ -1,6 +1,6 @@
 # image from docker hub
 FROM php:8.3-apache
-MAINTAINER Zdeněk Papučík <zdenek.papucik@gmail.com>
+LABEL maintainer="Zdeněk Papučík <zdenek.papucik@gmail.com>"
 
 # build-time customization
 ARG DEBIAN_FRONTEND=noninteractive
