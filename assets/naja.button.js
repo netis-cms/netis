@@ -1,3 +1,4 @@
+let reqCnt = 0;
 export default class SubmitButtonDisable {
 	initialize(naja) {
 		let submitButton = null;
@@ -11,20 +12,26 @@ export default class SubmitButtonDisable {
 		};
 
 		// Initialize for the original document and after every snippet update
-		setSubmitButton(document); // Initial check for submit button
+		setSubmitButton(document);
 		naja.snippetHandler.addEventListener('afterUpdate', (e) => setSubmitButton(e.detail.snippet));
 
 		// Disable the button before submission
 		naja.addEventListener('start', () => {
 			if (submitButton) {
-				submitButton.disabled = true;
+				if (reqCnt === 0) {
+					submitButton.disabled = true;
+				}
+				reqCnt++;
 			}
 		});
 
 		// Re-enable the button after the request completes
 		naja.addEventListener('complete', () => {
 			if (submitButton) {
-				submitButton.disabled = false;
+				if (--reqCnt === 0) {
+					submitButton.disabled = false;
+				}
+
 			}
 		});
 	}
