@@ -1,35 +1,35 @@
 {
-  "name": "project",
+  "type": "module",
   "dependencies": {
-    "@contributte/datagrid": "git+ssh://git@github.com:contributte/datagrid.git#master",
-    "@fortawesome/fontawesome-free": "^6.7.2",
-    "bootstrap": "^5.3.3",
-    "cooltipz-css": "^2.3.1",
-    "dashboard-skeleton-compostrap": "^2.0.8",
+    "bootstrap": "^5.3.8",
+    "dashboard-skeleton-compostrap": "^2.1.3",
+    "drago-application": "file:vendor/drago-ex/application",
+    "drago-component": "file:vendor/drago-ex/component",
+    "drago-datagrid": "file:vendor/drago-ex/datagrid",
+    "drago-form": "file:vendor/drago-ex/form",
     "live-form-validation": "^1.10.1",
-    "naja": "^3.2.1",
+    "naja": "^3.3.3",
     "nette-forms": "^3.5.3",
     "perfect-scrollbar": "^1.5.6",
-    "sortablejs": "^1.15.6",
-    "tom-select": "^2.4.1",
-    "vanillajs-datepicker": "^1.3.4"
+    "sidebar-menu-compostrap": "^2.1.3",
+    "sidebar-skeleton-compostrap": "^2.1.3"
   },
   "devDependencies": {
-    "@types/bootstrap": "^5.2.10",
-    "@types/sortablejs": "^1.15.8",
-    "@types/vanillajs-datepicker": "^1.3.5",
-    "autoprefixer": "^10.4.20",
-    "concurrently": "^9.1.2",
-    "sass": "^1.83.4",
-    "typescript": "^5.7.3",
-    "vite": "^6.0.11"
+    "@nette/vite-plugin": "^1.0.1",
+    "@types/node": "^25.0.3",
+    "fast-glob": "^3.3.3",
+    "ncp": "^2.0.0",
+    "sass": "^1.97.1",
+    "vite": "^6.4.1"
   },
   "scripts": {
-    "docker:build": "concurrently -n=build -c=green \"docker-compose build\"",
-    "docker:dev": "concurrently -n=dev -c=blue \"docker-compose -f docker-compose.yml -f docker-compose.dev.yml up\"",
-    "docker:pro": "concurrently -n=pro -c=blue \"docker-compose up --no-deps php\"",
-    "docker:off": "docker-compose down",
-    "watch": "vite build --watch --mode=development",
-    "build": "vite build --mode=production"
+    "docker:build": "docker build -t php-server docker/ && docker compose build --no-cache",
+    "docker:dev": "docker build -t php-server docker/ && docker compose build && docker compose up -d",
+    "docker:production": "docker build -t php-server docker/ && docker compose build && docker compose --env-file docker/.env.production up -d",
+    "docker:down": "docker compose down --volumes --remove-orphans",
+    "vite:dev": "vite",
+    "vite:build": "vite build",
+    "npm-loader": "node npm-loader.js",
+    "postinstall": "npm run npm-loader"
   }
 }
