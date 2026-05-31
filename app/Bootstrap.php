@@ -56,7 +56,7 @@ final class Bootstrap
 			->addDirectory(__DIR__ . '/Install')
 			->register();
 
-		$this->configurator->addFindConfig(__DIR__ . '/install', 'Translate');
+		$this->configurator->addFindConfig(__DIR__ . '/Install', 'Translate');
 		$this->configurator->addConfig(__DIR__ . '/db.neon');
 		return $this->configurator->createContainer();
 	}

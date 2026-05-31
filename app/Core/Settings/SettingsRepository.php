@@ -14,7 +14,7 @@ use RuntimeException;
 #[Table(SettingsEntity::Table)]
 class SettingsRepository
 {
-	/** @use Database<SettingsEntity> */
+	/** @phpstan-use Database<SettingsEntity> */
 	use Database;
 
 	public function __construct(

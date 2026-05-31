@@ -17,7 +17,7 @@ use Drago\Database\Database;
 #[Table(AuthorizationEntity::Table, AuthorizationEntity::PrimaryKey, class: AuthorizationEntity::class)]
 class AuthorizationRepository
 {
-	/** @use Database<AuthorizationEntity> */
+	/** @phpstan-use Database<AuthorizationEntity> */
 	use Database;
 
 	public function __construct(

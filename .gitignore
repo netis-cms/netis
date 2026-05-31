@@ -1,0 +1,13 @@
+/vendor/
+/node_modules/
+
+/var/cache/
+/var/installed.lock
+
+/www/dist/
+/docker/mysql/
+
+/.idea/
+
+/composer.lock
+/package-lock.json
