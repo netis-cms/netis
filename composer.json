@@ -33,7 +33,12 @@
 	},
 	"extra": {
 		"drago-project": {
-			"allow-library-install": true
+			"allow-library-install": true,
+			"packages": {
+				"drago-ex/project-backend-ui": {
+					"skip": true
+				}
+			}
 		}
 	},
 	"scripts": {
