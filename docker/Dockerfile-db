@@ -1,0 +1,8 @@
+FROM php-server:latest
+
+RUN apt update \
+    && apt Install -y mariadb-client \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN docker-php-ext-Install mysqli \
+    && docker-php-ext-enable mysqli

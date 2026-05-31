@@ -1,0 +1,31 @@
+{* https://getbootstrap.com/docs/5.3/components/offcanvas/ *}
+{varType string $offcanvasId}
+{do $labelId = $offcanvasId . 'Label'}
+{do $offcanvasAttrs = [
+	'class' => 'offcanvas offcanvas-end',
+	'tabindex' => '-1',
+	'id' => $offcanvasId,
+	'aria-labelledby' => $labelId,
+	'data-bs-theme' => 'light',
+	'style' => 'width: 61rem'
+]}
+
+{do $closeBtnAttrs = [
+	'type' => 'button',
+	'class' => 'btn-close text-reset',
+	'data-bs-dismiss' => 'offcanvas',
+	'aria-label' => 'Close'
+]}
+
+<div n:attr="$offcanvasAttrs">
+
+	<div class="offcanvas-header bg-light">
+		<h5 id="{$labelId}">{block title}{/block}</h5>
+		<button n:attr="$closeBtnAttrs"></button>
+	</div>
+
+	<div class="offcanvas-body">
+		{block body}{/block}
+	</div>
+
+</div>

@@ -1,0 +1,55 @@
+@import "core/base";
+@import "@fortawesome/fontawesome-free/css/all.css";
+@import "naja/spinner";
+
+//
+// install style
+//
+
+body {
+  margin-top: 2.813rem;
+}
+
+.steps-ico {
+  display: none;
+  color: var(--bs-primary);
+  background-color: var(--bs-light);
+  width: 17.813rem;
+  height: 17.813rem;
+  text-align: center;
+  position: relative;
+  margin-left: 3.125rem;
+  padding-top: 2.375rem;
+  border-radius: 50%;
+  font-size: 8.125rem;
+  @include media-breakpoint-up('md') {
+	display: block;
+  }
+}
+
+.steps-ico:after {
+  content: '';
+  z-index: -999;
+  position: absolute;
+  left: 0;
+  top: 20%;
+  width: 0;
+  height: 0;
+  border: 7.5rem solid transparent;
+  border-right-color: var(--bs-light);;
+  border-left: 0;
+  border-bottom: 0;
+  margin-top: 0;
+  margin-left: - 3.75rem;
+}
+
+.header {
+  height: 2.813rem;
+}
+
+.main {
+  padding: 2.188rem 4.375rem 0;
+  @include media-breakpoint-up('md') {
+	padding-top: 5.938rem;
+  }
+}

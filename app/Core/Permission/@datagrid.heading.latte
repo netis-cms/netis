@@ -1,0 +1,7 @@
+{default bool $access = false}
+<h5 class="border-bottom pb-2 d-flex justify-content-between align-items-center">
+    <span>{block title}{/block}</span>
+    <a n:if="$access" n:href="openOffcanvas!" class="btn btn-primary btn-sm ajax" data-naja-history="off">
+        {_'Add item'}
+    </a>
+</h5>

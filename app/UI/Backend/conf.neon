@@ -1,0 +1,4 @@
+services:
+
+	router: {setup: {offsetSet(null, @router.backend)}}
+	router.backend: {factory: App\UI\Backend\Router::create, autowired: no}

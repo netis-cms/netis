@@ -1,0 +1,11 @@
+{define selectTom, string $name, int $columns = 12, string $class}
+	<div class="col-md-{$columns} form-error">
+		{label $name, class => "form-label" /}
+		<div class="m-0">
+			{do $inputClass = "form-select"}
+			{input $name, class => $class
+			? "$inputClass $class"
+			: "$inputClass"}
+		</div>
+	</div>
+{/define}

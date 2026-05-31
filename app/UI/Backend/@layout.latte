@@ -1,0 +1,93 @@
+{templateType App\UI\Backend\Admin\AdminTemplate}
+{varType Drago\Application\UI\Flashes[] $flashes}
+{varType App\Core\User\UserAccess $userAccess}
+
+<!doctype html>
+<html lang="{$lang}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{ifset title}{include title|stripHtml|firstUpper} &bull;{/ifset} Backend</title>
+
+    {asset 'admin.js'}
+</head>
+
+<body n:if="$userAccess->isLoggedIn()">
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+
+            <!-- title -->
+            <a class="navbar-brand text-primary" n:href="this"><i class="fa-brands fa-medapps px-1"></i>
+                <span class="fw-semibold">{$settings->website}</span>
+            </a>
+
+            <!-- navbar navigation -->
+            <div class="collapse navbar-collapse">
+
+                <!-- breadcrumb -->
+                <ul class="navbar-nav navbar-nav-breadcrumb">
+                    <li class="nav-item"><a class="nav-link" n:href="Admin:">{_'Dashboard'}</a></li>
+                    <li n:if="!$presenter->isLinkCurrent('Admin:default')" class="nav-item">
+                        <a n:class="'nav-link', !$presenter->isLinkCurrent('Admin:default') ? disabled" n:href="this">
+                            {ifset title}{include title|stripHtml|firstUpper}{/ifset}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="ms-auto d-flex align-items-center">
+
+                <!-- theme toggle -->
+                <button class="btn btn-link nav-link py-2 px-0 px-lg-2 border-0" id="theme-toggle" type="button" aria-label="Toggle theme">
+                    Switch to light
+                </button>
+
+                <!-- sidebar toggle -->
+                <button class="navbar-toggler btn btn-link border-0 ms-2" type="button" id="sidebar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="d-flex wrapper wrapper-navbar-used wrapper-navbar-fixed">
+    <nav role="navigation" class="sidebar sidebar-rounded-top-right shadow-soft"  data-sidebar-theme="light" id="navigation">
+        <div class="sidebar-menu">
+            <div class="sidebar-menu-fixed">
+                <div class="scrollbar scrollbar-use-navbar">
+
+                    {* sidebar menu *}
+                    {include '../../Core/Menu/@menu.user.latte'}
+                    {include '../../Core/Menu/@menu.translate.latte'}
+                    {include '../../Core/Menu/@menu.latte'}
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+
+       {* content *}
+        <main role="main">
+            {snippet message}
+                {include '../../Core/Widget/@toast.latte', messages: $flashes}
+            {/snippet}
+
+            {* page content *}
+            {include content}
+        </main>
+
+        <!-- license rights, do not delete this piece of code -->
+        <footer class="text-end mt-3 mb-3">
+            <p class="text-muted">&copy Netis</p>
+        </footer>
+    </div>
+</div>
+
+</body>
+</html>

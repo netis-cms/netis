@@ -5,15 +5,9 @@ declare(strict_types=1);
 use Composer\InstalledVersions;
 use Dibi\Connection;
 
-/**
- * This script scans installed packages for custom commands defined in:
- * "extra": { "drago-project": { "commands": { ... }, "priority": int } }
- */
-
-// Autoloading from the project's vendor directory
 require __DIR__ . '/../vendor/autoload.php';
 
-// Terminal color definitions (ANSI escape sequences)
+// ANSI colors
 $blue   = "\033[34m";
 $green  = "\033[32m";
 $yellow = "\033[33m";
@@ -24,114 +18,133 @@ $availableCommands = [];
 $migrationPackage = 'drago-ex/migration';
 
 /**
- * 1. Database & Migration Table Detection
+ * 1. Database + migration commands (only if package is installed)
  */
-$bootstrapFile = __DIR__ . '/../app/Bootstrap.php';
-$db = null;
-if (is_file($bootstrapFile)) {
-	try {
-		require_once $bootstrapFile;
-		$bootstrap = new \App\Bootstrap;
-		$container = $bootstrap->bootConsoleApplication();
+if (InstalledVersions::isInstalled($migrationPackage)) {
 
-		/** @var Connection $db */
-		$db = $container->getByType(Connection::class);
+	$bootstrapFile = __DIR__ . '/../app/Bootstrap.php';
+	$db = null;
 
-		// Check if migrations table exists
-		$tableExists = (bool) $db->select('1')
-			->from('[INFORMATION_SCHEMA].[TABLES]')
-			->where('TABLE_SCHEMA = DATABASE()')
-			->and('TABLE_NAME = %s', 'migrations')
-			->fetchSingle();
+	if (is_file($bootstrapFile)) {
+		try {
+			require_once $bootstrapFile;
 
-		if (!$tableExists) {
-			$migrationPath = InstalledVersions::getInstallPath($migrationPackage);
-			$sqlFile = $migrationPath . '/migrations/000_migrations.sql';
+			$bootstrap = new \App\Bootstrap();
+			$container = $bootstrap->bootConsoleApplication();
 
-			if (is_file($sqlFile)) {
-				$availableCommands['migrations:initialize-migrations'] = [
-					'bin' => "Direct SQL execution via Dibi",
-					'sql' => $sqlFile,
-					'package' => $migrationPackage,
-					'urgent' => true,
-					'priority' => 0 // Highest priority
-				];
+			/** @var Connection $db */
+			$db = $container->getByType(Connection::class);
+
+			// Check if migrations table exists
+			$tableExists = (bool) $db->select('1')
+					->from('[INFORMATION_SCHEMA].[TABLES]')
+					->where('TABLE_SCHEMA = DATABASE()')
+					->and('TABLE_NAME = %s', 'migrations')
+					->fetchSingle();
+
+			if (!$tableExists) {
+				$migrationPath = InstalledVersions::getInstallPath($migrationPackage);
+				$sqlFile = $migrationPath . '/migrations/000_migrations.sql';
+
+				if (is_file($sqlFile)) {
+					$availableCommands['db:initialize-migrations'] = [
+							'bin' => "Direct SQL execution via Dibi",
+							'sql' => $sqlFile,
+							'package' => $migrationPackage,
+							'urgent' => true,
+							'priority' => 0
+					];
+				}
 			}
+
+		} catch (\Throwable $e) {
+			echo "{$yellow}Note: Could not connect to database for migration check.{$reset}\n";
 		}
-	} catch (\Throwable $e) {
-		echo "{$yellow}Note: Could not connect to database for migration check.{$reset}\n";
 	}
 }
 
 /**
- * 2. Scan all installed packages and collect commands
+ * 2. Scan installed packages and collect commands
  */
 foreach (InstalledVersions::getInstalledPackages() as $packageName) {
 	$path = InstalledVersions::getInstallPath($packageName);
 
 	if ($path && is_file($path . '/composer.json')) {
 		$composer = json_decode(file_get_contents($path . '/composer.json'), true);
+
 		$extra = $composer['extra']['drago-project'] ?? [];
 		$cmds = $extra['commands'] ?? [];
 		$priority = (int) ($extra['priority'] ?? 100);
 
 		foreach ($cmds as $label => $bin) {
 			$availableCommands[$label] = [
-				'bin' => $bin,
-				'package' => $packageName,
-				'priority' => $priority
+					'bin' => $bin,
+					'package' => $packageName,
+					'priority' => $priority
 			];
 		}
 	}
 }
 
 if (empty($availableCommands)) {
-	echo "{$yellow}No available commands found in extra.drago-project.commands section.{$reset}\n";
+	echo "{$yellow}No available commands found.{$reset}\n";
 	exit;
 }
 
 /**
  * 3. Sorting logic
- * Sort by priority (asc) and then by label (asc)
+ * db:* commands first, then priority, then alphabetical order
  */
 uksort($availableCommands, function ($a, $b) use ($availableCommands) {
-	$isDbA = str_starts_with($a, 'migrations:');
-	$isDbB = str_starts_with($b, 'migrations:');
 
-	// Phase 1: Group all 'migrations:' commands at the top
-	if ($isDbA && !$isDbB) {
-		return -1;
-	}
-	if (!$isDbA && $isDbB) {
-		return 1;
-	}
+	$isDbA = str_starts_with($a, 'db:');
+	$isDbB = str_starts_with($b, 'db:');
 
-	// Phase 2: If both are 'migrations:', sort by priority
+	if ($isDbA && !$isDbB) return -1;
+	if (!$isDbA && $isDbB) return 1;
+
 	if ($isDbA && $isDbB) {
 		$pA = $availableCommands[$a]['priority'];
 		$pB = $availableCommands[$b]['priority'];
+
 		if ($pA !== $pB) {
 			return $pA <=> $pB;
 		}
 	}
 
-	// Phase 3: Alphabetical sort for everything else (or as a tie-breaker for migrations:)
 	return strcmp($a, $b);
 });
 
-// Display UI Header
+/**
+ * 4. CLI output
+ */
 echo "Available operations for the current package setup:\n\n";
 
 $i = 1;
 $map = [];
+
 foreach ($availableCommands as $label => $data) {
-	$prefix = isset($data['urgent']) ? "{$red}![REQUIRED]{$reset} " : "  ";
-	printf("%s[%2d] %-30s %s(%s)%s\n", $prefix, $i, $label, $blue, $data['package'], $reset);
+
+	$prefix = isset($data['urgent'])
+			? "{$red}![REQUIRED]{$reset} "
+			: "  ";
+
+	printf(
+			"%s[%2d] %-30s %s(%s)%s\n",
+			$prefix,
+			$i,
+			$label,
+			$blue,
+			$data['package'],
+			$reset
+	);
+
 	$map[$i] = [
-		'bin' => $data['bin'],
-		'label' => $label,
-		'sql' => $data['sql'] ?? null,
+			'bin' => $data['bin'],
+			'label' => $label,
+			'sql' => $data['sql'] ?? null,
 	];
+
 	$i++;
 }
 
@@ -140,18 +153,20 @@ echo "\n  [ q] Quit\n";
 echo "------------------------------------------\n";
 
 /**
- * Handle user input
+ * 5. Input handling
  */
 $input = '';
+
 if (isset($argv[1])) {
 	$input = trim((string)$argv[1]);
-	echo "Running with arguments: {$green}$input{$reset}\n";
+	echo "Running with arguments: {$green}{$input}{$reset}\n";
 } else {
 	echo "Select numbers (e.g., 1,3) or action: ";
 	$handle = fopen("php://stdin", "r");
 	$line = fgets($handle);
 	fclose($handle);
-	$input = ($line !== false) ? trim((string)$line) : '';
+
+	$input = $line ? trim($line) : '';
 }
 
 if ($input === 'q' || $input === '') {
@@ -159,25 +174,29 @@ if ($input === 'q' || $input === '') {
 	exit;
 }
 
-if ($input === 'a') {
-	$choices = array_keys($map);
-} else {
-	$choices = explode(',', $input);
-}
+$choices = $input === 'a'
+		? array_keys($map)
+		: explode(',', $input);
 
+/**
+ * 6. Execute selected commands
+ */
 foreach ($choices as $choice) {
+
 	$choice = trim((string)$choice);
 
 	if (is_numeric($choice) && isset($map[(int)$choice])) {
+
 		$cmd = $map[(int)$choice];
 
 		echo "\n{$green}▶ Executing: {$cmd['label']}{$reset}\n";
 		echo "{$yellow}{$cmd['bin']}{$reset}\n";
 
-		if (isset($cmd['sql']) && $db instanceof Connection) {
+		$returnCode = 0;
+
+		if (isset($cmd['sql'])) {
 			try {
 				$db->loadFile($cmd['sql']);
-				$returnCode = 0;
 			} catch (\Throwable $e) {
 				echo "{$red}❌ Error: {$e->getMessage()}{$reset}\n";
 				$returnCode = 1;
@@ -188,22 +207,10 @@ foreach ($choices as $choice) {
 
 		if ($returnCode !== 0) {
 			echo "{$red}❌ Command failed with exit code $returnCode{$reset}\n";
-			if (!isset($argv[1])) {
-				echo "Continue to the next command? (y/n): ";
-				$h = fopen("php://stdin", "r");
-				if ($h === false) {
-					throw new RuntimeException('Unable to open STDIN.');
-				}
-				$confirm = trim((string)fgets($h));
-				fclose($h);
-				if (strtolower($confirm) !== 'y') {
-					echo "Aborted by user.\n";
-					break;
-				}
-			}
 		}
+
 	} elseif ($choice !== '') {
-		echo "{$red}⚠️  Invalid selection: $choice{$reset}\n";
+		echo "{$red}⚠ Invalid selection: $choice{$reset}\n";
 	}
 }
 

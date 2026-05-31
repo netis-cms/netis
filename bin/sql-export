@@ -64,5 +64,5 @@ foreach (InstalledVersions::getInstalledPackages() as $packageName) {
 if ($found === 0) {
 	echo "{$yellow}No migration SQL files found.{$reset}\n";
 } else {
-	echo "\n{$green}Done. Copied {$found} files into /migrations{$reset}\n";
+	echo "\n{$green}Done. Copied {$found} files into /db{$reset}\n";
 }

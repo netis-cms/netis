@@ -1,0 +1,94 @@
+{varType string $token}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{_'Request to reset password'}</title>
+    <style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #f0f0f0;
+			font-family: Arial, sans-serif;
+			color: #666;
+		}
+		table {
+			border-collapse: collapse;
+		}
+		table td {
+			padding: 0 25px;
+		}
+		.container {
+			max-width: 600px;
+			margin: 20px auto;
+			background: #fff;
+			padding: 40px 20px;
+			text-align: center;
+		}
+		h1 {
+			font-weight: 700;
+			font-size: 38px;
+			line-height: 52px;
+			color: #000;
+			margin: 10px 0 30px 0;
+		}
+		p {
+			font-weight: 500;
+			font-size: 18px;
+			line-height: 30px;
+			margin: 0 0 40px 0;
+			color: #666;
+		}
+		.btn {
+			display: inline-block;
+			background-color: #0055ff;
+			color: #fff;
+			font-weight: 600;
+			font-size: 20px;
+			line-height: 58px;
+			padding: 0 25px;
+			border-radius: 3px;
+			text-decoration: none;
+			margin-top: 10px;
+			margin-bottom: 40px;
+		}
+		.footer-text {
+			font-size: 12px;
+			line-height: 19px;
+			color: #bbb;
+			margin: 0 0 5px 0;
+		}
+		.footer {
+			max-width: 350px;
+			margin: 0 auto;
+		}
+    </style>
+
+</head>
+<body>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f0f0f0; padding: 50px 0;">
+    <tr>
+        <td align="center">
+            <table role="presentation" class="container">
+                <tr>
+                    <td>
+                        <h1>{_'Lost your password?'}</h1>
+                        <p>{_'To reset your password, enter the code you received in this email into the form. The code is valid for 30 minutes.'}</p>
+                        <p><span class="btn">{$token}</span></p>
+                        <div class="footer">
+                            <p class="footer-text">
+                                {_'If you do not want to change your password or didn’t request a reset, you can ignore and delete this email.'}
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

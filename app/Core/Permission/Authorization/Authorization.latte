@@ -1,0 +1,137 @@
+{templateType App\Core\Permission\Authorization\AuthorizationTemplate}
+{varType array $groupedPermissions}
+{varType bool $isAdminRole}
+
+{snippet permissions}
+
+	{* header *}
+	<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 border-bottom pb-2 mb-3">
+
+		{* title *}
+		<div>
+			<h5>{_'Role permissions'}</h5>
+			<p class="text-body-secondary small m-0">
+				{_'Setting access for the selected role'}
+			</p>
+		</div>
+
+		<div class="d-flex align-items-center gap-2">
+
+			{* role switch *}
+			<form action="{plink this}" method="get" class="d-flex align-items-center gap-2 mb-0">
+				<label for="role-switch" class="small text-body-secondary">
+					{_'Role'}
+				</label>
+
+				<select name="authorization-roleId" id="role-switch" class="form-select form-select-sm" onchange="this.form.submit()">
+					{foreach $roles as $id => $name}
+						<option value="{$id}" n:attr="selected: $id === $roleId">
+							{$name}
+						</option>
+					{/foreach}
+				</select>
+
+				{* hidden submit — triggers form on select change *}
+				<button type="submit" class="visually-hidden">
+					{_'Apply'}
+				</button>
+			</form>
+
+			{* permission counters *}
+			<span class="badge border border-success-subtle text-success px-3 py-2">
+				({$allowedCount}) {_'Allowed'}
+			</span>
+			<span class="badge border border-danger-subtle text-danger px-3 py-2">
+				({$deniedCount}) {_'Denied'}
+			</span>
+
+		</div>
+	</div>
+
+	{* admin notice *}
+	{if $isAdminRole}
+		<div class="alert alert-warning d-flex align-items-center gap-2 py-2 px-3 mb-3 small">
+			<i class="fa fa-shield-halved"></i>
+			{_'Administrator role has full access granted by default. These settings have no effect.'}
+		</div>
+	{/if}
+
+	{* permissions list *}
+	<div class="card-body">
+		<div class="d-flex flex-column gap-3">
+			{foreach $groupedPermissions as $resource => $items}
+				{varType App\Core\Permission\Authorization\ResourcesEntity[] $items}
+
+				{* resource group *}
+				<div class="bg-white overflow-hidden">
+
+					{* resource header *}
+					<div class="px-4 py-2 bg-light rounded">
+						<div class="fw-semibold text-dark">{$resource}</div>
+						<div class="small text-body-secondary">
+							{$items|length} {_'permissions'}
+						</div>
+					</div>
+
+					{* permission items grouped by component prefix *}
+					{var $byComponent = []}
+					{foreach $items as $item}
+						{varType App\Core\Permission\Authorization\ResourcesEntity $item}
+						{var $prefix = explode('-', $item->privilege, 2)[0]}
+						{do $byComponent[$prefix][] = $item}
+					{/foreach}
+
+					<div class="list-group list-group-flush">
+						{foreach $byComponent as $group}
+							{foreach $group as $item}
+								{varType App\Core\Permission\Authorization\ResourcesEntity $item}
+								{var $inputId = "permission-{$roleId}-{$item->id}"}
+								{var $isAllowed = $isAdminRole || $item->access === 'allow'}
+
+								<div n:class="'list-group-item', 'px-3', $iterator->isLast() ? 'pt-1 pb-3' : 'pt-2 pb-0 border-bottom-0'">
+									<div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
+
+										{* privilege info *}
+										<div class="min-w-0">
+											<div class="d-flex align-items-center gap-2 small">
+												<span class="fw-semibold text-dark">{$item->description}</span>
+												<span class="text-body-tertiary ms-1">{$item->privilege}</span>
+											</div>
+										</div>
+
+										{* permission toggle *}
+										<div class="d-flex align-items-center gap-2 flex-shrink-0">
+											<input
+												type="checkbox"
+												id="{$inputId}"
+												data-naja-history="off"
+												autocomplete="off"
+												data-url="{link togglePermission!, roleId: $roleId, resourceId: $item->id}"
+												n:class="'btn-check', !$isAdminRole ? 'js-permission-toggle'"
+												n:attr="checked: $isAllowed, disabled: $isAdminRole">
+
+											<label for="{$inputId}" n:class="'btn', 'btn-sm', 'px-3', 'fw-semibold', 'rounded-pill', $isAllowed ? 'btn-success' : 'btn-danger'">
+												{if $isAllowed}{_'Allowed'}{else}{_'Denied'}{/if}
+											</label>
+										</div>
+
+									</div>
+								</div>
+							{/foreach}
+						{/foreach}
+					</div>
+
+				</div>
+
+			{else}
+
+				{* empty state *}
+				<div class="px-4 py-5 text-center text-body-secondary bg-white border rounded-3">
+					{_'No permissions found'}
+				</div>
+
+			{/foreach}
+		</div>
+	</div>
+
+{/snippet}

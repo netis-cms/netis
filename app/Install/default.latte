@@ -1,0 +1,133 @@
+{templateType App\Install\InstallTemplate}
+
+{* subtitle sites *}
+{block title}{_'System installation'}{/block}
+
+{* website content *}
+{block content}
+
+{varType int $step}
+{switch $step}
+
+	{* step before installing *}
+	{case 0}
+
+	{* information before installation *}
+	<h1 class="display-4 mb-5">{_'Information before installing the system'}</h1>
+	<p>
+		{_'Welcome, please prepare your database server data before installing the system.'}
+		{_'However, if you do not have them for some reason, you may need to create the database manually through hosting administration.'}
+	</p>
+	<p>
+		<button class="btn btn-primary text-white" type="button" id="btn-send" data-url="{link run!}">
+			{_'Start with installation'}
+		</button>
+	</p>
+
+	{* first step *}
+	{case 1}
+
+	{* database server settings *}
+	<h1 class="display-4 mb-5">{_'Database settings'}</h1>
+	<p>{_'If there is a problem with database server authentication, please contact your web hosting vendor to verify the correctness of the data.'}</p>
+	{embed '../Core/Widget/@form.latte', name: 'database', class: 'ajax mt-5'}
+		{block form}
+			{include input, type: text, name: 'host', columns: 6}
+			{include input, type: text, name: 'user', columns: 6}
+			{include input, type: text, name: 'database', columns: 6}
+			{include input, type: text, name: 'password', columns: 6}
+			<div class="d-block">
+				{include submit, name: 'send'}
+			</div>
+		{/block}
+	{/embed}
+
+	{* second step *}
+	{case 2}
+
+	{* install database tables *}
+	<h1 class="display-4 mb-5">{_'Database installation'}</h1>
+	<p>
+		{_'Before installing the database, please verify that your database server has an empty database or uses other table prefixes.'}
+		{_'If the table names match your table in the database, you will not be able to upload the database.'}
+	</p>
+
+	<div class="mt-3 d-flex align-items-center gap-3 flex-wrap">
+
+		{do $installBtn = [
+			'type' => 'button',
+			'id' => 'install-btn',
+			'class' => 'btn btn-primary text-white',
+		]}
+
+		<button n:attr="$installBtn" data-url="{link migrationsDone!}" data-url-error="{link migrationsFail!}">
+			{_'Start installation'}
+		</button>
+
+		<div class="d-none d-flex align-items-center gap-2" id="install-status-container">
+			<i id="status-icon-running" class="fa-solid fa-spinner fa-spin text-warning d-none"></i>
+			<i id="status-icon-success" class="fa-solid fa-circle-check text-success d-none"></i>
+			<i id="status-icon-error" class="fa-solid fa-circle-xmark text-danger d-none"></i>
+
+			<span id="status-file" class="text-muted"></span>
+			<span id="status-counter" class="text-muted"></span>
+		</div>
+	</div>
+
+	<div id="steps" class="d-none">
+		{foreach $migrationFiles as $file}
+			<span class="step" data-step="{$file}" data-url="{link runMigration!, file: $file}"></span>
+		{/foreach}
+	</div>
+
+	{* third step *}
+	{case 3}
+
+	{* website settings *}
+	<h1 class="display-4 mb-5">{_'Site name and description'}</h1>
+
+	<p>{_'Please enter basic information for the website.'}</p>
+	{embed '../Core/Widget/@form.latte', name: 'website', class: 'ajax mt-5'}
+		{block form}
+			{include input, type: text, name: 'website', columns: 6}
+			{include input, type: text, name: 'description', columns: 6}
+			<div class="d-block">
+				{include submit, name: 'send'}
+			</div>
+		{/block}
+	{/embed}
+
+	{* fourth step *}
+	{case 4}
+
+	{* add administrator account *}
+	<h1 class="display-4 mb-5">{_'Registration'}</h1>
+	<p>{_'Administrator account registration.'}</p>
+	{embed '../Core/Widget/@form.latte', name: 'account', class: 'ajax mt-5'}
+		{block form}
+			{include input, type: text, name: 'username', columns: 6}
+			{include input, type: text, name: 'email', columns: 6}
+			{include input, type: text, name: 'password', columns: 6}
+			{include input, type: text, name: 'verify', columns: 6}
+			<div class="d-block">
+				{include submit, name: 'send'}
+			</div>
+		{/block}
+	{/embed}
+
+	{* installation completion step *}
+	{case 5}
+
+	{* complete the installation *}
+	<h1 class="display-4 mb-5">{_'Installation successfully completed'}</h1>
+	<p>
+		{_'The system has been successfully installed and configured. Click the button below to finalize the process and proceed to the administration area.'}
+	</p>
+
+	{* go to administration *}
+	<p>
+		<a n:href="finish!" class="btn btn-primary text-white">
+			{_'Go to administration'}
+		</a>
+	</p>
+{/switch}

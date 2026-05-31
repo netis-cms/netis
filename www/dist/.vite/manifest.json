@@ -1,0 +1,89 @@
+{
+  "../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
+    "file": "fa-brands-400-BP5tdqmh.woff2",
+    "src": "../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
+  },
+  "../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2": {
+    "file": "fa-regular-400-nyy7hhHF.woff2",
+    "src": "../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"
+  },
+  "../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": {
+    "file": "fa-solid-900-DRAAbZTg.woff2",
+    "src": "../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
+  },
+  "_base-1j5vcgPC.js": {
+    "file": "base-1j5vcgPC.js",
+    "name": "base"
+  },
+  "_bootstrap.esm-Cp0c_cC7.js": {
+    "file": "bootstrap.esm-Cp0c_cC7.js",
+    "name": "bootstrap.esm"
+  },
+  "_submit-disable-rlPnEVwe.js": {
+    "file": "submit-disable-rlPnEVwe.js",
+    "name": "submit-disable"
+  },
+  "admin.js": {
+    "file": "admin-ClO71_Pc.js",
+    "name": "admin",
+    "src": "admin.js",
+    "isEntry": true,
+    "imports": [
+      "_base-1j5vcgPC.js",
+      "_bootstrap.esm-Cp0c_cC7.js",
+      "_submit-disable-rlPnEVwe.js"
+    ],
+    "css": [
+      "admin-Cvhj-m6Q.css"
+    ],
+    "assets": [
+      "fa-brands-400-BP5tdqmh.woff2",
+      "fa-regular-400-nyy7hhHF.woff2",
+      "fa-solid-900-DRAAbZTg.woff2"
+    ]
+  },
+  "front.js": {
+    "file": "front-CGM5HqMa.js",
+    "name": "front",
+    "src": "front.js",
+    "isEntry": true,
+    "imports": [
+      "_base-1j5vcgPC.js"
+    ],
+    "css": [
+      "front-Dz1Owj6v.css"
+    ]
+  },
+  "install.js": {
+    "file": "install-tKwCfpLU.js",
+    "name": "install",
+    "src": "install.js",
+    "isEntry": true,
+    "imports": [
+      "_base-1j5vcgPC.js",
+      "_submit-disable-rlPnEVwe.js"
+    ],
+    "css": [
+      "install-laL2Bz0i.css"
+    ],
+    "assets": [
+      "fa-brands-400-BP5tdqmh.woff2",
+      "fa-regular-400-nyy7hhHF.woff2",
+      "fa-solid-900-DRAAbZTg.woff2"
+    ]
+  },
+  "sign-in.js": {
+    "file": "sign-in-BGatMjwn.js",
+    "name": "sign-in",
+    "src": "sign-in.js",
+    "isEntry": true,
+    "imports": [
+      "_base-1j5vcgPC.js",
+      "_submit-disable-rlPnEVwe.js",
+      "_bootstrap.esm-Cp0c_cC7.js"
+    ],
+    "css": [
+      "sign-in-DgfcUlpJ.css"
+    ]
+  }
+}

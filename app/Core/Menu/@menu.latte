@@ -1,0 +1,43 @@
+{varType App\Core\User\UserAccess $userAccess}
+{varType array<string, App\Core\Menu\SidebarItem[]> $sidebarMenu}
+
+{foreach $sidebarMenu as $sectionTitle => $items}
+    <ul class="list list-unstyled mb-0">
+        <li class="list-item">
+            <p class="list-title text-uppercase">{_$sectionTitle}</p>
+
+            <!-- list items, first level -->
+            <ul class="list-unstyled">
+                {foreach $items as $item}
+                    {do $hasSubmenu = $item->items !== []}
+                    {if $item->allowAny === null || $userAccess->isAnyAllowed(...$item->allowAny)}
+                        <li>
+                            {do $link = $hasSubmenu ? '#' : $presenter->link($item->link)}
+                            {do $current = $presenter->isLinkCurrent($item->link)}
+                            <a href="{$link}" n:class="'list-link', $hasSubmenu ? 'link-arrow', $current ? 'link-current'">
+                                <span n:if="$item->icon" class="list-icon">
+                                    <i class="{(string) $item->icon}"></i>
+                                </span>
+                                {_$item->title}
+                            </a>
+
+                            <!-- list items, second level -->
+                            <ul n:if="$hasSubmenu" class="list-unstyled list-hidden">
+                                {foreach $item->items as $subItem}
+                                    {if $subItem->allow === null || $userAccess->isAllowed(...$subItem->allow)}
+                                        <li>
+                                            {do $current = $presenter->isLinkCurrent($subItem->link)}
+                                            <a n:href="$subItem->link" n:class="'list-link', $current ? link-current">
+                                                {_$subItem->title}
+                                            </a>
+                                        </li>
+                                    {/if}
+                                {/foreach}
+                            </ul>
+                        </li>
+                    {/if}
+                {/foreach}
+            </ul>
+        </li>
+    </ul>
+{/foreach}

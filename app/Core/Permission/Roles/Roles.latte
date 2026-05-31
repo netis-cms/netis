@@ -1,0 +1,41 @@
+{templateType App\Core\Permission\BaseTemplate}
+{embed '../../Widget/@offcanvas.latte', offcanvasId: $offcanvasId, size: '61rem'}
+    {block title}{_'Manage Role'}{/block}
+    {block body}
+        {snippet offcanvas}
+            {embed '../../Widget/@form.latte', class: 'ajax', name: 'roles', najaHistory: 'off'}
+                {import '../../Widget/@dismiss.button.latte'}
+                {block form}
+                    {include input, name: 'name', columns: 12}
+                    {include input, name: 'description', columns: 12}
+                    <div class="d-block">
+                        {include submit, name: 'send'}
+                        {include buttonDismiss, type: 'offcanvas'}
+                    </div>
+                {/block}
+            {/embed}
+        {/snippet}
+    {/block}
+{/embed}
+
+{embed ../../Widget/@modal.latte, modalId: $modalId, options: [header: 'danger']}
+    {block title}{_'Confirm delete'}{/block}
+    {block body}
+        {snippet content}
+            {include '../@modal.body.latte'}
+        {/snippet}
+    {/block}
+    {block footer}
+        {snippet modal}
+            {include '../@modal.footer.latte'}
+        {/snippet}
+    {/block}
+{/embed}
+
+{embed ../@datagrid.heading.latte, access: $user->isAllowed('Backend:AccessControl', 'roles-write')}
+    {block title}
+        {_'Roles data'}
+    {/block}
+{/embed}
+
+{control dataGrid}

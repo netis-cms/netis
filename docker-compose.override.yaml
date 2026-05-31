@@ -1,0 +1,27 @@
+# docker service
+services:
+
+  # php server update
+  server:
+    build:
+      context: docker
+      dockerfile: Dockerfile-db
+    image: php-server
+
+
+  # database
+  db:
+    image: library/mariadb:latest
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app
+      MYSQL_USER: super
+      MYSQL_PASSWORD: pass
+    volumes:
+      - ./docker/mysql/:/var/lib/mysql
+    ports:
+      - '6033:3306'

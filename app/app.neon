@@ -1,0 +1,60 @@
+# default parameters
+parameters:
+
+
+# email settings
+# mail:
+
+
+# settings for sessions
+session:
+	name: project
+	expiration: 14 days
+	savePath: '%tempDir%/sessions'
+
+
+# application settings
+application:
+
+	# application mapping
+	mapping: App\UI\*\**Presenter
+
+
+# enabling system container for Tracy bar
+di:
+	debugger: yes
+	export:
+		parameters: no
+		tags: no
+
+
+# strict parser mode
+latte:
+	strictTypes: yes
+	strictParsing: yes
+
+
+# application extensions
+extensions:
+	translator: Drago\Localization\DI\TranslatorExtension(%appDir%, %tempDir%)
+
+
+# nette asset building
+assets:
+	mapping:
+		default:
+			path: dist
+			type: vite
+
+
+# automatic class registration
+search:
+	-
+		in: %appDir%
+		classes:
+			- *Factory
+			- *Control
+			- *Repository
+		exclude:
+			classes:
+				- App\Install\**
