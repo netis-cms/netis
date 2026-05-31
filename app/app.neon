@@ -2,22 +2,22 @@
 parameters:
 
 
+# email settings
+# mail:
+
+
 # settings for sessions
 session:
-	name: netis-cms
+	name: project
 	expiration: 14 days
 	savePath: '%tempDir%/sessions'
 
 
 # application settings
 application:
-	errorPresenter:
-		4xx: Error:Error4xx
-		5xx: Error:Error5xx
 
 	# application mapping
-	mapping:
-		*: ['App\UI', '*', '*\*Presenter']
+	mapping: App\UI\*\**Presenter
 
 
 # enabling system container for Tracy bar
@@ -28,11 +28,6 @@ di:
 		tags: no
 
 
-# application services
-services:
-	user: App\Core\User\User
-
-
 # strict parser mode
 latte:
 	strictTypes: yes
@@ -41,9 +36,15 @@ latte:
 
 # application extensions
 extensions:
-	- Drago\Localization\DI\TranslatorExtension(translateDir: %appDir%/Translate)
-	- Drago\Parameters\DI\ParametersExtension(appDir: %appDir%, wwwDir: %wwwDir%, tempDir: %tempDir%)
-	- Drago\Authorization\DI\AuthorizationExtension
+	translator: Drago\Localization\DI\TranslatorExtension(%appDir%, %tempDir%)
+
+
+# nette asset building
+assets:
+	mapping:
+		default:
+			path: dist
+			type: vite
 
 
 # automatic class registration
@@ -51,5 +52,9 @@ search:
 	-
 		in: %appDir%
 		classes:
-			- *Repository
 			- *Factory
+			- *Control
+			- *Repository
+		exclude:
+			classes:
+				- App\Install\**

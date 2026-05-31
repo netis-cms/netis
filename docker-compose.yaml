@@ -1,0 +1,14 @@
+services:
+
+  # php server settings.
+  server:
+    build:
+      context: docker
+    environment:
+      NETTE_DEBUG: ${NETTE_DEBUG:-1}
+    image: php-server
+    restart: always
+    volumes:
+      - ./:/var/www/html/
+    ports:
+      - "8080:80"

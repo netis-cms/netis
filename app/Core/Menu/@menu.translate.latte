@@ -1,0 +1,20 @@
+<ul class="list list-unstyled mb-0">
+    <li class="list-item">
+        <p class="list-title text-uppercase">{_'Translate'}</p>
+        <ul class="list-unstyled">
+
+            <!-- translate switch -->
+            <li>
+                <a href="#" n:class="'list-link link-arrow', $presenter->isLinkCurrent('this') ? link-current">
+                    <span class="list-icon"><i class="fa-solid fa-globe bell"></i></span>{_'Translate'}
+                </a>
+
+                <!-- list items, second level -->
+                <ul class="list-unstyled list-hidden">
+                    <li><a n:href="this, 'lang' => 'cs'" n:class="list-link, $presenter->isLinkCurrent('this', ['lang' => 'cs']) ? link-current">{_'Czech'}</a></li>
+                    <li><a n:href="this, 'lang' => 'en'" n:class="list-link, $presenter->isLinkCurrent('this', ['lang' => 'en']) ? link-current">{_'English'}</a></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>

@@ -1,45 +1,25 @@
-## Netis, Little CMS
+# Drago Project
 
-Little CMS.
+Basis for new modules projects on Drago Extension
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://raw.githubusercontent.com/netis-cms/netis/master/license.md)
 [![Coding Style](https://github.com/netis-cms/netis/actions/workflows/coding-style.yml/badge.svg)](https://github.com/netis-cms/netis/actions/workflows/coding-style.yml)
-[![CodeFactor](https://www.codefactor.io/repository/github/netis-cms/netis/badge)](https://www.codefactor.io/repository/github/netis-cms/netis)
-## Technology
-- PHP 8.3 or higher
-- composer
-- docker
-- node.js
+[![PHP version](https://badge.fury.io/ph/netis-cms%2Fnetis.svg)](https://badge.fury.io/ph/netis-cms%2Fnetis)
 
-Based on:
-- [Nette Framework](https://github.com/nette/nette)
-- [Drago Extension Nette Framework](https://github.com/drago-ex)
-- [dibi - smart database abstraction layer](https://github.com/dg/dibi)
-- [Bootstrap](https://github.com/twbs/bootstrap)
-- [Compostrap](https://github.com/compostrap)
+## Requirements
+- PHP >= 8.3
+- Nette Framework
+- Composer
+- Docker
+- Node.js
+- Bootstrap
+- Naja
 
 ## Installation
-
-```
+```bash
 composer create-project netis-cms/netis
 ```
 
-## npm
-```
-npm i
-```
-
-## docker build
-```
-docker-compose build
-```
-
-## docker dev up
-```
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
-```
-
-## parcel build
-```
-parcel build public/js/*.js --public-url ./ --dist-dir www/files
-```
+## Basic information
+Basic package for applications where the basis for Bootstrap, Vite, Docker, Naja is already prepared.
+You can find all commands in `package.json` like running Docker or Vite.

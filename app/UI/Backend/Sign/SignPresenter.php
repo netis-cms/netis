@@ -4,105 +4,98 @@ declare(strict_types=1);
 
 namespace App\UI\Backend\Sign;
 
-use App\Core\Factory;
-use App\Core\Settings\SettingsRequire;
-use App\Core\User\UserSingUpFactory;
+use App\UI\Backend\Sign\Recovery\RecoveryFactory;
+use App\UI\Backend\Sign\Recovery\SessionService;
+use App\UI\BasePresenter;
 use Drago\Application\UI\Alert;
-use Drago\Localization\TranslatorAdapter;
-use Exception;
-use JetBrains\PhpStorm\NoReturn;
-use Nette\Application\AbortException;
+use Drago\Form\Autocomplete;
 use Nette\Application\Attributes\Persistent;
 use Nette\Application\UI\Form;
-use Nette\Application\UI\Presenter;
+use Nette\Neon\Exception;
 use Nette\Security\AuthenticationException;
+use Throwable;
+use Tracy\Debugger;
 
 
 /**
- * Sign-in user.
- * @property SignTemplate $template
+ * Handles user authentication and registration.
+ * @property-read SignTemplate $template
  */
-final class SignPresenter extends Presenter
+final class SignPresenter extends BasePresenter
 {
-	use TranslatorAdapter;
-	use SettingsRequire;
-
 	#[Persistent]
 	public string $backlink = '';
 
 
 	public function __construct(
 		private readonly Factory $factory,
-		private readonly UserSingUpFactory $userSingUpFactory,
+		private readonly SignUpFactory $signUpFactory,
+		private readonly RecoveryFactory $recoveryFactory,
+		private readonly SessionService $sessionService,
 	) {
 		parent::__construct();
 	}
 
 
-	/**
-	 * @throws Exception
-	 */
+	private function redrawSnippets(): void
+	{
+		$this->redrawControl('title');
+		$this->redrawControl('body');
+	}
+
+
+	/** Sets the recovery token and redraw snippets if AJAX. */
 	protected function beforeRender(): void
 	{
 		parent::beforeRender();
-		if ($this->getUser()->isLoggedIn()) {
-			$this->redirect(':Backend:Admin:');
+
+		if ($this->getAction() === 'recovery') {
+			$this->template->signRecoveryToken = $this->sessionService->createSignRecoveryToken();
+		}
+
+		if ($this->isAjax()) {
+			$this->redrawSnippets();
 		}
 	}
 
 
-	/**
-	 * Create the sign-in form.
-	 */
+	/** Creates and handles the sign-in form. */
 	protected function createComponentSignIn(): Form
 	{
 		$form = $this->factory->create();
-		$form->addText(SignData::Email, 'Email')
-			->setHtmlAttribute('email')
-			->setHtmlAttribute('placeholder', 'Email address')
-			->addRule($form::Email, 'Please enter a valid email address.')
-			->setRequired('Please enter your email address.');
-
-		$form->addPassword(SignData::Password, 'Password')
-			->setHtmlAttribute('placeholder', 'Your password')
-			->setRequired('Please enter your password.');
+		$form->addEmailField();
+		$form->addPasswordField()
+			->setAutocomplete(Autocomplete::CurrentPassword);
 
 		$form->addSubmit('send', 'Sign in');
-		$form->onSuccess[] = [$this, 'success'];
+		$form->onSuccess[] = $this->success(...);
 		return $form;
 	}
 
 
-	/**
-	 * Handle form submission success.
-	 * @throws AbortException
-	 */
-	public function success(Form $form, SignData $data): void
+	/** Handles sign-in form success. */
+	public function success(Form $form, SignValues $values): void
 	{
 		try {
-			$this->getUser()->login($data->email, $data->password);
+			$this->getUser()->login($values->email, $values->password);
 			$this->restoreRequest($this->backlink);
 			$this->redirect(':Backend:Admin:');
-
 		} catch (AuthenticationException $e) {
-			$message = match ($e->getCode()) {
+			$messages = [
 				1 => 'User not found.',
 				2 => 'The password is incorrect.',
-				default => 'Unknown error occurred.',
-			};
-			$form->addError($message);
+			];
+			$form->addError($messages[$e->getCode()] ?? 'Unknown error occurred.');
 		}
 	}
 
 
-	/**
-	 * Create the sign-up form.
-	 */
+	/** Creates and handles the sign-up form. */
 	protected function createComponentSignUp(): Form
 	{
-		$form = $this->userSingUpFactory->create();
+		$form = $this->signUpFactory->create();
 		$form->onSuccess[] = function () {
-			$this->flashMessage('Registration was successful.', Alert::Info);
+			$this->flashMessage('Your registration has been successfully completed, you can now log in.', Alert::Success);
 			$this->redirect('in');
 		};
 		return $form;
@@ -110,12 +103,55 @@ final class SignPresenter extends Presenter
 
 
 	/**
-	 * Logout user from application.
-	 * @throws AbortException
+	 * Creates and handles the password recovery request form.
+	 * @throws Exception
+	 * @throws Throwable
 	 */
-	#[NoReturn] public function actionUserOut(): void
+	protected function createComponentSignRecoveryRequest(): Form
+	{
+		$factory = $this->recoveryFactory;
+		$factory->translator = $this->getTranslator();
+
+		$form = $factory->createRequest();
+		$form->onSuccess[] = function () {
+			$this->flashMessage('A password recovery code has been sent to your email.', Alert::Success);
+		};
+
+		$form->onError[] = function (Form $form) {
+			foreach ($form->getErrors() as $error) {
+				Debugger::barDump($error);
+			}
+		};
+		return $form;
+	}
+
+
+	/** Creates and handles the token check form for password recovery. */
+	protected function createComponentSignRecoveryCheckToken(): Form
+	{
+		$form = $this->recoveryFactory->createCheckToken();
+		$form->onSuccess[] = function () {
+			$this->flashMessage('Code check was successful.', Alert::Success);
+		};
+		return $form;
+	}
+
+
+	/** Creates and handles the password change form. */
+	protected function createComponentSignRecoveryChangePassword(): Form
+	{
+		$form = $this->recoveryFactory->createChangePassword();
+		$form->onSuccess[] = function () {
+			$this->flashMessage('Password change was successful.', Alert::Success);
+			$this->redirect('in');
+		};
+		return $form;
+	}
+
+
+	/** Logs out the current user. */
+	public function actionOut(): void
 	{
 		$this->getUser()->logout();
-		$this->redirect('in');
 	}
 }

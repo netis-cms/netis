@@ -4,22 +4,19 @@ declare(strict_types=1);
 
 namespace App\UI\Backend;
 
+use Nette;
 use Nette\Application\Routers\RouteList;
-use Nette\StaticClass;
 
 
+/** Backend router. */
 final class Router
 {
-	use StaticClass;
+	use Nette\StaticClass;
 
-	/**
-	 * Creates and configures the routing for the backend module.
-	 */
+	/** Create router. */
 	public static function create(): RouteList
 	{
 		$router = new RouteList;
-
-		// Define the routes for the Backend module
 		$router->withModule('Backend')
 			->addRoute('[<lang=cs cs|en>/]admin/<presenter>/<action>', 'Admin:default');
 

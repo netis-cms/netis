@@ -1,38 +1,45 @@
 import { defineConfig } from 'vite';
+import nette from '@nette/vite-plugin';
+import fg from 'fast-glob';
+import path from 'path';
 
-export default defineConfig(({ mode }) => {
-	const DEV = mode === 'development';
+const files = fg.sync('assets/*.js', {
+	ignore: ['assets/core/**', 'assets/naja/**'],
+});
 
-	return {
-		publicDir: './assets/public',
-		base: '/dist/',
-		server: {
-			open: false,
-			hmr: false,
+const entries = files.map(
+	file => path.resolve(file)
+);
+
+export default defineConfig({
+	root: 'assets',
+	publicDir: 'public',
+	server: {
+		cors: {
+			origin: true,
 		},
-		css: {
-			postcss: [
-				"autoprefixer"
-			]
+	},
+	build: {
+		outDir: '../www/dist',
+		emptyOutDir: true,
+		cssMinify: false,
+		rollupOptions: {
+			input: entries,
 		},
-		build: {
-			assetsDir: '',
-			outDir: './www/dist/',
-			emptyOutDir: true,
-			minify: DEV ? false : 'esbuild',
-			rollupOptions: {
-				output: {
-					manualChunks: undefined,
-					chunkFileNames: '[name].js',
-					entryFileNames: '[name].js',
-					assetFileNames: '[name].[ext]',
-				},
-				input: {
-					admin: './assets/js/admin.js',
-					sign: './assets/js/sign.js',
-					install: './assets/js/install.js',
-				}
+	},
+	css: {
+		preprocessorOptions: {
+			scss: {
+				silenceDeprecations: [
+					'import',
+					'if-function',
+					'global-builtin',
+					'color-functions'
+				]
 			}
-		},
-	}
+		}
+	},
+	plugins: [
+		nette(),
+	],
 });

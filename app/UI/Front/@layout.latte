@@ -1,5 +1,6 @@
 {templateType App\UI\Front\Home\HomeTemplate}
 {varType Drago\Application\UI\Flashes[] $flashes}
+{import '../../Core/Widget/@lang.switch.latte'}
 
 <!doctype html>
 <html lang="{$lang}">
@@ -7,23 +8,29 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.css">
-
 	<title>{ifset title}{include title|stripHtml|firstUpper} &bull;{/ifset} Frontend</title>
+
+	{asset 'front.js'}
 </head>
 
 <body>
 
-{* flash message *}
-<div n:foreach="$flashes as $flash" n:class="'flash', $flash->type">{$flash->message|translate}</div>
+{* main content *}
+<main role="main" class="mt-3 container">
 
-{* content block *}
-{include content}
+	{* flash messages *}
+	{snippet message}
+		<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+	{/snippet}
 
-{* language switching *}
-{import ../../Translate/lang.switch.latte}
-{include LangSwitch, lang: 'cs', name: 'Czech'}<span>&#124;</span>
-{include LangSwitch, lang: 'en', name: 'English'}
+	{* page content *}
+	{include content}
+</main>
+
+{* footer info *}
+<footer class="text-center mt-4 text-muted small">
+	✨ Vite + Nette &mdash; ready to code!
+</footer>
 
 </body>
 </html>

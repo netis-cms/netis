@@ -1,0 +1,68 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
+
+use Composer\InstalledVersions;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$targetDir = __DIR__ . '/../migrations';
+
+if (!is_dir($targetDir)) {
+	mkdir($targetDir, 0777, true);
+}
+
+$green = "\033[32m";
+$yellow = "\033[33m";
+$red = "\033[31m";
+$reset = "\033[0m";
+
+echo "Scanning vendor packages for migration SQL files...\n\n";
+
+$found = 0;
+
+foreach (InstalledVersions::getInstalledPackages() as $packageName) {
+	$packagePath = InstalledVersions::getInstallPath($packageName);
+
+	if (!$packagePath || !is_dir($packagePath)) {
+		continue;
+	}
+
+	$migrationDirs = [
+			$packagePath . '/migration',
+			$packagePath . '/migrations',
+	];
+
+	foreach ($migrationDirs as $dir) {
+		if (!is_dir($dir)) {
+			continue;
+		}
+
+		foreach (glob($dir . '/*.sql') as $file) {
+			if (!is_file($file)) {
+				continue;
+			}
+
+			$filename = basename($file);
+			$targetFile = $targetDir . '/' . $filename;
+
+			if (file_exists($targetFile)) {
+				echo "{$yellow}↻ Skipped (exists){$reset} {$filename}\n";
+				continue;
+			}
+
+			if (copy($file, $targetFile)) {
+				echo "{$green}✔ Copied{$reset} {$packageName} -> {$filename}\n";
+				$found++;
+			} else {
+				echo "{$red}✖ Failed{$reset} {$file}\n";
+			}
+		}
+	}
+}
+
+if ($found === 0) {
+	echo "{$yellow}No migration SQL files found.{$reset}\n";
+} else {
+	echo "\n{$green}Done. Copied {$found} files into /db{$reset}\n";
+}

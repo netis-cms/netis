@@ -1,0 +1,68 @@
+{templateType App\Install\InstallTemplate}
+{varType Drago\Application\UI\Flashes[] $flashes}
+
+<!DOCTYPE html>
+<html lang="{$lang}">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>{ifset title}{include title|stripHtml|firstUpper}{/ifset}</title>
+
+	{asset 'install.js'}
+</head>
+
+<body>
+{snippet install}
+	<header class="fixed-top bg-light header">
+		<div class="d-flex">
+			<div class="pt-2 ps-3 pe-3 flex-grow-1">
+				<a n:href="Install:" class="text-decoration-none fw-semibold">Netis</a>
+			</div>
+			<div class="pt-2 ps-3 pe-3">
+				<p class="m-0 fw-semibold">{_'Installation step'}
+					<span class="badge bg-secondary">{$step} &#47; 5</span>
+				</p>
+			</div>
+		</div>
+	</header>
+
+	{* flash message *}
+	{foreach $flashes as $flash}
+		{var string $flasType = $flash->type ? 'alert-' . $flash->type}
+		<div n:class="'fw-semibold alert mt-2 fade show border-0 rounded-0', $flasType" role="alert">
+			<div class="text-end">{_$flash->message}</div>
+		</div>
+	{/foreach}
+
+	{do $icons = [
+		0 => 'fa-question',
+		1 => 'fa-server',
+		2 => 'fa-database',
+		3 => 'fa-globe',
+		4 => 'fa-user-plus',
+		5 => 'fa-check',
+	]}
+
+	{* content *}
+	<main class="container main">
+		<div class="row">
+			<div class="col-md-6">
+				{include content}
+			</div>
+			<div class="col-md-6">
+				<div class="steps-ico">
+					<i class="fa-solid {$icons[$step]}" aria-hidden="true"></i>
+				</div>
+			</div>
+		</div>
+	</main>
+{/snippet}
+
+{* copyright info *}
+<footer class="fixed-bottom bg-white pt-2 pb-2">
+	<p class="text-center text-muted">&copy {=date('Y')} Netis</p>
+</footer>
+
+</body>
+</html>

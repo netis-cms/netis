@@ -6,12 +6,12 @@ LABEL maintainer="Zdeněk Papučík <zdenek.papucik@gmail.com>"
 ARG DEBIAN_FRONTEND=noninteractive
 
 # run commands
-RUN apt update && apt upgrade -y && a2enmod rewrite
-# RUN a2enmod ssl
+RUN apt update \
+    && apt upgrade -y \
+    && a2enmod rewrite \
+    && rm -rf /var/lib/apt/lists/*
 
-# php extensions
-RUN docker-php-ext-install mysqli
-RUN docker-php-ext-enable mysqli
+# RUN a2enmod ssl
 
 # php configuration
 COPY conf/php.ini /usr/local/etc/php/conf.d

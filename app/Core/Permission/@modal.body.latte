@@ -1,0 +1,7 @@
+{default string $deleteTitle}
+<p n:if="$deleteTitle" class="fw-semibold text-center">
+    <em>
+        {_'Are you sure you want to delete the item?'}
+        <span class="d-block text-danger">{$deleteTitle}</span>
+    </em>
+</p>

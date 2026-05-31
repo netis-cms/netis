@@ -1,0 +1,4 @@
+application:
+	errorPresenter:
+		4xx: Error:Error4xx   # for Nette\Application\BadRequestException
+		5xx: Error:Error5xx   # for other exceptions

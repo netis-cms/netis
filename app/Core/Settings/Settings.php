@@ -5,27 +5,12 @@ declare(strict_types=1);
 namespace App\Core\Settings;
 
 
-/**
- * This class holds configuration for the website such as website name and description.
- */
+/** Website configuration (name, description) etc. */
 class Settings
 {
-	/**
-	 * Website name
-	 */
-	public string $website;
-
-	/**
-	 * Website description
-	 */
-	public string $description;
-
-
 	public function __construct(
-		string $website,
-		string $description,
+		public string $website,
+		public string $description,
 	) {
-		$this->website = $website;
-		$this->description = $description;
 	}
 }

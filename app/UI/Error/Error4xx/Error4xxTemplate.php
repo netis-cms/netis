@@ -7,7 +7,8 @@ namespace App\UI\Error\Error4xx;
 use Nette\Bridges\ApplicationLatte\Template;
 
 
+/** Template for 4xx errors. */
 class Error4xxTemplate extends Template
 {
-	public mixed $httpCode;
+	public int $httpCode;
 }

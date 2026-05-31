@@ -10,12 +10,11 @@ use Drago\Database\Database;
 use RuntimeException;
 
 
-/**
- * This class handles fetching the settings as key-value pairs from the database.
- */
+/** Repository for settings key-value pairs. */
 #[Table(SettingsEntity::Table)]
 class SettingsRepository
 {
+	/** @use Database<SettingsEntity> */
 	use Database;
 
 	public function __construct(
@@ -26,18 +25,15 @@ class SettingsRepository
 
 	/**
 	 * Fetches all settings from the database as key-value pairs.
+	 * @return array<string, string>
 	 */
 	public function getSettings(): array
 	{
 		try {
-			// Fetch settings from the database using the read method, and map them as key-value pairs.
-			return $this->read('*')->fetchPairs(SettingsEntity::ColumnName, SettingsEntity::ColumnValue);
+			return $this->read('*')
+				->fetchPairs(SettingsEntity::ColumnName, SettingsEntity::ColumnValue);
 
 		} catch (\Throwable $e) {
-			// Handle potential errors (e.g., database connection or query failure).
-			// Log the error or handle it as needed.
-			// For example: throw a custom exception or return an empty array.
-
 			throw new RuntimeException('Failed to fetch settings from the database: ' . $e->getMessage(), 0, $e);
 		}
 	}

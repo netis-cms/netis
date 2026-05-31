@@ -1,0 +1,46 @@
+{* https://getbootstrap.com/docs/5.3/content/tables/ *}
+{varType string $tableId}
+{varType string $caption}
+{varType array $options}
+
+{do $tableTheme = $options['table'] ?? 'none'}
+{do $headTheme = $options['head'] ?? 'none'}
+{do $tableThemes = [
+    'primary' => 'table-primary',
+    'secondary' => 'table-secondary',
+    'success' => 'table-success',
+    'danger' => 'table-danger',
+    'warning' => 'table-warning',
+    'info' => 'table-info',
+    'light' => 'table-light',
+    'dark' => 'table-dark',
+    'none' => null
+]}
+
+{do $theadThemes = [
+    'primary' => 'table-primary',
+    'secondary' => 'table-secondary',
+    'success' => 'table-success',
+    'danger' => 'table-danger',
+    'warning' => 'table-warning',
+    'info' => 'table-info',
+    'light' => 'table-light',
+    'dark' => 'table-dark',
+    'none' => null
+]}
+
+{do $tableAttrs = [
+    'id' => $tableId ?? null,
+    'class' => 'table table-sm table-hover table-borderless caption-top'
+]}
+
+<table n:attr="$tableAttrs">
+    <caption n:ifset="$caption">{$caption}</caption>
+    <thead n:class="$theadThemes[$headTheme]">
+        {block thead}{/block}
+    </thead>
+
+    <tbody n:class="$tableThemes[$tableTheme]">
+        {block body}{/block}
+    </tbody>
+</table>

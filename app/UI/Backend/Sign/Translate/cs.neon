@@ -1,0 +1,59 @@
+# sing in
+"Login to administration": "Přihlášení do administrace"
+"Email address": "Emailová adresa"
+"Please enter your email address.": "Zadejte prosím svou e-mailovou adresu."
+"Password": "Heslo"
+"Your password": "Vaše heslo"
+"Please enter your password.": "Zadejte prosím své heslo."
+"Sign in": "Přihlásit se"
+"Sign up": "Registrovat se"
+"Lost your password?": "Zapomněli jste heslo?"
+"User not found.": "Uživatel nenalezen."
+"The password is incorrect.": "Heslo je nesprávné."
+"Your registration has been successfully completed, you can now log in.":
+	"Vaše registrace byla úspěšně dokončena, nyní se můžete přihlásit."
+
+"A password recovery code has been sent to your email.": "Na váš e-mail byl odeslán kód pro obnovení hesla."
+"Code check was successful.": "Kontrola kódu byla úspěšná."
+"Password change was successful.": "Změna hesla proběhla úspěšně."
+"We're sorry, but an account with this email address already exists.":
+	"Je nám líto, ale účet s touto e-mailovou adresou již existuje."
+
+"You are already logged in. You can return to the administration or log out and switch accounts.":
+	"Již jste přihlášeni. Můžete se vrátit do administrace nebo se odhlásit a přepnout účet."
+
+# sing up
+"Registration": "Registrace"
+"Username": "Uživatel"
+"Full name": "Celé jméno"
+"Please enter your full name.": "Zadejte prosím své celé jméno."
+"Password to check": "Heslo ke kontrole"
+"Re-enter password": "Znovu zadejte heslo"
+"Passwords do not match.": "Hesla se neshodují."
+"Please enter your password to check.": "Zadejte prosím své heslo pro kontrolu."
+"Password must be at least %d characters long.": "Heslo musí mít alespoň %d znaků."
+"Back to sign in": "Zpět k přihlášení"
+"The password must contain uppercase and lowercase letters, numbers, and a special character.":
+	"Heslo musí obsahovat velká a malá písmena, číslice a speciální znak."
+
+# recovery password
+"Forgot password": "Zapomenuté heslo"
+"Reset password": "Obnovit heslo"
+"Enter the code from the email": "Zadejte kód z e-mailu"
+"Please enter the code from the email.": "Zadejte prosím kód z e-mailu."
+"The code entered is invalid.": "Zadaný kód je neplatný."
+"Continue password recovery": "Pokračujte v obnově hesla"
+"Change your password": "Změňte si heslo"
+"Code": "Kód"
+"We're sorry, but we don't know such an email address.": "Je nám líto, ale takovou e-mailovou adresu neznáme."
+
+# recovery email
+"Request to reset password": "Žádost o obnovení hesla"
+"To reset your password, enter the code you received in this email into the form. The code is valid for 30 minutes.":
+	"Pro obnovení hesla zadejte do formuláře kód, který jste obdrželi v tomto e-mailu. Kód je platný 30 minut."
+
+"If you do not want to change your password or didn’t request a reset, you can ignore and delete this email.":
+	"Pokud si nechcete změnit heslo nebo jste nepožádali o jeho obnovení, můžete tento e-mail ignorovat a smazat."
+
+# sign out
+"You have been signed out": "Byli jste odhlášeni"

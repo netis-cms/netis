@@ -1,0 +1,22 @@
+{varType App\Core\User\UserAccess $userAccess}
+
+<ul class="list list-unstyled mb-0">
+    <li class="list-item">
+        <p class="list-title text-uppercase">{_'User'}</p>
+        <ul class="list-unstyled">
+
+            <!-- user logged -->
+            <li>
+                <a href="#" class="list-link link-arrow">
+                    <span class="list-icon"><i class="fa-regular fa-user bell"></i></span>
+                    {$userAccess->getUserIdentity()->username}
+                </a>
+
+                <!-- list items, second level -->
+                <ul class="list-unstyled list-hidden">
+                    <li><a href="{link Sign:out}" class="list-link">{_'Sign out'}</a></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>

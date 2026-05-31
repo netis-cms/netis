@@ -4,32 +4,54 @@ declare(strict_types=1);
 
 namespace App\UI\Backend;
 
-use App\Core\User\User;
-use App\Core\User\UserRequireLogged;
-use App\UI\Presenter;
+use App\Core\Menu\SidebarBuilder;
+use App\Core\Menu\SidebarItem;
+use App\Core\User\UserAccess;
+use App\UI\Backend\Sign\RequireLogged;
+use App\UI\BasePresenter;
 use Nette\DI\Attributes\Inject;
 
 
 /**
- * Abstract class for backend presenters.
- * This class ensures the user is logged in and provides user data to the template.
+ * @property BackendTemplate $template
  */
-abstract class BackendPresenter extends Presenter
+class BackendPresenter extends BasePresenter
 {
-	use UserRequireLogged;
+	use RequireLogged;
 
 	#[Inject]
-	public User $user;
+	public UserAccess $userAccess;
 
 
-	/**
-	 * Runs before rendering the page.
-	 */
 	protected function beforeRender(): void
 	{
 		parent::beforeRender();
+		$this->template->userAccess = $this->userAccess;
+		$this->template->sidebarMenu = $this->getSidebarMenuStructure();
+	}
 
-		// Ensure the user is set and accessible in the template
-		$this->template->user = $this->user ?? null;
+
+	/**
+	 * Generates the sidebar menu structure.
+	 * @return array<string, SidebarItem[]>
+	 */
+	private function getSidebarMenuStructure(): array
+	{
+		$builder = new SidebarBuilder;
+
+		// Sections are optional and serve as titles/separators
+		$builder->addSection('System')
+			// Simple link with icon
+			->addItem('Dashboard', 'Admin:')
+			->setIcon('fa-solid fa-mug-hot bell')
+
+			// Complex item with permissions and submenu
+			->addItem('Permissions', 'AccessControl:*')
+			->setIcon('fa-solid fa-gear bell')
+			->setAllowAny('Backend:AccessControl', 'roles-read', 'users-read')
+			->addSubItem('Roles', 'AccessControl:roles', ['Backend:AccessControl', 'roles-read'])
+			->addSubItem('Users', 'AccessControl:users', ['Backend:AccessControl', 'users-read']);
+
+		return $builder->build();
 	}
 }

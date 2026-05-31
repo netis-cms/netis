@@ -1,0 +1,18 @@
+{varType Drago\Application\UI\Flashes[] $flashes}
+{do $buttonAttrs = [
+	'type' => 'button',
+	'class' => 'btn-close',
+	'data-bs-dismiss' => 'alert',
+	'aria-label' => 'Close'
+]}
+
+{foreach $flashes as $flash}
+	{do $messageItemAttrs = [
+		'class' => 'alert mt-2 alert-dismissible fade show border-0 rounded alert-' . $flash->type,
+		'role' => 'alert',
+		'style' => 'z-index: 1030'
+	]}
+	<div n:attr="$messageItemAttrs">{$flash->message}
+		<button n:attr="$buttonAttrs"></button>
+	</div>
+{/foreach}
