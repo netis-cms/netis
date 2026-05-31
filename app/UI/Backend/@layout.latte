@@ -20,7 +20,7 @@
         <div class="container-fluid">
 
             <!-- title -->
-            <a class="navbar-brand text-primary" n:href="this"><i class="fa-brands fa-medapps px-1"></i>
+            <a class="navbar-brand text-primary" n:href="Admin:"><i class="fa-brands fa-medapps px-1"></i>
                 <span class="fw-semibold">{$settings->website}</span>
             </a>
 
@@ -31,7 +31,7 @@
                 <ul class="navbar-nav navbar-nav-breadcrumb">
                     <li class="nav-item"><a class="nav-link" n:href="Admin:">{_'Dashboard'}</a></li>
                     <li n:if="!$presenter->isLinkCurrent('Admin:default')" class="nav-item">
-                        <a n:class="'nav-link', !$presenter->isLinkCurrent('Admin:default') ? disabled" n:href="this">
+                        <a n:class="'nav-link', !$presenter->isLinkCurrent('Admin:default') ? disabled" n:href="Admin:">
                             {ifset title}{include title|stripHtml|firstUpper}{/ifset}
                         </a>
                     </li>

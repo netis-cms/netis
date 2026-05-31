@@ -19,4 +19,17 @@ abstract class BasePresenter extends Presenter
 	use TranslatorAdapter;
 	use Authorization;
 	use SettingsRequire;
+
+	/** @return list<string> */
+	protected function readOnlySignals(): array
+	{
+		return ['sort', 'page', 'resetFilters', 'setPageSize'];
+	}
+
+
+	/** @return list<string> */
+	protected function readOnlyReceivers(): array
+	{
+		return ['Grid-filters', 'Grid-paginator', 'Grid-pageSize'];
+	}
 }
