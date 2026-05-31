@@ -39,6 +39,11 @@ extensions:
 	translator: Drago\Localization\DI\TranslatorExtension(%appDir%, %tempDir%)
 
 
+translator:
+	exclude:
+		- %appDir%/Install
+
+
 # nette asset building
 assets:
 	mapping:

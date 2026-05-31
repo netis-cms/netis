@@ -1,0 +1,70 @@
+# access control pages
+"Role permissions": "Oprávnění role"
+"Roles data": "Role"
+"Users data": "Uživatelské role"
+
+# authorization overview
+"Setting access for the selected role": "Nastavení přístupů pro vybranou roli"
+"Role": "Role"
+"Apply": "Použít"
+"Allowed": "Povoleno"
+"Denied": "Zakázáno"
+"permissions": "oprávnění"
+"No permissions found": "Nebyla nalezena žádná oprávnění"
+"Administrator role has full access granted by default. These settings have no effect.":
+	"Role administrátora má ve výchozím nastavení povolený plný přístup. Tato nastavení na ni nemají vliv."
+
+# datagrid actions
+"Add item": "Přidat položku"
+"Edit": "Upravit"
+"Delete": "Smazat"
+"Permissions": "Oprávnění"
+
+# datagrid columns
+"Role description": "Popis role"
+"System name": "Systémový název"
+"User": "Uživatel"
+"Roles": "Role"
+
+# roles form
+"Manage Role": "Správa role"
+"Role name": "Název role"
+"e.g. member, editor": "např. clen, editor"
+"Please enter role name.": "Zadejte prosím název role."
+"Only lowercase letters, numbers and hyphens.": "Použijte pouze malá písmena, číslice a pomlčky."
+"Description role": "Popis role"
+"Please enter description role.": "Zadejte prosím popis role."
+"Send": "Odeslat"
+"Edit roles": "Upravit role"
+"This role already exists.": "Tato role již existuje."
+"System role cannot be deleted.": "Systémovou roli nelze smazat."
+
+# user roles form
+"Manage User Roles": "Správa rolí uživatele"
+"Name": "Jméno"
+"Please select a user.": "Vyberte prosím uživatele."
+"Select user": "Vyberte uživatele"
+"Please select a role.": "Vyberte prosím roli."
+"Select role": "Vyberte roli"
+
+# delete modal
+"Confirm delete": "Potvrzení smazání"
+"Are you sure you want to delete the item?": "Opravdu chcete tuto položku smazat?"
+"Confirm": "Potvrdit"
+
+# flash messages and errors
+"Insert successful.": "Záznam byl úspěšně vytvořen."
+"Update successful.": "Záznam byl úspěšně upraven."
+"Delete successful.": "Záznam byl úspěšně smazán."
+"Unknown status code.": "Neznámý stavový kód."
+
+# seeded roles
+"Administrator": "Administrátor"
+
+# seeded permissions
+"View roles": "Zobrazit role"
+"Roles management": "Správa rolí"
+"View user roles": "Zobrazit uživatelské role"
+"Assign roles to users": "Přiřazovat role uživatelům"
+"View permissions": "Zobrazit oprávnění"
+"Manage permissions": "Spravovat oprávnění"
