@@ -1,54 +1,54 @@
 {
-    "name": "drago-ex/project",
-    "type": "project",
-    "description": "The basis for new projects on Drago Extension.",
-    "require": {
-        "php": ">=8.3 <9",
-        "nette/robot-loader": "^4.1",
-        "nette/assets": "^1.0",
-        "latte/latte": "^3.1",
-        "tracy/tracy": "^2.11",
-        "drago-ex/bootstrap": "^2.0",
-        "drago-ex/translator": "^3.0",
-        "drago-ex/project-front": "^2.0",
-        "drago-ex/project-docker": "^2.0",
-        "netis-cms/project-preset": "dev-main",
-        "drago-ex/project-install": "dev-main",
-        "drago-ex/project-permission": "dev-main",
-        "drago-ex/datagrid": "dev-main"
-    },
-    "minimum-stability": "stable",
-    "require-dev": {
-        "phpstan/phpstan-nette": "^2.0",
-        "drago-ex/project-installer": "@dev"
-    },
-    "autoload": {
-        "psr-4": {
-            "App\\": "app"
-        }
-    },
-    "extra": {
-        "drago-project": {
-            "allow-library-install": true,
-            "packages": {
-                "drago-ex/project-backend-ui": {
-                    "skip-replace": true
-                },
-                "netis-cms/project-preset": {
-                    "skip-replace": true
-                }
-            }
-        }
-    },
-    "scripts": {
-        "phpstan": "phpstan analyse",
-        "post-install-cmd": [
-            "drago-install",
-            "drago-clean"
-        ],
-        "post-update-cmd": [
-            "drago-install",
-            "drago-clean"
-        ]
-    }
+	"name": "drago-ex/project",
+	"type": "project",
+	"description": "The basis for new projects on Drago Extension.",
+	"require": {
+		"php": ">=8.3 <9",
+		"nette/robot-loader": "^4.1",
+		"nette/assets": "^1.0",
+		"latte/latte": "^3.1",
+		"tracy/tracy": "^2.11",
+		"drago-ex/bootstrap": "^2.0",
+		"drago-ex/translator": "^3.0",
+		"drago-ex/project-front": "^2.0",
+		"drago-ex/project-docker": "^2.0",
+		"netis-cms/project-preset": "dev-main",
+		"drago-ex/project-install": "dev-main",
+		"drago-ex/project-permission": "dev-main",
+		"drago-ex/datagrid": "dev-main"
+	},
+	"minimum-stability": "stable",
+	"require-dev": {
+		"phpstan/phpstan-nette": "^2.0",
+		"drago-ex/project-installer": "@dev"
+	},
+	"autoload": {
+		"psr-4": {
+			"App\\": "app"
+		}
+	},
+	"extra": {
+		"drago-project": {
+			"allow-library-install": true,
+			"packages": {
+				"drago-ex/project-backend-ui": {
+					"skip-replace": true
+				},
+				"netis-cms/project-preset": {
+					"skip-replace": true
+				}
+			}
+		}
+	},
+	"scripts": {
+		"phpstan": "phpstan analyse",
+		"post-install-cmd": [
+			"drago-install",
+			"drago-clean"
+		],
+		"post-update-cmd": [
+			"drago-install",
+			"drago-clean"
+		]
+	}
 }
