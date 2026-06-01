@@ -10,14 +10,13 @@
 	'aria-hidden' => 'true',
 	'data-bs-backdrop' => 'static',
 	'data-bs-keyboard' => 'false',
-	'data-bs-theme' => 'light'
+	'data-bs-theme' => 'light',
 ]}
 
 {do $modalCloseBtnAttrs = [
 	'type' => 'button',
 	'class' => 'btn-close',
 	'data-bs-dismiss' => 'modal',
-	'aria-label' => 'Close'
 ]}
 
 {do $headerTheme = $options['header'] ?? 'none'}
@@ -25,7 +24,7 @@
 	'danger' => 'bg-danger text-white',
 	'primary' => 'bg-primary text-white',
 	'success' => 'bg-success text-white',
-	'none' => null
+	'none' => null,
 ]}
 
 <div n:attr="$modalAttrs">
@@ -34,7 +33,7 @@
 
 			<div n:class="modal-header, $headerThemes[$headerTheme]">
 				<h1 class="modal-title fs-5" id="{$labelId}">{block title}{/block}</h1>
-				<button n:attr="$modalCloseBtnAttrs"></button>
+				<button n:attr="$modalCloseBtnAttrs" aria-label="{_'Close'}"></button>
 			</div>
 
 			<div class="modal-body">{block body}{/block}</div>

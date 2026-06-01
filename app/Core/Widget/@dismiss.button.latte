@@ -1,10 +1,10 @@
-{define buttonDismiss, string $type, ?string $name = null, ?string $class = null}
+{define buttonDismiss, string $type, ?string $class = null}
     {do $attrs = [
         'type' => 'button',
         'class' => $class ?? 'btn btn-outline-secondary me-1',
-        'data-bs-dismiss' => $type
+        'data-bs-dismiss' => $type,
     ]}
     <button n:attr="$attrs">
-        {$name ?? 'Close'}
+        {_'Close'}
     </button>
 {/define}

@@ -10,6 +10,8 @@
 "Lost your password?": "Zapomněli jste heslo?"
 "User not found.": "Uživatel nenalezen."
 "The password is incorrect.": "Heslo je nesprávné."
+"You must be logged in.": "Musíte být přihlášeni."
+"You have been signed out due to inactivity. Please sign in again.": "Byli jste odhlášeni z důvodu neaktivity. Přihlaste se prosím znovu."
 "Your registration has been successfully completed, you can now log in.":
 	"Vaše registrace byla úspěšně dokončena, nyní se můžete přihlásit."
 

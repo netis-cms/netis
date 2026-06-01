@@ -7,21 +7,20 @@
 	'id' => $offcanvasId,
 	'aria-labelledby' => $labelId,
 	'data-bs-theme' => 'light',
-	'style' => 'width: 61rem'
+	'style' => 'width: 61rem',
 ]}
 
 {do $closeBtnAttrs = [
 	'type' => 'button',
 	'class' => 'btn-close text-reset',
 	'data-bs-dismiss' => 'offcanvas',
-	'aria-label' => 'Close'
 ]}
 
 <div n:attr="$offcanvasAttrs">
 
 	<div class="offcanvas-header bg-light">
 		<h5 id="{$labelId}">{block title}{/block}</h5>
-		<button n:attr="$closeBtnAttrs"></button>
+		<button n:attr="$closeBtnAttrs" aria-label="{_'Close'}"></button>
 	</div>
 
 	<div class="offcanvas-body">

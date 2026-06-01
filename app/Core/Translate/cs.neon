@@ -20,3 +20,23 @@
 "Please select a valid option.": "Vyberte prosím platnou možnost."
 "An error occurred during file upload.": "Při nahrávání souboru došlo k chybě."
 "Your session has expired. Please return to the home page and try again.": "Vaše relace vypršela. Vraťte se na domovskou stránku a zkuste to znovu."
+
+# default translate
+"Close": "Zavřít"
+
+# backend
+"Sign out": "Odhlásit se"
+"Dashboard": "Administrace"
+"Welcome to the administration welcome page.": "Vítejte na úvodní stránce administrace."
+"Users roles": "Uživatelské role"
+
+# datagrid
+"No items": "Žádné položky"
+"Showing": "Zobrazeno"
+"of": "z"
+"items": "položek"
+
+# filters
+"Reset": "Resetovat"
+"Search...": "Hledat..."
+"All": "Vše"

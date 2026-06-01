@@ -10,3 +10,4 @@ dibi:
 	database: app
 	driver: mysqli
 	lazy: true
+
