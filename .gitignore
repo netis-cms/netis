@@ -1,8 +1,11 @@
 /vendor/
 /node_modules/
 
-/var/cache/
-/var/installed.lock
+/var/*
+!/var/log/
+!/var/log/.gitignore
+!/var/sessions/
+!/var/sessions/.gitignore
 
 /www/dist/
 /docker/mysql/
