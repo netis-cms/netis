@@ -1,7 +1,7 @@
 {
-	"name": "drago-ex/project",
+	"name": "drago-ex/netis",
 	"type": "project",
-	"description": "The basis for new projects on Drago Extension.",
+	"description": "Little CMS",
 	"require": {
 		"php": ">=8.3 <9",
 		"nette/robot-loader": "^4.1",
