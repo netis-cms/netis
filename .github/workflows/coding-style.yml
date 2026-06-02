@@ -13,8 +13,20 @@ jobs:
           php-version: 8.3
           coverage: none
 
-      - run: composer create-project nette/code-checker temp/code-checker ^3 --no-progress
-      - run: php temp/code-checker/code-checker --strict-types --no-progress
+      - id: php-files
+        run: |
+          if find . -path ./temp -prune -o -name '*.php' -print -quit | grep -q .; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - if: steps.php-files.outputs.exists == 'true'
+        run: composer create-project nette/code-checker temp/code-checker ^3 --no-progress
+      - if: steps.php-files.outputs.exists == 'true'
+        run: php temp/code-checker/code-checker --strict-types --no-progress
+      - if: steps.php-files.outputs.exists != 'true'
+        run: echo "No PHP files found. Skipping Code Checker."
 
   nette_cs:
     name: Nette Coding Standard
@@ -26,5 +38,17 @@ jobs:
           php-version: 8.3
           coverage: none
 
-      - run: composer create-project nette/coding-standard temp/coding-standard ^3 --no-progress
-      - run: php temp/coding-standard/ecs check
+      - id: php-files
+        run: |
+          if find . -path ./temp -prune -o -name '*.php' -print -quit | grep -q .; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - if: steps.php-files.outputs.exists == 'true'
+        run: composer create-project nette/coding-standard temp/coding-standard ^3 --no-progress
+      - if: steps.php-files.outputs.exists == 'true'
+        run: php temp/coding-standard/ecs check
+      - if: steps.php-files.outputs.exists != 'true'
+        run: echo "No PHP files found. Skipping Coding Standard."
