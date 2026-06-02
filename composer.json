@@ -1,44 +1,12 @@
 {
 	"name": "netis-cms/netis",
-	"type": "project",
-	"description": "Little CMS",
+	"type": "library",
+	"description": "Installer for creating a Netis CMS project.",
+	"license": ["MIT"],
 	"require": {
-		"php": ">=8.3 <9",
-		"nette/robot-loader": "^4.1",
-		"nette/assets": "^1.0",
-		"latte/latte": "^3.1",
-		"tracy/tracy": "^2.11",
-		"drago-ex/bootstrap": "^2.0",
-		"drago-ex/translator": "^3.0",
-		"drago-ex/datagrid": "dev-main",
-		"drago-ex/project-permission": "dev-main",
-		"drago-ex/project-preset": "dev-main",
-		"drago-ex/project-install": "dev-main"
+		"php": ">=8.3 <9"
 	},
-	"minimum-stability": "stable",
-	"require-dev": {
-		"phpstan/phpstan-nette": "^2.0",
-		"drago-ex/project-installer": "@dev"
-	},
-	"autoload": {
-		"psr-4": {
-			"App\\": "app"
-		}
-	},
-	"extra": {
-		"drago-project": {
-			"allow-library-install": true
-		}
-	},
-	"scripts": {
-		"phpstan": "phpstan analyse",
-		"post-install-cmd": [
-			"drago-install",
-			"drago-clean"
-		],
-		"post-update-cmd": [
-			"drago-install",
-			"drago-clean"
-		]
-	}
+	"bin": [
+		"bin/create-netis"
+	]
 }

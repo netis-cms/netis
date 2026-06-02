@@ -1,16 +1,6 @@
 /vendor/
+/composer.lock
 /node_modules/
-
-/var/*
-!/var/log/
-!/var/log/.gitignore
-!/var/sessions/
-!/var/sessions/.gitignore
-
-/www/dist/
-/docker/mysql/
+/package-lock.json
 
 /.idea/
-
-/composer.lock
-/package-lock.json

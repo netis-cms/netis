@@ -1,22 +1,55 @@
 # Netis cms
 
-Little CMS.
+Little CMS installer.
 
 [![Coding Style](https://github.com/netis-cms/netis/actions/workflows/coding-style.yml/badge.svg)](https://github.com/netis-cms/netis/actions/workflows/coding-style.yml)
 [![PHP version](https://badge.fury.io/ph/netis-cms%2Fnetis.svg)](https://badge.fury.io/ph/netis-cms%2Fnetis)
 
 ## Requirements
 - PHP >= 8.3
-- Nette Framework
 - Composer
-- Docker
-- Node.js
-- Bootstrap
-- Naja
 
 ## Installation
+Install the creator command globally:
 ```bash
-composer create-project netis-cms/netis
+composer global require netis-cms/netis
+```
+
+Create a new Netis project:
+```bash
+create-netis cms
+```
+
+The target directory is optional. If it is not provided, `netis` is used:
+```bash
+create-netis
+```
+
+Use `.` only inside an empty directory:
+```bash
+mkdir cms
+cd cms
+create-netis .
+```
+
+The command creates a base Drago project and installs the Netis package preset:
+```bash
+composer create-project drago-ex/project <target-dir>
+cd <target-dir>
+composer require drago-ex/project-install:dev-main
+php vendor/bin/sql-export migrations
+```
+
+Default packages installed by the creator are defined in `bin/create-netis`:
+```bash
+DEFAULT_INSTALL_PACKAGES=(
+    "drago-ex/project-install:dev-main"
+)
+```
+
+You can also override them for one run:
+```bash
+NETIS_INSTALL_PACKAGES="drago-ex/project-install:dev-main vendor/package:^1.0" create-netis cms
 ```
 
 ## It uses these packages
