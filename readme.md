@@ -32,7 +32,12 @@ cd cms
 create-netis .
 ```
 
-The command creates a base Drago project and installs the Netis package preset:
+For local testing from this repository, run:
+```bash
+php bin/create-netis cms
+```
+
+The command creates a base Drago project, installs the Netis package preset and exports SQL migrations:
 ```bash
 composer create-project drago-ex/project <target-dir>
 cd <target-dir>
@@ -41,10 +46,10 @@ php vendor/bin/sql-export migrations
 ```
 
 Default packages installed by the creator are defined in `bin/create-netis`:
-```bash
-DEFAULT_INSTALL_PACKAGES=(
-    "drago-ex/project-install:dev-main"
-)
+```php
+$defaultInstallPackages = [
+    'drago-ex/project-install:dev-main',
+];
 ```
 
 You can also override them for one run:

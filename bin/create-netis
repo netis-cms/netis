@@ -1,83 +1,165 @@
-#!/usr/bin/env bash
-set -Eeuo pipefail
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
 
-PROJECT_PACKAGE="drago-ex/project"
-DEFAULT_INSTALL_PACKAGES=(
-	"drago-ex/project-install:dev-main"
-)
-TARGET_DIR="${1:-netis}"
-HAS_TARGET_ARG=0
+$projectPackage = 'drago-ex/project';
+$defaultInstallPackages = [
+		'drago-ex/project-preset:dev-main',
+		'drago-ex/project-permission:dev-main',
+		'drago-ex/datagrid:dev-main',
+		'drago-ex/project-install:dev-main',
+];
 
-if [[ $# -gt 0 ]]; then
-	HAS_TARGET_ARG=1
-fi
+$targetDir = $argv[1] ?? 'netis';
+$hasTargetArg = $argc > 1;
 
-if [[ -n "${NETIS_INSTALL_PACKAGES:-}" ]]; then
-	read -r -a INSTALL_PACKAGES <<< "${NETIS_INSTALL_PACKAGES}"
-elif [[ -n "${NETIS_INSTALL_PACKAGE:-}" ]]; then
-	INSTALL_PACKAGES=("${NETIS_INSTALL_PACKAGE}")
-else
-	INSTALL_PACKAGES=("${DEFAULT_INSTALL_PACKAGES[@]}")
-fi
+$green = "\033[32m";
+$blue = "\033[34m";
+$yellow = "\033[33m";
+$red = "\033[31m";
+$reset = "\033[0m";
 
-green=$'\033[32m'
-blue=$'\033[34m'
-yellow=$'\033[33m'
-red=$'\033[31m'
-reset=$'\033[0m'
-
-show_help() {
-	cat <<'USAGE'
+if (in_array($targetDir, ['-h', '--help'], true)) {
+	echo <<<USAGE
 Create a Netis CMS project.
 
 Usage:
-  create-netis [target-dir]
+  php bin/create-netis [target-dir]
 
 Examples:
-  create-netis
-  create-netis cms
-  create-netis .
+  php bin/create-netis
+  php bin/create-netis cms
+  php bin/create-netis .
 
 The default target directory is "netis".
 Use "." only inside an empty directory.
-USAGE
+USAGE;
+	exit(0);
 }
 
-if [[ "${TARGET_DIR}" == "-h" || "${TARGET_DIR}" == "--help" ]]; then
-	show_help
-	exit 0
-fi
+$installPackages = getInstallPackages($defaultInstallPackages);
+$cwd = getcwd();
 
-if ! command -v composer >/dev/null 2>&1; then
-	printf '%s\n' "${red}ERROR: Composer was not found in PATH.${reset}" >&2
-	exit 1
-fi
+if ($cwd === false) {
+	fwrite(STDERR, "{$red}ERROR: Cannot resolve current working directory.{$reset}\n");
+	exit(1);
+}
 
-if [[ "${HAS_TARGET_ARG}" -eq 0 && -f composer.json ]] && grep -q '"name"[[:space:]]*:[[:space:]]*"netis-cms/netis"' composer.json; then
-	printf '%s\n' "${yellow}WARN You are probably running this command inside the Netis installer repository.${reset}" >&2
-	printf '%s\n' "${red}ERROR: Please provide a target directory, for example: create-netis cms${reset}" >&2
-	exit 1
-fi
+$composerBinary = findComposer();
+if ($composerBinary === null) {
+	fwrite(STDERR, "{$red}ERROR: Composer was not found in PATH.{$reset}\n");
+	exit(1);
+}
 
-if [[ "${TARGET_DIR}" != "." && -e "${TARGET_DIR}" ]]; then
-	printf '%s\n' "${red}ERROR: Target path already exists: ${TARGET_DIR}${reset}" >&2
-	exit 1
-fi
+if (!$hasTargetArg && is_file($cwd . DIRECTORY_SEPARATOR . 'composer.json')) {
+	$composer = json_decode((string) file_get_contents($cwd . DIRECTORY_SEPARATOR . 'composer.json'), true);
+	if (($composer['name'] ?? null) === 'netis-cms/netis') {
+		fwrite(STDERR, "{$yellow}WARN You are probably running this command inside the Netis installer repository.{$reset}\n");
+		fwrite(STDERR, "{$red}ERROR: Please provide a target directory, for example: php bin/create-netis cms{$reset}\n");
+		exit(1);
+	}
+}
 
-if [[ "${TARGET_DIR}" == "." && "$(find . -mindepth 1 -maxdepth 1 | head -n 1)" != "" ]]; then
-	printf '%s\n' "${red}ERROR: Current directory is not empty.${reset}" >&2
-	exit 1
-fi
+if ($targetDir !== '.' && file_exists($targetDir)) {
+	fwrite(STDERR, "{$red}ERROR: Target path already exists: {$targetDir}{$reset}\n");
+	exit(1);
+}
 
-printf '%s\n' "${blue}INFO Creating base project in ${TARGET_DIR}.${reset}"
-composer create-project "${PROJECT_PACKAGE}" "${TARGET_DIR}"
+if ($targetDir === '.' && !isDirectoryEmpty($cwd)) {
+	fwrite(STDERR, "{$red}ERROR: Current directory is not empty.{$reset}\n");
+	exit(1);
+}
 
-printf '%s\n' "${blue}INFO Installing Netis preset.${reset}"
-(
-	cd "${TARGET_DIR}"
-	composer require "${INSTALL_PACKAGES[@]}"
-	printf '%s\n' "${blue}INFO Exporting SQL migrations.${reset}"
-	php vendor/bin/sql-export migrations
-)
+echo "{$blue}INFO Creating base project in {$targetDir}.{$reset}\n";
+runCommand([$composerBinary, 'create-project', $projectPackage, $targetDir], $cwd);
 
-printf '%s\n' "${green}OK Netis project is ready in ${TARGET_DIR}.${reset}"
+$projectDir = $targetDir === '.'
+		? $cwd
+		: $cwd . DIRECTORY_SEPARATOR . $targetDir;
+
+echo "{$blue}INFO Installing Netis preset.{$reset}\n";
+runCommand(array_merge([$composerBinary, 'require'], $installPackages), $projectDir);
+
+echo "{$blue}INFO Exporting SQL migrations.{$reset}\n";
+runCommand(['php', 'vendor/bin/sql-export', 'migrations'], $projectDir);
+
+echo "{$green}OK Netis project is ready in {$targetDir}.{$reset}\n";
+
+/**
+ * @param list<string> $defaultInstallPackages
+ * @return list<string>
+ */
+function getInstallPackages(array $defaultInstallPackages): array
+{
+	$packages = getenv('NETIS_INSTALL_PACKAGES');
+	if (is_string($packages) && trim($packages) !== '') {
+		return preg_split('~\s+~', trim($packages)) ?: $defaultInstallPackages;
+	}
+
+	$package = getenv('NETIS_INSTALL_PACKAGE');
+	if (is_string($package) && trim($package) !== '') {
+		return [trim($package)];
+	}
+
+	return $defaultInstallPackages;
+}
+
+function findComposer(): ?string
+{
+	$binaries = stripos(PHP_OS_FAMILY, 'Windows') === 0
+			? ['composer.bat', 'composer.cmd', 'composer']
+			: ['composer'];
+
+	foreach ($binaries as $binary) {
+		$lookupCommand = stripos(PHP_OS_FAMILY, 'Windows') === 0
+				? 'where ' . escapeshellarg($binary)
+				: 'command -v ' . escapeshellarg($binary);
+
+		$output = [];
+		exec($lookupCommand, $output, $exitCode);
+		if ($exitCode === 0) {
+			return $output[0] ?? $binary;
+		}
+	}
+
+	return null;
+}
+
+function isDirectoryEmpty(string $dir): bool
+{
+	$items = scandir($dir);
+	if ($items === false) {
+		return false;
+	}
+
+	return array_diff($items, ['.', '..']) === [];
+}
+
+/**
+ * @param list<string> $command
+ */
+function runCommand(array $command, string $cwd): void
+{
+	$commandLine = implode(' ', array_map('escapeshellarg', $command));
+	$process = proc_open(
+			$commandLine,
+			[
+					0 => STDIN,
+					1 => STDOUT,
+					2 => STDERR,
+			],
+			$pipes,
+			$cwd
+	);
+
+	if (!is_resource($process)) {
+		fwrite(STDERR, "\033[31mERROR: Cannot start command: {$commandLine}\033[0m\n");
+		exit(1);
+	}
+
+	$exitCode = proc_close($process);
+	if ($exitCode !== 0) {
+		fwrite(STDERR, "\033[31mERROR: Command failed with exit code {$exitCode}: {$commandLine}\033[0m\n");
+		exit($exitCode);
+	}
+}
