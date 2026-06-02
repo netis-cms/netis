@@ -1,6 +1,6 @@
-# Netis cms
+# Netis CMS
 
-Little CMS installer.
+Installer for creating a Netis CMS project on top of Drago Project.
 
 [![Coding Style](https://github.com/netis-cms/netis/actions/workflows/coding-style.yml/badge.svg)](https://github.com/netis-cms/netis/actions/workflows/coding-style.yml)
 [![PHP version](https://badge.fury.io/ph/netis-cms%2Fnetis.svg)](https://badge.fury.io/ph/netis-cms%2Fnetis)
@@ -10,61 +10,42 @@ Little CMS installer.
 - Composer
 
 ## Installation
-Install the creator command globally:
-```bash
+```shell
 composer global require netis-cms/netis
 ```
 
-Create a new Netis project:
-```bash
+## Usage
+Create a new project:
+```shell
 create-netis cms
 ```
 
-The target directory is optional. If it is not provided, `netis` is used:
-```bash
+Without an argument, the default target directory is `netis`:
+```shell
 create-netis
 ```
 
-Use `.` only inside an empty directory:
-```bash
-mkdir cms
-cd cms
+You can also install into the current empty directory:
+```shell
 create-netis .
 ```
 
-For local testing from this repository, run:
-```bash
+For local testing from this repository:
+```shell
 php bin/create-netis cms
 ```
 
-The command creates a base Drago project, installs the Netis package preset and exports SQL migrations:
-```bash
+## What It Does
+The command creates a base Drago project, installs the Netis preset packages and exports SQL migrations:
+```shell
 composer create-project drago-ex/project <target-dir>
-cd <target-dir>
-composer require drago-ex/project-install:dev-main
+composer require <netis-packages>
 php vendor/bin/sql-export migrations
 ```
 
-Default packages installed by the creator are defined in `bin/create-netis`:
-```php
-$defaultInstallPackages = [
-    'drago-ex/project-install:dev-main',
-];
-```
+Default packages are configured in `bin/create-netis` using `$defaultInstallPackages`.
 
-You can also override them for one run:
-```bash
+For one-off testing, you can override them:
+```shell
 NETIS_INSTALL_PACKAGES="drago-ex/project-install:dev-main vendor/package:^1.0" create-netis cms
 ```
-
-## It uses these packages
-- [Drago project](https://github.com/drago-ex/project)
-- [Docker Setup](https://github.com/drago-ex/project-docker)
-- [Database Layer](https://github.com/drago-ex/project-docker-db)
-- [User Management](https://github.com/drago-ex/project-user)
-- [Authentication](https://github.com/drago-ex/project-auth)
-- [Permissions (ACL)](https://github.com/drago-ex/project-permission)
-- [Backend Admin](https://github.com/drago-ex/project-backend)
-- [Backend UI](https://github.com/drago-ex/project-backend-ui)
-- [Application Settings](https://github.com/drago-ex/project-settings)
-- [Installation process](https://github.com/drago-ex/project-install)
