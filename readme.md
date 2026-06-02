@@ -43,6 +43,34 @@ composer require <netis-packages>
 php vendor/bin/sql-export migrations
 ```
 
+## After Create
+Go to the created project directory:
+```shell
+cd cms
+```
+
+Install frontend dependencies:
+```shell
+npm install
+```
+
+Build frontend assets:
+```shell
+npm run vite:build
+```
+
+Build Docker images:
+```shell
+npm run docker:build
+```
+
+Start the development Docker environment:
+```shell
+npm run docker:dev
+```
+
+All available npm commands are listed in the created project's `package.json`.
+
 Default packages are configured in `bin/create-netis` using `$defaultInstallPackages`.
 
 For one-off testing, you can override them:
