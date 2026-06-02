@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+PROJECT_PACKAGE="drago-ex/project"
+DEFAULT_INSTALL_PACKAGES=(
+	"drago-ex/project-install:dev-main"
+)
+TARGET_DIR="${1:-netis}"
+HAS_TARGET_ARG=0
+
+if [[ $# -gt 0 ]]; then
+	HAS_TARGET_ARG=1
+fi
+
+if [[ -n "${NETIS_INSTALL_PACKAGES:-}" ]]; then
+	read -r -a INSTALL_PACKAGES <<< "${NETIS_INSTALL_PACKAGES}"
+elif [[ -n "${NETIS_INSTALL_PACKAGE:-}" ]]; then
+	INSTALL_PACKAGES=("${NETIS_INSTALL_PACKAGE}")
+else
+	INSTALL_PACKAGES=("${DEFAULT_INSTALL_PACKAGES[@]}")
+fi
+
+green=$'\033[32m'
+blue=$'\033[34m'
+yellow=$'\033[33m'
+red=$'\033[31m'
+reset=$'\033[0m'
+
+show_help() {
+	cat <<'USAGE'
+Create a Netis CMS project.
+
+Usage:
+  create-netis [target-dir]
+
+Examples:
+  create-netis
+  create-netis cms
+  create-netis .
+
+The default target directory is "netis".
+Use "." only inside an empty directory.
+USAGE
+}
+
+if [[ "${TARGET_DIR}" == "-h" || "${TARGET_DIR}" == "--help" ]]; then
+	show_help
+	exit 0
+fi
+
+if ! command -v composer >/dev/null 2>&1; then
+	printf '%s\n' "${red}ERROR: Composer was not found in PATH.${reset}" >&2
+	exit 1
+fi
+
+if [[ "${HAS_TARGET_ARG}" -eq 0 && -f composer.json ]] && grep -q '"name"[[:space:]]*:[[:space:]]*"netis-cms/netis"' composer.json; then
+	printf '%s\n' "${yellow}WARN You are probably running this command inside the Netis installer repository.${reset}" >&2
+	printf '%s\n' "${red}ERROR: Please provide a target directory, for example: create-netis cms${reset}" >&2
+	exit 1
+fi
+
+if [[ "${TARGET_DIR}" != "." && -e "${TARGET_DIR}" ]]; then
+	printf '%s\n' "${red}ERROR: Target path already exists: ${TARGET_DIR}${reset}" >&2
+	exit 1
+fi
+
+if [[ "${TARGET_DIR}" == "." && "$(find . -mindepth 1 -maxdepth 1 | head -n 1)" != "" ]]; then
+	printf '%s\n' "${red}ERROR: Current directory is not empty.${reset}" >&2
+	exit 1
+fi
+
+printf '%s\n' "${blue}INFO Creating base project in ${TARGET_DIR}.${reset}"
+composer create-project "${PROJECT_PACKAGE}" "${TARGET_DIR}"
+
+printf '%s\n' "${blue}INFO Installing Netis preset.${reset}"
+(
+	cd "${TARGET_DIR}"
+	composer require "${INSTALL_PACKAGES[@]}"
+	printf '%s\n' "${blue}INFO Exporting SQL migrations.${reset}"
+	php vendor/bin/sql-export migrations
+)
+
+printf '%s\n' "${green}OK Netis project is ready in ${TARGET_DIR}.${reset}"
