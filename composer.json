@@ -12,7 +12,6 @@
 		"drago-ex/translator": "^3.0",
 		"drago-ex/project-front": "^2.0",
 		"drago-ex/project-docker": "^2.0",
-		"netis-cms/project-preset": "dev-main",
 		"drago-ex/project-install": "dev-main",
 		"drago-ex/project-permission": "dev-main",
 		"drago-ex/datagrid": "dev-main"
