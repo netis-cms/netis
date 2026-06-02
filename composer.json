@@ -1,5 +1,5 @@
 {
-	"name": "drago-ex/netis",
+	"name": "netis-cms/netis",
 	"type": "project",
 	"description": "Little CMS",
 	"require": {
@@ -27,18 +27,7 @@
 	},
 	"extra": {
 		"drago-project": {
-			"allow-library-install": true,
-			"packages": {
-				"drago-ex/project-backend-ui": {
-					"skip-replace": true
-				},
-				"drago-ex/project-preset": {
-					"skip-replace": true
-				},
-				"drago-ex/project-install": {
-					"skip-replace": true
-				}
-			}
+			"allow-library-install": true
 		}
 	},
 	"scripts": {

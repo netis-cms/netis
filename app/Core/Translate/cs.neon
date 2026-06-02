@@ -23,20 +23,3 @@
 
 # default translate
 "Close": "Zavřít"
-
-# backend
-"Sign out": "Odhlásit se"
-"Dashboard": "Administrace"
-"Welcome to the administration welcome page.": "Vítejte na úvodní stránce administrace."
-"Users roles": "Uživatelské role"
-
-# datagrid
-"No items": "Žádné položky"
-"Showing": "Zobrazeno"
-"of": "z"
-"items": "položek"
-
-# filters
-"Reset": "Resetovat"
-"Search...": "Hledat..."
-"All": "Vše"

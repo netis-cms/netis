@@ -55,6 +55,3 @@ search:
 			- *Factory
 			- *Control
 			- *Repository
-		exclude:
-			classes:
-				- App\Install\**

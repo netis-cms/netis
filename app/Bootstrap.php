@@ -31,6 +31,9 @@ final class Bootstrap
 		}
 
 		$this->configurator->enableTracy($this->rootDir . '/var/log');
+		$this->configurator->createRobotLoader()
+			->addDirectory(__DIR__)
+			->register();
 	}
 
 
@@ -38,26 +41,7 @@ final class Bootstrap
 	public function bootWebApplication(): Container
 	{
 		$this->initializeEnvironment();
-		$this->configurator->createRobotLoader()
-			->addDirectory(__DIR__)
-			->excludeDirectory(__DIR__ . '/Install')
-			->register();
-
 		$this->setupContainer();
-		return $this->configurator->createContainer();
-	}
-
-
-	/** @throws Throwable */
-	public function bootInstallApplication(): Container
-	{
-		$this->initializeEnvironment();
-		$this->configurator->createRobotLoader()
-			->addDirectory(__DIR__ . '/Install')
-			->register();
-
-		$this->configurator->addFindConfig(__DIR__ . '/Install', 'Translate');
-		$this->configurator->addConfig(__DIR__ . '/db.neon');
 		return $this->configurator->createContainer();
 	}
 
@@ -75,6 +59,6 @@ final class Bootstrap
 	/** @throws Throwable */
 	private function setupContainer(): void
 	{
-		$this->configurator->addFindConfig(__DIR__, 'Translate', 'Install');
+		$this->configurator->addFindConfig(__DIR__, 'Translate');
 	}
 }
