@@ -11,7 +11,7 @@ Installer for creating a Netis CMS project on top of Drago Project.
 
 ## Installation
 ```shell
-composer global require netis-cms/netis
+composer global require netis-cms/netis:dev-master
 ```
 
 ## Usage
