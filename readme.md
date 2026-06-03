@@ -70,10 +70,3 @@ npm run docker:dev
 ```
 
 All available npm commands are listed in the created project's `package.json`.
-
-Default packages are configured in `bin/create-netis` using `$defaultInstallPackages`.
-
-For one-off testing, you can override them:
-```shell
-NETIS_INSTALL_PACKAGES="drago-ex/project-install:dev-main vendor/package:^1.0" create-netis cms
-```
