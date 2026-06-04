@@ -36,10 +36,12 @@ php bin/create-netis cms
 ```
 
 ## What It Does
-The command creates a base Drago project, installs the Netis preset packages and exports SQL migrations:
+The command creates a base Drago project, installs the Netis preset packages, copies project resources, cleans vendor resource folders and exports SQL migrations:
 ```shell
-composer create-project drago-ex/project <target-dir>
-composer require <netis-packages>
+composer create-project drago-ex/project <target-dir> --no-scripts
+composer require --no-scripts <netis-packages>
+php vendor/bin/drago-install
+php vendor/bin/drago-clean
 php vendor/bin/sql-export migrations
 ```
 

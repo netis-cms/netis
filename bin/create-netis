@@ -71,14 +71,20 @@ if ($targetDir === '.' && !isDirectoryEmpty($cwd)) {
 }
 
 echo "{$blue}INFO Creating base project in {$targetDir}.{$reset}\n";
-runCommand([$composerBinary, 'create-project', $projectPackage, $targetDir], $cwd);
+runCommand([$composerBinary, 'create-project', $projectPackage, $targetDir, '--no-scripts'], $cwd);
 
 $projectDir = $targetDir === '.'
 		? $cwd
 		: $cwd . DIRECTORY_SEPARATOR . $targetDir;
 
 echo "{$blue}INFO Installing Netis preset.{$reset}\n";
-runCommand(array_merge([$composerBinary, 'require'], $installPackages), $projectDir);
+runCommand(array_merge([$composerBinary, 'require', '--no-scripts'], $installPackages), $projectDir);
+
+echo "{$blue}INFO Installing project resources.{$reset}\n";
+runCommand(['php', 'vendor/bin/drago-install'], $projectDir);
+
+echo "{$blue}INFO Cleaning vendor resources.{$reset}\n";
+runCommand(['php', 'vendor/bin/drago-clean'], $projectDir);
 
 echo "{$blue}INFO Exporting SQL migrations.{$reset}\n";
 runCommand(['php', 'vendor/bin/sql-export', 'migrations'], $projectDir);
