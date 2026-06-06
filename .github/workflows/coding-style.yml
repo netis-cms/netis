@@ -22,7 +22,7 @@ jobs:
           fi
 
       - if: steps.php-files.outputs.exists == 'true'
-        run: composer create-project nette/code-checker temp/code-checker ^3 --no-progress
+        run: composer create-project nette/code-checker temp/code-checker 3.3.5 --no-progress
       - if: steps.php-files.outputs.exists == 'true'
         run: php temp/code-checker/code-checker --strict-types --no-progress
       - if: steps.php-files.outputs.exists != 'true'
