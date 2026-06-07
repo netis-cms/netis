@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 $projectPackage = 'drago-ex/project';
 $defaultInstallPackages = [
-		'drago-ex/project-preset:dev-main',
-		'drago-ex/project-permission:dev-main',
-		'drago-ex/datagrid:dev-main',
-		'drago-ex/project-install:dev-main',
+		'drago-ex/project-preset:^1.0',
+		'drago-ex/project-install:^1.0',
 ];
 
 $targetDir = $argv[1] ?? 'netis';
