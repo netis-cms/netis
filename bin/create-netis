@@ -2,6 +2,8 @@
 <?php
 declare(strict_types=1);
 
+const PermissionCommand = 'create-permission --packages';
+
 $projectPackage = 'drago-ex/project';
 $defaultInstallPackages = [
 		'drago-ex/project-preset:^1.0',
@@ -84,8 +86,13 @@ runCommand(['php', 'vendor/bin/drago-install'], $projectDir);
 echo "{$blue}INFO Cleaning vendor resources.{$reset}\n";
 runCommand(['php', 'vendor/bin/drago-clean'], $projectDir);
 
-echo "{$blue}INFO Exporting SQL migrations.{$reset}\n";
-runCommand(['php', 'vendor/bin/sql-export', 'migrations'], $projectDir);
+// Netis always contains drago-ex/permission, so later composer install/update also generate
+// the permission providers of packages added afterwards; existing classes are kept.
+echo "{$blue}INFO Adding permission generator to Composer scripts.{$reset}\n";
+addComposerScript($projectDir . DIRECTORY_SEPARATOR . 'composer.json', PermissionCommand);
+
+echo "{$blue}INFO Generating permission providers.{$reset}\n";
+runCommand(['php', 'vendor/bin/create-permission', '--packages'], $projectDir);
 
 echo "{$green}OK Netis project is ready in {$targetDir}.{$reset}\n";
 
@@ -128,6 +135,31 @@ function findComposer(): ?string
 
 	return null;
 }
+
+/** Appends the command to post-install-cmd and post-update-cmd of the project, unless it is already there. */
+function addComposerScript(string $composerFile, string $command): void
+{
+	$composer = json_decode((string) file_get_contents($composerFile), true);
+	if (!is_array($composer)) {
+		fwrite(STDERR, "\033[31mERROR: Cannot read {$composerFile}.\033[0m\n");
+		exit(1);
+	}
+
+	foreach (['post-install-cmd', 'post-update-cmd'] as $event) {
+		$scripts = (array) ($composer['scripts'][$event] ?? []);
+		if (!in_array($command, $scripts, true)) {
+			$scripts[] = $command;
+		}
+		$composer['scripts'][$event] = $scripts;
+	}
+
+	$json = json_encode($composer, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+	if ($json === false || file_put_contents($composerFile, $json . "\n") === false) {
+		fwrite(STDERR, "\033[31mERROR: Cannot write {$composerFile}.\033[0m\n");
+		exit(1);
+	}
+}
+
 
 function isDirectoryEmpty(string $dir): bool
 {

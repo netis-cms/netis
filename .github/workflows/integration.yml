@@ -1,0 +1,48 @@
+name: Integration
+
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'
+
+jobs:
+  netis:
+    name: create-netis (${{ matrix.mode }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # released: packages from Packagist; main: main branches of all drago-ex packages
+        mode: [released, main]
+
+    services:
+      db:
+        image: mariadb:12.3
+        env:
+          MARIADB_ROOT_PASSWORD: root
+          MARIADB_DATABASE: app
+          MARIADB_USER: super
+          MARIADB_PASSWORD: pass
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s --health-timeout=5s --health-retries=20
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          extensions: mysqli
+          coverage: none
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: bash .github/integration/run.sh
+        env:
+          MODE: ${{ matrix.mode }}
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
