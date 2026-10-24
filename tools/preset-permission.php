@@ -28,7 +28,12 @@ $button = ["addButton: true}" => "addButton: \$writeAllowed}"];
 $files = [
 	'project-blog' => ['Backend/Blog/Component', [
 		'BaseControl.php' => $base, 'BaseTemplate.php' => $tpl,
-		'Article/ArticleControl.php' => $grid, 'Category/CategoryControl.php' => $grid,
+		'Article/ArticleControl.php' => $grid + [
+			// the switch of the comments, one action for each state
+			"ColumnCommentsEnabled] === 1,\n\t\t);" => "ColumnCommentsEnabled] === 1,\n\t\t)->setVisible(\$this->isWriteAllowed());",
+			"ColumnCommentsEnabled] === 0,\n\t\t);" => "ColumnCommentsEnabled] === 0,\n\t\t)->setVisible(\$this->isWriteAllowed());",
+		],
+		'Category/CategoryControl.php' => $grid,
 		'Comment/CommentControl.php' => [
 			"\t\t\tcondition: fn(array \$row): bool => (int) \$row[CommentEntity::ColumnApproved] === 0,\n\t\t);" => "\t\t\tcondition: fn(array \$row): bool => (int) \$row[CommentEntity::ColumnApproved] === 0,\n\t\t)->setVisible(\$this->isWriteAllowed());",
 			$del => $delV,

@@ -63,25 +63,11 @@ if [ "$MODE" = main ]; then
 		done
 	fi
 
-	# A path repository with every tagged drago-ex package; version <major>.99.0 satisfies the constraints
-	# between the packages, so the main branches are installed instead of the releases.
+	# Path repositories with every drago-ex package; version <major>.99.0 satisfies the constraints between the
+	# packages, so the main branches are installed instead of the releases.
 	mkdir -p "$WORK/composer-home"
 	export COMPOSER_HOME=$(native "$WORK/composer-home")
-	php -r '
-		[, $packages, $configFile] = $argv;
-		$versions = [];
-		foreach (glob("$packages/*/composer.json") as $file) {
-			$dir = dirname($file);
-			$name = json_decode((string) file_get_contents($file), true)["name"] ?? "";
-			$tag = trim((string) shell_exec("git -C " . escapeshellarg($dir) . " describe --tags --abbrev=0 2>" . (PHP_OS_FAMILY === "Windows" ? "NUL" : "/dev/null")));
-			if (str_starts_with($name, "drago-ex/") && $tag !== "") {
-				$versions[$name] = explode(".", ltrim($tag, "v"))[0] . ".99.0";
-			}
-		}
-		$repository = ["type" => "path", "url" => "$packages/*", "options" => ["symlink" => false, "versions" => $versions]];
-		file_put_contents($configFile, json_encode(["repositories" => [$repository]], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-		echo count($versions), " packages\n";
-	' "$(native "$PACKAGES")" "$COMPOSER_HOME/config.json"
+	php "$NETIS/.github/integration/composer-config.php" "$(native "$PACKAGES")" "$COMPOSER_HOME/config.json"
 fi
 
 step "create-netis ($MODE)"
