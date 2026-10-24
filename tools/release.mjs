@@ -19,7 +19,7 @@ const root = process.env.DRAGO_WORKSPACE ?? path.dirname(netis);
 const notesDir = path.join(netis, 'temp', 'release-notes');
 
 // Never released by this script: retired, unfinished or not repositories of released packages.
-const skipped = new Set(['authorization', 'project-blog', 'project-static-page', 'commerce', 'code-order', 'cms', 'project-test', 'netis']);
+const skipped = new Set(['authorization', 'commerce', 'code-order', 'cms', 'project-test', 'netis']);
 
 // Files that are not shipped to users, so changing them alone needs no release.
 const devOnly = file => /^(\.github\/|tests\/)/.test(file)
@@ -52,16 +52,19 @@ for (const dir of fs.readdirSync(root).sort()) {
 
 	// Releases are created on GitHub, so the local repository may not know the latest tag yet.
 	run('git', ['fetch', '-q', '--tags', 'origin'], path.join(root, dir));
-	const tag = git(dir, 'describe', '--tags', '--abbrev=0');
-	if (!tag) continue;
+	// The highest version tag, not the nearest one: a tag whose commit was squashed out of main is not in its history,
+	// so git describe would return an older tag. The diff compares the trees, so it works for such a tag too.
+	// A package without a tag has never been released: all its files are new and its first version is 1.0.0.
+	const tag = git(dir, 'tag', '--list', 'v*', '--sort=-v:refname').split('\n')[0] || null;
+	const range = tag ? `${tag}..HEAD` : 'HEAD';
 
-	const changed = git(dir, 'diff', '--name-only', `${tag}..HEAD`).split('\n').filter(Boolean);
+	const changed = (tag ? git(dir, 'diff', '--name-only', tag, 'HEAD') : git(dir, 'ls-files')).split('\n').filter(Boolean);
 	const composerChanged = changed.includes('composer.json')
-		&& shippedComposer(git(dir, 'show', `${tag}:composer.json`)) !== shippedComposer(fs.readFileSync(composerFile, 'utf8'));
+		&& (!tag || shippedComposer(git(dir, 'show', `${tag}:composer.json`)) !== shippedComposer(fs.readFileSync(composerFile, 'utf8')));
 	const shipped = changed.filter(f => f !== 'composer.json' && !devOnly(f)).concat(composerChanged ? ['composer.json'] : []);
 
 	// Commits that changed something shipped become the draft of the release notes.
-	const commits = git(dir, 'log', '--format=%H %s', `${tag}..HEAD`).split('\n').filter(Boolean).map(line => {
+	const commits = git(dir, 'log', '--format=%H %s', range).split('\n').filter(Boolean).map(line => {
 		const [hash, ...subject] = line.split(' ');
 		const files = git(dir, 'show', '--name-only', '--format=', hash).split('\n').filter(Boolean);
 		return { subject: subject.join(' '), shipped: files.some(f => !devOnly(f)) };
@@ -78,6 +81,7 @@ for (const dir of fs.readdirSync(root).sort()) {
 
 const nextVersion = (tag, bump) => {
 	if (/^\d+\.\d+\.\d+$/.test(bump)) return bump;
+	if (!tag) return '1.0.0';
 	const [major, minor, patch] = tag.replace(/^v/, '').split('.').map(Number);
 	return bump === 'major' ? `${major + 1}.0.0` : bump === 'patch' ? `${major}.${minor}.${patch + 1}` : `${major}.${minor + 1}.0`;
 };
@@ -130,7 +134,7 @@ fs.mkdirSync(notesDir, { recursive: true });
 console.log(`Release plan (${ordered.length} packages, in this order):\n`);
 for (const [i, p] of ordered.entries()) {
 	const deps = ordered.filter(d => p.requires.includes(d.name)).map(d => d.dir);
-	console.log(`${String(i + 1).padStart(2)}. ${p.dir.padEnd(20)} ${p.tag} -> v${p.version}${deps.length ? `   after ${deps.join(', ')}` : ''}`);
+	console.log(`${String(i + 1).padStart(2)}. ${p.dir.padEnd(20)} ${p.tag ?? '(first)'} -> v${p.version}${deps.length ? `   after ${deps.join(', ')}` : ''}`);
 	console.log(`    shipped changes: ${p.shipped.length ? p.shipped.slice(0, 6).join(', ') + (p.shipped.length > 6 ? ', ...' : '') : 'none (requested)'}`);
 
 	const notesFile = path.join(notesDir, `${p.dir}.md`);
@@ -183,7 +187,9 @@ console.log('');
 for (const [i, p] of ordered.entries()) {
 	const notesFile = path.join(notesDir, `${p.dir}.md`);
 	const notes = fs.readFileSync(notesFile, 'utf8').trim()
-		+ `\n\n**Full Changelog**: https://github.com/${p.name}/compare/${p.tag}...v${p.version}\n`;
+		+ (p.tag
+			? `\n\n**Full Changelog**: https://github.com/${p.name}/compare/${p.tag}...v${p.version}\n`
+			: `\n\n**Full Changelog**: https://github.com/${p.name}/commits/v${p.version}\n`);
 	const release = run('gh', ['release', 'create', `v${p.version}`, '--repo', p.name, '--target', 'main', '--title', `v${p.version}`, '--notes', notes]);
 	if (!release.ok) {
 		console.log(`ERROR ${p.dir}: ${release.err}`);
