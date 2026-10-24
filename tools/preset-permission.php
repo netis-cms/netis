@@ -29,16 +29,13 @@ $files = [
 	'project-blog' => ['Backend/Blog/Component', [
 		'BaseControl.php' => $base, 'BaseTemplate.php' => $tpl,
 		'Article/ArticleControl.php' => $grid + [
-			// the switch of the comments, one action for each state
-			"ColumnCommentsEnabled] === 1,\n\t\t);" => "ColumnCommentsEnabled] === 1,\n\t\t)->setVisible(\$this->isWriteAllowed());",
-			"ColumnCommentsEnabled] === 0,\n\t\t);" => "ColumnCommentsEnabled] === 0,\n\t\t)->setVisible(\$this->isWriteAllowed());",
+			// the state of the comments in the grid switches them only with the write privilege
+			"\t\treturn \$this->link('toggleComments!', ['id' => \$id]);" => "\t\treturn \$this->isWriteAllowed() ? \$this->link('toggleComments!', ['id' => \$id]) : null;",
 		],
 		'Category/CategoryControl.php' => $grid,
-		'Comment/CommentControl.php' => [
-			"\t\t\tcondition: fn(array \$row): bool => (int) \$row[CommentEntity::ColumnApproved] === 0,\n\t\t);" => "\t\t\tcondition: fn(array \$row): bool => (int) \$row[CommentEntity::ColumnApproved] === 0,\n\t\t)->setVisible(\$this->isWriteAllowed());",
-			$del => $delV,
-		],
-		'Article/Article.latte' => $button, 'Category/Category.latte' => $button,
+		// the approve and delete buttons of the comments tab of an article
+		'Article/Article.latte' => $button + ['<div class="article-comment-actions ' => '<div n:if="$writeAllowed" class="article-comment-actions '],
+		'Category/Category.latte' => $button,
 	]],
 	'project-static-page' => ['Backend/Page/Component', [
 		'BaseControl.php' => $base, 'BaseTemplate.php' => $tpl,
