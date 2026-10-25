@@ -31,6 +31,8 @@ $files = [
 		'Article/ArticleControl.php' => $grid + [
 			// the state of the comments in the grid switches them only with the write privilege
 			"\t\treturn \$this->link('toggleComments!', ['id' => \$id]);" => "\t\treturn \$this->isWriteAllowed() ? \$this->link('toggleComments!', ['id' => \$id]) : null;",
+			// the copy really returns null, so the ignore of the package version would be an unmatched error
+			"\t * @phpstan-ignore return.unusedType\n" => '',
 		],
 		'Category/CategoryControl.php' => $grid,
 		// the approve and delete buttons of the comments tab of an article
