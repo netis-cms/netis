@@ -21,6 +21,12 @@ Create a new project:
 create-netis cms
 ```
 
+With permissions (the administration menu by privileges, write buttons, roles from the database,
+[project-preset-permission](https://github.com/drago-ex/project-preset-permission)):
+```shell
+create-netis cms --permission
+```
+
 Without an argument, the default target directory is `netis`:
 ```shell
 create-netis
@@ -41,7 +47,7 @@ The command creates a base Drago project, installs the Netis preset packages, co
 cleans vendor resource folders and runs the package commands (e.g. the permission providers of the installed packages):
 ```shell
 composer create-project drago-ex/project <target-dir> --no-scripts
-composer require --no-scripts <netis-packages>
+composer require --no-scripts <netis-packages>   # project-preset, project-install (+ project-preset-permission with --permission)
 php vendor/bin/drago-install
 php vendor/bin/drago-clean
 php vendor/bin/drago-commands
@@ -53,8 +59,9 @@ their permission providers on `composer update`. The migrations are run by the w
 ## Integration Test
 The [Integration](.github/workflows/integration.yml) workflow creates a project with `create-netis`, runs the
 migrations, PHPStan and the asset build, then sets the project up as the web installer does and checks the front page,
-the sign-in of an administrator and the administration. It runs on every push, daily and on demand, twice:
-with the released packages and with the main branches of all drago-ex packages (the check before a release).
+the sign-in of an administrator and the administration. It runs on every push, daily and on demand,
+with the released packages and with the main branches of all drago-ex packages (the check before a release),
+each without and with `--permission` (`VARIANT=base|permission`, default `permission`).
 
 Locally, with a MySQL or MariaDB database:
 ```shell
@@ -72,7 +79,7 @@ Choose a version with `package=major|minor|patch|X.Y.Z`. Release notes are draft
 `temp/release-notes/`, where you can edit them before publishing. Publishing checks that each package is committed,
 pushed and green in CI, and waits for Packagist between dependent packages.
 
-project-preset ships copies of the blog and static-page administration components with their permission steps
+project-preset-permission ships copies of the blog and static-page administration components with their permission steps
 done. After such a file changes in its package, copy them again:
 ```shell
 php netis/tools/preset-permission.php

@@ -4,11 +4,14 @@
 #
 # MODE=released  packages from Packagist, as users get them
 # MODE=main      main branches of all drago-ex packages (cloned, or taken from PACKAGES_DIR), the check before a release
+# VARIANT=base        create-netis without permissions
+# VARIANT=permission  create-netis --permission (project-preset-permission)
 #
 # The database is given by DB_HOST, DB_PORT, DB_USER, DB_PASSWORD and DB_NAME.
 set -euo pipefail
 
 MODE=${MODE:-released}
+VARIANT=${VARIANT:-permission}
 DB_HOST=${DB_HOST:-127.0.0.1}
 DB_PORT=${DB_PORT:-3306}
 DB_USER=${DB_USER:-super}
@@ -70,10 +73,14 @@ if [ "$MODE" = main ]; then
 	php "$NETIS/.github/integration/composer-config.php" "$(native "$PACKAGES")" "$COMPOSER_HOME/config.json"
 fi
 
-step "create-netis ($MODE)"
-(cd "$WORK" && php "$NETIS/bin/create-netis" app)
+step "create-netis ($MODE, $VARIANT)"
+if [[ $VARIANT == permission ]]; then
+	(cd "$WORK" && php "$NETIS/bin/create-netis" app --permission)
+else
+	(cd "$WORK" && php "$NETIS/bin/create-netis" app)
+fi
 check_report install
-check_report permission
+check_report commands
 
 step "Migrations"
 cat > "$APP/app/db.neon" <<NEON
@@ -136,7 +143,10 @@ sql() {
 }
 sql "INSERT INTO settings (name, value) VALUES ('website', 'Netis integration'), ('description', 'Integration test'), ('installed', '1')"
 (cd "$APP" && php vendor/bin/create-user admin "$ADMIN_EMAIL" "$ADMIN_PASSWORD")
-sql "INSERT INTO users_roles (user_id, role_id) SELECT id, 1 FROM users WHERE email = '$ADMIN_EMAIL'"
+# with permissions the web installer gives the administrator the admin role
+if [[ $VARIANT == permission ]]; then
+	sql "INSERT INTO users_roles (user_id, role_id) SELECT id, 1 FROM users WHERE email = '$ADMIN_EMAIL'"
+fi
 (cd "$APP" && php -r 'require "vendor/autoload.php"; Install\InstallLock::create(getcwd(), "integration test");')
 
 BASE=http://127.0.0.1:$HTTP_PORT
@@ -188,7 +198,11 @@ result=$(request --data "$(echo "$form" | tail -1)" "$BASE$action")
 expect 303 'POST sign-in' "$result"
 [[ "$result" == *"/admin"* ]] || { echo 'The sign-in does not lead to the administration.'; exit 1; }
 expect 200 'GET /admin/ (signed in)' "$(request -L "$BASE/admin/")"
-expect 200 'GET /admin/permission/roles' "$(request -L "$BASE/admin/permission/roles")"
+if [[ $VARIANT == permission ]]; then
+	expect 200 'GET /admin/permission/roles' "$(request -L "$BASE/admin/permission/roles")"
+else
+	expect 200 'GET /admin/settings/ (no permissions installed)' "$(request -L "$BASE/admin/settings/")"
+fi
 
 echo
-echo "OK Netis integration test passed ($MODE)."
+echo "OK Netis integration test passed ($MODE, $VARIANT)."

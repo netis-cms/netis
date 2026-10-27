@@ -1,6 +1,6 @@
 <?php
 
-// Copies the administration components of project-blog and project-static-page into project-preset with the
+// Copies the administration components of project-blog and project-static-page into project-preset-permission with the
 // "Permissions" steps of their README done (WriteAccess, $writeAllowed, setVisible() on grid actions, addButton).
 //
 //   php netis/tools/preset-permission.php
@@ -54,7 +54,7 @@ foreach ($files as $package => [$dir, $list]) {
 			}
 			$source = str_replace($from, $to, $source);
 		}
-		$target = "$root/project-preset/resources/app/Presentation/$dir/$file";
+		$target = "$root/project-preset-permission/resources/app/Presentation/$dir/$file";
 		@mkdir(dirname($target), 0777, true);
 		file_put_contents($target, $source);
 		echo "written $dir/$file\n";

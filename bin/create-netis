@@ -10,8 +10,14 @@ $defaultInstallPackages = [
 		'drago-ex/project-install:^1.0',
 ];
 
-$targetDir = $argv[1] ?? 'netis';
-$hasTargetArg = $argc > 1;
+// --permission adds the overlay with permissions (menu by privileges, write buttons, roles from the database)
+$permissionPackage = 'drago-ex/project-preset-permission:^1.0';
+
+$arguments = array_slice($argv, 1);
+$withPermission = in_array('--permission', $arguments, true);
+$positionals = array_values(array_filter($arguments, fn(string $arg): bool => $arg !== '--permission'));
+$targetDir = $positionals[0] ?? 'netis';
+$hasTargetArg = $positionals !== [];
 
 $green = "\033[32m";
 $blue = "\033[34m";
@@ -24,20 +30,22 @@ if (in_array($targetDir, ['-h', '--help'], true)) {
 Create a Netis CMS project.
 
 Usage:
-  php bin/create-netis [target-dir]
+  php bin/create-netis [target-dir] [--permission]
 
 Examples:
   php bin/create-netis
   php bin/create-netis cms
+  php bin/create-netis cms --permission
   php bin/create-netis .
 
 The default target directory is "netis".
 Use "." only inside an empty directory.
+--permission adds permissions: the administration menu by privileges, write buttons and roles from the database.
 USAGE;
 	exit(0);
 }
 
-$installPackages = getInstallPackages($defaultInstallPackages);
+$installPackages = getInstallPackages($withPermission ? [...$defaultInstallPackages, $permissionPackage] : $defaultInstallPackages);
 $cwd = getcwd();
 
 if ($cwd === false) {
@@ -86,7 +94,7 @@ runCommand(['php', 'vendor/bin/drago-install'], $projectDir);
 echo "{$blue}INFO Cleaning vendor resources.{$reset}\n";
 runCommand(['php', 'vendor/bin/drago-clean'], $projectDir);
 
-// The package commands generate e.g. the permission providers (Netis always contains drago-ex/permission);
+// The package commands generate e.g. the permission providers (only with drago-ex/permission, so with --permission);
 // later composer install/update also run them for packages added afterwards, existing classes are kept.
 echo "{$blue}INFO Adding package commands to Composer scripts.{$reset}\n";
 addComposerScript($projectDir . DIRECTORY_SEPARATOR . 'composer.json', PackageCommands);
