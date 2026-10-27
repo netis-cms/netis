@@ -2,7 +2,7 @@
 <?php
 declare(strict_types=1);
 
-const PermissionCommand = 'create-permission --packages';
+const PackageCommands = 'drago-commands';
 
 $projectPackage = 'drago-ex/project';
 $defaultInstallPackages = [
@@ -86,13 +86,13 @@ runCommand(['php', 'vendor/bin/drago-install'], $projectDir);
 echo "{$blue}INFO Cleaning vendor resources.{$reset}\n";
 runCommand(['php', 'vendor/bin/drago-clean'], $projectDir);
 
-// Netis always contains drago-ex/permission, so later composer install/update also generate
-// the permission providers of packages added afterwards; existing classes are kept.
-echo "{$blue}INFO Adding permission generator to Composer scripts.{$reset}\n";
-addComposerScript($projectDir . DIRECTORY_SEPARATOR . 'composer.json', PermissionCommand);
+// The package commands generate e.g. the permission providers (Netis always contains drago-ex/permission);
+// later composer install/update also run them for packages added afterwards, existing classes are kept.
+echo "{$blue}INFO Adding package commands to Composer scripts.{$reset}\n";
+addComposerScript($projectDir . DIRECTORY_SEPARATOR . 'composer.json', PackageCommands);
 
-echo "{$blue}INFO Generating permission providers.{$reset}\n";
-runCommand(['php', 'vendor/bin/create-permission', '--packages'], $projectDir);
+echo "{$blue}INFO Running package commands.{$reset}\n";
+runCommand(['php', 'vendor/bin/drago-commands'], $projectDir);
 
 echo "{$green}OK Netis project is ready in {$targetDir}.{$reset}\n";
 

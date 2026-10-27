@@ -38,16 +38,16 @@ php bin/create-netis cms
 
 ## What It Does
 The command creates a base Drago project, installs the Netis preset packages, copies project resources,
-cleans vendor resource folders and generates the permission providers of the installed packages:
+cleans vendor resource folders and runs the package commands (e.g. the permission providers of the installed packages):
 ```shell
 composer create-project drago-ex/project <target-dir> --no-scripts
 composer require --no-scripts <netis-packages>
 php vendor/bin/drago-install
 php vendor/bin/drago-clean
-php vendor/bin/create-permission --packages
+php vendor/bin/drago-commands
 ```
 
-It also adds `create-permission --packages` to the Composer scripts of the project, so packages installed later get
+It also adds `drago-commands` to the Composer scripts of the project, so packages installed later get
 their permission providers on `composer update`. The migrations are run by the web installer.
 
 ## Integration Test
