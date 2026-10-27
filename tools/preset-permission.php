@@ -13,18 +13,18 @@
 declare(strict_types=1);
 
 $root = getenv('DRAGO_WORKSPACE') ?: dirname(__DIR__, 2);
-$edit = "\$grid->addActionEdit(fn(int \$id) => \$this->handleEdit(\$id));";
+$edit = '$grid->addActionEdit(fn(int $id) => $this->handleEdit($id));';
 $editV = "\$grid->addActionEdit(fn(int \$id) => \$this->handleEdit(\$id))\n\t\t\t->setVisible(\$this->isWriteAllowed());";
-$del = "\$grid->addActionDelete(fn(int \$id) => \$this->handleDelete(\$id));";
+$del = '$grid->addActionDelete(fn(int $id) => $this->handleDelete($id));';
 $delV = "\$grid->addActionDelete(fn(int \$id) => \$this->handleDelete(\$id))\n\t\t\t->setVisible(\$this->isWriteAllowed());";
 $base = [
-	"use Drago\Datagrid\DataGrid;\n" => "use Drago\Datagrid\DataGrid;\nuse Drago\Permission\WriteAccess;\n",
+	"use Drago\\Datagrid\\DataGrid;\n" => "use Drago\\Datagrid\\DataGrid;\nuse Drago\\Permission\\WriteAccess;\n",
 	"\tuse Component;\n" => "\tuse Component;\n\tuse WriteAccess;\n",
 	"\t\t\$template->deleteTitle = \$this->deleteTitle;\n" => "\t\t\$template->deleteTitle = \$this->deleteTitle;\n\t\t\$template->writeAllowed = \$this->isWriteAllowed();\n",
 ];
 $tpl = ["\tpublic ?string \$deleteTitle = null;\n" => "\tpublic ?string \$deleteTitle = null;\n\tpublic bool \$writeAllowed = false;\n"];
 $grid = [$edit => $editV, $del => $delV];
-$button = ["addButton: true}" => "addButton: \$writeAllowed}"];
+$button = ['addButton: true}' => 'addButton: $writeAllowed}'];
 $files = [
 	'project-blog' => ['Backend/Blog/Component', [
 		'BaseControl.php' => $base, 'BaseTemplate.php' => $tpl,
@@ -55,7 +55,7 @@ foreach ($files as $package => [$dir, $list]) {
 			$source = str_replace($from, $to, $source);
 		}
 		$target = "$root/project-preset-permission/resources/app/Presentation/$dir/$file";
-		@mkdir(dirname($target), 0777, true);
+		@mkdir(dirname($target), 0o777, true);
 		file_put_contents($target, $source);
 		echo "written $dir/$file\n";
 	}
