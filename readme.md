@@ -79,8 +79,8 @@ Choose a version with `package=major|minor|patch|X.Y.Z`. Release notes are draft
 `temp/release-notes/`, where you can edit them before publishing. Publishing checks that each package is committed,
 pushed and green in CI, and waits for Packagist between dependent packages.
 
-project-preset-permission ships copies of the blog and static-page administration components with their permission steps
-done. After such a file changes in its package, copy them again:
+project-preset-permission ships copies of the blog, static-page and gallery administration components with their
+permission steps done. After such a file changes in its package, copy them again:
 ```shell
 php netis/tools/preset-permission.php
 ```

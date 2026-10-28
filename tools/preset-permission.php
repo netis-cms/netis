@@ -1,7 +1,8 @@
 <?php
 
-// Copies the administration components of project-blog and project-static-page into project-preset-permission with the
-// "Permissions" steps of their README done (WriteAccess, $writeAllowed, setVisible() on grid actions, addButton).
+// Copies the administration components of project-blog, project-static-page and project-gallery into
+// project-preset-permission with the "Permissions" steps of their README done (WriteAccess, $writeAllowed,
+// setVisible() on grid actions, addButton; the gallery hides its upload form and delete buttons and reads its preview).
 //
 //   php netis/tools/preset-permission.php
 //
@@ -42,6 +43,24 @@ $files = [
 	'project-static-page' => ['Backend/Page/Component', [
 		'BaseControl.php' => $base, 'BaseTemplate.php' => $tpl,
 		'Page/PageControl.php' => $grid, 'Page/Page.latte' => $button,
+	]],
+	'project-gallery' => ['Backend/Gallery', [
+		'Component/GalleryControl.php' => [
+			"use Drago\\Component\\OffcanvasHandle;\n" => "use Drago\\Component\\OffcanvasHandle;\nuse Drago\\Permission\\WriteAccess;\n",
+			"\tuse Component;\n" => "\tuse Component;\n\tuse WriteAccess;\n",
+			"\t\t\$template->deleteName = \$this->deleteName;\n" => "\t\t\$template->deleteName = \$this->deleteName;\n\t\t\$template->writeAllowed = \$this->isWriteAllowed();\n",
+		],
+		'Component/GalleryTemplate.php' => ["\tpublic ?string \$deleteName = null;\n" => "\tpublic ?string \$deleteName = null;\n\tpublic bool \$writeAllowed = false;\n"],
+		// the upload form, its GD warning and the delete buttons only with the write privilege
+		'Component/Gallery.latte' => [
+			"{if \$uploadSupported}\n" => "{if \$writeAllowed && \$uploadSupported}\n",
+			"{else}\n\t<div class=\"alert alert-warning\">" => "{elseif \$writeAllowed}\n\t<div class=\"alert alert-warning\">",
+			'<a n:href="delete!, name: $name"' => '<a n:if="$writeAllowed" n:href="delete!, name: $name"',
+		],
+		// the preview only shows an image, so it is checked as "gallery-read"
+		'GalleryPresenter.php' => [
+			"\t\treturn \$control;\n\t}\n}\n" => "\t\treturn \$control;\n\t}\n\n\n\t/**\n\t * The preview of an image only reads, so it is checked as \"gallery-read\".\n\t * @return list<string>\n\t */\n\tprotected function readOnlySignals(): array\n\t{\n\t\treturn ['preview'];\n\t}\n}\n",
+		],
 	]],
 ];
 foreach ($files as $package => [$dir, $list]) {

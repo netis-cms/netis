@@ -198,6 +198,7 @@ result=$(request --data "$(echo "$form" | tail -1)" "$BASE$action")
 expect 303 'POST sign-in' "$result"
 [[ "$result" == *"/admin"* ]] || { echo 'The sign-in does not lead to the administration.'; exit 1; }
 expect 200 'GET /admin/ (signed in)' "$(request -L "$BASE/admin/")"
+expect 200 'GET /admin/gallery/' "$(request -L "$BASE/admin/gallery/")"
 if [[ $VARIANT == permission ]]; then
 	expect 200 'GET /admin/permission/roles' "$(request -L "$BASE/admin/permission/roles")"
 else
