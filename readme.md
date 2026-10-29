@@ -77,11 +77,17 @@ For maintainers with the drago-ex packages cloned next to this repository:
 ```shell
 node netis/tools/release.mjs              # what needs a release, in which order and version
 node netis/tools/release.mjs --publish    # release it
+node netis/tools/release.mjs --publish --wave   # release only the first wave
 ```
 
 Choose a version with `package=major|minor|patch|X.Y.Z`. Release notes are drafted from the commits into
 `temp/release-notes/`, where you can edit them before publishing. Publishing checks that each package is committed,
 pushed and green in CI, and waits for Packagist between dependent packages.
+
+CI of a package is red while it requires versions of other packages that are not released yet, so such a plan is
+released in waves (the plan shows the wave of each package). `--wave` releases only the packages whose drago-ex
+dependencies are released already, waits for Packagist and runs CI of the next wave again; once it is green, run the
+same command again.
 
 project-preset-permission ships copies of the blog, static-page and gallery administration components with their
 permission steps done. After such a file changes in its package, copy them again:
