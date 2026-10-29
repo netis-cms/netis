@@ -107,7 +107,9 @@ step "Assets"
 
 step "HTTP"
 start_server() {
-	php -S "127.0.0.1:$HTTP_PORT" -t "$APP/www" "$APP/www/index.php" >> "$WORK/server.log" 2>&1 &
+	# the upload limits of docker/php.ini (project-docker): with the PHP default of 2 MB, Nette Forms warn about
+	# the 8 MB image limit of the blog and the gallery, which Tracy turns into an error page in debug mode
+	php -d upload_max_filesize=64M -d post_max_size=64M -S "127.0.0.1:$HTTP_PORT" -t "$APP/www" "$APP/www/index.php" >> "$WORK/server.log" 2>&1 &
 	server=$!
 }
 start_server
@@ -170,6 +172,11 @@ expect() {
 	echo "$label -> $result"
 	if [ "${result%% *}" != "$expected" ]; then
 		cat "$WORK/server.log"
+		exit 1
+	fi
+	# in debug mode an error page of Tracy may come with status 200
+	if grep -q 'id="tracy-bs"' "$WORK/page.html" 2> /dev/null; then
+		echo "Tracy error page: $(grep -o '<title>[^<]*' "$WORK/page.html" | head -1 | cut -c8-)"
 		exit 1
 	fi
 }
