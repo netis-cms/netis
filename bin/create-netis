@@ -1,13 +1,12 @@
 #!/usr/bin/env php
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 const PackageCommands = 'drago-commands';
 
 $projectPackage = 'drago-ex/project';
 $defaultInstallPackages = [
-		'drago-ex/project-preset:^1.0',
-		'drago-ex/project-install:^1.0',
+	'drago-ex/project-preset:^1.0',
+	'drago-ex/project-install:^1.0',
 ];
 
 // --permission adds the overlay with permissions (menu by privileges, write buttons, roles from the database)
@@ -26,22 +25,22 @@ $red = "\033[31m";
 $reset = "\033[0m";
 
 if (in_array($targetDir, ['-h', '--help'], true)) {
-	echo <<<USAGE
-Create a Netis CMS project.
+	echo <<<'USAGE'
+		Create a Netis CMS project.
 
-Usage:
-  php bin/create-netis [target-dir] [--permission]
+		Usage:
+		  php bin/create-netis [target-dir] [--permission]
 
-Examples:
-  php bin/create-netis
-  php bin/create-netis cms
-  php bin/create-netis cms --permission
-  php bin/create-netis .
+		Examples:
+		  php bin/create-netis
+		  php bin/create-netis cms
+		  php bin/create-netis cms --permission
+		  php bin/create-netis .
 
-The default target directory is "netis".
-Use "." only inside an empty directory.
---permission adds permissions: the administration menu by privileges, write buttons and roles from the database.
-USAGE;
+		The default target directory is "netis".
+		Use "." only inside an empty directory.
+		--permission adds permissions: the administration menu by privileges, write buttons and roles from the database.
+		USAGE;
 	exit(0);
 }
 
@@ -82,11 +81,11 @@ echo "{$blue}INFO Creating base project in {$targetDir}.{$reset}\n";
 runCommand([$composerBinary, 'create-project', $projectPackage, $targetDir, '--no-scripts'], $cwd);
 
 $projectDir = $targetDir === '.'
-		? $cwd
-		: $cwd . DIRECTORY_SEPARATOR . $targetDir;
+	? $cwd
+	: $cwd . DIRECTORY_SEPARATOR . $targetDir;
 
 echo "{$blue}INFO Installing Netis preset.{$reset}\n";
-runCommand(array_merge([$composerBinary, 'require', '--no-scripts'], $installPackages), $projectDir);
+runCommand([$composerBinary, 'require', '--no-scripts', ...$installPackages], $projectDir);
 
 echo "{$blue}INFO Installing project resources.{$reset}\n";
 runCommand(['php', 'vendor/bin/drago-install'], $projectDir);
@@ -126,13 +125,13 @@ function getInstallPackages(array $defaultInstallPackages): array
 function findComposer(): ?string
 {
 	$binaries = stripos(PHP_OS_FAMILY, 'Windows') === 0
-			? ['composer.bat', 'composer.cmd', 'composer']
-			: ['composer'];
+		? ['composer.bat', 'composer.cmd', 'composer']
+		: ['composer'];
 
 	foreach ($binaries as $binary) {
 		$lookupCommand = stripos(PHP_OS_FAMILY, 'Windows') === 0
-				? 'where ' . escapeshellarg($binary)
-				: 'command -v ' . escapeshellarg($binary);
+			? 'where ' . escapeshellarg($binary)
+			: 'command -v ' . escapeshellarg($binary);
 
 		$output = [];
 		exec($lookupCommand, $output, $exitCode);
@@ -186,14 +185,14 @@ function runCommand(array $command, string $cwd): void
 {
 	$commandLine = implode(' ', array_map('escapeshellarg', $command));
 	$process = proc_open(
-			$commandLine,
-			[
-					0 => STDIN,
-					1 => STDOUT,
-					2 => STDERR,
-			],
-			$pipes,
-			$cwd
+		$commandLine,
+		[
+			0 => STDIN,
+			1 => STDOUT,
+			2 => STDERR,
+		],
+		$pipes,
+		$cwd,
 	);
 
 	if (!is_resource($process)) {

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 // Copies the administration components of project-blog, project-static-page and project-gallery into
 // project-preset-permission with the "Permissions" steps of their README done (WriteAccess, $writeAllowed,
@@ -11,7 +11,6 @@
 // file changed around a step and the step below has to be updated.
 // The packages are expected in the parent directory of this repository (DRAGO_WORKSPACE overrides it).
 
-declare(strict_types=1);
 
 $root = getenv('DRAGO_WORKSPACE') ?: dirname(__DIR__, 2);
 $edit = '$grid->addActionEdit(fn(int $id) => $this->handleEdit($id));';
@@ -37,7 +36,8 @@ $files = [
 		],
 		'Category/CategoryControl.php' => $grid,
 		// the approve and delete buttons of the comments tab of an article
-		'Article/Article.latte' => $button + ['<div class="article-comment-actions ' => '<div n:if="$writeAllowed" class="article-comment-actions '],
+		'Article/Article.latte' => $button
+			+ ['<div class="article-comment-actions ' => '<div n:if="$writeAllowed" class="article-comment-actions '],
 		'Category/Category.latte' => $button,
 	]],
 	'project-static-page' => ['Backend/Page/Component', [
@@ -74,7 +74,7 @@ foreach ($files as $package => [$dir, $list]) {
 			$source = str_replace($from, $to, $source);
 		}
 		$target = "$root/project-preset-permission/resources/app/Presentation/$dir/$file";
-		@mkdir(dirname($target), 0o777, true);
+		@mkdir(dirname($target), 0o777, true); // @ directory may already exist
 		file_put_contents($target, $source);
 		echo "written $dir/$file\n";
 	}

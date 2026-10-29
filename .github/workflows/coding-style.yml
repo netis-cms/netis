@@ -28,27 +28,15 @@ jobs:
       - if: steps.php-files.outputs.exists != 'true'
         run: echo "No PHP files found. Skipping Code Checker."
 
-  nette_cs:
-    name: Nette Coding Standard
+  dresscode:
+    name: DressCode
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.3
+          php-version: 8.4
           coverage: none
 
-      - id: php-files
-        run: |
-          if find . -path ./temp -prune -o -name '*.php' -print -quit | grep -q .; then
-            echo "exists=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "exists=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - if: steps.php-files.outputs.exists == 'true'
-        run: composer create-project nette/coding-standard temp/coding-standard ^3 --no-progress
-      - if: steps.php-files.outputs.exists == 'true'
-        run: php temp/coding-standard/ecs check
-      - if: steps.php-files.outputs.exists != 'true'
-        run: echo "No PHP files found. Skipping Coding Standard."
+      - run: composer create-project dresscode/dresscode temp/dresscode ^1.1 --no-progress
+      - run: php temp/dresscode/bin/dresscode check --no-cache
