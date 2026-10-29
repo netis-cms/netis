@@ -6,5 +6,7 @@ use:
 paths:
 	- bin/create-netis
 	- tools
+	- .github/integration/composer-config.php
+	- .github/integration/form.php
 
 nameResolution: certain

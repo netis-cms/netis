@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * Writes a Composer config.json whose path repositories install the local working trees of the drago-ex packages
@@ -15,8 +15,6 @@
  * and new ones, not ignored ones): a path repository copies its whole directory, so the vendor/ of each working tree
  * would be installed too, with the vendors of its own path packages inside, tens of gigabytes deep.
  */
-
-declare(strict_types=1);
 
 [, $packagesDir, $configFile] = $argv + [null, null, null];
 if ($packagesDir === null || $configFile === null) {
@@ -74,7 +72,7 @@ function stage(string $dir, string $target): void
 			continue;
 		}
 
-		@mkdir(dirname("$target/$file"), 0o777, true);
+		is_dir(dirname("$target/$file")) || mkdir(dirname("$target/$file"), 0o777, true);
 		copy("$dir/$file", "$target/$file");
 	}
 }

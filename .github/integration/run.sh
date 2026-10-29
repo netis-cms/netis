@@ -141,6 +141,15 @@ sql() {
 		$db->query($query) or exit($db->error . "\n");
 	' "$DB_HOST" "$DB_PORT" "$DB_USER" "$DB_PASSWORD" "$DB_NAME" "$1"
 }
+# the first column of the first row of a query
+sql_value() {
+	php -r '
+		[, $host, $port, $user, $password, $name, $query] = $argv;
+		$db = new mysqli($host, $user, $password, $name, (int) $port);
+		$result = $db->query($query) or exit($db->error . "\n");
+		echo $result->fetch_row()[0] ?? "";
+	' "$DB_HOST" "$DB_PORT" "$DB_USER" "$DB_PASSWORD" "$DB_NAME" "$1"
+}
 sql "INSERT INTO settings (name, value) VALUES ('website', 'Netis integration'), ('description', 'Integration test'), ('installed', '1')"
 (cd "$APP" && php vendor/bin/create-user admin "$ADMIN_EMAIL" "$ADMIN_PASSWORD")
 # with permissions the web installer gives the administrator the admin role
@@ -203,6 +212,70 @@ if [[ $VARIANT == permission ]]; then
 	expect 200 'GET /admin/permission/roles' "$(request -L "$BASE/admin/permission/roles")"
 else
 	expect 200 'GET /admin/settings/ (no permissions installed)' "$(request -L "$BASE/admin/settings/")"
+fi
+
+step "Saving and editing"
+# Entities and form values have camelCase properties, the columns are snake_case: drago-ex/database maps them.
+# Each form is filled from the rendered page and posted, the columns are checked in the database, and the edit
+# signal (AJAX) must fill the form again.
+form_tool() {
+	php "$NETIS/.github/integration/form.php" "$@"
+}
+# posts the form of $WORK/page.html that has the field $1, with the values $2...
+submit() {
+	local form
+	form=$(form_tool fill "$WORK/page.html" "$@") || exit 1
+	request --data "$(echo "$form" | tail -1)" "$BASE$(echo "$form" | head -1)"
+}
+expect_same() {
+	local expected=$1 label=$2 actual=$3
+	echo "$label: $actual"
+	if [ "$actual" != "$expected" ]; then
+		echo "Expected: $expected"
+		cat "$WORK/server.log"
+		exit 1
+	fi
+}
+ajax() {
+	request -H 'X-Requested-With: XMLHttpRequest' "$@"
+}
+ADMIN_ID=$(sql_value "SELECT id FROM users WHERE email = '$ADMIN_EMAIL'")
+
+expect 200 'GET /admin/page/' "$(request -L "$BASE/admin/page/")"
+echo "POST page -> $(submit inMenu title='Integration page' slug=integration-page status=published inMenu=on menuPosition=3)"
+expect_same '1,3' 'static_page in_menu,menu_position' \
+	"$(sql_value "SELECT CONCAT(in_menu, ',', menu_position) FROM static_page WHERE slug = 'integration-page'")"
+PAGE_ID=$(sql_value "SELECT id FROM static_page WHERE slug = 'integration-page'")
+expect 200 'GET edit page (AJAX)' "$(ajax "$BASE/admin/page/?do=pages-edit&pages-id=$PAGE_ID")"
+expect_same 'checked' 'form inMenu' "$(form_tool value "$WORK/page.html" inMenu)"
+expect_same '3' 'form menuPosition' "$(form_tool value "$WORK/page.html" menuPosition)"
+expect 200 'GET /integration-page' "$(request -L "$BASE/integration-page")"
+grep -q 'Integration page' "$WORK/page.html" || { echo 'The page is not shown.'; exit 1; }
+
+expect 200 'GET /admin/blog/' "$(request -L "$BASE/admin/blog/")"
+# comments are allowed by default, so an unchecked box shows that the value reaches its column
+echo "POST article -> $(submit commentsEnabled title='Integration article' slug=integration-article \
+	newCategory='Integration category' status=published content='Text of the article.' commentsEnabled=)"
+expect_same "0,1,$ADMIN_ID,1" 'blog_article comments_enabled,category,author_id,published' \
+	"$(sql_value "SELECT CONCAT(comments_enabled, ',', category_id IS NOT NULL, ',', author_id, ',', published_at IS NOT NULL) FROM blog_article WHERE slug = 'integration-article'")"
+ARTICLE_ID=$(sql_value "SELECT id FROM blog_article WHERE slug = 'integration-article'")
+CATEGORY_ID=$(sql_value "SELECT category_id FROM blog_article WHERE id = $ARTICLE_ID")
+expect 200 'GET edit article (AJAX)' "$(ajax "$BASE/admin/blog/?do=articles-edit&articles-id=$ARTICLE_ID")"
+expect_same '' 'form commentsEnabled' "$(form_tool value "$WORK/page.html" commentsEnabled)"
+expect_same "$CATEGORY_ID" 'form categoryId' "$(form_tool value "$WORK/page.html" categoryId)"
+expect 200 'GET /blog' "$(request -L "$BASE/blog")"
+grep -q 'Integration article' "$WORK/page.html" || { echo 'The article is not in the blog.'; exit 1; }
+expect 200 'GET /blog/integration-article' "$(request -L "$BASE/blog/integration-article")"
+grep -q 'Integration category' "$WORK/page.html" || { echo 'The article does not show its category.'; exit 1; }
+
+if [[ $VARIANT == permission ]]; then
+	expect 200 'GET /admin/permission/users' "$(request -L "$BASE/admin/permission/users")"
+	echo "POST user roles -> $(submit userId userId="$ADMIN_ID" 'roleId[]=1' 'roleId[]=2')"
+	expect_same '1,2' 'users_roles role_id' \
+		"$(sql_value "SELECT GROUP_CONCAT(role_id ORDER BY role_id) FROM users_roles WHERE user_id = $ADMIN_ID")"
+	expect 200 'GET edit user roles (AJAX)' "$(ajax "$BASE/admin/permission/users?do=users-edit&users-id=$ADMIN_ID")"
+	expect_same "$ADMIN_ID" 'form userId' "$(form_tool value "$WORK/page.html" userId)"
+	expect_same '1,2' 'form roleId' "$(form_tool value "$WORK/page.html" 'roleId[]')"
 fi
 
 echo

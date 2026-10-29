@@ -59,7 +59,9 @@ their permission providers on `composer update`. The migrations are run by the w
 ## Integration Test
 The [Integration](.github/workflows/integration.yml) workflow creates a project with `create-netis`, runs the
 migrations, PHPStan and the asset build, then sets the project up as the web installer does and checks the front page,
-the sign-in of an administrator and the administration. It runs on every push, daily and on demand,
+the sign-in of an administrator and the administration. It saves a static page, a blog article and the roles of a
+user through their forms and checks their columns in the database, the edit form and the front pages, because the
+camelCase properties of entities and forms are mapped to snake_case columns. It runs on every push, daily and on demand,
 with the released packages and with the main branches of all drago-ex packages (the check before a release),
 each without and with `--permission` (`VARIANT=base|permission`, default `permission`).
 
@@ -67,6 +69,8 @@ Locally, with a MySQL or MariaDB database:
 ```shell
 MODE=main DB_PORT=3306 bash .github/integration/run.sh
 ```
+With `PACKAGES_DIR` pointing to a directory with the drago-ex packages cloned, `MODE=main` takes them from there
+instead of cloning the main branches, so changes that are not pushed yet are checked too.
 
 ## Releasing Packages
 For maintainers with the drago-ex packages cloned next to this repository:
