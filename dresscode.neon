@@ -1,0 +1,10 @@
+use:
+	- nette
+	- modernizations
+
+# bin/create-netis has no .php extension
+paths:
+	- bin/create-netis
+	- tools
+
+nameResolution: certain
