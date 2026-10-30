@@ -83,7 +83,8 @@ check_report install
 check_report commands
 
 step "Migrations"
-cat > "$APP/app/db.neon" <<NEON
+mkdir -p "$APP/local"
+cat > "$APP/local/db.neon" <<NEON
 extensions:
 	dibi: Dibi\\Bridges\\Nette\\DibiExtension3
 
