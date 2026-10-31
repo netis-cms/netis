@@ -282,8 +282,12 @@ if [[ $VARIANT == permission ]]; then
 	expect_same '1,2' 'users_roles role_id' \
 		"$(sql_value "SELECT GROUP_CONCAT(role_id ORDER BY role_id) FROM users_roles WHERE user_id = $ADMIN_ID")"
 	expect 200 'GET edit user roles (AJAX)' "$(ajax "$BASE/admin/permission/users?do=users-edit&users-id=$ADMIN_ID")"
-	expect_same "$ADMIN_ID" 'form userId' "$(form_tool value "$WORK/page.html" userId)"
+	# an edit shows the user readonly instead of the select and saves the roles of the edited id
+	expect_same admin 'form userName' "$(form_tool value "$WORK/page.html" userName)"
 	expect_same '1,2' 'form roleId' "$(form_tool value "$WORK/page.html" 'roleId[]')"
+	echo "POST edit user roles -> $(submit userName 'roleId[]=2')"
+	expect_same '2' 'users_roles role_id after edit' \
+		"$(sql_value "SELECT GROUP_CONCAT(role_id ORDER BY role_id) FROM users_roles WHERE user_id = $ADMIN_ID")"
 fi
 
 echo
