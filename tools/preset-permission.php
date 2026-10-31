@@ -35,9 +35,10 @@ $files = [
 			"\t * @phpstan-ignore return.unusedType\n" => '',
 		],
 		'Category/CategoryControl.php' => $grid,
-		// the approve and delete buttons of the comments tab of an article
+		// the approve and delete buttons of the comments tab and the remove button of the main image of an article
 		'Article/Article.latte' => $button
-			+ ['<div class="article-comment-actions ' => '<div n:if="$writeAllowed" class="article-comment-actions '],
+			+ ['<div class="article-comment-actions ' => '<div n:if="$writeAllowed" class="article-comment-actions ']
+			+ ['<div class="article-image-actions ' => '<div n:if="$writeAllowed" class="article-image-actions '],
 		'Category/Category.latte' => $button,
 	]],
 	'project-static-page' => ['Backend/Page/Component', [
