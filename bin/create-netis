@@ -5,12 +5,12 @@ const PackageCommands = 'drago-commands';
 
 $projectPackage = 'drago-ex/project';
 $defaultInstallPackages = [
-	'drago-ex/project-preset:^1.0',
+	'drago-ex/project-preset:^2.0',
 	'drago-ex/project-install:^1.0',
 ];
 
 // --permission adds the overlay with permissions (menu by privileges, write buttons, roles from the database)
-$permissionPackage = 'drago-ex/project-preset-permission:^1.0';
+$permissionPackage = 'drago-ex/project-preset-permission:^2.0';
 
 $arguments = array_slice($argv, 1);
 $withPermission = in_array('--permission', $arguments, true);
