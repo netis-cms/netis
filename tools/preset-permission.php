@@ -52,10 +52,13 @@ $files = [
 			"\t\t\$template->deleteName = \$this->deleteName;\n" => "\t\t\$template->deleteName = \$this->deleteName;\n\t\t\$template->writeAllowed = \$this->isWriteAllowed();\n",
 		],
 		'Component/GalleryTemplate.php' => ["\tpublic ?string \$deleteName = null;\n" => "\tpublic ?string \$deleteName = null;\n\tpublic bool \$writeAllowed = false;\n"],
-		// the upload form, its GD warning and the delete buttons only with the write privilege
+		// the upload form and the delete buttons only with the write privilege
 		'Component/Gallery.latte' => [
-			"{if \$uploadSupported}\n" => "{if \$writeAllowed && \$uploadSupported}\n",
-			"{else}\n\t<div class=\"alert alert-warning\">" => "{elseif \$writeAllowed}\n\t<div class=\"alert alert-warning\">",
+			'{snippet upload}' => static fn(string $source): string => preg_replace_callback(
+				'~^\{snippet upload\}\n.*?^\{/snippet\}\n~ms',
+				fn(array $m): string => "{if \$writeAllowed}\n" . preg_replace('~^(?=.)~m', "\t", $m[0]) . "{/if}\n",
+				$source,
+			),
 			'<a n:href="delete!, name: $name"' => '<a n:if="$writeAllowed" n:href="delete!, name: $name"',
 		],
 		// the preview only shows an image, so it is checked as "gallery-read"
@@ -72,7 +75,8 @@ foreach ($files as $package => [$dir, $list]) {
 				fwrite(STDERR, "NOT ONCE in $package $file: $from\n");
 				exit(1);
 			}
-			$source = str_replace($from, $to, $source);
+			// a closure rewrites more than one place (the found text only checks that it is there once)
+			$source = $to instanceof Closure ? $to($source) : str_replace($from, $to, $source);
 		}
 		$target = "$root/project-preset-permission/resources/app/Presentation/$dir/$file";
 		@mkdir(dirname($target), 0o777, true); // @ directory may already exist
