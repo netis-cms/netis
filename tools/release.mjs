@@ -5,6 +5,7 @@
 //   node netis/tools/release.mjs utils                also packages without shipped changes, when named
 //   node netis/tools/release.mjs --publish            release the plan: checks, GitHub release, waits for Packagist
 //   node netis/tools/release.mjs --publish --wave     release only the first wave, then re-run CI of the next one
+//   node netis/tools/release.mjs --skip=simple,utils  leave out packages with shipped changes this time (only doc comments etc.)
 //
 // A wave is a set of packages whose drago-ex dependencies (require-dev too, CI installs it) are released already.
 // CI of a package stays red until its new dependencies are on Packagist, so a plan with new major versions or first
@@ -41,6 +42,10 @@ const args = process.argv.slice(2);
 const publish = args.includes('--publish');
 const waveOnly = args.includes('--wave');
 const requested = new Map(args.filter(a => !a.startsWith('--')).map(a => a.split('=')).map(([n, b]) => [n, b ?? 'minor']));
+// Packages with shipped changes that are not released this time (e.g. only doc comments changed).
+const skip = new Set(args.filter(a => a.startsWith('--skip=')).flatMap(a => a.slice('--skip='.length).split(',')).filter(Boolean));
+// The arguments that shape the plan, repeated in the --publish hint.
+const planArgs = args.filter(a => !a.startsWith('--') || a.startsWith('--skip='));
 
 // composer.json without the parts that do not reach users.
 const shippedComposer = json => {
@@ -103,9 +108,9 @@ const allows = (constraint, version) => constraint.split('||').map(c => c.trim()
 });
 
 const plan = packages
-	.filter(p => p.shipped.length > 0 || requested.has(p.dir))
+	.filter(p => (p.shipped.length > 0 || requested.has(p.dir)) && !skip.has(p.dir))
 	.map(p => ({ ...p, version: nextVersion(p.tag, requested.get(p.dir) ?? 'minor') }));
-for (const name of requested.keys()) {
+for (const name of [...requested.keys(), ...skip]) {
 	if (!packages.some(p => p.dir === name)) console.log(`WARN ${name} is not a releasable package of this workspace`);
 }
 
@@ -144,6 +149,19 @@ for (const p of ordered) {
 	}
 }
 
+// A skipped package keeps its released version, which the constraints of its dependents must still allow.
+for (const p of packages.filter(p => skip.has(p.dir) && p.tag)) {
+	const released = p.tag.replace(/^v/, '');
+	for (const dependent of packages) {
+		for (const [key, constraints] of [['require', dependent.constraints], ['require-dev', dependent.devConstraints]]) {
+			const constraint = constraints[p.name];
+			if (constraint && !allows(constraint, released)) {
+				problems.push(`${dependent.dir} ${key} ${p.name} ${constraint} needs a new version of the skipped ${p.dir} (released ${released})`);
+			}
+		}
+	}
+}
+
 fs.mkdirSync(notesDir, { recursive: true });
 console.log(`Release plan (${ordered.length} packages, in this order):\n`);
 for (const [i, p] of ordered.entries()) {
@@ -165,7 +183,7 @@ if (problems.length) {
 }
 
 if (!publish) {
-	console.log('\nEdit the notes, then release with: node netis/tools/release.mjs --publish' + (requested.size ? ' ' + args.filter(a => !a.startsWith('--')).join(' ') : ''));
+	console.log('\nEdit the notes, then release with: node netis/tools/release.mjs --publish' + (planArgs.length ? ' ' + planArgs.join(' ') : ''));
 	process.exit(problems.length ? 1 : 0);
 }
 

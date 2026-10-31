@@ -80,7 +80,8 @@ node netis/tools/release.mjs --publish    # release it
 node netis/tools/release.mjs --publish --wave   # release only the first wave
 ```
 
-Choose a version with `package=major|minor|patch|X.Y.Z`. Release notes are drafted from the commits into
+Choose a version with `package=major|minor|patch|X.Y.Z`, and leave out packages whose changes need no release
+yet (e.g. only doc comments) with `--skip=package,other`; repeat it with `--publish`. Release notes are drafted from the commits into
 `temp/release-notes/`, where you can edit them before publishing. Publishing checks that each package is committed,
 pushed and green in CI, and waits for Packagist between dependent packages.
 
