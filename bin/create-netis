@@ -6,17 +6,11 @@ const PackageCommands = 'drago-commands';
 $projectPackage = 'drago-ex/project';
 $defaultInstallPackages = [
 	'drago-ex/project-preset:^2.0',
-	'drago-ex/project-install:^1.0',
 ];
 
-// --permission adds the overlay with permissions (menu by privileges, write buttons, roles from the database)
-$permissionPackage = 'drago-ex/project-preset-permission:^2.0';
-
 $arguments = array_slice($argv, 1);
-$withPermission = in_array('--permission', $arguments, true);
-$positionals = array_values(array_filter($arguments, fn(string $arg): bool => $arg !== '--permission'));
-$targetDir = $positionals[0] ?? 'netis';
-$hasTargetArg = $positionals !== [];
+$targetDir = $arguments[0] ?? 'netis';
+$hasTargetArg = $arguments !== [];
 
 $green = "\033[32m";
 $blue = "\033[34m";
@@ -29,22 +23,21 @@ if (in_array($targetDir, ['-h', '--help'], true)) {
 		Create a Netis CMS project.
 
 		Usage:
-		  php bin/create-netis [target-dir] [--permission]
+		  php bin/create-netis [target-dir]
 
 		Examples:
 		  php bin/create-netis
 		  php bin/create-netis cms
-		  php bin/create-netis cms --permission
 		  php bin/create-netis .
 
 		The default target directory is "netis".
 		Use "." only inside an empty directory.
-		--permission adds permissions: the administration menu by privileges, write buttons and roles from the database.
+		The project has permissions: the ACL of the packages and the administration of roles (project-permission).
 		USAGE;
 	exit(0);
 }
 
-$installPackages = getInstallPackages($withPermission ? [...$defaultInstallPackages, $permissionPackage] : $defaultInstallPackages);
+$installPackages = getInstallPackages($defaultInstallPackages);
 $cwd = getcwd();
 
 if ($cwd === false) {
@@ -93,8 +86,8 @@ runCommand(['php', 'vendor/bin/drago-install'], $projectDir);
 echo "{$blue}INFO Cleaning vendor resources.{$reset}\n";
 runCommand(['php', 'vendor/bin/drago-clean'], $projectDir);
 
-// The package commands generate e.g. the permission providers (only with drago-ex/permission, so with --permission);
-// later composer install/update also run them for packages added afterwards, existing classes are kept.
+// The package commands (extra.drago-tools.commands of the installed packages); later composer install/update
+// also run them for packages added afterwards.
 echo "{$blue}INFO Adding package commands to Composer scripts.{$reset}\n";
 addComposerScript($projectDir . DIRECTORY_SEPARATOR . 'composer.json', PackageCommands);
 
@@ -102,6 +95,13 @@ echo "{$blue}INFO Running package commands.{$reset}\n";
 runCommand(['php', 'vendor/bin/drago-commands'], $projectDir);
 
 echo "{$green}OK Netis project is ready in {$targetDir}.{$reset}\n";
+echo <<<NEXT
+	{$blue}INFO Next, in {$targetDir}:
+	  npm install && npm run vite:build                              # the assets
+	  npm run docker:dev                                             # the server and the database (keeps running)
+	  docker compose exec -u www-data server php bin/project-setup   # in another terminal: migrations, administrator, website name{$reset}
+
+	NEXT;
 
 /**
  * @param list<string> $defaultInstallPackages

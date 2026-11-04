@@ -21,11 +21,8 @@ Create a new project:
 create-netis cms
 ```
 
-With permissions (the administration menu by privileges, write buttons, roles from the database,
-[project-preset-permission](https://github.com/drago-ex/project-preset-permission)):
-```shell
-create-netis cms --permission
-```
+The project has permissions: the ACL of every package (drago-ex/permission) and the administration of roles
+and privileges ([project-permission](https://github.com/drago-ex/project-permission)).
 
 Without an argument, the default target directory is `netis`:
 ```shell
@@ -43,27 +40,27 @@ php bin/create-netis cms
 ```
 
 ## What It Does
-The command creates a base Drago project, installs the Netis preset packages, copies project resources,
-cleans vendor resource folders and runs the package commands (e.g. the permission providers of the installed packages):
+The command creates a base Drago project, installs the Netis preset packages (with the assets composed for all
+packages), copies project resources, cleans vendor resource folders and runs the package commands:
 ```shell
 composer create-project drago-ex/project <target-dir> --no-scripts
-composer require --no-scripts <netis-packages>   # project-preset, project-install (+ project-preset-permission with --permission)
+composer require --no-scripts <netis-packages>   # project-preset
 php vendor/bin/drago-install
 php vendor/bin/drago-clean
 php vendor/bin/drago-commands
 ```
 
-It also adds `drago-commands` to the Composer scripts of the project, so packages installed later get
-their permission providers on `composer update`. The migrations are run by the web installer.
+It also adds `drago-commands` to the Composer scripts of the project, so the commands of packages installed later
+run on `composer update`.
 
 ## Integration Test
 The [Integration](.github/workflows/integration.yml) workflow creates a project with `create-netis`, runs the
-migrations, PHPStan and the asset build, then sets the project up as the web installer does and checks the front page,
+migrations by `bin/project-setup`, PHPStan and the asset build, then adds the website settings and an administrator
+and checks the front page,
 the sign-in of an administrator and the administration. It saves a static page, a blog article and the roles of a
-user through their forms and checks their columns in the database, the edit form and the front pages, because the
+user and a custom role through their forms and checks their columns in the database, the edit form and the front pages, because the
 camelCase properties of entities and forms are mapped to snake_case columns. It runs on every push, daily and on demand,
-with the released packages and with the main branches of all drago-ex packages (the check before a release),
-each without and with `--permission` (`VARIANT=base|permission`, default `permission`).
+with the released packages and with the main branches of all drago-ex packages (the check before a release).
 
 Locally, with a MySQL or MariaDB database:
 ```shell
@@ -90,12 +87,6 @@ released in waves (the plan shows the wave of each package). `--wave` releases o
 dependencies are released already, waits for Packagist and runs CI of the next wave again; once it is green, run the
 same command again.
 
-project-preset-permission ships copies of the blog, static-page and gallery administration components with their
-permission steps done. After such a file changes in its package, copy them again:
-```shell
-php netis/tools/preset-permission.php
-```
-
 ## After Create
 Go to the created project directory:
 ```shell
@@ -117,9 +108,15 @@ Build Docker images:
 npm run docker:build
 ```
 
-Start the development Docker environment:
+Start the development Docker environment (it keeps watching the changes, so continue in another terminal):
 ```shell
 npm run docker:dev
+```
+
+Run the migrations and set the administrator and the website name with `bin/project-setup` of
+[drago-ex/project](https://github.com/drago-ex/project), in the container:
+```shell
+docker compose exec -u www-data server php bin/project-setup
 ```
 
 All available npm commands are listed in the created project's `package.json`.

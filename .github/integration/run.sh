@@ -4,14 +4,12 @@
 #
 # MODE=released  packages from Packagist, as users get them
 # MODE=main      main branches of all drago-ex packages (cloned, or taken from PACKAGES_DIR), the check before a release
-# VARIANT=base        create-netis without permissions
-# VARIANT=permission  create-netis --permission (project-preset-permission)
+# The project always has permissions: the ACL of the packages and project-permission in the preset.
 #
 # The database is given by DB_HOST, DB_PORT, DB_USER, DB_PASSWORD and DB_NAME.
 set -euo pipefail
 
 MODE=${MODE:-released}
-VARIANT=${VARIANT:-permission}
 DB_HOST=${DB_HOST:-127.0.0.1}
 DB_PORT=${DB_PORT:-3306}
 DB_USER=${DB_USER:-super}
@@ -73,12 +71,8 @@ if [ "$MODE" = main ]; then
 	php "$NETIS/.github/integration/composer-config.php" "$(native "$PACKAGES")" "$COMPOSER_HOME/config.json"
 fi
 
-step "create-netis ($MODE, $VARIANT)"
-if [[ $VARIANT == permission ]]; then
-	(cd "$WORK" && php "$NETIS/bin/create-netis" app --permission)
-else
-	(cd "$WORK" && php "$NETIS/bin/create-netis" app)
-fi
+step "create-netis ($MODE)"
+(cd "$WORK" && php "$NETIS/bin/create-netis" app)
 check_report install
 check_report commands
 
@@ -97,7 +91,9 @@ dibi:
 	driver: mysqli
 	lazy: true
 NEON
-(cd "$APP" && php vendor/bin/migration db:migrate --packages)
+# project-setup of drago-ex/project: without a terminal it writes the migration console, runs the migrations and
+# asks nothing (the administrator and the website name are set below)
+(cd "$APP" && php bin/project-setup)
 check_report migration
 
 step "PHPStan"
@@ -134,7 +130,7 @@ if [ "$status" != 200 ] || ! grep -q '<title>' "$WORK/index.html"; then
 fi
 
 step "Application after install"
-# The same state the web installer leaves: website settings, an administrator and the install lock.
+# The state project-setup leaves after its questions: website settings and an administrator.
 ADMIN_EMAIL=admin@example.com
 ADMIN_PASSWORD=integration-test-password
 sql() {
@@ -153,13 +149,9 @@ sql_value() {
 		echo $result->fetch_row()[0] ?? "";
 	' "$DB_HOST" "$DB_PORT" "$DB_USER" "$DB_PASSWORD" "$DB_NAME" "$1"
 }
-sql "INSERT INTO settings (name, value) VALUES ('website', 'Netis integration'), ('description', 'Integration test'), ('installed', '1')"
-(cd "$APP" && php vendor/bin/create-user admin "$ADMIN_EMAIL" "$ADMIN_PASSWORD")
-# with permissions the web installer gives the administrator the admin role
-if [[ $VARIANT == permission ]]; then
-	sql "INSERT INTO users_roles (user_id, role_id) SELECT id, 1 FROM users WHERE email = '$ADMIN_EMAIL'"
-fi
-(cd "$APP" && php -r 'require "vendor/autoload.php"; Install\InstallLock::create(getcwd(), "integration test");')
+sql "INSERT INTO settings (name, value) VALUES ('website', 'Netis integration'), ('description', 'Integration test')"
+# the administrator gets the admin role (user_roles of project-auth), as project-setup creates it
+(cd "$APP" && php vendor/bin/create-user admin "$ADMIN_EMAIL" "$ADMIN_PASSWORD" --admin)
 
 BASE=http://127.0.0.1:$HTTP_PORT
 JAR=$WORK/cookies.txt
@@ -216,11 +208,8 @@ expect 303 'POST sign-in' "$result"
 [[ "$result" == *"/admin"* ]] || { echo 'The sign-in does not lead to the administration.'; exit 1; }
 expect 200 'GET /admin/ (signed in)' "$(request -L "$BASE/admin/")"
 expect 200 'GET /admin/gallery/' "$(request -L "$BASE/admin/gallery/")"
-if [[ $VARIANT == permission ]]; then
-	expect 200 'GET /admin/permission/roles' "$(request -L "$BASE/admin/permission/roles")"
-else
-	expect 200 'GET /admin/settings/ (no permissions installed)' "$(request -L "$BASE/admin/settings/")"
-fi
+expect 200 'GET /admin/settings/' "$(request -L "$BASE/admin/settings/")"
+expect 200 'GET /admin/permission/roles' "$(request -L "$BASE/admin/permission/roles")"
 
 step "Saving and editing"
 # Entities and form values have camelCase properties, the columns are snake_case: drago-ex/database maps them.
@@ -276,19 +265,25 @@ grep -q 'Integration article' "$WORK/page.html" || { echo 'The article is not in
 expect 200 'GET /blog/integration-article' "$(request -L "$BASE/blog/integration-article")"
 grep -q 'Integration category' "$WORK/page.html" || { echo 'The article does not show its category.'; exit 1; }
 
-if [[ $VARIANT == permission ]]; then
-	expect 200 'GET /admin/permission/users' "$(request -L "$BASE/admin/permission/users")"
-	echo "POST user roles -> $(submit userId userId="$ADMIN_ID" 'roleId[]=1' 'roleId[]=2')"
-	expect_same '1,2' 'users_roles role_id' \
-		"$(sql_value "SELECT GROUP_CONCAT(role_id ORDER BY role_id) FROM users_roles WHERE user_id = $ADMIN_ID")"
-	expect 200 'GET edit user roles (AJAX)' "$(ajax "$BASE/admin/permission/users?do=users-edit&users-id=$ADMIN_ID")"
-	# an edit shows the user readonly instead of the select and saves the roles of the edited id
-	expect_same admin 'form userName' "$(form_tool value "$WORK/page.html" userName)"
-	expect_same '1,2' 'form roleId' "$(form_tool value "$WORK/page.html" 'roleId[]')"
-	echo "POST edit user roles -> $(submit userName 'roleId[]=2')"
-	expect_same '2' 'users_roles role_id after edit' \
-		"$(sql_value "SELECT GROUP_CONCAT(role_id ORDER BY role_id) FROM users_roles WHERE user_id = $ADMIN_ID")"
-fi
+step "Permissions"
+# a custom role of project-permission, stored by name
+expect 200 'GET /admin/permission/roles' "$(request -L "$BASE/admin/permission/roles")"
+echo "POST role -> $(submit description name=moderator description='Comment moderator')"
+expect_same 'moderator' 'roles name' "$(sql_value "SELECT name FROM roles WHERE name = 'moderator'")"
+
+# the roles of a user are names in user_roles of project-auth; the edit shows the user readonly
+expect 200 'GET /admin/permission/users' "$(request -L "$BASE/admin/permission/users")"
+expect 200 'GET edit user roles (AJAX)' "$(ajax "$BASE/admin/permission/users?do=users-edit&users-id=$ADMIN_ID")"
+expect_same admin 'form userName' "$(form_tool value "$WORK/page.html" userName)"
+expect_same 'admin' 'form roles' "$(form_tool value "$WORK/page.html" 'roles[]')"
+echo "POST user roles -> $(submit userName 'roles[]=admin' 'roles[]=moderator')"
+expect_same 'admin,moderator' 'user_roles role' \
+	"$(sql_value "SELECT GROUP_CONCAT(role ORDER BY role) FROM user_roles WHERE user_id = $ADMIN_ID")"
+
+# the privileges offered come from the code: the moderator page lists Backend:Blog with approveComment
+expect 200 'GET /admin/permission/permissions (moderator)' \
+	"$(request -L "$BASE/admin/permission/permissions?authorization-role=moderator")"
+grep -q 'approveComment' "$WORK/page.html" || { echo 'The privileges of the blog are not offered.'; exit 1; }
 
 echo
-echo "OK Netis integration test passed ($MODE, $VARIANT)."
+echo "OK Netis integration test passed ($MODE)."

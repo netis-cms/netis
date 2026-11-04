@@ -8,15 +8,13 @@ on:
 
 jobs:
   netis:
-    name: create-netis (${{ matrix.mode }}, ${{ matrix.variant }})
+    name: create-netis (${{ matrix.mode }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         # released: packages from Packagist; main: main branches of all drago-ex packages
         mode: [released, main]
-        # base: create-netis; permission: create-netis --permission
-        variant: [base, permission]
 
     services:
       db:
@@ -46,6 +44,5 @@ jobs:
       - run: bash .github/integration/run.sh
         env:
           MODE: ${{ matrix.mode }}
-          VARIANT: ${{ matrix.variant }}
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
