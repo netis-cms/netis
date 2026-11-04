@@ -2,6 +2,7 @@
 <?php declare(strict_types=1);
 
 const PackageCommands = 'drago-commands';
+const ProjectAssets = '@php bin/project-assets';
 
 $projectPackage = 'drago-ex/project';
 $defaultInstallPackages = [
@@ -87,9 +88,10 @@ echo "{$blue}INFO Cleaning vendor resources.{$reset}\n";
 runCommand(['php', 'vendor/bin/drago-clean'], $projectDir);
 
 // The package commands (extra.drago-tools.commands of the installed packages); later composer install/update
-// also run them for packages added afterwards.
+// also run them for packages added afterwards. bin/project-assets of drago-ex/project is left out: the preset
+// already composes the assets of all packages, so the project needs no .drago-project/assets.md.
 echo "{$blue}INFO Adding package commands to Composer scripts.{$reset}\n";
-addComposerScript($projectDir . DIRECTORY_SEPARATOR . 'composer.json', PackageCommands);
+updateComposerScripts($projectDir . DIRECTORY_SEPARATOR . 'composer.json', PackageCommands, ProjectAssets);
 
 echo "{$blue}INFO Running package commands.{$reset}\n";
 runCommand(['php', 'vendor/bin/drago-commands'], $projectDir);
@@ -143,8 +145,8 @@ function findComposer(): ?string
 	return null;
 }
 
-/** Appends the command to post-install-cmd and post-update-cmd of the project, unless it is already there. */
-function addComposerScript(string $composerFile, string $command): void
+/** Appends a command to post-install-cmd and post-update-cmd of the project (unless it is there) and removes another. */
+function updateComposerScripts(string $composerFile, string $add, string $remove): void
 {
 	$composer = json_decode((string) file_get_contents($composerFile), true);
 	if (!is_array($composer)) {
@@ -153,9 +155,9 @@ function addComposerScript(string $composerFile, string $command): void
 	}
 
 	foreach (['post-install-cmd', 'post-update-cmd'] as $event) {
-		$scripts = (array) ($composer['scripts'][$event] ?? []);
-		if (!in_array($command, $scripts, true)) {
-			$scripts[] = $command;
+		$scripts = array_values(array_diff((array) ($composer['scripts'][$event] ?? []), [$remove]));
+		if (!in_array($add, $scripts, true)) {
+			$scripts[] = $add;
 		}
 		$composer['scripts'][$event] = $scripts;
 	}

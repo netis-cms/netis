@@ -51,7 +51,8 @@ php vendor/bin/drago-commands
 ```
 
 It also adds `drago-commands` to the Composer scripts of the project, so the commands of packages installed later
-run on `composer update`.
+run on `composer update`, and removes `bin/project-assets` from them: the preset already composes the assets of
+all packages, so the project needs no `.drago-project/assets.md`.
 
 ## Integration Test
 The [Integration](.github/workflows/integration.yml) workflow creates a project with `create-netis`, runs the

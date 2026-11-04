@@ -91,8 +91,12 @@ dibi:
 	driver: mysqli
 	lazy: true
 NEON
-# project-setup of drago-ex/project: without a terminal it writes the migration console, runs the migrations and
-# asks nothing (the administrator and the website name are set below)
+# the migration console is copied from drago-ex/migration by drago-install, because project-setup writes no
+# project files; create-netis leaves bin/project-assets out of the Composer scripts (the preset composes the assets)
+if [ ! -s "$APP/app/Core/Console/console.neon" ]; then echo "app/Core/Console/console.neon is missing"; exit 1; fi
+if grep -q 'project-assets' "$APP/composer.json"; then echo "composer.json still runs bin/project-assets"; exit 1; fi
+# project-setup of drago-ex/project: without a terminal it runs the migrations and asks nothing (the administrator
+# and the website name are set below)
 (cd "$APP" && php bin/project-setup)
 check_report migration
 
