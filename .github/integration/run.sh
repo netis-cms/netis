@@ -284,10 +284,12 @@ echo "POST user roles -> $(submit userName 'roles[]=admin' 'roles[]=moderator')"
 expect_same 'admin,moderator' 'user_roles role' \
 	"$(sql_value "SELECT GROUP_CONCAT(role ORDER BY role) FROM user_roles WHERE user_id = $ADMIN_ID")"
 
-# the privileges offered come from the code: the moderator page lists Backend:Blog with approveComment
-expect 200 'GET /admin/permission/permissions (moderator)' \
-	"$(request -L "$BASE/admin/permission/permissions?authorization-role=moderator")"
+# the privileges offered come from the code: the moderator page of Backend:Blog lists approveComment with its
+# description from the acl.neon of the blog (permissionLabels)
+expect 200 'GET /admin/permission/permissions (moderator, Backend:Blog)' \
+	"$(request -L "$BASE/admin/permission/permissions?authorization-role=moderator&authorization-resource=Backend:Blog")"
 grep -q 'approveComment' "$WORK/page.html" || { echo 'The privileges of the blog are not offered.'; exit 1; }
+grep -q 'Approving comments\|Schvalování komentářů' "$WORK/page.html" || { echo 'The descriptions of the privileges are missing.'; exit 1; }
 
 echo
 echo "OK Netis integration test passed ($MODE)."
